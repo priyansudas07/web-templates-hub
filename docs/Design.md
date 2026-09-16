@@ -218,3 +218,116 @@ Badges are kept rare, small, and meaningful:
 ### 6.10 Core Visual Rule
 
 > **"Let the jerseys create the visual excitement. The interface should frame them, not compete with them."**
+
+---
+
+# Part 3: Hero, Interactions & Motion
+
+## 7. Hero, Interactions & Motion
+
+### 7.1 Hero Concept
+The homepage hero communicates the essence of **SPORTS GEAR — premium jerseys and sportswear for people who live the game**.
+
+It avoids conventional e-commerce hero anti-patterns (generic gradients, stock photos, floating blobs, text bloat, or "Welcome" fluff) and instead presents an **editorial sports campaign composition**:
+- Bold display typography
+- One dominant spotlight jersey visual
+- Generous negative space
+- Subtle metadata callouts (`"FOOTBALL / 2026"`, `"NEW SEASON"`)
+- Prominent CTA (`"Explore Collection"`)
+
+---
+
+### 7.2 Hero Layout Composition
+
+```text
+SPORTS GEAR.
+
+Premium jerseys & sportswear
+for the game.
+
+[ Explore Collection ]
+
+                        [ DOMINANT SPOTLIGHT JERSEY ]
+                        [ Subtle Floating Spec Badge ]
+```
+
+- Asymmetric desktop composition balancing typography with high-impact product photography.
+- Supporting micro-labels derive strictly from actual product data (`FOOTBALL / 2025-26`, `CLUB EDITION`).
+
+---
+
+### 7.3 Hero Product Pointer Interactions
+- **Desktop**: Restrained pointer parallax effect (subtle tilt/translation up to $\pm 5\text{px}$, smooth return to neutral position on pointer leave).
+- **Mobile**: Disabled pointer parallax to preserve battery and GPU performance; subtle entrance fade instead.
+- *Strict Rule*: The product must **never** rotate continuously, 3D-spin, or follow the cursor aggressively.
+
+---
+
+### 7.4 Scroll Introduction & Pacing
+- The hero section smoothly hands off to **Featured Jerseys** and the main **Collection Grid** as the visitor scrolls down.
+- Avoid multi-step cinematic animations that delay browsing access.
+
+---
+
+### 7.5 Product Hover & Viewport Entrance Motion
+
+```text
+Normal Card State ──(Hover)──> Subtle Image Scale (102%) + Surface Highlight ──> View Details CTA Reveal
+```
+
+- **Viewport Entrance**: Subtle upward translate ($+10\text{px} \rightarrow 0$) with opacity fade-in triggered **once** as cards enter viewport.
+- No repeating scroll re-animations.
+
+---
+
+### 7.6 Page & Filter Interactions
+- **Page Navigation**: Fast, lightweight opacity cross-fade ($150\text{ms} - 200\text{ms}$).
+- **Catalog Filter & Search**: Instant, zero-delay client-side filtering without artificial spinners or full-page reloads. Instant search matches across:
+  - Jersey name
+  - Team name
+  - Player name
+  - Sport & Category
+  - Season / Year
+
+---
+
+### 7.7 WhatsApp Enquiry Flow
+- Primary product conversion trigger: `"Enquire on WhatsApp"`.
+- Pre-filled message includes:
+  ```text
+  Hi Sports Gear! I am interested in the [Product Name].
+
+  Size: [Selected Size]
+  Price: ₹[Price]
+
+  Is this available for delivery/pickup?
+  ```
+- *Rule*: Never imply an order has already been placed or process payment.
+
+---
+
+### 7.8 Motion Principles & Performance Rules
+
+#### Motion Priority Scale
+$$\text{Primary (Hero / Image Reveal)} \longrightarrow \text{Secondary (Hover / Nav / Modals)} \longrightarrow \text{Tertiary (Badge / Label Micro-states)}$$
+
+#### Performance Guidelines
+- **No Heavy WebGL/3D**: Do NOT introduce Three.js, heavy particle engines, full-screen video loops, or heavy blur layers.
+- **CSS-First Animations**: Use lightweight GPU-accelerated CSS transforms (`transform`, `opacity`).
+- **Reduced Motion**: Full compliance with `prefers-reduced-motion` to disable parallax and minimize entrance motion for users with motion sensitivities.
+
+---
+
+### 7.9 Unique Brand Signature Detail
+
+**Selected Signature Element**: **The "SG" Tactical Spec Tag**
+- A distinctive, minimal technical-style jersey label component (`[ SG / MATCH-ISSUE / 01 ]`) applied subtley on hero spotlight cards and product detail views, giving Sports Gear a recognizable, authentic brand signature.
+
+---
+
+### 7.10 Core Design Validation Questions
+
+Every screen and animation must immediately answer:
+1. **What is this?** $\rightarrow$ A premium sportswear / jersey catalog.
+2. **What can I browse?** $\rightarrow$ High-quality jerseys across Football, Cricket, Basketball.
+3. **What can I do next?** $\rightarrow$ Explore the collection or enquire via WhatsApp.
