@@ -92,33 +92,36 @@ export const EditorialHero: React.FC = () => {
               Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
             </p>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons Group */}
             <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <Button
                 href="/collection"
                 variant="primary"
                 size="lg"
-                className="w-full sm:w-auto justify-center"
+                className="w-full sm:w-auto justify-center shadow-lg shadow-[#E3261E]/20"
                 icon={<ArrowRight className="w-5 h-5" />}
               >
                 Explore Collection
               </Button>
 
-              <Button
+              <a
                 href={createGeneralWhatsAppLink()}
-                isExternal
-                variant="whatsapp"
-                size="lg"
-                className="w-full sm:w-auto justify-center group"
-                icon={
-                  <span className="relative flex items-center justify-center">
-                    <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse mr-2" />
-                    <MessageCircle className="w-5 h-5 text-[#25D366] group-hover:scale-110 transition-transform" />
-                  </span>
-                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-5 py-3.5 min-h-[52px] bg-[#151514] hover:bg-[#121f17] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 rounded-sm transition-all duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
               >
-                WhatsApp Inquiry
-              </Button>
+                <div className="flex items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] text-[10px] font-mono font-bold uppercase rounded-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+                    <span>LIVE</span>
+                  </span>
+                  <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
+                  <span className="font-sans font-extrabold text-sm uppercase tracking-wider text-[#F3F0E8] group-hover:text-white">
+                    WhatsApp Concierge
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#9B9992] group-hover:text-[#25D366] group-hover:translate-x-1 transition-all" />
+              </a>
             </div>
 
             {/* Quick Spec Metadata Row */}
