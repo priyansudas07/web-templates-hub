@@ -1,12 +1,43 @@
 import { storeInfo } from '../data/store';
+import type { Product, Size } from '../types/product';
 
-export const createWhatsAppLink = (
+/**
+ * Creates a centralized WhatsApp inquiry URL for a specific product or custom message.
+ * Supports passing either a Product object or (productName, price, size) parameters.
+ */
+export function createWhatsAppLink(
+  product: Product,
+  selectedSize?: Size | string
+): string;
+export function createWhatsAppLink(
   productName: string,
   price: number,
-  size?: string
-): string => {
+  selectedSize?: Size | string
+): string;
+export function createWhatsAppLink(
+  productOrName: Product | string,
+  priceOrSize?: number | Size | string,
+  selectedSize?: Size | string
+): string {
   const number = storeInfo.whatsapp;
-  let text = `Hi Sports Gear! I am interested in ordering the ${productName}.\nPrice: ₹${price.toLocaleString('en-IN')}`;
+  let productName: string;
+  let price = 0;
+  let size: string | undefined;
+
+  if (typeof productOrName === 'object') {
+    productName = productOrName.name;
+    price = productOrName.price;
+    size = typeof priceOrSize === 'string' ? priceOrSize : undefined;
+  } else {
+    productName = productOrName;
+    price = typeof priceOrSize === 'number' ? priceOrSize : 0;
+    size = selectedSize;
+  }
+
+  let text = `Hi Sports Gear! I am interested in ordering the ${productName}.`;
+  if (price > 0) {
+    text += `\nPrice: ₹${price.toLocaleString('en-IN')}`;
+  }
   
   if (size) {
     text += `\nSize: ${size}`;
@@ -15,7 +46,7 @@ export const createWhatsAppLink = (
   text += `\n\nIs this available for delivery or pickup?`;
 
   return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-};
+}
 
 export const createGeneralWhatsAppLink = (): string => {
   const number = storeInfo.whatsapp;

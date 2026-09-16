@@ -14,17 +14,20 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   tag
 }) => {
   return (
-    <div className={`space-y-2 mb-10 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+    <div className={`space-y-1 mb-10 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'text-left'}`}>
       {tag && (
-        <span className="text-[11px] font-extrabold tracking-widest text-rose-500 uppercase bg-rose-950/50 border border-rose-800/40 px-3 py-1 rounded-full inline-block">
-          {tag}
-        </span>
+        <div className={`flex items-center gap-2 text-[11px] font-mono tracking-widest text-[#E3261E] uppercase ${align === 'center' ? 'justify-center' : 'justify-start'}`}>
+          <span className="text-[#9B9992]">//</span>
+          <span className="bg-[#151514] border border-[#292927] px-2.5 py-0.5 rounded-sm text-[#E3261E] font-bold">
+            {tag}
+          </span>
+        </div>
       )}
-      <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-100 uppercase">
+      <h2 className="text-4xl sm:text-6xl font-display tracking-wider text-[#F3F0E8] uppercase leading-none font-normal">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed">
+        <p className="text-[#9B9992] text-sm sm:text-base max-w-xl leading-relaxed font-sans font-normal pt-1">
           {subtitle}
         </p>
       )}

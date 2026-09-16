@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import { navItems } from '../../data/store';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
+import { SpotlightNavbar } from '../ui/spotlight-navbar';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,46 +15,45 @@ export const Navbar: React.FC = () => {
     return false;
   };
 
+  // Keyboard Escape key listener to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0E14]/90 backdrop-blur-md border-b border-slate-800/80">
+    <header className="sticky top-0 z-50 bg-[#0B0B0A]/70 backdrop-blur-xl border-b border-[#292927]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo Brand */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-rose-600 flex items-center justify-center font-black text-white text-lg tracking-wider group-hover:bg-rose-500 transition-colors shadow-lg shadow-rose-900/30">
+          <Link
+            to="/"
+            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm"
+            aria-label="Sports Gear Home Page"
+          >
+            <div className="w-10 h-10 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-lg tracking-wider group-hover:bg-[#c91e17] transition-colors shadow-sm">
               SG
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-wider text-slate-100 group-hover:text-rose-400 transition-colors">
+              <span className="font-extrabold text-xl tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors">
                 SPORTS GEAR
               </span>
-              <span className="text-[10px] tracking-widest text-slate-400 font-medium uppercase -mt-1">
+              <span className="text-[10px] tracking-widest text-[#9B9992] font-medium uppercase -mt-1 font-mono">
                 Authentic Kit Vault
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`text-sm font-semibold tracking-wide transition-colors py-2 relative ${
-                    active ? 'text-rose-500' : 'text-slate-300 hover:text-slate-100'
-                  }`}
-                >
-                  {item.label}
-                  {active && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-rose-500 rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Desktop Navigation using SpotlightNavbar */}
+          <div className="hidden md:block">
+            <SpotlightNavbar items={navItems} />
+          </div>
 
           {/* Desktop Direct WhatsApp CTA */}
           <div className="hidden md:flex items-center gap-4">
@@ -61,10 +61,10 @@ export const Navbar: React.FC = () => {
               href={createGeneralWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Direct WhatsApp Enquiry"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wide transition-all shadow-md hover:shadow-emerald-900/40"
+              aria-label="Enquire on WhatsApp Store"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm bg-[#151514] hover:bg-[#1f1f1d] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366] font-mono font-bold text-xs tracking-wide transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp Store</span>
             </a>
           </div>
@@ -73,8 +73,10 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
-              aria-label="Toggle navigation menu"
+              className="p-3 min-h-[48px] min-w-[48px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -84,19 +86,23 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0F172A] border-b border-slate-800 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-2">
+        <div
+          id="mobile-navigation-drawer"
+          className="md:hidden bg-[#151514] border-b border-[#292927] px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200"
+        >
+          <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}
                   to={item.href}
+                  aria-current={active ? 'page' : undefined}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-base font-semibold transition-colors ${
+                  className={`px-4 py-3 min-h-[48px] rounded-sm text-base font-semibold transition-colors flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] ${
                     active
-                      ? 'bg-rose-600/20 text-rose-400 border border-rose-500/30'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-[#E3261E]/20 text-[#E3261E] border border-[#E3261E]/40'
+                      : 'text-[#9B9992] hover:bg-[#0B0B0A] hover:text-[#F3F0E8]'
                   }`}
                 >
                   {item.label}
@@ -105,15 +111,15 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          <div className="pt-2 border-t border-slate-800">
+          <div className="pt-2 border-t border-[#292927]">
             <a
               href={createGeneralWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-emerald-600 text-white font-semibold text-sm tracking-wide shadow-lg"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 min-h-[48px] rounded-sm bg-[#151514] border border-[#292927] text-[#F3F0E8] font-mono font-bold text-sm tracking-wide shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className="w-5 h-5 text-[#25D366]" />
               <span>Enquire on WhatsApp</span>
             </a>
           </div>

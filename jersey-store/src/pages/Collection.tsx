@@ -16,6 +16,11 @@ export const Collection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
 
+  // Dynamic document title for Collection page SEO
+  useEffect(() => {
+    document.title = 'The Collection | Sports Gear';
+  }, []);
+
   // Sync state changes with URL query parameters for shareability
   useEffect(() => {
     const params: Record<string, string> = {};
@@ -69,7 +74,7 @@ export const Collection: React.FC = () => {
       />
 
       {/* Controls Bar: Search & Category Chips */}
-      <div className="space-y-6 bg-[#1E293B]/40 p-6 rounded-2xl border border-slate-800">
+      <div className="space-y-5 bg-[#151514] p-5 sm:p-6 rounded-sm border border-[#292927] shadow-xl">
         <SearchBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -88,7 +93,7 @@ export const Collection: React.FC = () => {
         {(selectedCategory !== 'all' || searchQuery) && (
           <button
             onClick={handleReset}
-            className="text-rose-400 hover:text-rose-300 underline font-semibold"
+            className="text-rose-400 hover:text-rose-300 underline font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded"
           >
             Reset Filters
           </button>

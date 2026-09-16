@@ -1,5 +1,7 @@
-import React from 'react';
-import { Search, X } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { GooeySearch } from '../ui/gooey-search';
+import { products } from '../../data/products';
+import { X } from 'lucide-react';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -10,29 +12,48 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({
   searchQuery,
   onSearchChange,
-  placeholder = "Search by jersey, team, player, sport, or season..."
+  placeholder = "Search kits, teams, players..."
 }) => {
+  const searchItems = useMemo(() => {
+    const list: string[] = [];
+    products.forEach((p) => {
+      if (!list.includes(p.name)) list.push(p.name);
+      if (p.team && !list.includes(p.team)) list.push(p.team);
+      if (p.player && !list.includes(p.player)) list.push(p.player);
+      if (p.season && !list.includes(p.season)) list.push(p.season);
+    });
+    return list;
+  }, []);
+
   return (
-    <div className="relative w-full max-w-xl">
-      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-        <Search className="w-5 h-5" />
+    <div className="w-full flex items-center justify-between gap-4 py-1">
+      {/* Gooey Morphing Search Button & Input */}
+      <div 
+        className="relative flex items-center"
+        style={{
+          ['--foreground' as string]: '#F3F0E8',
+          ['--background' as string]: '#0B0B0A',
+        }}
+      >
+        <GooeySearch
+          items={searchItems}
+          placeholder={placeholder}
+          buttonLabel={searchQuery ? `Filtering: ${searchQuery}` : "Search Catalog"}
+          onChangeQuery={(val) => onSearchChange(val)}
+          onSelect={(selected) => onSearchChange(selected)}
+          debounceMs={200}
+          maxResults={5}
+        />
       </div>
 
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
-        placeholder={placeholder}
-        className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#1E293B]/80 border border-slate-700/80 text-slate-100 placeholder-slate-400 text-sm font-medium focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/30 transition-all shadow-inner"
-      />
-
+      {/* Clear Active Search Query */}
       {searchQuery && (
         <button
           onClick={() => onSearchChange('')}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200"
-          aria-label="Clear search input"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#151514] border border-[#292927] text-[#E3261E] hover:text-[#F3F0E8] hover:bg-[#E3261E] text-xs font-mono font-bold uppercase transition-colors shrink-0"
         >
-          <X className="w-5 h-5" />
+          <X className="w-3.5 h-3.5" />
+          <span>Clear ({searchQuery})</span>
         </button>
       )}
     </div>

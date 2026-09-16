@@ -11,23 +11,24 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   onCategorySelect,
 }) => {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none touch-pan-x">
+    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none touch-pan-x" role="group" aria-label="Catalog Categories Filter">
       {categories.map((cat) => {
         const active = selectedCategory === cat.id;
         return (
           <button
             key={cat.id}
             onClick={() => onCategorySelect(cat.id)}
-            className={`px-4 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase whitespace-nowrap transition-all shrink-0 min-h-[44px] flex items-center gap-2 ${
+            aria-pressed={active}
+            className={`px-4 py-2 rounded-sm text-xs font-mono font-bold tracking-wider uppercase whitespace-nowrap transition-all shrink-0 min-h-[42px] flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] ${
               active
-                ? 'bg-rose-600 text-white shadow-lg shadow-rose-900/40 border border-rose-500'
-                : 'bg-[#1E293B]/80 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/60'
+                ? 'bg-[#E3261E] text-[#F3F0E8] border border-[#E3261E] shadow-sm'
+                : 'bg-[#0B0B0A] text-[#9B9992] hover:bg-[#151514] hover:text-[#F3F0E8] border border-[#292927]'
             }`}
           >
             <span>{cat.name}</span>
             {cat.countBadge && (
-              <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                active ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
+              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm ${
+                active ? 'bg-white/20 text-[#F3F0E8]' : 'bg-[#151514] text-[#9B9992] border border-[#292927]'
               }`}>
                 {cat.countBadge}
               </span>

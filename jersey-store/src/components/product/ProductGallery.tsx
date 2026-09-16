@@ -20,7 +20,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
       <div className="relative aspect-[4/5] bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
         <img
           src={images[activeImageIndex] || images[0]}
-          alt={`${productName} - Image ${activeImageIndex + 1}`}
+          alt={`${productName} - View ${activeImageIndex === 0 ? 'Front' : 'Back'}`}
           loading="eager"
           className="w-full h-full object-cover object-center transition-all duration-300"
         />
@@ -43,7 +43,8 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
             <button
               key={idx}
               onClick={() => setActiveImageIndex(idx)}
-              className={`relative aspect-square w-20 rounded-xl overflow-hidden border-2 transition-all ${
+              aria-label={`View ${productName} image ${idx + 1}`}
+              className={`relative aspect-square w-20 rounded-xl overflow-hidden border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                 activeImageIndex === idx
                   ? 'border-rose-500 scale-105 shadow-md shadow-rose-950/50'
                   : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-700'

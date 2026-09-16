@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SectionHeading } from '../components/common/SectionHeading';
-import { ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
+import { Button } from '../components/common/Button';
+import { ShieldCheck, CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
 import { createGeneralWhatsAppLink } from '../utils/whatsapp';
 
 export const About: React.FC = () => {
+  useEffect(() => {
+    document.title = 'About Us | Sports Gear';
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
       
@@ -15,8 +20,8 @@ export const About: React.FC = () => {
 
       {/* Main Brand Story & Principles Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7 space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base">
-          <p className="text-slate-100 font-bold text-lg">
+        <div className="lg:col-span-7 space-y-6 text-[#9B9992] leading-relaxed text-sm sm:text-base">
+          <p className="text-[#F3F0E8] font-extrabold text-lg sm:text-xl leading-snug">
             At Sports Gear, we believe a jersey is more than fabric—it is history, culture, and pride.
           </p>
 
@@ -29,57 +34,69 @@ export const About: React.FC = () => {
           </p>
 
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl bg-[#1E293B] border border-slate-800 space-y-2">
-              <div className="flex items-center gap-2 text-rose-400 font-bold text-sm">
-                <ShieldCheck className="w-5 h-5" />
+            <div className="p-5 rounded-sm bg-[#151514] border border-[#292927] space-y-2">
+              <div className="flex items-center gap-2 text-[#E3261E] font-mono font-bold text-sm">
+                <ShieldCheck className="w-5 h-5 text-[#E3261E]" />
                 <span>Authentic Quality</span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#9B9992]">
                 Crafted with high-grade moisture-wicking fabrics and durable badge details.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#1E293B] border border-slate-800 space-y-2">
-              <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
-                <CheckCircle2 className="w-5 h-5" />
+            <div className="p-5 rounded-sm bg-[#151514] border border-[#292927] space-y-2">
+              <div className="flex items-center gap-2 text-[#25D366] font-mono font-bold text-sm">
+                <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
                 <span>Zero Friction</span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#9B9992]">
                 No passwords, credit cards, or accounts required. Direct WhatsApp order inquiries.
               </p>
             </div>
           </div>
+
+          <div className="pt-6 flex flex-wrap gap-4">
+            <Button
+              href="/collection"
+              variant="primary"
+              size="md"
+              icon={<ArrowRight className="w-4 h-4" />}
+            >
+              Explore Collection
+            </Button>
+          </div>
         </div>
 
         {/* Visual Callout Card */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 via-[#1E293B] to-slate-900 p-8 rounded-3xl border border-slate-800 space-y-6 text-center shadow-2xl">
-          <div className="w-16 h-16 rounded-2xl bg-rose-600 flex items-center justify-center font-black text-white text-2xl mx-auto shadow-lg shadow-rose-950/50">
+        <div className="lg:col-span-5 bg-[#151514] p-8 rounded-sm border border-[#292927] space-y-6 text-center shadow-2xl">
+          <div className="w-16 h-16 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-2xl mx-auto shadow-sm">
             SG
           </div>
-          <h3 className="text-2xl font-extrabold text-slate-100 uppercase tracking-tight">
+          <h3 className="text-2xl font-black text-[#F3F0E8] uppercase tracking-tight">
             SPORTING DISCIPLINES COVERED
           </h3>
-          <div className="space-y-3 text-sm text-slate-300 font-semibold">
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-              ⚽ Football (Premier League, La Liga, International Kits)
+          <div className="space-y-3 text-sm text-[#F3F0E8] font-semibold">
+            <div className="p-3.5 rounded-sm bg-[#0B0B0A] border border-[#292927] flex items-center justify-center gap-2 text-xs font-mono">
+              <span>⚽</span> <span>Football (Premier League, La Liga, International)</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-              🏏 Cricket (National T20, IPL Franchises)
+            <div className="p-3.5 rounded-sm bg-[#0B0B0A] border border-[#292927] flex items-center justify-center gap-2 text-xs font-mono">
+              <span>🏏</span> <span>Cricket (National T20, IPL Franchises)</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-              🏀 Basketball (NBA Hardwood Classics & City Editions)
+            <div className="p-3.5 rounded-sm bg-[#0B0B0A] border border-[#292927] flex items-center justify-center gap-2 text-xs font-mono">
+              <span>🏀</span> <span>Basketball (NBA Hardwood Classics & Swingman)</span>
             </div>
           </div>
 
-          <a
+          <Button
             href={createGeneralWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg"
+            isExternal
+            variant="emerald"
+            size="md"
+            fullWidth
+            icon={<MessageCircle className="w-5 h-5 text-[#25D366]" />}
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Chat With Our Store Team</span>
-          </a>
+            Chat With Our Store Team
+          </Button>
         </div>
       </div>
 

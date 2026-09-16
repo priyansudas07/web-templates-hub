@@ -1,119 +1,136 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { ProductGrid } from '../components/collection/ProductGrid';
+import { Button } from '../components/common/Button';
 import { getFeaturedProducts, getNewArrivals, products } from '../data/products';
 import { categories } from '../data/categories';
 import { createGeneralWhatsAppLink } from '../utils/whatsapp';
-import { ArrowRight, MessageCircle, Sparkles, Trophy } from 'lucide-react';
+import { ArrowRight, MessageCircle, Sparkles, ShieldCheck } from 'lucide-react';
 
 export const Home: React.FC = () => {
   const featuredProducts = getFeaturedProducts();
   const newArrivals = getNewArrivals();
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
 
+  useEffect(() => {
+    document.title = 'Sports Gear | Premium Sportswear & Authentic Match Kits';
+  }, []);
+
+  const filteredCategories = categories.filter((c) => c.id !== 'all');
+
   return (
-    <div className="space-y-24 pb-12">
+    <div className="space-y-28 pb-16 overflow-x-hidden bg-[#0B0B0A]">
       
       {/* 1. EDITORIAL HERO SECTION */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-6">
-        {/* Background Subtle Gradient & Grid lines */}
-        <div className="absolute inset-0 bg-radial from-rose-950/20 via-transparent to-transparent opacity-60 pointer-events-none" />
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-8">
+        {/* Background Visual Signature: Monogram Watermark */}
+        <div className="absolute -right-12 -bottom-12 text-[18vw] font-black text-[#151514] select-none pointer-events-none tracking-tighter leading-none z-0">
+          SG
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Hero Left Content */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-rose-500 uppercase bg-rose-950/50 border border-rose-800/40 px-3.5 py-1.5 rounded-full w-fit">
-                <Sparkles className="w-3.5 h-3.5" />
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="lg:col-span-7 space-y-6 text-left"
+            >
+              <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#E3261E] uppercase bg-[#151514] border border-[#292927] px-4 py-1.5 rounded-sm w-fit shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-[#E3261E]" />
                 <span>[ SG / NEW SEASON MATCH DROP 2025-26 ]</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-100 uppercase tracking-tighter leading-[0.95]">
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-normal text-[#F3F0E8] uppercase tracking-widest leading-[1.1] pt-1">
                 BUILT FOR THE <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400">
+                <span className="text-[#F3F0E8]">
                   GAME YOU LIVE.
                 </span>
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed font-normal">
-                Authentic match kits, rare retro grails, and official sportswear. Curated for fans, collectors, and players who demand authentic quality.
+              <p className="text-[#9B9992] text-base sm:text-lg max-w-xl leading-relaxed font-sans font-normal pt-1">
+                Authentic match kits, rare retro grails, and official sportswear. Curated for fans, collectors, and athletes who demand authentic quality.
               </p>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/collection"
-                  className="px-8 py-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-sm uppercase tracking-wider flex items-center gap-3 transition-all shadow-xl shadow-rose-950/60 hover:scale-105"
+                <Button
+                  href="/collection"
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight className="w-5 h-5" />}
                 >
-                  <span>Explore Collection</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  Explore Collection
+                </Button>
 
-                <a
+                <Button
                   href={createGeneralWhatsAppLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-4 rounded-xl bg-[#1E293B] hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700 font-bold text-sm uppercase tracking-wider flex items-center gap-2.5 transition-all"
+                  isExternal
+                  variant="outline"
+                  size="lg"
+                  icon={<MessageCircle className="w-5 h-5 text-[#25D366]" />}
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp Inquiry</span>
-                </a>
+                  WhatsApp Inquiry
+                </Button>
               </div>
 
-              {/* Hero Stats / Micro-trust */}
-              <div className="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-6 max-w-md">
-                <div>
-                  <span className="block text-2xl font-black text-slate-100">100%</span>
-                  <span className="text-xs text-slate-400">Authentic Kits</span>
-                </div>
-                <div>
-                  <span className="block text-2xl font-black text-slate-100">3+</span>
-                  <span className="text-xs text-slate-400">Sports Covered</span>
-                </div>
-                <div>
-                  <span className="block text-2xl font-black text-slate-100">FAST</span>
-                  <span className="text-xs text-slate-400">WhatsApp Inquiry</span>
+              {/* Technical Spec Ticker Bar */}
+              <div className="pt-8 border-t border-[#292927]">
+                <div className="flex items-center gap-4 text-xs font-mono text-[#9B9992] tracking-wider overflow-x-auto whitespace-nowrap py-1">
+                  <span className="text-[#E3261E] font-bold">SPEC //</span>
+                  <span>MATCH EDITION</span>
+                  <span className="text-[#292927]">•</span>
+                  <span>DRI-FIT FABRIC</span>
+                  <span className="text-[#292927]">•</span>
+                  <span>STADIUM VAULT</span>
+                  <span className="text-[#292927]">•</span>
+                  <span>AUTHENTIC QUALITY</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Hero Right Spotlight Image Card */}
+            {/* Hero Right Spotlight Product Card */}
             {spotlightProduct && (
-              <div className="lg:col-span-5">
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-rose-600 to-amber-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-500" />
-                  
-                  <div className="relative bg-[#1E293B] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl">
-                    <Link to={`/collection/${spotlightProduct.id}`} className="block aspect-[4/5] overflow-hidden">
-                      <img
-                        src={spotlightProduct.images[0]}
-                        alt={spotlightProduct.name}
-                        loading="eager"
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </Link>
-
-                    <div className="p-6 bg-slate-900/90 backdrop-blur-md border-t border-slate-800">
-                      <div className="flex items-center justify-between text-xs text-rose-400 font-bold uppercase tracking-wider mb-1">
-                        <span>SPOTLIGHT DROP OF THE WEEK</span>
-                        <span>₹{spotlightProduct.price.toLocaleString('en-IN')}</span>
-                      </div>
-                      <h3 className="font-extrabold text-lg text-slate-100 mb-2">
-                        {spotlightProduct.name}
-                      </h3>
-                      <Link
-                        to={`/collection/${spotlightProduct.id}`}
-                        className="text-xs font-bold text-rose-400 hover:text-rose-300 flex items-center gap-1 uppercase tracking-wider"
-                      >
-                        <span>View Kit Specs</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+                className="lg:col-span-5"
+              >
+                <div className="relative bg-[#151514] border border-[#292927] shadow-2xl overflow-hidden rounded-sm group">
+                  <Link to={`/collection/${spotlightProduct.id}`} className="block aspect-[4/5] overflow-hidden relative bg-[#0B0B0A]">
+                    <img
+                      src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85"
+                      alt={spotlightProduct.name}
+                      loading="eager"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 right-4 bg-[#0B0B0A]/90 border border-[#292927] px-3 py-1 text-[10px] font-mono font-bold text-[#E3261E] tracking-widest rounded-sm">
+                      SPOTLIGHT KIT
                     </div>
+                  </Link>
+
+                  <div className="p-6 bg-[#151514] border-t border-[#292927]">
+                    <div className="flex items-center justify-between text-xs font-mono text-[#E3261E] font-bold uppercase tracking-wider mb-2">
+                      <span>[ {spotlightProduct.sport} / MATCH ISSUE ]</span>
+                      <span className="text-[#F3F0E8] font-sans font-black text-base">₹{spotlightProduct.price.toLocaleString('en-IN')}</span>
+                    </div>
+                    <h3 className="font-normal text-2xl text-[#F3F0E8] uppercase tracking-wide mb-3">
+                      {spotlightProduct.name}
+                    </h3>
+                    <Link
+                      to={`/collection/${spotlightProduct.id}`}
+                      className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#E3261E] hover:text-[#F3F0E8] uppercase tracking-wider"
+                    >
+                      <span>VIEW KIT SPECS</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
           </div>
@@ -130,47 +147,7 @@ export const Home: React.FC = () => {
         <ProductGrid products={featuredProducts} />
       </section>
 
-      {/* 3. CATEGORY DISCOVERY SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          tag="EXPLORE BY DISCIPLINE"
-          title="PRODUCT CATEGORIES"
-          subtitle="Select your favorite sport or kit classification to filter the store catalog."
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.filter(c => c.id !== 'all').map((cat) => (
-            <Link
-              key={cat.id}
-              to={`/collection?category=${cat.id}`}
-              className="group p-6 rounded-2xl bg-[#1E293B]/70 hover:bg-[#1E293B] border border-slate-800 hover:border-rose-500/50 transition-all duration-300 flex flex-col justify-between h-48 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Trophy className="w-24 h-24 text-rose-500" />
-              </div>
-
-              <div>
-                <span className="text-[10px] font-bold tracking-widest text-rose-400 uppercase bg-rose-950/60 border border-rose-800/40 px-2.5 py-1 rounded-full">
-                  {cat.countBadge || 'EXPLORE'}
-                </span>
-                <h3 className="text-xl font-extrabold text-slate-100 uppercase tracking-tight mt-3 group-hover:text-rose-400 transition-colors">
-                  {cat.name}
-                </h3>
-                <p className="text-slate-400 text-xs mt-1 line-clamp-2">
-                  {cat.description}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">
-                <span>View Category</span>
-                <ArrowRight className="w-4 h-4 text-rose-500 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. NEW ARRIVALS SECTION */}
+      {/* 3. NEW ARRIVALS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tag="FRESH DROPS"
@@ -180,35 +157,82 @@ export const Home: React.FC = () => {
         <ProductGrid products={newArrivals} />
       </section>
 
+      {/* 4. CATEGORY DISCOVERY SECTION (EDITORIAL DISCIPLINE LIST) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          tag="EXPLORE BY DISCIPLINE"
+          title="PRODUCT CATEGORIES"
+          subtitle="Select your favorite sport or kit classification to filter the store catalog."
+        />
+
+        <div className="divide-y divide-[#292927] border-t border-b border-[#292927] bg-[#151514]">
+          {filteredCategories.map((cat, index) => {
+            const numStr = (index + 1).toString().padStart(2, '0');
+            return (
+              <Link
+                key={cat.id}
+                to={`/collection?category=${cat.id}`}
+                className="group py-6 px-4 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-[#1f1f1d] transition-colors duration-200"
+              >
+                <div className="flex items-center gap-6">
+                  <span className="text-2xl font-mono font-bold text-[#9B9992] group-hover:text-[#E3261E] transition-colors">
+                    {numStr}
+                  </span>
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-normal text-[#F3F0E8] uppercase tracking-wide group-hover:text-[#E3261E] transition-colors">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[#9B9992] text-xs sm:text-sm mt-0.5 max-w-xl font-sans font-normal">
+                      {cat.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 self-end sm:self-center">
+                  <span className="text-[11px] font-mono text-[#9B9992] uppercase border border-[#292927] px-3 py-1 bg-[#0B0B0A] rounded-sm tracking-wider">
+                    {cat.countBadge || 'CATALOG'}
+                  </span>
+                  <div className="w-9 h-9 rounded-sm bg-[#0B0B0A] border border-[#292927] flex items-center justify-center text-[#9B9992] group-hover:text-white group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-all">
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
       {/* 5. STORE CONTACT CTA BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-[#1E293B] to-slate-900 border border-slate-800 p-8 sm:p-12 relative overflow-hidden">
+        <div className="bg-[#151514] border border-[#292927] p-8 sm:p-12 relative overflow-hidden rounded-sm">
           <div className="relative z-10 max-w-2xl space-y-4">
-            <span className="text-xs font-extrabold text-rose-500 tracking-widest uppercase bg-rose-950/60 border border-rose-800/40 px-3.5 py-1.5 rounded-full inline-block">
-              DIRECT STORE INQUIRY
+            <span className="text-[11px] font-mono font-bold text-[#E3261E] tracking-widest uppercase bg-[#0B0B0A] border border-[#292927] px-3.5 py-1 inline-block rounded-sm">
+              // DIRECT STORE INQUIRY
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 uppercase tracking-tight">
+            <h2 className="text-4xl sm:text-5xl font-normal text-[#F3F0E8] uppercase tracking-wide">
               LOOKING FOR A SPECIFIC JERSEY OR CUSTOM PRINT?
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-[#9B9992] text-sm sm:text-base leading-relaxed font-sans">
               Connect with Sports Gear directly on WhatsApp. We confirm size availability, custom printing options, and direct delivery options instantly.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
-              <a
+              <Button
                 href={createGeneralWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm uppercase tracking-wider flex items-center gap-2.5 transition-all shadow-xl shadow-emerald-950/50"
+                isExternal
+                variant="primary"
+                size="md"
+                icon={<MessageCircle className="w-5 h-5 text-[#F3F0E8]" />}
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Chat on WhatsApp</span>
-              </a>
-              <Link
-                to="/contact"
-                className="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm uppercase tracking-wider transition-all border border-slate-700"
+                Chat on WhatsApp
+              </Button>
+              <Button
+                href="/contact"
+                variant="outline"
+                size="md"
+                icon={<ShieldCheck className="w-5 h-5 text-[#E3261E]" />}
               >
                 Store Location & Hours
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

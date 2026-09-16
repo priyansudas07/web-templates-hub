@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Product, Size } from '../../types/product';
-import { MessageCircle, ShieldCheck, Truck, RotateCcw, Check } from 'lucide-react';
-import { createWhatsAppLink } from '../../utils/whatsapp';
+import { ShieldCheck, Truck, RotateCcw, Check } from 'lucide-react';
+import { WhatsAppButton } from './WhatsAppButton';
 
 interface ProductInfoProps {
   product: Product;
@@ -11,8 +11,6 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<Size | undefined>(
     product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined
   );
-
-  const whatsAppUrl = createWhatsAppLink(product.name, product.price, selectedSize);
 
   return (
     <div className="space-y-6">
@@ -57,12 +55,12 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       {product.sizes && product.sizes.length > 0 && (
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+            <span id="size-selector-label" className="text-xs font-bold uppercase tracking-wider text-slate-300">
               Select Size: {selectedSize && <span className="text-rose-400 ml-1">{selectedSize}</span>}
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2.5" role="group" aria-labelledby="size-selector-label">
             {['S', 'M', 'L', 'XL', 'XXL'].map((s) => {
               const available = product.sizes.includes(s as Size);
               const isSelected = selectedSize === s;
@@ -71,8 +69,10 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
                 <button
                   key={s}
                   disabled={!available}
+                  aria-pressed={isSelected}
+                  aria-label={`Select size ${s}${!available ? ' (unavailable)' : ''}`}
                   onClick={() => available && setSelectedSize(s as Size)}
-                  className={`min-w-[50px] h-12 rounded-xl text-sm font-bold transition-all flex items-center justify-center border ${
+                  className={`min-w-[50px] min-h-[48px] rounded-xl text-sm font-bold transition-all flex items-center justify-center border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                     !available
                       ? 'bg-slate-900/40 text-slate-600 border-slate-800 cursor-not-allowed line-through'
                       : isSelected
@@ -104,15 +104,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
       {/* Primary WhatsApp Action CTA */}
       <div className="pt-4 space-y-3">
-        <a
-          href={whatsAppUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base uppercase tracking-wider flex items-center justify-center gap-3 transition-all shadow-xl shadow-emerald-950/50 hover:scale-[1.01]"
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span>Enquire on WhatsApp</span>
-        </a>
+        <WhatsAppButton product={product} selectedSize={selectedSize} size="lg" />
 
         <p className="text-[11px] text-slate-500 text-center">
           No credit card or registration required. Clicking initiates a direct WhatsApp message.
