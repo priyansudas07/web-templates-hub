@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'emerald';
+  variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'emerald' | 'whatsapp';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   isExternal?: boolean;
@@ -36,7 +36,9 @@ export const Button: React.FC<ButtonProps> = ({
     text:
       'bg-transparent text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] border border-transparent',
     emerald:
-      'bg-[#151514] hover:bg-[#1f1f1d] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]'
+      'bg-[#151514] hover:bg-[#16231b] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 shadow-sm',
+    whatsapp:
+      'bg-[#151514] hover:bg-[#122218] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 shadow-sm transition-all duration-300'
   };
 
   const sizeStyles = {

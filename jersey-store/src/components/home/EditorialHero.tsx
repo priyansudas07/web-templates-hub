@@ -107,10 +107,15 @@ export const EditorialHero: React.FC = () => {
               <Button
                 href={createGeneralWhatsAppLink()}
                 isExternal
-                variant="outline"
+                variant="whatsapp"
                 size="lg"
-                className="w-full sm:w-auto justify-center"
-                icon={<MessageCircle className="w-5 h-5 text-[#25D366]" />}
+                className="w-full sm:w-auto justify-center group"
+                icon={
+                  <span className="relative flex items-center justify-center">
+                    <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse mr-2" />
+                    <MessageCircle className="w-5 h-5 text-[#25D366] group-hover:scale-110 transition-transform" />
+                  </span>
+                }
               >
                 WhatsApp Inquiry
               </Button>
