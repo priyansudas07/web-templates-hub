@@ -171,3 +171,95 @@ Unknown URL ──> 404 Not Found Page ──> CTA: "Return to Homepage"
 
 Every screen provides an immediate, frictionless next action:
 $$\textbf{Homepage} \rightarrow \text{Discover} \quad\mid\quad \textbf{Collection} \rightarrow \text{Browse} \quad\mid\quad \textbf{PDP} \rightarrow \text{Inspect/Size} \quad\mid\quad \textbf{WhatsApp} \rightarrow \text{Enquire}$$
+
+---
+
+# Part 2: States, Edge Cases & Interaction Rules
+
+## 11. Initial Loading & Image Fallback States
+
+- **Instant Load**: Local static data loads synchronously with zero artificial loading spinners.
+- **Image Skeleton**: Image containers display a subtle neutral skeleton (`bg-slate-800 animate-pulse`) until high-res images load.
+- **Image Load Error Handling**: Failed visual links trigger an `onError` event that renders a clean fallback placeholder card, preserving grid layout without showing browser broken-image icons.
+
+---
+
+## 12. Search & Category Filter States
+
+```text
+1. Default State (Search: "", Category: "All") ──> Render Complete Catalog
+2. Search Active (Search: "Ronaldo")          ──> Filter Matching Products
+3. Category Active (Category: "Cricket")      ──> Filter Matching Category
+4. Search + Category Active                   ──> Filter Combined Match
+5. Zero Results Match                         ──> Render Empty State ("Reset Search & Filters")
+```
+
+---
+
+## 13. Size Selection & WhatsApp Inquiry Flow
+
+- **Products with Sizes**: Size selector displays available size buttons (`S`, `M`, `L`, `XL`, `XXL`). Selecting a size updates the WhatsApp link generator to include `Size: [Selected Size]`.
+- **Products without Sizes / Accessories**: Size selector step is omitted cleanly without rendering `N/A` or empty size buttons. The WhatsApp message formats directly without size lines.
+- **Unavailable Sizes**: Disabled with strike-through styling (`opacity-40 cursor-not-allowed line-through`) and cannot be selected.
+
+---
+
+## 14. Availability & WhatsApp Logic
+
+- **Available**: Active solid button `[ Enquire on WhatsApp ]`.
+- **Contact Store**: Button reads `[ Contact Store for Availability ]`.
+- **Unavailable**: Button disabled with clear text `[ Currently Out of Stock ]`. Never claim payment can be completed.
+
+---
+
+## 15. Direct Product URL Flow (`/collection/:id`)
+
+When a visitor opens a direct URL (from WhatsApp sharing, Google search, or bookmarks):
+```text
+Direct URL Visit (/collection/portugal-home-2026)
+                        │
+                        ▼
+               App Initializes & Resolves Slug
+                        │
+       ┌────────────────┴────────────────┐
+       ▼                                 ▼
+Valid Product Slug              Invalid Product Slug
+       │                                 │
+Render PDP View                 Render "Product Not Found" View
+(Title: "Portugal...")          (CTA: "Back to Collection")
+```
+
+---
+
+## 16. Missing Optional Data Handling
+
+Components evaluate optional schema fields conditionally:
+- If `player` is `undefined`: Omit player line cleanly.
+- If `season` is `undefined`: Omit season badge.
+- If `sizes` array is empty: Omit size selector.
+*Rule*: Never render `Player: undefined` or `Season: N/A`. Omission is preferred over noisy placeholders.
+
+---
+
+## 17. External Link Security & Behavior
+
+All external links (WhatsApp `wa.me`, Instagram, Google Maps) use strict security attributes:
+```html
+<a href="https://wa.me/..." target="_blank" rel="noopener noreferrer">
+  Enquire on WhatsApp
+</a>
+```
+
+---
+
+## 18. Eight Global Interaction Rules
+
+1. **Immediate**: Visual responses execute instantly without delay.
+2. **Predictable**: Buttons perform strictly what their labels communicate.
+3. **Reversible**: Search queries and category filters reset easily with one click.
+4. **Lightweight**: Zero heavy animation loops or redundant state hooks.
+5. **Accessible**: Full keyboard navigation, visible focus rings, and 48px+ touch targets.
+6. **Consistent**: Uniform card hover behaviors across all pages.
+7. **Honest**: Zero fake scarcity counters (`"Only 2 left!"`), fake discounts, or false order confirmations.
+8. **Focused**: Every interaction serves the core conversion path:
+   $$\textbf{Discover} \longrightarrow \textbf{Browse} \longrightarrow \textbf{Inspect} \longrightarrow \textbf{Enquire}$$
