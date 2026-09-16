@@ -80,7 +80,7 @@ export const EditorialHero: React.FC = () => {
             className="lg:col-span-7 space-y-6 text-left"
           >
             {/* Oversized Headline in Oswald */}
-            <h1 className="text-6xl sm:text-8xl lg:text-[7.5rem] font-display font-bold uppercase tracking-tight leading-[0.9] text-[#F3F0E8]">
+            <h1 className="text-5xl sm:text-7xl lg:text-[7.5rem] font-display font-bold uppercase tracking-tight leading-[0.92] text-[#F3F0E8]">
               THE GAME <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3F0E8] via-[#F3F0E8] to-[#9B9992] relative">
                 NEVER STOPS.
@@ -88,16 +88,17 @@ export const EditorialHero: React.FC = () => {
             </h1>
 
             {/* Editorial Paragraph */}
-            <p className="text-[#9B9992] text-base sm:text-lg max-w-xl leading-relaxed font-sans font-medium pt-2">
+            <p className="text-[#9B9992] text-sm sm:text-lg max-w-xl leading-relaxed font-sans font-medium pt-1">
               Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <Button
                 href="/collection"
                 variant="primary"
                 size="lg"
+                className="w-full sm:w-auto justify-center"
                 icon={<ArrowRight className="w-5 h-5" />}
               >
                 Explore Collection
@@ -108,6 +109,7 @@ export const EditorialHero: React.FC = () => {
                 isExternal
                 variant="outline"
                 size="lg"
+                className="w-full sm:w-auto justify-center"
                 icon={<MessageCircle className="w-5 h-5 text-[#25D366]" />}
               >
                 WhatsApp Inquiry
@@ -115,18 +117,18 @@ export const EditorialHero: React.FC = () => {
             </div>
 
             {/* Quick Spec Metadata Row */}
-            <div className="pt-6 border-t border-[#292927] grid grid-cols-3 gap-4 max-w-lg text-left">
+            <div className="pt-6 border-t border-[#292927] grid grid-cols-3 gap-2 sm:gap-4 max-w-lg text-left">
               <div>
-                <span className="block text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">CUT / FIT</span>
-                <span className="text-sm font-mono font-bold text-[#F3F0E8]">ATHLETIC PRO</span>
+                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">CUT / FIT</span>
+                <span className="text-xs sm:text-sm font-mono font-bold text-[#F3F0E8]">ATHLETIC PRO</span>
               </div>
               <div>
-                <span className="block text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">FABRIC TECH</span>
-                <span className="text-sm font-mono font-bold text-[#F3F0E8]">DRI-FIT ADV</span>
+                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">FABRIC TECH</span>
+                <span className="text-xs sm:text-sm font-mono font-bold text-[#F3F0E8]">DRI-FIT ADV</span>
               </div>
               <div>
-                <span className="block text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">AVAILABILITY</span>
-                <span className="text-sm font-mono font-bold text-[#E3261E]">LIMITED DROP</span>
+                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">AVAILABILITY</span>
+                <span className="text-xs sm:text-sm font-mono font-bold text-[#E3261E]">LIMITED DROP</span>
               </div>
             </div>
           </motion.div>
@@ -153,7 +155,7 @@ export const EditorialHero: React.FC = () => {
                 <div className="flex items-center justify-between px-3 py-2 bg-[#0B0B0A] border border-[#292927] mb-3 text-xs font-mono">
                   <div className="flex items-center gap-1.5 text-[#E3261E] font-bold uppercase tracking-wider">
                     <Layers className="w-3.5 h-3.5" />
-                    <span>[ KIT 001 SPOTLIGHT ]</span>
+                    <span>[ SPOTLIGHT ]</span>
                   </div>
 
                   {/* Interactive Angle Switcher Tabs */}
