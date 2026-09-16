@@ -120,3 +120,70 @@ The V1 implementation is complete when:
 6. Responsive layout passes mobile touch target tests without horizontal overflow.
 7. `npm run build` compiles cleanly with zero TypeScript errors.
 8. Application is pushed to GitHub repository at `priyansudas07/web-templates-hub`.
+
+---
+
+# Part 2: Detailed Execution & Verification
+
+## 6. Systematic Execution Pipeline
+
+Antigravity executes each implementation step cleanly according to this order:
+
+```text
+1. Project Audit ──> 2. Foundation ──> 3. Data/Types ──> 4. Shared Components ──> 5. Routing
+                                                                                        │
+10. Deployment <── 9. Final QA <── 8. SEO/a11y <── 7. Responsive UX <── 6. Pages ──────┘
+```
+
+---
+
+## 7. QA Test Journeys
+
+### Test Journey A (Standard Purchase Discovery)
+`Homepage → Explore Collection → Search ("Madrid") → Select Size ("L") → Enquire on WhatsApp`
+- *Verification*: Confirm WhatsApp URL pre-populates with `Hi Sports Gear! I am interested in the Real Madrid... Size: L`.
+
+### Test Journey B (Category Filter Exploration)
+`Homepage → Category Tile ("Cricket") → Filter active → Click Product → View Gallery → Back to Collection`
+- *Verification*: Confirm category tab is active and back navigation returns cleanly.
+
+### Test Journey C (Direct URL Sharing)
+`Direct Visit: /collection/portugal-home-2026`
+- *Verification*: Confirm page renders directly without crashing, updating document `<title>`.
+
+### Test Journey D (Store Information Inquiry)
+`Homepage → Contact → Click WhatsApp Link`
+- *Verification*: Confirm store address, phone, hours, and Instagram links display clean store configuration data.
+
+---
+
+## 8. Final QA & Quality Checklist
+
+### Functionality Checklist
+- [x] Navigation functions smoothly across all routes.
+- [x] Search matches name, team, player, sport, category, and season.
+- [x] Category filtering updates products instantaneously.
+- [x] Search and filtering combine deterministically.
+- [x] PDP resolves dynamically by stable product ID slug.
+- [x] Size selection updates WhatsApp pre-filled URLs correctly.
+- [x] Invalid product IDs render clean `Product NotFound` recovery states.
+- [x] Unknown routes render clean `404` recovery states.
+
+### Quality & Design Checklist
+- [x] Premium dark stadium aesthetic (`#0B0E14` background, `#1E293B` elevated cards, `#DC2626` crimson accent).
+- [x] Clean typography scale and field grid geometry.
+- [x] High-res product imagery with front/back view toggles.
+- [x] Zero fake discount tags, fake countdown timers, or fake review ratings.
+- [x] Mobile touch targets meet 48px+ guidelines without horizontal overflow.
+
+### Technical & Build Checklist
+- [x] Zero backend API or external database dependencies.
+- [x] Canonical product catalog centralized in `src/data/products.ts`.
+- [x] `npm run build` compiles with zero TypeScript errors.
+- [x] Code pushed to GitHub repository `priyansudas07/web-templates-hub`.
+
+---
+
+## 9. Core Implementation Rule
+
+$$\text{Design Before Decoration: } \text{Layout} \longrightarrow \text{Typography} \longrightarrow \text{Spacing} \longrightarrow \text{Imagery} \longrightarrow \text{Interaction} \longrightarrow \text{Polish}$$
