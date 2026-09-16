@@ -29,12 +29,12 @@ export const Navbar: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-[#0B0B0A]/70 backdrop-blur-xl border-b border-[#292927]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="relative flex items-center justify-between h-20">
           
           {/* Logo Brand */}
           <Link
             to="/"
-            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm"
+            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm z-10"
             aria-label="Sports Gear Home Page"
           >
             <div className="w-10 h-10 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-lg tracking-wider group-hover:bg-[#c91e17] transition-colors shadow-sm">
@@ -50,15 +50,13 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation using SpotlightNavbar */}
-          <div className="hidden md:block">
+          {/* Desktop Navigation centered in the middle */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
             <SpotlightNavbar items={navItems} />
           </div>
 
-          {/* Desktop Direct WhatsApp CTA - Removed */}
-
           {/* Mobile Menu Toggle Button */}
-          <div className="flex md:hidden">
+          <div className="flex md:hidden z-10">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-3 min-h-[48px] min-w-[48px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
