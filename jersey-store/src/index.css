@@ -74,20 +74,22 @@
 }
 
 /* User-Requested Animated WhatsApp Navbar Button */
-.whatsapp-animated-btn {
-  display: inline-flex;
+.Btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background-color: transparent;
   position: relative;
-  border-radius: 10px;
-  cursor: pointer;
   overflow: hidden;
+  border-radius: 7px;
+  cursor: pointer;
   transition: all 0.3s;
 }
 
-.whatsapp-animated-btn .svgContainer {
+.svgContainer {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -95,8 +97,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
   background-color: #151514;
   backdrop-filter: blur(4px);
   letter-spacing: 0.8px;
@@ -105,7 +105,7 @@
   border: 1px solid rgba(156, 156, 156, 0.466);
 }
 
-.whatsapp-animated-btn .BG {
+.BG {
   position: absolute;
   content: "";
   width: 100%;
@@ -119,12 +119,12 @@
   left: 0;
 }
 
-.whatsapp-animated-btn:hover .BG {
+.Btn:hover .BG {
   transform: rotate(35deg);
   transform-origin: bottom;
 }
 
-.whatsapp-animated-btn:hover .svgContainer {
+.Btn:hover .svgContainer {
   background-color: rgba(21, 21, 20, 0.6);
 }
 
