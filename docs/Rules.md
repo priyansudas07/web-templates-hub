@@ -96,3 +96,55 @@ The application uses a lightweight, frontend-first stack:
 
 $$\text{When deciding between implementation choices:}$$
 $$\textbf{Choose the simpler approach that preserves visual quality, usability, performance, and functionality.}$$
+
+---
+
+# Part 2: Quality, Content & Implementation Behavior
+
+## 9. Visual & Typography Execution Rules
+
+$$\text{Strong Typography} + \text{High-Quality Product Imagery} + \text{Editorial Composition} + \text{Consistent Spacing}$$
+
+- **Imagery Priority**: Product photography is the hero element. Never obscure kits with heavy text overlays or artificial filters.
+- **Typography Scale**: Maximum 2 font families. Display sans for hero titles, clean sans for UI/body text. Uppercase reserved for short badges and metadata (`tracking-wider`).
+- **Restrained Palette**: Charcoal `#0B0E14` foundation, off-white text `#F8FAFC`, muted gray `#94A3B8`, and selective crimson red `#DC2626` accent.
+
+---
+
+## 10. Data-Driven & Conditional UI Rules
+
+- **Data-Driven Render**: `ProductGrid` renders dynamically from the canonical products array.
+- **Conditional Field Rendering**: Omit optional missing fields (`player`, `season`, `sizes`) cleanly. Never render `"Player: undefined"` or `"Season: N/A"`.
+- **Zero Lorem Ipsum**: All production copy must be factual and store-approved. Remove filler text before deployment.
+
+---
+
+## 11. Error Recovery & URL Standards
+
+- **Stable Slugs**: URLs use readable, URL-safe product IDs (e.g., `/collection/real-madrid-home-2026`).
+- **Graceful Recovery**: Invalid product slugs render `"Product Not Found"` with a `"Back to Collection"` recovery CTA.
+- **Client-Side Search & Filter**: Search matches across name, team, player, sport, category, and season without triggering full-page reloads.
+
+---
+
+## 12. Privacy, Security & Environment Rules
+
+- **Zero Data Collection**: No customer databases, tracking pixels, or account storage.
+- **Secret Safety**: Never store API keys or secret tokens in `VITE_*` variables.
+- **External Links**: WhatsApp, Instagram, and Google Maps links open in new tabs with `target="_blank" rel="noopener noreferrer"`.
+
+---
+
+## 13. Antigravity Execution Protocol
+
+Antigravity operates through deliberate, step-by-step verification:
+$$\text{Inspect} \longrightarrow \text{Plan} \longrightarrow \text{Implement} \longrightarrow \text{Run Checks} \longrightarrow \text{Verify} \longrightarrow \text{Commit}$$
+
+### Documentation Source of Truth Hierarchy:
+$$\text{PRD} \longrightarrow \text{AppFlow} \longrightarrow \text{Design} \longrightarrow \text{Schema} \longrightarrow \text{TRD} \longrightarrow \text{ImplementationPlan} \longrightarrow \text{Rules}$$
+
+---
+
+## 14. Core Rule
+
+> **"Do less, but execute it extremely well."**
