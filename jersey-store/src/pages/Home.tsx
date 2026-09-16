@@ -45,14 +45,14 @@ export const Home: React.FC = () => {
                 <span>[ SG / NEW SEASON MATCH DROP 2025-26 ]</span>
               </div>
 
-              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-normal text-[#F3F0E8] uppercase tracking-widest leading-[1.1] pt-1">
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide leading-[1.05] pt-1">
                 BUILT FOR THE <br />
                 <span className="text-[#F3F0E8]">
                   GAME YOU LIVE.
                 </span>
               </h1>
 
-              <p className="text-[#9B9992] text-base sm:text-lg max-w-xl leading-relaxed font-sans font-normal pt-1">
+              <p className="text-[#9B9992] text-base sm:text-lg max-w-xl leading-relaxed font-sans font-medium pt-1">
                 Authentic match kits, rare retro grails, and official sportswear. Curated for fans, collectors, and athletes who demand authentic quality.
               </p>
 
@@ -116,9 +116,9 @@ export const Home: React.FC = () => {
                   <div className="p-6 bg-[#151514] border-t border-[#292927]">
                     <div className="flex items-center justify-between text-xs font-mono text-[#E3261E] font-bold uppercase tracking-wider mb-2">
                       <span>[ {spotlightProduct.sport} / MATCH ISSUE ]</span>
-                      <span className="text-[#F3F0E8] font-sans font-black text-base">₹{spotlightProduct.price.toLocaleString('en-IN')}</span>
+                      <span className="text-[#F3F0E8] font-mono font-bold text-base">₹{spotlightProduct.price.toLocaleString('en-IN')}</span>
                     </div>
-                    <h3 className="font-normal text-2xl text-[#F3F0E8] uppercase tracking-wide mb-3">
+                    <h3 className="font-sans font-bold text-xl text-[#F3F0E8] uppercase tracking-tight mb-3">
                       {spotlightProduct.name}
                     </h3>
                     <Link
@@ -179,10 +179,10 @@ export const Home: React.FC = () => {
                     {numStr}
                   </span>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-normal text-[#F3F0E8] uppercase tracking-wide group-hover:text-[#E3261E] transition-colors">
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide group-hover:text-[#E3261E] transition-colors">
                       {cat.name}
                     </h3>
-                    <p className="text-[#9B9992] text-xs sm:text-sm mt-0.5 max-w-xl font-sans font-normal">
+                    <p className="text-[#9B9992] text-xs sm:text-sm mt-0.5 max-w-xl font-sans font-medium">
                       {cat.description}
                     </p>
                   </div>
@@ -209,10 +209,10 @@ export const Home: React.FC = () => {
             <span className="text-[11px] font-mono font-bold text-[#E3261E] tracking-widest uppercase bg-[#0B0B0A] border border-[#292927] px-3.5 py-1 inline-block rounded-sm">
               // DIRECT STORE INQUIRY
             </span>
-            <h2 className="text-4xl sm:text-5xl font-normal text-[#F3F0E8] uppercase tracking-wide">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide leading-tight">
               LOOKING FOR A SPECIFIC JERSEY OR CUSTOM PRINT?
             </h2>
-            <p className="text-[#9B9992] text-sm sm:text-base leading-relaxed font-sans">
+            <p className="text-[#9B9992] text-sm sm:text-base leading-relaxed font-sans font-medium">
               Connect with Sports Gear directly on WhatsApp. We confirm size availability, custom printing options, and direct delivery options instantly.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
