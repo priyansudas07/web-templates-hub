@@ -62,10 +62,13 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Enquire on WhatsApp Store"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm bg-[#151514] hover:bg-[#1f1f1d] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366] font-mono font-bold text-xs tracking-wide transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
+              className="whatsapp-animated-btn group"
             >
-              <MessageCircle className="w-4 h-4 text-[#25D366]" />
-              <span>WhatsApp Store</span>
+              <span className="BG" />
+              <span className="svgContainer font-mono font-bold text-xs text-[#F3F0E8] tracking-wide">
+                <MessageCircle className="w-4 h-4 text-[#F3F0E8] group-hover:scale-110 transition-transform" />
+                <span>WhatsApp Store</span>
+              </span>
             </a>
           </div>
 
