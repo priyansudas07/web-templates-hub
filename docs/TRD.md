@@ -255,3 +255,97 @@ export const getWhatsAppEnquiryUrl = (
 ## 13. Core Technical Principle
 
 $$\text{Simple Architecture} + \text{Centralized Data} + \text{Reusable Components} + \text{Fast Frontend} + \text{Excellent Visual Execution}$$
+
+---
+
+# Part 2: Implementation Standards
+
+## 14. Routing Requirements
+
+Client-side routing is configured using React Router v6+:
+- Smooth navigation without full-page reloads.
+- Full browser history support (Back/Forward buttons).
+- Direct access to deep URLs (`/collection/real-madrid-home-2026`) via static host SPA fallback (`index.html` rewrite).
+- Unknown routes render `pages/NotFound.tsx`.
+- Unknown product IDs render an explicit "Product Not Found" fallback state.
+
+---
+
+## 15. Image Handling & Loading States
+
+- **Responsive Ratios**: Enforce explicit image container aspect ratios (`aspect-[4/5]` or `aspect-square`) to eliminate Cumulative Layout Shift (CLS).
+- **Lazy Loading**: `loading="lazy"` on all below-the-fold grid cards; `loading="eager"` on Hero assets.
+- **Graceful Error Handling**: Image component includes `onError` fallback replacing failed visual links with a neutral placeholder card without crashing page layout.
+- **Proportion Preservation**: `object-contain` or `object-cover` to prevent jersey image distortion.
+
+---
+
+## 16. SEO & Open Graph Standards
+
+- **Page Titles**:
+  - Home: `Sports Gear | Premium Jerseys & Sportswear`
+  - Collection: `The Collection | Sports Gear`
+  - PDP (Dynamic): `[Product Name] | Sports Gear`
+  - About: `About Us | Sports Gear`
+  - Contact: `Store Location & Contact | Sports Gear`
+- **Meta Tags**: Meta description, Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`), and Twitter Card metadata configured per route.
+
+---
+
+## 17. Semantic HTML & Accessibility Baseline
+
+- **Semantic Tags**: Mandatory use of `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`.
+- **Interactive Elements**: `<button>` for clickable triggers, `<a>` or `<Link>` for navigation. Clickable `<div>`s are strictly prohibited.
+- **Keyboard & Focus**: Visible focus rings (`focus-visible:ring-2 focus-visible:ring-rose-500`).
+- **Alt Text**: Descriptive alt text on all product visuals (e.g., `"Front view of Real Madrid Home Jersey"`).
+
+---
+
+## 18. Performance & Animation Optimization
+
+- **CSS Compositing**: Animations strictly target GPU-accelerated properties (`transform`, `opacity`). Layout properties (`width`, `height`, `margin`, `padding`) must never be animated.
+- **Bundle Optimization**: Tree-shaken icons via Lucide React, minimal third-party dependencies, lightweight JS bundle size (< 150kB gzipped).
+
+---
+
+## 19. Security, Privacy & Environment Setup
+
+- Zero hardcoded API keys or private tokens.
+- Optional environment variables: `VITE_WHATSAPP_NUMBER`, `VITE_SITE_URL`.
+- Zero user data collection or backend conversation tracking.
+
+---
+
+## 20. Reusable WhatsApp URL Utility
+
+Centralized URL builder function (`src/utils/whatsapp.ts`):
+```typescript
+export const createWhatsAppLink = (productName: string, price: number, size?: string): string => {
+  const number = storeInfo.whatsapp;
+  let text = `Hi Sports Gear! I am interested in the ${productName}.\nPrice: ₹${price}`;
+  if (size) text += `\nSize: ${size}`;
+  text += `\n\nIs this item available for pickup/delivery?`;
+  
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+};
+```
+
+---
+
+## 21. Production Build & Quality Acceptance Criteria
+
+The build is ready for deployment when:
+1. `npm run build` / `npx tsc` passes with **zero** TypeScript or lint errors.
+2. All 5 core routes (`/`, `/collection`, `/collection/:id`, `/about`, `/contact`) function smoothly.
+3. Search and category filters operate instantaneously without full-page reloads.
+4. Product detail pages resolve dynamically by stable ID.
+5. Size selector updates WhatsApp inquiry pre-filled links seamlessly.
+6. Responsive mobile layout passes 48px touch target guidelines without horizontal overflow.
+7. Zero runtime database or backend API requests exist.
+
+---
+
+## Technical Principle
+
+$$\text{Build the smallest technical system capable of delivering the intended premium experience.}$$
+$$\textbf{Excellent Frontend Execution} > \text{Unnecessary Infrastructure}$$
