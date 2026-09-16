@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Button } from '../common/Button';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, MessageCircle, ChevronRight, Layers } from 'lucide-react';
+
+const KIT_ANGLES = [
+  {
+    id: 'front',
+    label: '01 // FRONT',
+    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85',
+    tag: 'MATCH EDITION FRONT'
+  },
+  {
+    id: 'back',
+    label: '02 // BACK',
+    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
+    tag: 'CUSTOM NAMEPRINT BACK'
+  },
+  {
+    id: 'detail',
+    label: '03 // CREST',
+    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85',
+    tag: 'AUTHENTIC EMBLEM WEAVE'
+  }
+];
 
 export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
+  const [activeAngleIndex, setActiveAngleIndex] = useState(0);
 
   // Parallax motion tracking
   const mouseX = useMotionValue(0);
@@ -15,10 +37,10 @@ export const EditorialHero: React.FC = () => {
 
   // Smooth springs for fluid movement
   const springConfig = { damping: 25, stiffness: 150 };
-  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
-  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
-  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), springConfig);
-  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-12, 12]), springConfig);
+  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig);
+  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
+  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
+  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-10, 10]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -34,6 +56,8 @@ export const EditorialHero: React.FC = () => {
     mouseX.set(0);
     mouseY.set(0);
   };
+
+  const currentAngle = KIT_ANGLES[activeAngleIndex];
 
   return (
     <section 
@@ -107,7 +131,7 @@ export const EditorialHero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Featured Jersey Showcase with Interactive Parallax */}
+          {/* Right Column: Featured Jersey Showcase with Interactive Parallax & Angle Switcher */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             <motion.div 
               style={{
@@ -122,27 +146,64 @@ export const EditorialHero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-md group cursor-pointer"
             >
-              {/* Product Visual Container with Asymmetric Frame & Partial Crop */}
+              {/* Product Visual Container with Asymmetric Frame */}
               <div className="relative bg-[#151514] border border-[#292927] p-3 shadow-2xl overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
                 
-                {/* Visual Label Banner */}
+                {/* Top Visual Header & Angle Switcher Controls */}
                 <div className="flex items-center justify-between px-3 py-2 bg-[#0B0B0A] border border-[#292927] mb-3 text-xs font-mono">
-                  <span className="text-[#E3261E] font-bold uppercase tracking-wider">[ KIT 001 // SPOTLIGHT ]</span>
-                  <span className="text-[#9B9992]">{spotlightProduct?.sport || 'FOOTBALL'}</span>
+                  <div className="flex items-center gap-1.5 text-[#E3261E] font-bold uppercase tracking-wider">
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>[ KIT 001 SPOTLIGHT ]</span>
+                  </div>
+
+                  {/* Interactive Angle Switcher Tabs */}
+                  <div className="flex items-center gap-1">
+                    {KIT_ANGLES.map((angle, index) => {
+                      const isActive = index === activeAngleIndex;
+                      return (
+                        <button
+                          key={angle.id}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveAngleIndex(index);
+                          }}
+                          className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase transition-all rounded-sm ${
+                            isActive
+                              ? 'bg-[#E3261E] text-white'
+                              : 'bg-[#151514] text-[#9B9992] hover:text-[#F3F0E8] border border-[#292927]'
+                          }`}
+                        >
+                          {angle.id.toUpperCase()}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
+                {/* Main Dynamic Image Display */}
                 <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/5] bg-[#0B0B0A] overflow-hidden group">
-                  <img
-                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85"
-                    alt="Portugal 2026 Home Kit"
-                    loading="eager"
-                    className="w-full h-full object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-700 ease-out filter contrast-105"
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentAngle.id}
+                      src={currentAngle.image}
+                      alt={spotlightProduct.name}
+                      initial={{ opacity: 0, scale: 1.08 }}
+                      animate={{ opacity: 1, scale: 1.04 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      className="w-full h-full object-cover object-center filter contrast-105"
+                    />
+                  </AnimatePresence>
                   
-                  {/* Subtle Dark Gradient Overlay for Typography Contrast */}
+                  {/* Subtle Dark Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0A] via-transparent to-transparent opacity-80" />
 
-                  {/* On-Image Product Callout */}
+                  {/* Dynamic Angle Callout Tag */}
+                  <div className="absolute top-3 right-3 bg-[#0B0B0A]/90 border border-[#292927] px-2.5 py-1 text-[10px] font-mono font-bold text-[#E3261E] tracking-widest rounded-sm">
+                    {currentAngle.tag}
+                  </div>
+
+                  {/* On-Image Product Title */}
                   <div className="absolute bottom-4 left-4 right-4 text-left">
                     <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-widest block mb-1">
                       NATIONAL TEAM ISSUE // 2026
