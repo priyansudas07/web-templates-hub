@@ -41,11 +41,6 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[80vh] bg-[#0B0B0A] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Visual Background Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[28vw] lg:text-[32vw] font-display font-black text-[#131312] select-none pointer-events-none tracking-tighter leading-none z-0">
-        90'
-      </div>
-
       {/* Background Subtle Technical Grid Lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#292927_1px,transparent_1px),linear-gradient(to_bottom,#292927_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-20 pointer-events-none z-0" />
 
