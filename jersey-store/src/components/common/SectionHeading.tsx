@@ -23,7 +23,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           </span>
         </div>
       )}
-      <h2 className="text-4xl sm:text-6xl font-display tracking-wide text-[#F3F0E8] uppercase leading-none font-bold">
+      <h2 className="text-4xl sm:text-6xl font-display tracking-wider text-[#F3F0E8] uppercase leading-none font-normal">
         {title}
       </h2>
       {subtitle && (
