@@ -331,3 +331,162 @@ Every screen and animation must immediately answer:
 1. **What is this?** $\rightarrow$ A premium sportswear / jersey catalog.
 2. **What can I browse?** $\rightarrow$ High-quality jerseys across Football, Cricket, Basketball.
 3. **What can I do next?** $\rightarrow$ Explore the collection or enquire via WhatsApp.
+
+---
+
+# Part 4: Collection, Product Details & Responsive UX
+
+## 8. Collection Page Experience
+
+The Collection page functions as a **premium sportswear catalog**, presenting jerseys with clean visual clarity and intuitive discovery controls.
+
+### 8.1 Collection Header
+- **Editorial Title**: `THE COLLECTION`
+- **Sub-headline**: `Jerseys built around the game you follow.`
+- Keep copy short, authoritative, and focused on catalog browsing.
+
+### 8.2 Category Navigation Tabs
+Simple, scannable category controls:
+- `All` • `Football` • `Cricket` • `Basketball` • `Club Teams` • `National Teams`
+- Only display categories that contain products.
+- Mobile: Horizontally scrollable chip row with clear active state styling and zero overflow.
+
+### 8.3 Search Component
+- Prominent, restrained search field supporting instant query matching:
+  - Product Name
+  - Team Name
+  - Player Name
+  - Sport & Kit Category
+  - Season / Year
+- **Empty Search State**:
+  ```text
+  NO MATCHES FOUND
+
+  Try searching for another team, player, or sport category.
+  [ Reset Search & Filters ]
+  ```
+
+### 8.4 Responsive Product Grid
+- **Desktop (1024px+)**: 3–4 columns with uniform card aspect ratios.
+- **Tablet (768px - 1023px)**: 2–3 columns.
+- **Mobile (320px - 767px)**: 2 columns for quick scanning, falling back to 1 column where high-detail view is required.
+- Maintains consistent card heights, internal padding, and badge placement.
+
+### 8.5 Collection Sorting
+- V1 maintains simple catalog sorting (Price: Low/High, Newest).
+- Avoid unnecessary bloat (no price sliders, complex popularity algorithms, or fake review ratings).
+
+---
+
+## 9. Product Detail Page (PDP) Experience
+
+The Product Detail page focuses on **one product and one clear conversion action**.
+
+### 9.1 PDP Layout Structure
+
+```text
+┌──────────────────────────┬────────────────────────────┐
+│                          │ FOOTBALL · CLUB            │
+│                          │                            │
+│      LARGE PRODUCT       │ Real Madrid Home Jersey    │
+│         IMAGE            │ 2025/26 Season             │
+│      (Gallery View)      │                            │
+│                          │ ₹1,499                     │
+│                          │                            │
+│                          │ Available Sizes            │
+│                          │ [ S ] [ M ] [ L ] [ XL ]   │
+│                          │                            │
+│                          │ Product Description & Specs │
+│                          │                            │
+│                          │ [ Enquire on WhatsApp ]    │
+└──────────────────────────┴────────────────────────────┘
+```
+
+### 9.2 Information Hierarchy
+1. Kit Category & Sport (`FOOTBALL • CLUB`)
+2. Product Title & Season
+3. Price Tag formatted in ₹ (INR)
+4. Interactive Size Selector (`S`, `M`, `L`, `XL`, `XXL`)
+5. Product Description & Fabric/Fit Specs
+6. Availability Status (`In Stock`, `Limited Edition`, `Pre-Order`)
+7. **WhatsApp Enquiry CTA Button**
+
+### 9.3 Product Image Gallery
+- Large main image with secondary gallery thumbnails (Front View, Back View, Badge Closeup).
+- Touch-friendly swipeable carousel for mobile devices.
+
+### 9.4 Size Selection State
+- Clear interactive buttons for sizes (`S`, `M`, `L`, `XL`, `XXL`).
+- Visually disabled styling for unavailable sizes (`opacity-40 cursor-not-allowed line-through`).
+- Selected size highlighted with active accent border.
+
+### 9.5 WhatsApp Enquiry Action
+- CTA Label: **`Enquire on WhatsApp`**
+- Auto-generated pre-filled inquiry text:
+  ```text
+  Hi Sports Gear! I am interested in the Real Madrid Home Jersey 2025/26.
+  Size: L
+  Price: ₹1,499
+
+  Is this item available for delivery or pickup?
+  ```
+- *Strict Rule*: The button must never claim payment is completed or stock is reserved—it strictly opens an inquiry conversation.
+
+### 9.6 Availability Badges
+- Derived directly from product data (`In Stock`, `Currently Unavailable`, `Contact Store for Availability`).
+- Do NOT show fake scarcity triggers like *"Only 2 left!"*.
+
+---
+
+## 10. Brand Information Pages (About & Contact)
+
+### 10.1 About Page
+- Concise brand story highlighting Sports Gear's passion for authentic sportswear and jersey culture.
+- Summarizes sports categories covered and commitment to quality.
+- *Rule*: Never invent fake founding dates, client counts, or false official affiliations.
+
+### 10.2 Contact Page
+- Practical, scannable contact hub:
+  - **Store Name**: Sports Gear
+  - **Address**: 123 Stadium Road, Sports Hub District, Mumbai, India (Placeholder)
+  - **Phone**: +91 98765 43210 (Placeholder)
+  - **WhatsApp**: Configured centrally via `src/config/store.ts`
+  - **Opening Hours**: Mon - Sat: 10:00 AM - 9:00 PM
+  - **Instagram**: `@sportsgear_official`
+  - **Google Maps**: Interactive location embed component
+- No complex contact forms required for V1; direct WhatsApp & phone contact prioritized.
+
+---
+
+## 11. Mobile UX & Responsive Quality Standards
+
+- **Touch Targets**: Minimum 48px $\times$ 48px touch area for all buttons, filter tabs, size options, and navigation links.
+- **Horizontal Overflow Prevention**: Zero unexpected horizontal scrolling on page containers (`overflow-x-hidden` on main wrapper).
+- **Sticky Mobile WhatsApp Action**: Compact bottom-fixed bar on mobile product detail pages for easy inquiry triggering without obscuring content.
+
+---
+
+## 12. Responsive Image Strategy
+
+- **Formats**: WebP format with PNG/JPEG fallbacks.
+- **Loading Behavior**: `eager` loading for main hero image; `lazy` loading for all below-the-fold catalog cards.
+- **Aspect Ratios**: Explicit CSS aspect ratios (`aspect-[4/5]` or `aspect-square`) to eliminate Layout Shifts (CLS).
+
+---
+
+## 13. Accessibility (a11y) & Fallback States
+
+- **Keyboard Trapping & Focus**: Visible focus rings (`focus-visible:ring-2 focus-visible:ring-rose-500`) for all interactive elements.
+- **Alt Text**: Descriptive `alt` attributes on all product visuals (e.g., `"Front view of Portugal Home Jersey 2026"`).
+- **Fallback States**:
+  - *Empty Collection*: "NOTHING HERE YET. Try another category."
+  - *Missing Product / 404*: "PRODUCT NOT FOUND. This product may no longer be available. [ Back to Collection ]"
+
+---
+
+## 14. Final Design Principle
+
+$$\text{Bold Typography} + \text{Strong Product Imagery} + \text{Editorial Spacing} + \text{Restrained Motion} + \text{Clear Conversion}$$
+
+The V1 design prioritizes:
+$$\textbf{Brand} \longrightarrow \textbf{Discovery} \longrightarrow \textbf{Product} \longrightarrow \textbf{Enquiry}$$
