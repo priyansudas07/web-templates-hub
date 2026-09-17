@@ -77,14 +77,17 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image (Full Bleed Stage Seamless Behind Navbar to y:0) */}
+      {/* Real Photography Studio Backdrop Image (Darker Studio Paper & Shifted Frame) */}
       <div 
-        className="absolute -top-24 inset-x-0 bottom-0 bg-[size:100%_100%] bg-center bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-105 brightness-100 transform-gpu"
+        className="absolute -top-24 inset-x-0 bottom-0 bg-[size:105%_100%] bg-[position:48%_center] bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-110 brightness-80 transform-gpu"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
+      {/* Typography Legibility Gradient Mask (Darkens Left Side behind Headline) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-[#050505]/35 to-transparent pointer-events-none z-0" />
+
       {/* Bottom & Top Blends to Smoothly Integrate Stage into Navbar & Next Section */}
-      <div className="absolute -top-24 inset-x-0 h-32 bg-gradient-to-b from-[#050505]/50 via-[#050505]/20 to-transparent pointer-events-none z-0" />
+      <div className="absolute -top-24 inset-x-0 h-32 bg-gradient-to-b from-[#050505]/60 via-[#050505]/20 to-transparent pointer-events-none z-0" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent pointer-events-none z-0" />
 
       {/* Unified Crimson Studio Spotlight Beam */}
@@ -102,7 +105,7 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-5 lg:space-y-6 text-left"
+            className="lg:col-span-7 space-y-5 lg:space-y-6 text-left lg:pl-6 xl:pl-8"
           >
             {/* Responsive Editorial Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.2rem] font-display font-bold uppercase tracking-tight leading-[0.93] text-[#F3F0E8]">
