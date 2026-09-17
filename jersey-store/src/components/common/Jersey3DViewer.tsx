@@ -114,21 +114,27 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
           }
         });
 
-        // Calculate bounding box of filtered single jersey
+        // 1. Rotate fullScene first so front chest faces forward towards camera
+        fullScene.rotation.y = Math.PI;
+        fullScene.updateMatrixWorld(true);
+
+        // 2. Measure exact world bounding box of rotated model
         const box = new THREE.Box3().setFromObject(fullScene);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
-        // Shift fullScene inside group so its geometric center is at (0, 0, 0)
-        fullScene.position.set(-center.x, -center.y, -center.z);
+        // 3. Shift fullScene by exact center offset to place center at (0, 0, 0)
+        fullScene.position.x -= center.x;
+        fullScene.position.y -= center.y;
+        fullScene.position.z -= center.z;
 
         const singleJerseyGroup = new THREE.Group();
         singleJerseyGroup.add(fullScene);
 
-        // Scale to fit viewport perfectly in the exact middle
+        // 4. Scale to fit viewport perfectly in the exact middle
         const maxDim = Math.max(size.x, size.y, size.z);
         if (maxDim > 0) {
-          const scale = 1.55 / maxDim;
+          const scale = 1.45 / maxDim;
           singleJerseyGroup.scale.set(scale, scale, scale);
         }
 
