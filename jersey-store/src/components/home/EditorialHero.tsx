@@ -188,13 +188,13 @@ export const EditorialHero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.92, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-md group cursor-pointer"
+              className="relative w-full max-w-[380px] sm:max-w-[410px] group cursor-pointer"
             >
               {/* Product Visual Container with Asymmetric Frame */}
-              <div className="relative bg-[#151514] border border-[#292927] p-3 shadow-2xl overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
+              <div className="relative bg-[#151514] border border-[#292927] p-2.5 sm:p-3 shadow-2xl overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
                 
                 {/* Top Visual Header & Angle Switcher Controls */}
-                <div className="flex items-center justify-between px-3 py-2 bg-[#0B0B0A] border border-[#292927] mb-3 text-xs font-mono">
+                <div className="flex items-center justify-between px-2.5 py-1.5 bg-[#0B0B0A] border border-[#292927] mb-2.5 text-xs font-mono">
                   <div className="flex items-center gap-1.5 text-[#E3261E] font-bold uppercase tracking-wider">
                     <Layers className="w-3.5 h-3.5" />
                     <span>[ SPOTLIGHT ]</span>
@@ -227,11 +227,11 @@ export const EditorialHero: React.FC = () => {
 
                 {/* Main Dynamic Image or 3D Model Display */}
                 {currentAngle.is3D ? (
-                  <div className="aspect-[4/5] bg-[#0B0B0A] overflow-hidden rounded-sm relative">
+                  <div className="aspect-[4/4.3] bg-[#0B0B0A] overflow-hidden rounded-sm relative">
                     <Jersey3DViewer modelUrl="/jersey.glb" altText="3D Jersey Model" showControls={true} />
                   </div>
                 ) : (
-                  <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/5] bg-[#0B0B0A] overflow-hidden group">
+                  <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/4.3] bg-[#0B0B0A] overflow-hidden group">
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={currentAngle.id}
