@@ -73,77 +73,100 @@
   background: #393936;
 }
 
-/* Concept 1: User-Requested Expanding Dark Vault Glass WhatsApp Concierge Button */
-.Btn {
-  display: flex;
+/* User-Requested Liquid Wave Fill WhatsApp Button (.button2) */
+.button2 {
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  width: 48px;
-  height: 48px;
-  border: 1px solid #292927;
-  border-radius: 24px;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  background-color: #151514;
-  backdrop-filter: blur(10px);
+  z-index: 1;
+  color: #F3F0E8;
+  padding: 0.7em 3.3em 0.7em 1.5em;
+  font-size: 13px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #151514;
+  border: 1px solid #292927;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in;
 }
 
-.sign {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 10;
+.button2 > svg {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 1.1em;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
 }
 
-.sign svg {
-  width: 22px;
-  height: 22px;
-}
-
-.sign svg path {
+.button2 > svg path {
   fill: #25D366;
   transition: fill 0.3s ease;
 }
 
-.text {
+.button2:active {
+  color: #ffffff;
+  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transform: translateY(1px);
+}
+
+.button2:before {
+  content: "";
   position: absolute;
-  left: 44px;
-  white-space: nowrap;
-  opacity: 0;
-  color: #F3F0E8;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(37, 211, 102, 0.15);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
 }
 
-.Btn:hover {
-  width: 195px;
-  border-color: rgba(37, 211, 102, 0.55);
-  box-shadow: 0 0 25px rgba(37, 211, 102, 0.25);
-  background-color: #122017;
+.button2:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
 }
 
-.Btn:hover .sign svg path {
+.button2:hover {
+  color: #ffffff;
+  border: 1px solid #25D366;
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.35);
+}
+
+.button2:hover > svg path {
   fill: #ffffff;
 }
 
-.Btn:hover .text {
-  opacity: 1;
+.button2:hover:before {
+  top: -35%;
+  background-color: #25D366;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.Btn:active {
-  transform: scale(0.97);
+.button2:hover:after {
+  top: -45%;
+  background-color: #25D366;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
