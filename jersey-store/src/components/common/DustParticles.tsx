@@ -5,16 +5,15 @@ interface DustParticlesProps {
   className?: string;
 }
 
-interface SparkParticle {
+interface DustParticle {
   x: number;
   y: number;
-  length: number;
-  size: number;
+  radius: number;
   alpha: number;
   targetAlpha: number;
   vx: number;
   vy: number;
-  flickerSpeed: number;
+  pulseSpeed: number;
 }
 
 export const DustParticles: React.FC<DustParticlesProps> = ({
@@ -42,17 +41,16 @@ export const DustParticles: React.FC<DustParticlesProps> = ({
 
     window.addEventListener('resize', handleResize);
 
-    // Initialize Rising Silver Fire Sparks
-    const particles: SparkParticle[] = Array.from({ length: particleCount }, () => ({
+    // Initialize Floating Silver Dust Particles
+    const particles: DustParticle[] = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      length: Math.random() * 4.5 + 2, // Kinetic spark streak length
-      size: Math.random() * 1.6 + 0.6,
-      alpha: Math.random() * 0.6 + 0.15,
-      targetAlpha: Math.random() * 0.75 + 0.15,
-      vx: (Math.random() - 0.5) * 0.6, // Slight horizontal drift
-      vy: -(Math.random() * 1.2 + 0.5), // Upward rising ember speed
-      flickerSpeed: Math.random() * 0.025 + 0.008,
+      radius: Math.random() * 1.6 + 0.6,
+      alpha: Math.random() * 0.45 + 0.1,
+      targetAlpha: Math.random() * 0.5 + 0.1,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -Math.random() * 0.35 - 0.05, // Slow gentle floating motion
+      pulseSpeed: Math.random() * 0.008 + 0.002,
     }));
 
     // Render Loop
@@ -60,47 +58,36 @@ export const DustParticles: React.FC<DustParticlesProps> = ({
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p) => {
-        // Move spark particle upward
-        p.x += p.vx + (Math.random() - 0.5) * 0.15;
+        // Move dust particle
+        p.x += p.vx;
         p.y += p.vy;
 
-        // Dynamic alpha flickering
-        p.alpha += (p.targetAlpha - p.alpha) * p.flickerSpeed;
-        if (Math.abs(p.targetAlpha - p.alpha) < 0.03) {
-          p.targetAlpha = Math.random() * 0.8 + 0.1;
+        // Pulse opacity
+        p.alpha += (p.targetAlpha - p.alpha) * p.pulseSpeed;
+        if (Math.abs(p.targetAlpha - p.alpha) < 0.02) {
+          p.targetAlpha = Math.random() * 0.55 + 0.05;
         }
 
-        // Wrap around boundaries & re-spawn at bottom when burned out
-        if (p.y < -15) {
-          p.y = height + Math.random() * 20;
+        // Wrap around boundaries
+        if (p.y < -10) {
+          p.y = height + 10;
           p.x = Math.random() * width;
-          p.vy = -(Math.random() * 1.2 + 0.5);
-          p.alpha = 0.1;
         }
-        if (p.x < -15) p.x = width + 15;
-        if (p.x > width + 15) p.x = -15;
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
 
-        // Draw Silver Fire Spark Core & Kinetic Streak
+        // Draw Silver Dust Speck
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x - p.vx * p.length, p.y - p.vy * p.length * 1.5);
-        ctx.strokeStyle = `rgba(235, 240, 248, ${p.alpha})`; // Metallic platinum-silver core
-        ctx.lineWidth = p.size;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        // Metallic Silver Spark Flare / Aura
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(195, 208, 225, ${p.alpha * 0.4})`; // Glowing silver aura
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(230, 236, 245, ${p.alpha})`; // Metallic silver white core
         ctx.fill();
 
-        // Outer Platinum Sparkle Highlight for larger embers
-        if (p.size > 1.2) {
+        // Soft Silver Glow Aura
+        if (p.radius > 1.1) {
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.15})`;
+          ctx.arc(p.x, p.y, p.radius * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(185, 200, 220, ${p.alpha * 0.35})`; // Soft platinum/silver ambient glow
           ctx.fill();
         }
         ctx.restore();
@@ -120,7 +107,7 @@ export const DustParticles: React.FC<DustParticlesProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 pointer-events-none z-0 opacity-85 ${className}`}
+      className={`absolute inset-0 pointer-events-none z-0 opacity-80 ${className}`}
     />
   );
 };
