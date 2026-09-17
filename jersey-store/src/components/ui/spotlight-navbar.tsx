@@ -138,20 +138,20 @@ export function SpotlightNavbar({
           })}
         </ul>
 
-        {/* Moving Spotlight (Follows Cursor) */}
+        {/* Moving Spotlight (Follows Cursor - Soft Edge Radial Gradient) */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
             opacity: hoverX !== null ? 1 : 0,
-            background: `radial-gradient(100px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 70%)`,
+            background: `radial-gradient(65px 24px at var(--spotlight-x) 50%, rgba(227, 38, 30, 0.2) 0%, rgba(227, 38, 30, 0.06) 50%, transparent 100%)`,
           }}
         />
 
-        {/* Active Ambience Glow Bar */}
+        {/* Active Ambience Glow Bar (Soft Crimson Ambient Highlight beneath Active Tab) */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-1"
+          className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-1 blur-[0.5px]"
           style={{
-            background: `radial-gradient(50px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)`,
+            background: `radial-gradient(60px 2px at var(--ambience-x) 50%, #E3261E 0%, rgba(227, 38, 30, 0.4) 60%, transparent 100%)`,
           }}
         />
       </nav>
