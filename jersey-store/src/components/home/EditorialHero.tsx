@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Button } from '../common/Button';
 import { Jersey3DViewer } from '../common/Jersey3DViewer';
+import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
 import { ArrowRight, MessageCircle, ChevronRight, Layers, Box } from 'lucide-react';
@@ -85,6 +86,9 @@ export const EditorialHero: React.FC = () => {
       {/* Subtle Vignette Overlay for Crisp Typography Readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/75 via-transparent to-[#050505]/50 pointer-events-none z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40 pointer-events-none z-0" />
+
+      {/* Live Floating Studio Dust Particles */}
+      <DustParticles particleCount={55} />
 
       {/* Main Asymmetric Campaign Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
