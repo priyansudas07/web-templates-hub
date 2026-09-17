@@ -138,11 +138,20 @@ export function SpotlightNavbar({
           })}
         </ul>
 
-        {/* Active Crimson Underline Indicator Bar (Animated under active tab) */}
+        {/* Moving Spotlight (Follows Cursor) */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-1 shadow-[0_0_8px_#E3261E]"
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(55px circle at var(--ambience-x) 0%, #E3261E 0%, transparent 100%)`,
+            opacity: hoverX !== null ? 1 : 0,
+            background: `radial-gradient(100px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 70%)`,
+          }}
+        />
+
+        {/* Active Ambience Glow Bar */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-1"
+          style={{
+            background: `radial-gradient(50px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)`,
           }}
         />
       </nav>
