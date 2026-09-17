@@ -77,15 +77,17 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image (Full Bleed & Seamlessly Framed) */}
+      {/* Real Photography Studio Backdrop Image (Vibrant & Full Bleed) */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 pointer-events-none z-0 scale-110 filter contrast-105 brightness-90 transform-gpu"
+        className="absolute -top-20 inset-x-0 bottom-0 bg-cover bg-top bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-110 brightness-105 transform-gpu"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
-      {/* Edge-to-Edge Dark Gradients (Conceals Outer C-Stands & Smoothly Blends Studio Paper) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/30 to-[#050505] pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 pointer-events-none z-0" />
+      {/* Targeted Edge Fade Masks (Conceals Outer Equipment while Keeping Center Studio Paper 100% Crisp) */}
+      <div className="absolute inset-y-0 left-0 w-28 sm:w-44 bg-gradient-to-r from-[#050505] to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-y-0 right-0 w-28 sm:w-44 bg-gradient-to-l from-[#050505] to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent pointer-events-none z-0" />
+      <div className="absolute -top-20 inset-x-0 h-28 bg-gradient-to-b from-[#050505]/40 to-transparent pointer-events-none z-0" />
 
       {/* Unified Crimson Studio Spotlight Beam */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
