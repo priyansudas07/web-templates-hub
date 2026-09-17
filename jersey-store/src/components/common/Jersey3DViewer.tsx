@@ -79,22 +79,42 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
       modelUrl,
       (gltf) => {
         const fullScene = gltf.scene;
-        
-        // Find objects on right (+X) and remove them to isolate 1 single jersey
-        const objectsToRemove: THREE.Object3D[] = [];
 
+        // Traverse all meshes and filter geometry indices to keep ONLY triangles with X <= 0 (isolates 1 single jersey)
         fullScene.traverse((child) => {
-          if (child.position && child.position.x > 0.05) {
-            objectsToRemove.push(child);
+          const mesh = child as THREE.Mesh;
+          if (mesh.isMesh && mesh.geometry) {
+            const geometry = mesh.geometry;
+            const posAttr = geometry.attributes.position;
+            const indexAttr = geometry.index;
+
+            if (posAttr && indexAttr) {
+              const indices = indexAttr.array;
+              const newIndices: number[] = [];
+
+              for (let i = 0; i < indices.length; i += 3) {
+                const a = indices[i];
+                const b = indices[i + 1];
+                const c = indices[i + 2];
+
+                const xA = posAttr.getX(a);
+                const xB = posAttr.getX(b);
+                const xC = posAttr.getX(c);
+
+                // Keep triangle if all 3 vertices are on left side (X <= 0)
+                if (xA <= 0 && xB <= 0 && xC <= 0) {
+                  newIndices.push(a, b, c);
+                }
+              }
+
+              geometry.setIndex(newIndices);
+              geometry.computeBoundingBox();
+              geometry.computeBoundingSphere();
+            }
           }
         });
 
-        // Remove secondary jersey objects from parent
-        objectsToRemove.forEach((obj) => {
-          if (obj.parent) obj.parent.remove(obj);
-        });
-
-        // Wrap remaining single jersey & center its bounding box at (0, 0, 0)
+        // Wrap single jersey & center its bounding box at (0, 0, 0)
         const singleJerseyGroup = new THREE.Group();
         singleJerseyGroup.add(fullScene);
 
@@ -102,14 +122,14 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
-        singleJerseyGroup.position.x -= center.x;
-        singleJerseyGroup.position.y -= center.y;
-        singleJerseyGroup.position.z -= center.z;
+        singleJerseyGroup.position.x = -center.x;
+        singleJerseyGroup.position.y = -center.y;
+        singleJerseyGroup.position.z = -center.z;
 
         // Scale to fit viewport perfectly
         const maxDim = Math.max(size.x, size.y, size.z);
         if (maxDim > 0) {
-          const scale = 1.3 / maxDim;
+          const scale = 1.35 / maxDim;
           singleJerseyGroup.scale.set(scale, scale, scale);
         }
 
