@@ -106,7 +106,7 @@ export function SpotlightNavbar({
     <div className={cn("relative flex items-center justify-center", className)}>
       <nav
         ref={navRef}
-        className="relative h-10 rounded-full bg-[#151514]/50 border border-[#292927] backdrop-blur-xl px-1.5 transition-all duration-300 overflow-hidden shadow-2xl"
+        className="relative h-10 px-2 flex items-center transition-all duration-300 overflow-hidden"
         style={{
           ['--spotlight-color' as string]: 'rgba(227, 38, 30, 0.25)',
           ['--ambience-color' as string]: '#E3261E',

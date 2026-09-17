@@ -69,6 +69,19 @@ export const Navbar: React.FC = () => {
             <SpotlightNavbar items={navItems} />
           </div>
 
+          {/* Right Action Group: Concierge CTA */}
+          <div className="hidden md:flex items-center gap-3 z-10">
+            <a
+              href={createGeneralWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E3261E]/15 border border-[#E3261E]/30 text-[#F3F0E8] hover:bg-[#E3261E]/25 hover:border-[#E3261E]/50 transition-all text-xs font-mono font-bold tracking-wider shadow-sm group"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-[#25D366] group-hover:scale-110 transition-transform" />
+              <span>CONCIERGE</span>
+            </a>
+          </div>
+
           {/* Mobile Menu Toggle Button */}
           <div className="flex md:hidden z-10">
             <button
