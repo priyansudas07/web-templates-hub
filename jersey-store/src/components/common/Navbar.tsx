@@ -37,13 +37,13 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-[#050505]/90 backdrop-blur-xl border-b border-[#292927] shadow-lg' 
-        : 'bg-transparent border-b border-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-20">
+    <header className="sticky top-0 z-50 pt-3 pb-1 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+      <div className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
+        scrolled 
+          ? 'bg-[#050505]/90 backdrop-blur-xl border border-[#292927] shadow-xl' 
+          : 'bg-[#121212]/35 backdrop-blur-md border border-white/15 shadow-2xl'
+      }`}>
+        <div className="relative flex items-center justify-between h-16 px-4 sm:px-6">
           
           {/* Logo Brand */}
           <Link
@@ -51,14 +51,14 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm z-10"
             aria-label="Sports Gear Home Page"
           >
-            <div className="w-10 h-10 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-lg tracking-wider group-hover:bg-[#c91e17] transition-colors shadow-sm">
+            <div className="w-9 h-9 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-base tracking-wider group-hover:bg-[#c91e17] transition-colors shadow-sm">
               SG
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors">
+              <span className="font-extrabold text-lg tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors">
                 SPORTS GEAR
               </span>
-              <span className="text-[10px] tracking-widest text-[#9B9992] font-medium uppercase -mt-1 font-mono">
+              <span className="text-[9px] tracking-widest text-[#9B9992] font-medium uppercase -mt-1 font-mono">
                 Authentic Kit Vault
               </span>
             </div>
@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden z-10">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-3 min-h-[48px] min-w-[48px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
+              className="p-2.5 min-h-[44px] min-w-[44px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
