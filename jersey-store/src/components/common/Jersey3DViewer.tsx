@@ -114,26 +114,30 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
           }
         });
 
-        // Wrap single jersey & center its bounding box at (0, 0, 0)
-        const singleJerseyGroup = new THREE.Group();
-        singleJerseyGroup.add(fullScene);
-
-        const box = new THREE.Box3().setFromObject(singleJerseyGroup);
+        // Calculate bounding box of filtered single jersey
+        const box = new THREE.Box3().setFromObject(fullScene);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
-        singleJerseyGroup.position.x = -center.x;
-        singleJerseyGroup.position.y = -center.y;
-        singleJerseyGroup.position.z = -center.z;
+        // Shift fullScene inside group so its geometric center is at (0, 0, 0)
+        fullScene.position.set(-center.x, -center.y, -center.z);
 
-        // Scale to fit viewport perfectly
+        const singleJerseyGroup = new THREE.Group();
+        singleJerseyGroup.add(fullScene);
+
+        // Scale to fit viewport perfectly in the exact middle
         const maxDim = Math.max(size.x, size.y, size.z);
         if (maxDim > 0) {
-          const scale = 1.35 / maxDim;
+          const scale = 1.55 / maxDim;
           singleJerseyGroup.scale.set(scale, scale, scale);
         }
 
         scene.add(singleJerseyGroup);
+
+        if (controlsRef.current) {
+          controlsRef.current.target.set(0, 0, 0);
+          controlsRef.current.update();
+        }
       },
       undefined,
       (err) => console.error('GLTF Load Error:', err)
