@@ -108,43 +108,68 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
               }
 
               geometry.setIndex(newIndices);
+
+              // Calculate bounding box of remaining single jersey vertices
+              let minX = Infinity, minY = Infinity, minZ = Infinity;
+              let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
+
+              for (let i = 0; i < newIndices.length; i++) {
+                const idx = newIndices[i];
+                const x = posAttr.getX(idx);
+                const y = posAttr.getY(idx);
+                const z = posAttr.getZ(idx);
+
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+                if (z < minZ) minZ = z;
+                if (z > maxZ) maxZ = z;
+              }
+
+              const centerX = (minX + maxX) / 2;
+              const centerY = (minY + maxY) / 2;
+              const centerZ = (minZ + maxZ) / 2;
+
+              // Shift vertex coordinates in posAttr so mesh center is at (0, 0, 0)
+              for (let i = 0; i < posAttr.count; i++) {
+                posAttr.setXYZ(
+                  i,
+                  posAttr.getX(i) - centerX,
+                  posAttr.getY(i) - centerY,
+                  posAttr.getZ(i) - centerZ
+                );
+              }
+
+              posAttr.needsUpdate = true;
               geometry.computeBoundingBox();
               geometry.computeBoundingSphere();
             }
           }
         });
 
-        // 1. Rotate fullScene first so front chest faces forward towards camera
-        fullScene.rotation.y = Math.PI;
-        fullScene.updateMatrixWorld(true);
-
-        // 2. Measure exact world bounding box of rotated model
-        const box = new THREE.Box3().setFromObject(fullScene);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-
-        // 3. Shift fullScene by exact center offset to place center at (0, 0, 0)
-        fullScene.position.x -= center.x;
-        fullScene.position.y -= center.y;
-        fullScene.position.z -= center.z;
+        // Position fullScene at origin and face front chest forward
+        fullScene.position.set(0, 0, 0);
+        fullScene.rotation.set(0, Math.PI, 0);
 
         const singleJerseyGroup = new THREE.Group();
         singleJerseyGroup.add(fullScene);
 
-        // 4. Scale and position so jersey is optically centered in the exact middle of card
+        // Scale up to fill the tall 4:5 3D card prominently and center the jersey chest
+        const box = new THREE.Box3().setFromObject(singleJerseyGroup);
+        const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
         if (maxDim > 0) {
-          const scale = 1.70 / maxDim;
+          const scale = 2.15 / maxDim;
           singleJerseyGroup.scale.set(scale, scale, scale);
         }
 
-        // Shift up to balance top header and bottom controls
-        singleJerseyGroup.position.set(0, 0.15, 0);
-
+        // Shift up to center the jersey body in the optical middle of the card
+        singleJerseyGroup.position.set(0, 0.18, 0);
         scene.add(singleJerseyGroup);
 
         if (controlsRef.current) {
-          controlsRef.current.target.set(0, 0.15, 0);
+          controlsRef.current.target.set(0, 0.18, 0);
           controlsRef.current.update();
         }
       },
