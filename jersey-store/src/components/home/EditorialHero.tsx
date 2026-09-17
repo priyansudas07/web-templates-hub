@@ -75,11 +75,11 @@ export const EditorialHero: React.FC = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[95vh] lg:min-h-screen -mt-20 pt-28 pb-16 lg:pb-24 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image (Darker Studio Paper & Shifted Frame) */}
+      {/* Real Photography Studio Backdrop Image (Proportional Full-Bleed Framing) */}
       <div 
-        className="absolute -top-24 inset-x-0 bottom-0 bg-[size:105%_100%] bg-[position:48%_center] bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-110 brightness-80 transform-gpu"
+        className="absolute -top-20 inset-x-0 bottom-0 bg-cover bg-center bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-105 brightness-85 transform-gpu"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
