@@ -77,9 +77,9 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image (Full Bleed Stage Aligned at y:0 Behind Navbar) */}
+      {/* Real Photography Studio Backdrop Image (Full Bleed Stage Seamless Behind Navbar to y:0) */}
       <div 
-        className="absolute inset-x-0 -top-4 bottom-0 bg-[size:100%_100%] bg-top bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-105 brightness-100 transform-gpu"
+        className="absolute -top-24 inset-x-0 bottom-0 bg-[size:100%_100%] bg-center bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-105 brightness-100 transform-gpu"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
