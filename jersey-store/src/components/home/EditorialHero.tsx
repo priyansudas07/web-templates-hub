@@ -74,7 +74,7 @@ export const EditorialHero: React.FC = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[85vh] bg-[#050505] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[80vh] lg:min-h-[calc(90vh-5rem)] bg-[#050505] text-[#F3F0E8] overflow-hidden py-8 lg:py-12 flex flex-col justify-center border-b border-[#292927]"
     >
       {/* Real Photography Studio Backdrop Image */}
       <div 
@@ -83,22 +83,22 @@ export const EditorialHero: React.FC = () => {
       />
 
       {/* Subtle Vignette Overlay for Crisp Typography Readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/70 via-transparent to-[#050505]/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/75 via-transparent to-[#050505]/50 pointer-events-none z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40 pointer-events-none z-0" />
 
       {/* Main Asymmetric Campaign Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           
           {/* Left Column: Oversized Editorial Typography & Narrative */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-6 text-left"
+            className="lg:col-span-7 space-y-5 lg:space-y-6 text-left"
           >
-            {/* Oversized Headline in Oswald */}
-            <h1 className="text-5xl sm:text-7xl lg:text-[7.5rem] font-display font-bold uppercase tracking-tight leading-[0.92] text-[#F3F0E8]">
+            {/* Responsive Editorial Headline */}
+            <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.2rem] font-display font-bold uppercase tracking-tight leading-[0.93] text-[#F3F0E8]">
               THE GAME <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3F0E8] via-[#F3F0E8] to-[#9B9992] relative">
                 NEVER STOPS.
@@ -106,7 +106,7 @@ export const EditorialHero: React.FC = () => {
             </h1>
 
             {/* Editorial Paragraph */}
-            <p className="text-[#9B9992] text-sm sm:text-lg max-w-xl leading-relaxed font-sans font-medium pt-1">
+            <p className="text-[#9B9992] text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-sans font-medium pt-0.5">
               Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
             </p>
 
