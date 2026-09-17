@@ -2,28 +2,39 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Button } from '../common/Button';
+import { Jersey3DViewer } from '../common/Jersey3DViewer';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight, MessageCircle, ChevronRight, Layers } from 'lucide-react';
+import { ArrowRight, MessageCircle, ChevronRight, Layers, Box } from 'lucide-react';
 
 const KIT_ANGLES = [
   {
     id: 'front',
-    label: '01 // FRONT',
+    label: 'FRONT',
     image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85',
-    tag: 'MATCH EDITION FRONT'
+    tag: 'MATCH EDITION FRONT',
+    is3D: false
   },
   {
     id: 'back',
-    label: '02 // BACK',
+    label: 'BACK',
     image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
-    tag: 'CUSTOM NAMEPRINT BACK'
+    tag: 'CUSTOM NAMEPRINT BACK',
+    is3D: false
   },
   {
     id: 'detail',
-    label: '03 // CREST',
+    label: 'CREST',
     image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85',
-    tag: 'AUTHENTIC EMBLEM WEAVE'
+    tag: 'AUTHENTIC EMBLEM WEAVE',
+    is3D: false
+  },
+  {
+    id: '3d-model',
+    label: '3D 360°',
+    image: '',
+    tag: '3D INTERACTIVE VAULT MODEL',
+    is3D: true
   }
 ];
 
@@ -177,52 +188,59 @@ export const EditorialHero: React.FC = () => {
                             e.preventDefault();
                             setActiveAngleIndex(index);
                           }}
-                          className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase transition-all rounded-sm ${
+                          className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase transition-all rounded-sm flex items-center gap-1 ${
                             isActive
                               ? 'bg-[#E3261E] text-white'
                               : 'bg-[#151514] text-[#9B9992] hover:text-[#F3F0E8] border border-[#292927]'
                           }`}
                         >
-                          {angle.id.toUpperCase()}
+                          {angle.is3D && <Box className="w-2.5 h-2.5" />}
+                          <span>{angle.label}</span>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Main Dynamic Image Display */}
-                <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/5] bg-[#0B0B0A] overflow-hidden group">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentAngle.id}
-                      src={currentAngle.image}
-                      alt={spotlightProduct.name}
-                      initial={{ opacity: 0, scale: 1.08 }}
-                      animate={{ opacity: 1, scale: 1.04 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.35, ease: 'easeInOut' }}
-                      className="w-full h-full object-cover object-center filter contrast-105"
-                    />
-                  </AnimatePresence>
-                  
-                  {/* Subtle Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0A] via-transparent to-transparent opacity-80" />
-
-                  {/* Dynamic Angle Callout Tag */}
-                  <div className="absolute top-3 right-3 bg-[#0B0B0A]/90 border border-[#292927] px-2.5 py-1 text-[10px] font-mono font-bold text-[#E3261E] tracking-widest rounded-sm">
-                    {currentAngle.tag}
+                {/* Main Dynamic Image or 3D Model Display */}
+                {currentAngle.is3D ? (
+                  <div className="aspect-[4/5] bg-[#0B0B0A] overflow-hidden rounded-sm relative">
+                    <Jersey3DViewer modelUrl="/jersey.glb" altText="3D Jersey Model" showControls={true} />
                   </div>
+                ) : (
+                  <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/5] bg-[#0B0B0A] overflow-hidden group">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={currentAngle.id}
+                        src={currentAngle.image}
+                        alt={spotlightProduct.name}
+                        initial={{ opacity: 0, scale: 1.08 }}
+                        animate={{ opacity: 1, scale: 1.04 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="w-full h-full object-cover object-center filter contrast-105"
+                      />
+                    </AnimatePresence>
+                    
+                    {/* Subtle Dark Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0A] via-transparent to-transparent opacity-80" />
 
-                  {/* On-Image Product Title */}
-                  <div className="absolute bottom-4 left-4 right-4 text-left">
-                    <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-widest block mb-1">
-                      NATIONAL TEAM ISSUE // 2026
-                    </span>
-                    <h3 className="text-2xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide leading-tight">
-                      {spotlightProduct?.name || 'Portugal 2026 Home Kit'}
-                    </h3>
-                  </div>
-                </Link>
+                    {/* Dynamic Angle Callout Tag */}
+                    <div className="absolute top-3 right-3 bg-[#0B0B0A]/90 border border-[#292927] px-2.5 py-1 text-[10px] font-mono font-bold text-[#E3261E] tracking-widest rounded-sm">
+                      {currentAngle.tag}
+                    </div>
+
+                    {/* On-Image Product Title */}
+                    <div className="absolute bottom-4 left-4 right-4 text-left">
+                      <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-widest block mb-1">
+                        NATIONAL TEAM ISSUE // 2026
+                      </span>
+                      <h3 className="text-2xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide leading-tight">
+                        {spotlightProduct?.name || 'Portugal 2026 Home Kit'}
+                      </h3>
+                    </div>
+                  </Link>
+                )}
 
                 {/* Card Footer Info */}
                 <div className="p-4 bg-[#151514] border-t border-[#292927] flex items-center justify-between">
