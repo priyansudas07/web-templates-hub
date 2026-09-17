@@ -30,6 +30,17 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
   showControls = true,
 }) => {
   const [isAutoRotating, setIsAutoRotating] = useState(true);
+  const [cameraOrbit, setCameraOrbit] = useState('0deg 75deg 1.2m');
+  const [cameraTarget, setCameraTarget] = useState('-0.38m 0.52m 0m');
+  const [fieldOfView, setFieldOfView] = useState('18deg');
+
+  const modelViewerRef = React.useRef<any>(null);
+
+  const setViewPreset = (orbit: string, target: string, fov: string) => {
+    setCameraOrbit(orbit);
+    setCameraTarget(target);
+    setFieldOfView(fov);
+  };
 
   return (
     <div className={`relative w-full h-full bg-[#0B0B0A] rounded-sm overflow-hidden border border-[#292927] group ${className}`}>
@@ -38,7 +49,7 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
       <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#0B0B0A]/90 backdrop-blur-md border border-[#292927] text-[10px] font-mono font-bold text-[#E3261E] tracking-widest uppercase rounded-sm shadow-md">
           <Shield className="w-3 h-3 text-[#E3261E]" />
-          <span>3D VAULT MODEL</span>
+          <span>3D SINGLE KIT SHOWCASE</span>
         </div>
 
         <div className="hidden sm:flex items-center gap-1 px-2.5 py-1 bg-[#0B0B0A]/90 backdrop-blur-md border border-[#292927] text-[10px] font-mono text-[#9B9992] uppercase rounded-sm">
@@ -46,18 +57,22 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
         </div>
       </div>
 
-      {/* 3D Model Canvas using Google model-viewer */}
+      {/* 3D Model Canvas using Google model-viewer focused strictly on Single Jersey */}
       <model-viewer
+        ref={modelViewerRef}
         src={modelUrl}
         alt={altText}
         camera-controls
         auto-rotate={isAutoRotating ? true : undefined}
         auto-rotate-delay="1000"
-        rotation-per-second="30deg"
-        shadow-intensity="1.5"
-        shadow-softness="0.8"
+        rotation-per-second="25deg"
+        camera-orbit={cameraOrbit}
+        camera-target={cameraTarget}
+        field-of-view={fieldOfView}
+        shadow-intensity="1.6"
+        shadow-softness="0.7"
         environment-image="neutral"
-        exposure="1.15"
+        exposure="1.25"
         loading="eager"
         interaction-prompt="none"
         style={{
@@ -67,6 +82,28 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
           backgroundColor: '#0B0B0A',
         }}
       />
+
+      {/* Camera Angle Quick Presets Bar */}
+      <div className="absolute top-12 left-3 z-10 flex flex-col gap-1 text-[10px] font-mono">
+        <button
+          onClick={() => setViewPreset('0deg 75deg 1.2m', '-0.38m 0.52m 0m', '18deg')}
+          className="px-2.5 py-1 bg-[#0B0B0A]/90 hover:bg-[#151514] border border-[#292927] text-[#F3F0E8] rounded-sm transition-colors text-left font-bold"
+        >
+          [ FRONT FOCUS ]
+        </button>
+        <button
+          onClick={() => setViewPreset('180deg 75deg 1.2m', '-0.38m 0.52m 0m', '18deg')}
+          className="px-2.5 py-1 bg-[#0B0B0A]/90 hover:bg-[#151514] border border-[#292927] text-[#9B9992] hover:text-[#F3F0E8] rounded-sm transition-colors text-left"
+        >
+          [ BACK FOCUS ]
+        </button>
+        <button
+          onClick={() => setViewPreset('-20deg 65deg 0.75m', '-0.33m 0.62m 0m', '13deg')}
+          className="px-2.5 py-1 bg-[#0B0B0A]/90 hover:bg-[#151514] border border-[#292927] text-[#E3261E] font-bold rounded-sm transition-colors text-left"
+        >
+          [ CREST ZOOM ]
+        </button>
+      </div>
 
       {/* Bottom Interactive Controls */}
       {showControls && (
