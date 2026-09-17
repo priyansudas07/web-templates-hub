@@ -11,7 +11,7 @@ const KIT_ANGLES = [
   {
     id: 'front',
     label: 'FRONT',
-    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85',
     tag: 'MATCH EDITION FRONT',
     is3D: false
   },
@@ -74,34 +74,10 @@ export const EditorialHero: React.FC = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[85vh] bg-[#050505] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[80vh] bg-[#0B0B0A] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Central Studio Radial Spotlight Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#242422] via-[#0B0B0A] to-[#050505] opacity-90 pointer-events-none z-0" />
-
       {/* Background Subtle Technical Grid Lines */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#292927_1px,transparent_1px),linear-gradient(to_bottom,#292927_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-15 pointer-events-none z-0" />
-
-      {/* Studio C-Stand / Lighting Rig Graphic - Left Side */}
-      <div className="hidden xl:flex absolute left-4 top-0 bottom-0 w-12 flex-col justify-between items-center opacity-30 pointer-events-none z-0 py-8">
-        <div className="w-1 h-full bg-gradient-to-b from-transparent via-[#444440] to-transparent relative">
-          <div className="absolute top-1/4 -left-3 w-7 h-3 border border-[#666660] rounded-xs" />
-          <div className="absolute top-2/3 -left-3 w-7 h-3 border border-[#666660] rounded-xs" />
-        </div>
-        <div className="w-8 h-8 border-b-2 border-l-2 border-[#666660] rotate-45 -mb-2" />
-      </div>
-
-      {/* Studio C-Stand / Lighting Rig Graphic - Right Side */}
-      <div className="hidden xl:flex absolute right-4 top-0 bottom-0 w-12 flex-col justify-between items-center opacity-30 pointer-events-none z-0 py-8">
-        <div className="w-1 h-full bg-gradient-to-b from-transparent via-[#444440] to-transparent relative">
-          <div className="absolute top-1/3 -right-3 w-7 h-3 border border-[#666660] rounded-xs" />
-          <div className="absolute top-3/4 -right-3 w-7 h-3 border border-[#666660] rounded-xs" />
-        </div>
-        <div className="w-8 h-8 border-b-2 border-r-2 border-[#666660] -rotate-45 -mb-2" />
-      </div>
-
-      {/* Studio Floor Ground Reflections */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#151514] via-[#0B0B0A]/80 to-transparent border-t border-[#292927]/30 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#292927_1px,transparent_1px),linear-gradient(to_bottom,#292927_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-20 pointer-events-none z-0" />
 
       {/* Main Asymmetric Campaign Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
@@ -127,29 +103,23 @@ export const EditorialHero: React.FC = () => {
               Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
             </p>
 
-            {/* Primary Action Buttons Group with Crimson Neon Backlight Glow */}
+            {/* Primary Action Buttons Group */}
             <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              
-              {/* Crimson Glowing CTA Wrapper */}
-              <div className="relative group w-full sm:w-auto">
-                <div className="absolute -inset-1 bg-[#E3261E] rounded-sm blur-xl opacity-75 group-hover:opacity-100 transition duration-500 group-hover:blur-2xl animate-pulse" />
-                <Button
-                  href="/collection"
-                  variant="primary"
-                  size="lg"
-                  className="relative w-full sm:w-auto justify-center bg-[#E3261E] hover:bg-[#d01f17] text-white border-0 font-mono font-bold tracking-wider uppercase shadow-[0_0_35px_rgba(227,38,30,0.6)]"
-                  icon={<ArrowRight className="w-5 h-5" />}
-                >
-                  Explore Collection
-                </Button>
-              </div>
+              <Button
+                href="/collection"
+                variant="primary"
+                size="lg"
+                className="w-full sm:w-auto justify-center shadow-lg shadow-[#E3261E]/20"
+                icon={<ArrowRight className="w-5 h-5" />}
+              >
+                Explore Collection
+              </Button>
 
-              {/* WhatsApp Concierge Pill with Emerald Backlight */}
               <a
                 href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-5 py-3.5 min-h-[52px] bg-[#151514] hover:bg-[#121f17] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.15)] hover:shadow-[0_0_30px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-5 py-3.5 min-h-[52px] bg-[#151514] hover:bg-[#121f17] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 rounded-sm transition-all duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
               >
                 <div className="flex items-center gap-2.5">
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] text-[10px] font-mono font-bold uppercase rounded-sm">
@@ -197,8 +167,8 @@ export const EditorialHero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-md group cursor-pointer"
             >
-              {/* Product Visual Container with Asymmetric Frame & Studio Drop Shadow */}
-              <div className="relative bg-[#151514] border border-[#292927] p-3 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.95)] overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
+              {/* Product Visual Container with Asymmetric Frame */}
+              <div className="relative bg-[#151514] border border-[#292927] p-3 shadow-2xl overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
                 
                 {/* Top Visual Header & Angle Switcher Controls */}
                 <div className="flex items-center justify-between px-3 py-2 bg-[#0B0B0A] border border-[#292927] mb-3 text-xs font-mono">
@@ -220,7 +190,7 @@ export const EditorialHero: React.FC = () => {
                           }}
                           className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase transition-all rounded-sm flex items-center gap-1 ${
                             isActive
-                              ? 'bg-[#E3261E] text-white shadow-[0_0_12px_rgba(227,38,30,0.7)]'
+                              ? 'bg-[#E3261E] text-white'
                               : 'bg-[#151514] text-[#9B9992] hover:text-[#F3F0E8] border border-[#292927]'
                           }`}
                         >
@@ -281,7 +251,7 @@ export const EditorialHero: React.FC = () => {
                   
                   <Link
                     to={`/collection/${spotlightProduct?.id || '1'}`}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#E3261E] hover:bg-[#c81e17] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-sm transition-colors shadow-[0_0_15px_rgba(227,38,30,0.4)]"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#E3261E] hover:bg-[#c81e17] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-sm transition-colors"
                   >
                     <span>INSPECT KIT</span>
                     <ChevronRight className="w-3.5 h-3.5" />
