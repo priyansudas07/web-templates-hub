@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
     <header className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled 
         ? 'bg-[#050505]/90 backdrop-blur-xl border-b border-[#292927] shadow-lg' 
-        : 'bg-[#050505]/30 backdrop-blur-md border-b border-white/10'
+        : 'bg-transparent border-b border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-20">
