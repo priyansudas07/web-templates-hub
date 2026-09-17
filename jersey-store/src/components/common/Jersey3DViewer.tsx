@@ -131,17 +131,20 @@ export const Jersey3DViewer: React.FC<Jersey3DViewerProps> = ({
         const singleJerseyGroup = new THREE.Group();
         singleJerseyGroup.add(fullScene);
 
-        // 4. Scale to fit viewport perfectly in the exact middle
+        // 4. Scale and position so jersey is optically centered in the exact middle of card
         const maxDim = Math.max(size.x, size.y, size.z);
         if (maxDim > 0) {
-          const scale = 1.45 / maxDim;
+          const scale = 1.70 / maxDim;
           singleJerseyGroup.scale.set(scale, scale, scale);
         }
+
+        // Shift up to balance top header and bottom controls
+        singleJerseyGroup.position.set(0, 0.15, 0);
 
         scene.add(singleJerseyGroup);
 
         if (controlsRef.current) {
-          controlsRef.current.target.set(0, 0, 0);
+          controlsRef.current.target.set(0, 0.15, 0);
           controlsRef.current.update();
         }
       },
