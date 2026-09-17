@@ -74,10 +74,17 @@ export const EditorialHero: React.FC = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[80vh] bg-[#0B0B0A] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[85vh] bg-[#050505] text-[#F3F0E8] overflow-hidden pt-12 pb-16 flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Background Subtle Technical Grid Lines */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#292927_1px,transparent_1px),linear-gradient(to_bottom,#292927_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-20 pointer-events-none z-0" />
+      {/* Real Photography Studio Backdrop Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-105 brightness-95"
+        style={{ backgroundImage: `url('/studio-backdrop.png')` }}
+      />
+
+      {/* Subtle Vignette Overlay for Crisp Typography Readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/70 via-transparent to-[#050505]/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40 pointer-events-none z-0" />
 
       {/* Main Asymmetric Campaign Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
@@ -103,23 +110,29 @@ export const EditorialHero: React.FC = () => {
               Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
             </p>
 
-            {/* Primary Action Buttons Group */}
+            {/* Primary Action Buttons Group with Crimson Neon Backlight Glow */}
             <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              <Button
-                href="/collection"
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto justify-center shadow-lg shadow-[#E3261E]/20"
-                icon={<ArrowRight className="w-5 h-5" />}
-              >
-                Explore Collection
-              </Button>
+              
+              {/* Crimson Glowing CTA Wrapper */}
+              <div className="relative group w-full sm:w-auto">
+                <div className="absolute -inset-1 bg-[#E3261E] rounded-sm blur-xl opacity-75 group-hover:opacity-100 transition duration-500 group-hover:blur-2xl animate-pulse" />
+                <Button
+                  href="/collection"
+                  variant="primary"
+                  size="lg"
+                  className="relative w-full sm:w-auto justify-center bg-[#E3261E] hover:bg-[#d01f17] text-white border-0 font-mono font-bold tracking-wider uppercase shadow-[0_0_35px_rgba(227,38,30,0.6)]"
+                  icon={<ArrowRight className="w-5 h-5" />}
+                >
+                  Explore Collection
+                </Button>
+              </div>
 
+              {/* WhatsApp Concierge Pill with Emerald Backlight */}
               <a
                 href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-5 py-3.5 min-h-[52px] bg-[#151514] hover:bg-[#121f17] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 rounded-sm transition-all duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-5 py-3.5 min-h-[52px] bg-[#151514]/90 backdrop-blur-md hover:bg-[#121f17] text-[#F3F0E8] border border-[#292927] hover:border-[#25D366]/60 rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.15)] hover:shadow-[0_0_30px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
               >
                 <div className="flex items-center gap-2.5">
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] text-[10px] font-mono font-bold uppercase rounded-sm">
