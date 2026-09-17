@@ -12,21 +12,21 @@ const KIT_ANGLES = [
   {
     id: 'front',
     label: 'FRONT',
-    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
     tag: 'MATCH EDITION FRONT',
     is3D: false
   },
   {
     id: 'back',
     label: 'BACK',
-    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85',
     tag: 'CUSTOM NAMEPRINT BACK',
     is3D: false
   },
   {
     id: 'detail',
     label: 'CREST',
-    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85',
     tag: 'AUTHENTIC EMBLEM WEAVE',
     is3D: false
   },
@@ -75,9 +75,9 @@ export const EditorialHero: React.FC = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[80vh] lg:min-h-[calc(90vh-5rem)] bg-[#050505] text-[#F3F0E8] overflow-hidden py-8 lg:py-12 flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image */}
+      {/* Real Photography Studio Backdrop Image (Full Bleed behind Navbar) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-105 brightness-95"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
@@ -86,6 +86,9 @@ export const EditorialHero: React.FC = () => {
       {/* Subtle Vignette Overlay for Crisp Typography Readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/75 via-transparent to-[#050505]/50 pointer-events-none z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40 pointer-events-none z-0" />
+
+      {/* Unified Crimson Studio Spotlight Beam */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
 
       {/* Live Floating Studio Dust Particles */}
       <DustParticles particleCount={55} />
