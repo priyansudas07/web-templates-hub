@@ -77,15 +77,14 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[90vh] -mt-20 pt-28 pb-12 lg:pb-16 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
     >
-      {/* Real Photography Studio Backdrop Image (Full Studio Stage with Left & Right Metallic Stands 100% Visible) */}
+      {/* Real Photography Studio Backdrop Image (Full Bleed Stage Translucently Visible Behind Navbar) */}
       <div 
-        className="absolute -top-20 inset-x-0 bottom-0 bg-[size:100%_100%] bg-center bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-105 brightness-100 transform-gpu"
+        className="absolute -top-20 inset-x-0 bottom-0 bg-[size:100%_100%] bg-top bg-no-repeat opacity-100 pointer-events-none z-0 filter contrast-105 brightness-100 transform-gpu"
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
-      {/* Subtle Top & Bottom Blends to Maintain Seamless Navbar & Section Transitions */}
+      {/* Bottom Blend to Transition Seamlessly into Next Section */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent pointer-events-none z-0" />
-      <div className="absolute -top-20 inset-x-0 h-24 bg-gradient-to-b from-[#050505]/50 to-transparent pointer-events-none z-0" />
 
       {/* Unified Crimson Studio Spotlight Beam */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
