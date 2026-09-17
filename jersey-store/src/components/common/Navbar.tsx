@@ -7,6 +7,7 @@ import { SpotlightNavbar } from '../ui/spotlight-navbar';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -14,6 +15,15 @@ export const Navbar: React.FC = () => {
     if (path !== '/' && location.pathname.startsWith(path)) return true;
     return false;
   };
+
+  // Scroll listener for glassy backdrop effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Keyboard Escape key listener to close mobile menu
   useEffect(() => {
@@ -27,7 +37,11 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0B0A]/70 backdrop-blur-xl border-b border-[#292927]">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-[#050505]/80 backdrop-blur-xl border-b border-[#292927] shadow-lg' 
+        : 'bg-transparent backdrop-blur-sm border-b border-white/5'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-20">
           
