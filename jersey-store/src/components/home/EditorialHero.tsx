@@ -83,7 +83,8 @@ export const EditorialHero: React.FC = () => {
         style={{ backgroundImage: `url('/studio-backdrop.png')` }}
       />
 
-      {/* Bottom Blend to Transition Seamlessly into Next Section */}
+      {/* Bottom & Top Blends to Smoothly Integrate Stage into Navbar & Next Section */}
+      <div className="absolute -top-24 inset-x-0 h-32 bg-gradient-to-b from-[#050505]/50 via-[#050505]/20 to-transparent pointer-events-none z-0" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent pointer-events-none z-0" />
 
       {/* Unified Crimson Studio Spotlight Beam */}
