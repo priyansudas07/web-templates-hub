@@ -118,11 +118,6 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
-      {/* Authentic High-Res Pure Black Studio Backdrop with 07 Watermark & Drapery */}
-      <div 
-        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat pointer-events-none z-0"
-        style={{ backgroundImage: `url('/hero-backdrop-07.png')` }}
-      />
 
       {/* Subtle Analog Film Grain Texture */}
       <div 
@@ -473,15 +468,13 @@ export const EditorialHero: React.FC = () => {
       </div>
 
       {/* ============================================================
-          BOTTOM SECTION: 3 Trust Badges & Backdrop Space
+          BOTTOM SECTION: 3 Value Pillars & Technical Archive Spec
          ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-2 border-t border-[#292927]/40">
-        
-        {/* Bottom Trust Row & Space for Backdrop Slogan */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-2.5 border-t border-[#292927]/40">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           
           {/* 3 Value Pillars */}
-          <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left border-t sm:border-t-0 sm:border-l border-[#292927]/60 sm:pl-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 text-left">
             <div className="space-y-0.5">
               <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 PREMIUM QUALITY
@@ -491,7 +484,7 @@ export const EditorialHero: React.FC = () => {
               </span>
             </div>
 
-            <div className="space-y-0.5 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
+            <div className="space-y-0.5">
               <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 GLOBAL SHIPPING
               </span>
@@ -500,7 +493,7 @@ export const EditorialHero: React.FC = () => {
               </span>
             </div>
 
-            <div className="space-y-0.5 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
+            <div className="space-y-0.5">
               <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 TRUSTED BY FANS
               </span>
@@ -510,13 +503,14 @@ export const EditorialHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Bottom Right Space Holder to allow backdrop slogan to shine through */}
-          <div className="md:col-span-4 text-right flex justify-end pointer-events-none select-none">
-            <div className="h-6 w-36" />
+          {/* Right Micro Technical Archive Spec (Subtle Pedigree Tag) */}
+          <div className="hidden md:flex items-center gap-2 text-right opacity-35">
+            <span className="text-[9px] font-mono tracking-[0.25em] text-[#9B9992] uppercase">
+              ARCHIVAL SPEC // POR-2026-HM
+            </span>
           </div>
 
         </div>
-
       </div>
 
     </section>
