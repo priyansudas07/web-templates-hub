@@ -218,7 +218,7 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-8 xl:translate-x-12">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] translate-y-5 sm:translate-y-7 lg:translate-y-6 lg:translate-x-8 xl:translate-x-12">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
