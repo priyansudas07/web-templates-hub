@@ -45,8 +45,8 @@ const HOTSPOTS: Hotspot[] = [
 const KIT_VIEWS = [
   {
     id: 'front',
-    label: 'FRONT ELEVATION',
-    sub: 'MATCH ISSUE SPEC',
+    label: 'Front View',
+    sub: 'Match Issue Spec',
     num: '01',
     image: '/kits/portugal-front.png',
     tag: 'MATCH EDITION FRONT',
@@ -54,8 +54,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'back',
-    label: 'REAR PROFILE',
-    sub: 'DORSAL 7 ARCHIVE',
+    label: 'Back Profile',
+    sub: 'Ronaldo 7 Edition',
     num: '02',
     image: '/kits/portugal-back.png',
     tag: 'AUTHENTIC REAR MATCH EDITION',
@@ -63,8 +63,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'crest',
-    label: 'CREST EMBROIDERY',
-    sub: '3D SILICONE SHIELD',
+    label: 'Club Crest',
+    sub: 'FPF 3D Shield',
     num: '03',
     image: '/kits/portugal-crest.jpg',
     tag: 'FPF EMBROIDERED SHIELD',
@@ -72,8 +72,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'details',
-    label: 'JACQUARD WEAVE',
-    sub: 'DRI-FIT ADV MAPPING',
+    label: 'Fabric Weave',
+    sub: 'Dri-FIT ADV Knit',
     num: '04',
     image: '/kits/portugal-details.jpg',
     tag: 'COLLAR & DRI-FIT ADV ARCHIVAL',
@@ -364,26 +364,21 @@ export const EditorialHero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-10 xl:translate-x-16 z-20"
           >
-            {/* Unified Frosted Dark Glass Dossier Container */}
-            <div className="relative rounded-sm bg-[#090908]/85 backdrop-blur-2xl border border-white/[0.09] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
+            {/* Minimalist Editorial Gallery Strip */}
+            <div className="w-full max-w-[280px]">
               
-              {/* Dossier Header Bar */}
-              <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/[0.07] bg-white/[0.02]">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
-                  <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#F3F0E8] uppercase">
-                    KIT INSPECTOR
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 font-mono text-[9px] text-[#9B9992]">
-                  <span className="text-[#F3F0E8] font-bold">0{activeViewIndex + 1}</span>
-                  <span className="text-white/30">/</span>
-                  <span>0{KIT_VIEWS.length}</span>
-                </div>
+              {/* Understated Editorial Header */}
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
+                <span className="text-[10px] font-mono tracking-[0.25em] text-[#9B9992] uppercase">
+                  PERSPECTIVES
+                </span>
+                <span className="text-[10px] font-mono tracking-widest text-[#9B9992]/60">
+                  0{activeViewIndex + 1} / 0{KIT_VIEWS.length}
+                </span>
               </div>
 
-              {/* View Selector Rows */}
-              <div className="divide-y divide-white/[0.05]">
+              {/* View Items */}
+              <div className="space-y-1.5">
                 {KIT_VIEWS.map((view, index) => {
                   const isActive = index === activeViewIndex;
                   return (
@@ -392,72 +387,61 @@ export const EditorialHero: React.FC = () => {
                       onClick={() => {
                         setActiveViewIndex(index);
                         setActiveHotspot(null);
-                        triggerLaserScan();
                       }}
-                      className={`w-full relative flex items-center justify-between p-2.5 transition-all duration-300 text-left group cursor-pointer ${
+                      className={`w-full flex items-center justify-between p-2 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
                         isActive
-                          ? 'bg-white/[0.06]'
-                          : 'hover:bg-white/[0.02] opacity-75 hover:opacity-100'
+                          ? 'bg-white/[0.04] border-white/20 shadow-sm'
+                          : 'bg-transparent border-transparent opacity-45 hover:opacity-100 hover:bg-white/[0.02]'
                       }`}
                     >
-                      {/* Left glowing active accent hairline */}
-                      {isActive && (
-                        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#E3261E] shadow-[0_0_10px_#E3261E]" />
-                      )}
-
-                      <div className="flex items-center gap-3 pl-1">
-                        {/* High-Resolution Thumbnail with Contrast Ring */}
+                      <div className="flex items-center gap-3">
+                        {/* Thumbnail */}
                         <div
-                          className={`w-9 h-9 shrink-0 rounded-xs bg-[#050505] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
+                          className={`w-10 h-10 shrink-0 rounded-xs bg-[#0e0e0d] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
                             isActive
-                              ? 'border-[#E3261E]/80 shadow-[0_0_10px_rgba(227,38,30,0.35)]'
-                              : 'border-white/[0.08] group-hover:border-white/20'
+                              ? 'border-white/30 ring-1 ring-white/10'
+                              : 'border-white/[0.07] group-hover:border-white/20'
                           }`}
                         >
                           <img
                             src={view.image}
                             alt={view.label}
                             className={`w-full h-full object-contain p-0.5 filter ${
-                              isActive ? 'contrast-115 scale-110' : 'contrast-95 group-hover:scale-105'
+                              isActive ? 'contrast-105 scale-105' : 'contrast-90 group-hover:scale-105'
                             } transition-transform duration-300`}
                           />
                         </div>
 
-                        {/* Text: Index + Technical Title + Subtitle */}
+                        {/* Labels */}
                         <div className="space-y-0.5 text-left">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-[9px] font-mono text-[#E3261E] font-semibold">
+                          <div className="flex items-center gap-2">
+                            <span className={`text-[10px] font-mono transition-colors ${isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]'}`}>
                               {view.num}
                             </span>
-                            <span className={`text-[10px] font-mono font-bold tracking-wider uppercase transition-colors ${
-                              isActive ? 'text-white' : 'text-[#9B9992] group-hover:text-[#F3F0E8]'
+                            <span className={`text-[11px] font-mono uppercase tracking-wider transition-colors ${
+                              isActive ? 'text-[#F3F0E8] font-semibold' : 'text-[#9B9992] group-hover:text-[#F3F0E8]'
                             }`}>
                               {view.label}
                             </span>
                           </div>
-                          <span className="block text-[8px] font-mono text-[#9B9992]/80 tracking-widest uppercase">
+                          <span className="block text-[9px] font-mono text-[#9B9992]/60 tracking-wide">
                             {view.sub}
                           </span>
                         </div>
                       </div>
 
-                      {/* Right Active Indicator */}
-                      <div className="pr-1">
+                      {/* Clean Active Indicator Dot */}
+                      <div className="pr-1.5">
                         {isActive ? (
-                          <span className="inline-block text-[8px] font-mono font-bold text-[#E3261E] tracking-widest uppercase bg-[#E3261E]/10 px-1.5 py-0.5 rounded-xs border border-[#E3261E]/30">
-                            ACTIVE
-                          </span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] inline-block shadow-[0_0_6px_#E3261E]" />
                         ) : (
-                          <span className="text-[10px] text-white/20 group-hover:text-white/60 font-mono transition-colors">
-                            →
-                          </span>
+                          <span className="w-1 h-1 rounded-full bg-white/10 group-hover:bg-white/30 inline-block transition-colors" />
                         )}
                       </div>
                     </button>
                   );
                 })}
               </div>
-
 
             </div>
           </motion.div>
