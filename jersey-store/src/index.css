@@ -82,13 +82,13 @@
   overflow: hidden;
   z-index: 1;
   color: #F3F0E8;
-  padding: 0.7em 3.3em 0.7em 1.5em;
+  padding: 0 3.2em 0 1.4em;
   font-size: 13px;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  border-radius: 0.5em;
+  border-radius: 2px;
   background: #151514;
   border: 1px solid #292927;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);

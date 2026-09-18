@@ -123,6 +123,14 @@ export const EditorialHero: React.FC = () => {
         className="absolute inset-0 bg-cover bg-bottom bg-no-repeat pointer-events-none z-0"
         style={{ backgroundImage: `url('/hero-backdrop-07.png')` }}
       />
+
+      {/* Subtle Analog Film Grain Texture */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.035] mix-blend-screen"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
       
       {/* Subtle Crimson Studio Spotlight behind Center-Right Jersey */}
       <div className="absolute top-1/2 left-[58%] -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
@@ -161,26 +169,33 @@ export const EditorialHero: React.FC = () => {
             <div className="space-y-0.5">
               <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.2rem] font-display font-black uppercase tracking-tight leading-[0.85] text-[#F3F0E8]">
                 THE GAME <br />
-                <span className="text-white">NEVER STOPS.</span>
+                NEVER <span className="text-[#E3261E]">STOPS.</span>
               </h1>
             </div>
 
-            {/* Product Meta: Strikethrough Year & Model */}
+            {/* Product Meta: Official Release Spec */}
             <div className="space-y-1">
-              <div className="flex items-center gap-2.5 font-sans text-xs tracking-[0.2em] uppercase font-semibold text-[#9B9992]">
-                <span>PORTUGAL HOME</span>
-                <span className="line-through decoration-[#E3261E] decoration-2 text-stone-500 font-normal">2025</span>
+              <div className="flex items-center gap-2 font-sans text-[11px] tracking-[0.22em] uppercase font-semibold text-[#9B9992]">
+                <span>OFFICIAL MATCH ISSUE</span>
+                <span className="text-white/20">•</span>
+                <span className="text-[#E3261E]">2026 WORLD CUP</span>
               </div>
-              <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.15em] text-sm sm:text-base uppercase">
-                2025/26
+              <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.14em] text-sm sm:text-base uppercase">
+                PORTUGAL HOME KIT 2025/26
               </div>
             </div>
 
-            {/* Pricing Line with Red Dash Accent */}
-            <div className="flex items-center gap-3 pt-0.5">
-              <div className="w-5 h-[2px] bg-[#E3261E]" />
+            {/* Pricing Line with Red Dash Accent & Strikethrough Original Price */}
+            <div className="flex items-baseline gap-3 pt-0.5">
+              <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
               <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
                 ₹1,499
+              </span>
+              <span className="text-sm sm:text-base font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70 decoration-1">
+                ₹2,999
+              </span>
+              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.5 rounded-xs tracking-wider uppercase">
+                50% OFF
               </span>
             </div>
 
@@ -189,7 +204,7 @@ export const EditorialHero: React.FC = () => {
               {/* Explore Collection Button */}
               <Link
                 to="/collection"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98]"
+                className="h-12 inline-flex items-center justify-center gap-2.5 px-6 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98] rounded-xs"
               >
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 <span>EXPLORE COLLECTION</span>
@@ -200,12 +215,12 @@ export const EditorialHero: React.FC = () => {
                 href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button2 py-2 px-4"
+                className="button2 h-12 py-0 px-5 flex items-center rounded-xs"
                 aria-label="Contact Concierge on WhatsApp"
               >
-                <div className="flex flex-col text-left leading-tight pr-2">
-                  <span className="text-[10px] text-[#9B9992] font-mono tracking-widest">WHATSAPP</span>
-                  <span className="text-xs font-mono font-bold text-white tracking-wider">CONCIERGE</span>
+                <div className="flex flex-col text-left leading-tight pr-4">
+                  <span className="text-[9px] text-[#9B9992] font-sans tracking-[0.2em]">WHATSAPP</span>
+                  <span className="text-xs font-sans font-bold text-white tracking-wider">CONCIERGE</span>
                 </div>
                 <svg viewBox="0 0 24 24" className="w-4 h-4">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
