@@ -77,21 +77,11 @@ const KIT_VIEWS = [
   },
 ];
 
-const MATCH_TIMELINE = [
-  { minute: 0, label: "00'", title: 'KICK OFF', sub: 'Match Begins' },
-  { minute: 18, label: "18'", title: 'CHANCE', sub: 'High Press' },
-  { minute: 37, label: "37'", title: 'HALF TIME', sub: 'Portugal 1 - 0' },
-  { minute: 64, label: "64'", title: 'TACTICAL', sub: 'Formation 4-3-3' },
-  { minute: 88, label: "88'", title: 'GOAL CR7', sub: 'Match Winner' },
-  { minute: 93, label: "90' +3'", title: 'FULL TIME', sub: 'Victory' },
-];
-
 export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
   const [isScanning, setIsScanning] = useState(false);
-  const [selectedTimelineIndex, setSelectedTimelineIndex] = useState(2); // 37' HALF TIME
 
   // Parallax motion values
   const mouseX = useMotionValue(0);
@@ -478,72 +468,12 @@ export const EditorialHero: React.FC = () => {
       </div>
 
       {/* ============================================================
-          BOTTOM SECTION: Match Timeline & 3 Trust Badges & Script
+          BOTTOM SECTION: 3 Trust Badges & Backdrop Space
          ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-1.5 border-t border-[#292927]/40">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-2 border-t border-[#292927]/40">
         
-        {/* Interactive Match Timeline: 00' — 90' */}
-        <div className="mb-2 max-w-3xl mx-auto">
-          <div className="relative flex items-center justify-between text-[11px] font-mono text-[#9B9992] px-2 py-0.5">
-            <span className="font-bold text-[#F3F0E8]">00'</span>
-            
-            {/* Timeline Progress Bar & Markers */}
-            <div className="relative flex-1 mx-4 sm:mx-6 h-[2px] bg-[#292927]">
-              {/* Active Red Track Line */}
-              <div
-                className="absolute left-0 top-0 h-full bg-[#E3261E] transition-all duration-300"
-                style={{ width: `${(selectedTimelineIndex / (MATCH_TIMELINE.length - 1)) * 100}%` }}
-              />
-
-              {/* Match Moment Clickable Ticks */}
-              {MATCH_TIMELINE.map((moment, idx) => {
-                const isSelected = idx === selectedTimelineIndex;
-                const percent = (idx / (MATCH_TIMELINE.length - 1)) * 100;
-
-                return (
-                  <div
-                    key={moment.minute}
-                    onClick={() => setSelectedTimelineIndex(idx)}
-                    style={{ left: `${percent}%` }}
-                    className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                  >
-                    {/* Tick Circle */}
-                    <div
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 flex items-center justify-center ${
-                        isSelected
-                          ? 'bg-[#E3261E] shadow-[0_0_10px_#E3261E] scale-125'
-                          : 'bg-[#151514] border border-[#292927] group-hover:border-[#9B9992]'
-                      }`}
-                    >
-                      {isSelected && <div className="w-1 h-1 bg-white rounded-full" />}
-                    </div>
-
-                    {/* Popover Callout for Active / Hovered Marker */}
-                    {isSelected && (
-                      <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                        <span className="text-[9px] font-mono font-bold text-[#E3261E] bg-[#0E0E0D] px-1 py-0.5 border border-[#E3261E]/60 rounded-xs">
-                          {moment.label} {moment.title}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <span className="font-bold text-[#9B9992]">90' +3'</span>
-          </div>
-
-          {/* Subtitle description of active timeline moment */}
-          <div className="text-center">
-            <span className="text-[9px] font-mono text-[#9B9992] tracking-wider uppercase">
-              {MATCH_TIMELINE[selectedTimelineIndex].label} {MATCH_TIMELINE[selectedTimelineIndex].title} — {MATCH_TIMELINE[selectedTimelineIndex].sub}
-            </span>
-          </div>
-        </div>
-
         {/* Bottom Trust Row & Space for Backdrop Slogan */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center pt-0.5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
           
           {/* 3 Value Pillars */}
           <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left border-t sm:border-t-0 sm:border-l border-[#292927]/60 sm:pl-4">
