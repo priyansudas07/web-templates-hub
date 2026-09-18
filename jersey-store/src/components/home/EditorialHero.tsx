@@ -129,18 +129,21 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-20 lg:pt-24 pb-6 select-none border-b border-[#292927]/60"
     >
-      {/* Background Atmosphere & Spotlight */}
-      <div className="absolute inset-0 bg-[#070707] pointer-events-none z-0" />
+      {/* Authentic High-Res Concrete/Stone Studio Backdrop with 07 Watermark */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0 filter brightness-90 contrast-105"
+        style={{ backgroundImage: `url('/hero-backdrop-07.jpg')` }}
+      />
       
-      {/* Deep Red Radial Stage Spotlight behind Center Jersey */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[650px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/20 via-[#8B0000]/06 to-transparent blur-3xl pointer-events-none z-0" />
+      {/* Subtle Crimson Studio Spotlight behind Center Jersey */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
       
-      {/* Vignette Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070707] via-transparent to-[#070707]/90 pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/90 via-transparent to-[#070707]/80 pointer-events-none z-0" />
+      {/* Top & Bottom Smooth Gradient Blends for Seamless Flow */}
+      <div className="absolute -top-12 inset-x-0 h-28 bg-gradient-to-b from-[#070707]/90 via-[#070707]/40 to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#070707]/90 via-[#070707]/30 to-transparent pointer-events-none z-0" />
 
       {/* Floating Studio Dust Particles */}
-      <DustParticles particleCount={35} />
+      <DustParticles particleCount={45} />
 
       {/* Far Left Vertical Technical Telemetry Bar */}
       <div className="hidden xl:flex absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 items-center gap-3 z-10 pointer-events-none opacity-40">
@@ -227,16 +230,9 @@ export const EditorialHero: React.FC = () => {
           </motion.div>
 
           {/* ============================================================
-              CENTER COLUMN: Unboxed Jersey, Hotspots, Ghost Number '07'
+              CENTER COLUMN: Unboxed Jersey, Hotspots
              ============================================================ */}
           <div className="lg:col-span-4 relative flex items-center justify-center min-h-[420px] sm:min-h-[480px]">
-            
-            {/* Oversized Ghost Watermark "07" in Background */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
-              <span className="font-display font-black text-[180px] sm:text-[240px] lg:text-[300px] text-white/[0.035] tracking-tighter transform -translate-y-4">
-                07
-              </span>
-            </div>
 
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
@@ -584,15 +580,9 @@ export const EditorialHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Bottom Right Handwritten Script Signature */}
-          <div className="md:col-span-3 text-right flex justify-end">
-            <div
-              className="text-[#9B9992]/50 select-none leading-none transform -rotate-3 hover:text-[#F3F0E8]/80 transition-colors"
-              style={{ fontFamily: "'Caveat', cursive", fontSize: '1.75rem' }}
-            >
-              More Than <br />
-              Just a Jersey.
-            </div>
+          {/* Bottom Right Space Holder (Backdrop image already has authentic calligraphy) */}
+          <div className="md:col-span-3 text-right flex justify-end pointer-events-none select-none">
+            <div className="h-10 w-32" />
           </div>
 
         </div>
