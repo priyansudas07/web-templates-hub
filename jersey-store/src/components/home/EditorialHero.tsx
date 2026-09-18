@@ -218,7 +218,7 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[420px] sm:min-h-[480px] lg:translate-x-4">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px] lg:translate-x-8 xl:translate-x-12">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
@@ -229,7 +229,7 @@ export const EditorialHero: React.FC = () => {
                 y: jerseyTranslateY,
                 transformStyle: 'preserve-3d',
               }}
-              className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px] flex items-center justify-center z-10"
+              className="relative w-full max-w-[460px] sm:max-w-[540px] lg:max-w-[590px] xl:max-w-[630px] flex items-center justify-center z-10 scale-105 lg:scale-110"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
