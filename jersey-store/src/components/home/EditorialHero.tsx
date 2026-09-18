@@ -229,7 +229,7 @@ export const EditorialHero: React.FC = () => {
                 y: jerseyTranslateY,
                 transformStyle: 'preserve-3d',
               }}
-              className={`relative w-full max-w-[510px] sm:max-w-[600px] lg:max-w-[660px] xl:max-w-[700px] flex items-center justify-center z-10 scale-115 lg:scale-[1.24] transition-transform duration-500 ease-out ${
+              className={`relative w-full max-w-[480px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[660px] flex items-center justify-center z-10 scale-110 lg:scale-[1.18] transition-transform duration-500 ease-out ${
                 activeViewIndex === 0
                   ? 'translate-y-9 sm:translate-y-11 lg:translate-y-10'
                   : '-translate-y-3 sm:-translate-y-4 lg:-translate-y-2'
