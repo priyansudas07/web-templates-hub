@@ -121,7 +121,7 @@ export const EditorialHero: React.FC = () => {
             </p>
 
             {/* Primary Action Buttons Group with Crimson Neon Backlight Glow */}
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
               
               {/* Crimson Glowing CTA Wrapper */}
               <div className="relative group w-full sm:w-auto">
@@ -142,7 +142,7 @@ export const EditorialHero: React.FC = () => {
                 href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button2"
+                className="button2 sm:ml-2"
                 aria-label="Contact Concierge on WhatsApp"
               >
                 <span>WhatsApp Concierge</span>
