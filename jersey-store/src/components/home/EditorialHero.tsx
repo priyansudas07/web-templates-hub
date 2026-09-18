@@ -218,7 +218,7 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px] lg:translate-x-8 xl:translate-x-12">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-8 xl:translate-x-12">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
@@ -229,7 +229,7 @@ export const EditorialHero: React.FC = () => {
                 y: jerseyTranslateY,
                 transformStyle: 'preserve-3d',
               }}
-              className="relative w-full max-w-[460px] sm:max-w-[540px] lg:max-w-[590px] xl:max-w-[630px] flex items-center justify-center z-10 scale-105 lg:scale-110"
+              className="relative w-full max-w-[480px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[660px] flex items-center justify-center z-10 scale-110 lg:scale-[1.18]"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
@@ -243,11 +243,15 @@ export const EditorialHero: React.FC = () => {
                     className="relative w-full h-full flex items-center justify-center"
                   >
                     {currentView.isCutout ? (
-                      <img
-                        src={currentView.image}
-                        alt="Portugal 2025/26 Match Kit"
-                        className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
-                      />
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <img
+                          src={currentView.image}
+                          alt="Portugal 2025/26 Match Kit"
+                          className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto [mask-image:linear-gradient(to_bottom,black_65%,transparent_96%)] [-webkit-mask-image:linear-gradient(to_bottom,black_65%,transparent_96%)]"
+                        />
+                        {/* Atmospheric Bottom Black Dissolve Overlay */}
+                        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
+                      </div>
                     ) : (
                       <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group">
                         <img
