@@ -129,10 +129,10 @@ export const EditorialHero: React.FC = () => {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
-      {/* Authentic High-Res Concrete/Stone Studio Backdrop with 07 Watermark */}
+      {/* Authentic High-Res Pure Black Studio Backdrop with 07 Watermark & Drapery */}
       <div 
-        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat pointer-events-none z-0 filter brightness-105 contrast-105"
-        style={{ backgroundImage: `url('/hero-backdrop-07.jpg')` }}
+        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat pointer-events-none z-0"
+        style={{ backgroundImage: `url('/hero-backdrop-07.png')` }}
       />
       
       {/* Subtle Crimson Studio Spotlight behind Center-Right Jersey */}
