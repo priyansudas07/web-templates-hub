@@ -291,9 +291,9 @@ export const EditorialHero: React.FC = () => {
                 {activeViewIndex === 0 && (
                   <div className="absolute inset-0 pointer-events-none z-20">
                     
-                    {/* Hotspot 01: Collar Callout (Top Center-Left) */}
+                    {/* Hotspot 01: Collar Callout (Floating Above Collar) */}
                     <div
-                      className="absolute top-[6%] left-[32%] pointer-events-auto cursor-pointer group flex flex-col items-center"
+                      className="absolute -top-[6%] left-[34.5%] pointer-events-auto cursor-pointer group flex flex-col items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
                     >
                       {/* Compact Glass Capsule */}
@@ -305,8 +305,8 @@ export const EditorialHero: React.FC = () => {
                           COLLAR
                         </span>
                       </div>
-                      {/* Hairline + Target Dot */}
-                      <div className="w-[1px] h-2.5 bg-gradient-to-b from-white/30 to-white/10" />
+                      {/* Extended Precision Hairline String + Target Dot */}
+                      <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 via-white/25 to-white/10" />
                       <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
                     </div>
 
