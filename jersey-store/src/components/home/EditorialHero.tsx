@@ -243,15 +243,11 @@ export const EditorialHero: React.FC = () => {
                     className="relative w-full h-full flex items-center justify-center"
                   >
                     {currentView.isCutout ? (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <img
-                          src={currentView.image}
-                          alt="Portugal 2025/26 Match Kit"
-                          className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto [mask-image:linear-gradient(to_bottom,black_65%,transparent_96%)] [-webkit-mask-image:linear-gradient(to_bottom,black_65%,transparent_96%)]"
-                        />
-                        {/* Atmospheric Bottom Black Dissolve Overlay */}
-                        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
-                      </div>
+                      <img
+                        src={currentView.image}
+                        alt="Portugal 2025/26 Match Kit"
+                        className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
+                      />
                     ) : (
                       <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group">
                         <img
