@@ -379,7 +379,7 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 lg:translate-x-6 xl:translate-x-12 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-10 xl:translate-x-16 z-20"
           >
             {/* Unified Frosted Dark Glass Dossier Container */}
             <div className="relative rounded-sm bg-[#090908]/85 backdrop-blur-2xl border border-white/[0.09] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
@@ -475,23 +475,8 @@ export const EditorialHero: React.FC = () => {
                 })}
               </div>
 
-              {/* Integrated Archival Telemetry & Diagnostic Action */}
-              <div className="p-3 bg-black/40 border-t border-white/[0.07] space-y-2.5">
-                <div className="flex items-center justify-between text-[9px] font-mono text-[#9B9992]">
-                  <div className="space-y-0.5 text-left">
-                    <span className="block text-white/40 tracking-wider">ARCHIVAL SPEC</span>
-                    <span className="text-[#F3F0E8] font-bold">POR-2026-HM // ADV</span>
-                  </div>
-                  <div className="text-right space-y-0.5">
-                    <span className="block text-white/40 tracking-wider">ORIGIN</span>
-                    <span className="text-emerald-400 font-bold flex items-center gap-1 justify-end">
-                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
-                      AUTHENTICATED
-                    </span>
-                  </div>
-                </div>
-
-                {/* Laser Diagnostic Action Button */}
+              {/* Laser Diagnostic Action Button */}
+              <div className="p-2.5 bg-black/40 border-t border-white/[0.07]">
                 <button
                   onClick={triggerLaserScan}
                   disabled={isScanning}
