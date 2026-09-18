@@ -152,9 +152,9 @@ export const EditorialHero: React.FC = () => {
             className="lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-5 text-left z-20"
           >
             {/* Breadcrumb / Category Tag */}
-            <div className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
-              <span className="text-[#E3261E] font-bold">01</span>
-              <span className="text-[#9B9992]">/ FOOTBALL</span>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em]">
+              <span className="font-mono text-[#E3261E] font-bold">01</span>
+              <span className="font-sans font-semibold text-[#9B9992]/80">/ FOOTBALL</span>
             </div>
 
             {/* Main Editorial Campaign Headline */}
@@ -166,12 +166,12 @@ export const EditorialHero: React.FC = () => {
             </div>
 
             {/* Product Meta: Strikethrough Year & Model */}
-            <div className="space-y-0.5 font-mono text-xs sm:text-sm tracking-wider uppercase">
-              <div className="flex items-center gap-2 text-[#9B9992]">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2.5 font-sans text-xs tracking-[0.2em] uppercase font-semibold text-[#9B9992]">
                 <span>PORTUGAL HOME</span>
-                <span className="line-through decoration-[#E3261E] decoration-2 text-stone-500">2025</span>
+                <span className="line-through decoration-[#E3261E] decoration-2 text-stone-500 font-normal">2025</span>
               </div>
-              <div className="text-[#F3F0E8] font-bold tracking-widest text-sm sm:text-base">
+              <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.15em] text-sm sm:text-base uppercase">
                 2025/26
               </div>
             </div>
@@ -179,7 +179,7 @@ export const EditorialHero: React.FC = () => {
             {/* Pricing Line with Red Dash Accent */}
             <div className="flex items-center gap-3 pt-0.5">
               <div className="w-5 h-[2px] bg-[#E3261E]" />
-              <span className="text-2xl sm:text-3xl font-mono font-bold text-[#F3F0E8] tracking-tight">
+              <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
                 ₹1,499
               </span>
             </div>
@@ -189,7 +189,7 @@ export const EditorialHero: React.FC = () => {
               {/* Explore Collection Button */}
               <Link
                 to="/collection"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#E3261E] hover:bg-[#c81e17] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 <span>EXPLORE COLLECTION</span>
@@ -281,7 +281,7 @@ export const EditorialHero: React.FC = () => {
                         <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
                           01
                         </span>
-                        <span className="text-[9px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase pr-1">
+                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
                           COLLAR
                         </span>
                       </div>
@@ -297,7 +297,7 @@ export const EditorialHero: React.FC = () => {
                         <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
                           02
                         </span>
-                        <span className="text-[9px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase pr-1">
+                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
                           CREST
                         </span>
                       </div>
@@ -313,7 +313,7 @@ export const EditorialHero: React.FC = () => {
                         <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
                           03
                         </span>
-                        <span className="text-[9px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase pr-1">
+                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
                           FABRIC
                         </span>
                       </div>
@@ -369,7 +369,7 @@ export const EditorialHero: React.FC = () => {
               
               {/* Understated Editorial Header */}
               <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
-                <span className="text-[10px] font-mono tracking-[0.25em] text-[#9B9992] uppercase">
+                <span className="text-[10px] font-sans font-semibold tracking-[0.25em] text-[#9B9992] uppercase">
                   PERSPECTIVES
                 </span>
                 <span className="text-[10px] font-mono tracking-widest text-[#9B9992]/60">
@@ -418,13 +418,13 @@ export const EditorialHero: React.FC = () => {
                             <span className={`text-[10px] font-mono transition-colors ${isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]'}`}>
                               {view.num}
                             </span>
-                            <span className={`text-[11px] font-mono uppercase tracking-wider transition-colors ${
-                              isActive ? 'text-[#F3F0E8] font-semibold' : 'text-[#9B9992] group-hover:text-[#F3F0E8]'
+                            <span className={`text-xs font-sans uppercase tracking-[0.08em] transition-colors ${
+                              isActive ? 'text-[#F3F0E8] font-bold' : 'text-[#9B9992] group-hover:text-[#F3F0E8] font-medium'
                             }`}>
                               {view.label}
                             </span>
                           </div>
-                          <span className="block text-[9px] font-mono text-[#9B9992]/60 tracking-wide">
+                          <span className="block text-[10px] font-sans text-[#9B9992]/70 font-normal">
                             {view.sub}
                           </span>
                         </div>
@@ -459,29 +459,29 @@ export const EditorialHero: React.FC = () => {
           
           {/* 3 Value Pillars */}
           <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left border-t sm:border-t-0 sm:border-l border-[#292927]/60 sm:pl-4">
-            <div className="space-y-0">
-              <span className="block text-[9px] font-mono text-[#F3F0E8] font-bold uppercase tracking-widest">
+            <div className="space-y-0.5">
+              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 PREMIUM QUALITY
               </span>
-              <span className="block text-[9px] font-mono text-[#9B9992] uppercase">
+              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
                 AUTHENTIC KITS
               </span>
             </div>
 
-            <div className="space-y-0 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
-              <span className="block text-[9px] font-mono text-[#F3F0E8] font-bold uppercase tracking-widest">
+            <div className="space-y-0.5 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
+              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 GLOBAL SHIPPING
               </span>
-              <span className="block text-[9px] font-mono text-[#9B9992] uppercase">
+              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
                 WORLDWIDE DELIVERY
               </span>
             </div>
 
-            <div className="space-y-0 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
-              <span className="block text-[9px] font-mono text-[#F3F0E8] font-bold uppercase tracking-widest">
+            <div className="space-y-0.5 border-t sm:border-t-0 border-[#292927]/40 pt-1 sm:pt-0">
+              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
                 TRUSTED BY FANS
               </span>
-              <span className="block text-[9px] font-mono text-[#9B9992] uppercase">
+              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
                 100% ORIGINAL
               </span>
             </div>
