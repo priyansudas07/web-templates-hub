@@ -45,7 +45,8 @@ const HOTSPOTS: Hotspot[] = [
 const KIT_VIEWS = [
   {
     id: 'front',
-    label: 'FRONT',
+    label: 'FRONT ELEVATION',
+    sub: 'MATCH ISSUE SPEC',
     num: '01',
     image: '/kits/portugal-front.png',
     tag: 'MATCH EDITION FRONT',
@@ -53,7 +54,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'back',
-    label: 'BACK',
+    label: 'REAR PROFILE',
+    sub: 'DORSAL 7 ARCHIVE',
     num: '02',
     image: '/kits/portugal-back.png',
     tag: 'AUTHENTIC REAR MATCH EDITION',
@@ -61,7 +63,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'crest',
-    label: 'CREST',
+    label: 'CREST EMBROIDERY',
+    sub: '3D SILICONE SHIELD',
     num: '03',
     image: '/kits/portugal-crest.jpg',
     tag: 'FPF EMBROIDERED SHIELD',
@@ -69,7 +72,8 @@ const KIT_VIEWS = [
   },
   {
     id: 'details',
-    label: 'DETAILS',
+    label: 'JACQUARD WEAVE',
+    sub: 'DRI-FIT ADV MAPPING',
     num: '04',
     image: '/kits/portugal-details.jpg',
     tag: 'COLLAR & DRI-FIT ADV ARCHIVAL',
@@ -369,102 +373,137 @@ export const EditorialHero: React.FC = () => {
           </div>
 
           {/* ============================================================
-              RIGHT COLUMN: Kit Inspector Angle Thumbnails & Specs
+              RIGHT COLUMN: NikeLab Technical Archival Inspector Dock
              ============================================================ */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-between space-y-2.5 lg:pl-6 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 z-20"
           >
-            {/* Kit Inspector Header & Counter */}
-            <div className="flex items-center justify-between border-b border-[#292927] pb-1 text-[11px] font-mono">
-              <span className="text-[#F3F0E8] font-bold tracking-widest uppercase">KIT INSPECTOR</span>
-              <span className="text-[#9B9992] tracking-wider">
-                0{activeViewIndex + 1} / 0{KIT_VIEWS.length}
-              </span>
-            </div>
+            {/* Unified Frosted Dark Glass Dossier Container */}
+            <div className="relative rounded-sm bg-[#090908]/85 backdrop-blur-2xl border border-white/[0.09] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
+              
+              {/* Dossier Header Bar */}
+              <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/[0.07] bg-white/[0.02]">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
+                  <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#F3F0E8] uppercase">
+                    KIT INSPECTOR
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 font-mono text-[9px] text-[#9B9992]">
+                  <span className="text-[#F3F0E8] font-bold">0{activeViewIndex + 1}</span>
+                  <span className="text-white/30">/</span>
+                  <span>0{KIT_VIEWS.length}</span>
+                </div>
+              </div>
 
-            {/* Vertical Angle Thumbnails Selector */}
-            <div className="space-y-1.5">
-              {KIT_VIEWS.map((view, index) => {
-                const isActive = index === activeViewIndex;
-                return (
-                  <button
-                    key={view.id}
-                    onClick={() => {
-                      setActiveViewIndex(index);
-                      setActiveHotspot(null);
-                      triggerLaserScan();
-                    }}
-                    className={`w-full flex items-center justify-between p-1 transition-all duration-300 text-left rounded-sm group cursor-pointer border ${
-                      isActive
-                        ? 'bg-[#151514] border-[#E3261E] shadow-[0_0_12px_rgba(227,38,30,0.25)]'
-                        : 'bg-[#0E0E0D]/80 border-[#292927] hover:border-[#9B9992]/60 opacity-70 hover:opacity-100'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      {/* Thumbnail Box */}
-                      <div
-                        className={`w-10 h-10 shrink-0 bg-[#070707] flex items-center justify-center overflow-hidden rounded-xs border ${
-                          isActive ? 'border-[#E3261E]' : 'border-[#292927]'
-                        }`}
-                      >
-                        <img
-                          src={view.image}
-                          alt={view.label}
-                          className={`w-full h-full object-contain p-0.5 filter ${
-                            isActive ? 'contrast-115 scale-105' : 'contrast-95 group-hover:scale-105'
-                          } transition-transform duration-300`}
-                        />
+              {/* View Selector Rows */}
+              <div className="divide-y divide-white/[0.05]">
+                {KIT_VIEWS.map((view, index) => {
+                  const isActive = index === activeViewIndex;
+                  return (
+                    <button
+                      key={view.id}
+                      onClick={() => {
+                        setActiveViewIndex(index);
+                        setActiveHotspot(null);
+                        triggerLaserScan();
+                      }}
+                      className={`w-full relative flex items-center justify-between p-2.5 transition-all duration-300 text-left group cursor-pointer ${
+                        isActive
+                          ? 'bg-white/[0.06]'
+                          : 'hover:bg-white/[0.02] opacity-75 hover:opacity-100'
+                      }`}
+                    >
+                      {/* Left glowing active accent hairline */}
+                      {isActive && (
+                        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#E3261E] shadow-[0_0_10px_#E3261E]" />
+                      )}
+
+                      <div className="flex items-center gap-3 pl-1">
+                        {/* High-Resolution Thumbnail with Contrast Ring */}
+                        <div
+                          className={`w-9 h-9 shrink-0 rounded-xs bg-[#050505] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
+                            isActive
+                              ? 'border-[#E3261E]/80 shadow-[0_0_10px_rgba(227,38,30,0.35)]'
+                              : 'border-white/[0.08] group-hover:border-white/20'
+                          }`}
+                        >
+                          <img
+                            src={view.image}
+                            alt={view.label}
+                            className={`w-full h-full object-contain p-0.5 filter ${
+                              isActive ? 'contrast-115 scale-110' : 'contrast-95 group-hover:scale-105'
+                            } transition-transform duration-300`}
+                          />
+                        </div>
+
+                        {/* Text: Index + Technical Title + Subtitle */}
+                        <div className="space-y-0.5 text-left">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[9px] font-mono text-[#E3261E] font-semibold">
+                              {view.num}
+                            </span>
+                            <span className={`text-[10px] font-mono font-bold tracking-wider uppercase transition-colors ${
+                              isActive ? 'text-white' : 'text-[#9B9992] group-hover:text-[#F3F0E8]'
+                            }`}>
+                              {view.label}
+                            </span>
+                          </div>
+                          <span className="block text-[8px] font-mono text-[#9B9992]/80 tracking-widest uppercase">
+                            {view.sub}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* View Label */}
-                      <span className={`text-[11px] font-mono font-bold tracking-wider uppercase ${
-                        isActive ? 'text-[#F3F0E8]' : 'text-[#9B9992] group-hover:text-[#F3F0E8]'
-                      }`}>
-                        {view.label}
-                      </span>
-                    </div>
+                      {/* Right Active Indicator */}
+                      <div className="pr-1">
+                        {isActive ? (
+                          <span className="inline-block text-[8px] font-mono font-bold text-[#E3261E] tracking-widest uppercase bg-[#E3261E]/10 px-1.5 py-0.5 rounded-xs border border-[#E3261E]/30">
+                            ACTIVE
+                          </span>
+                        ) : (
+                          <span className="text-[10px] text-white/20 group-hover:text-white/60 font-mono transition-colors">
+                            →
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
 
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] mr-1.5 animate-pulse" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+              {/* Integrated Archival Telemetry & Diagnostic Action */}
+              <div className="p-3 bg-black/40 border-t border-white/[0.07] space-y-2.5">
+                <div className="flex items-center justify-between text-[9px] font-mono text-[#9B9992]">
+                  <div className="space-y-0.5 text-left">
+                    <span className="block text-white/40 tracking-wider">ARCHIVAL SPEC</span>
+                    <span className="text-[#F3F0E8] font-bold">POR-2026-HM // ADV</span>
+                  </div>
+                  <div className="text-right space-y-0.5">
+                    <span className="block text-white/40 tracking-wider">ORIGIN</span>
+                    <span className="text-emerald-400 font-bold flex items-center gap-1 justify-end">
+                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
+                      AUTHENTICATED
+                    </span>
+                  </div>
+                </div>
 
-            {/* Quick Kit Metadata Card */}
-            <div className="p-2.5 bg-[#0E0E0D]/90 border border-[#292927] space-y-0.5 font-mono text-[10px] text-left">
-              <div className="text-[#9B9992]">
-                <span className="text-[#F3F0E8] font-bold">KIT 001</span>
+                {/* Laser Diagnostic Action Button */}
+                <button
+                  onClick={triggerLaserScan}
+                  disabled={isScanning}
+                  className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/[0.03] hover:bg-[#E3261E]/15 border border-white/[0.1] hover:border-[#E3261E]/60 text-[9px] font-mono tracking-widest text-[#F3F0E8] hover:text-white rounded-xs transition-all duration-300 group shadow-sm cursor-pointer"
+                >
+                  <Scan className={`w-3.5 h-3.5 transition-transform ${isScanning ? 'text-[#E3261E] animate-spin' : 'text-[#9B9992] group-hover:text-[#E3261E]'}`} />
+                  <span className="uppercase font-semibold">
+                    {isScanning ? 'SCANNING FABRIC...' : 'RUN LASER DIAGNOSTIC'}
+                  </span>
+                </button>
               </div>
-              <div className="text-[#9B9992]">
-                <span className="text-[#F3F0E8]">PORTUGAL</span>
-              </div>
-              <div className="text-[#9B9992]">
-                <span className="text-[#F3F0E8]">FOOTBALL</span>
-              </div>
-              <div className="text-[#9B9992]">
-                <span className="text-[#E3261E] font-bold">2025/26</span>
-              </div>
-            </div>
 
-            {/* Engineered Tag & Quick Scan Button */}
-            <div className="text-left font-mono text-xs tracking-widest text-[#9B9992] flex items-center justify-between pt-0.5">
-              <div>
-                <span className="block text-[#F3F0E8] font-bold text-[10px]">ENGINEERED —</span>
-                <span className="text-[9px] text-[#9B9992]">FOR MORE</span>
-              </div>
-              <button
-                onClick={triggerLaserScan}
-                className="flex items-center gap-1 text-[9px] text-[#E3261E] hover:text-white px-1.5 py-0.5 bg-[#151514] border border-[#292927] hover:border-[#E3261E] rounded-xs transition-colors"
-                title="Run Laser Diagnostic Scan"
-              >
-                <Scan className="w-3 h-3" />
-                <span>SCAN</span>
-              </button>
             </div>
           </motion.div>
 
