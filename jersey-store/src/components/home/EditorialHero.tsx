@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight, Scan } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface Hotspot {
   id: string;
@@ -85,7 +85,6 @@ export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
-  const [isScanning, setIsScanning] = useState(false);
 
   // Parallax motion values
   const mouseX = useMotionValue(0);
@@ -110,10 +109,6 @@ export const EditorialHero: React.FC = () => {
     mouseY.set(0);
   };
 
-  const triggerLaserScan = () => {
-    setIsScanning(true);
-    setTimeout(() => setIsScanning(false), 1200);
-  };
 
   const currentView = KIT_VIEWS[activeViewIndex];
 
@@ -273,18 +268,6 @@ export const EditorialHero: React.FC = () => {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Laser Scanning Sweep Line Effect */}
-                {isScanning && (
-                  <motion.div
-                    initial={{ top: '0%', opacity: 0 }}
-                    animate={{ top: ['0%', '100%', '0%'], opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 1.2, ease: 'easeInOut' }}
-                    className="absolute inset-x-0 h-[2px] bg-[#E3261E] shadow-[0_0_15px_#E3261E,0_0_30px_#E3261E] pointer-events-none z-30 flex items-center justify-between px-3"
-                  >
-                    <span className="text-[8px] font-mono text-[#E3261E] bg-black/80 px-1 py-0.5 border border-[#E3261E]">LASER SCANNING FABRIC</span>
-                    <span className="text-[8px] font-mono text-[#E3261E] bg-black/80 px-1 py-0.5 border border-[#E3261E]">AUTHENTICATED 100%</span>
-                  </motion.div>
-                )}
 
                 {/* Interactive Hotspots with Leader Lines (Visible on FRONT view) */}
                 {activeViewIndex === 0 && (
@@ -475,19 +458,6 @@ export const EditorialHero: React.FC = () => {
                 })}
               </div>
 
-              {/* Laser Diagnostic Action Button */}
-              <div className="p-2.5 bg-black/40 border-t border-white/[0.07]">
-                <button
-                  onClick={triggerLaserScan}
-                  disabled={isScanning}
-                  className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/[0.03] hover:bg-[#E3261E]/15 border border-white/[0.1] hover:border-[#E3261E]/60 text-[9px] font-mono tracking-widest text-[#F3F0E8] hover:text-white rounded-xs transition-all duration-300 group shadow-sm cursor-pointer"
-                >
-                  <Scan className={`w-3.5 h-3.5 transition-transform ${isScanning ? 'text-[#E3261E] animate-spin' : 'text-[#9B9992] group-hover:text-[#E3261E]'}`} />
-                  <span className="uppercase font-semibold">
-                    {isScanning ? 'SCANNING FABRIC...' : 'RUN LASER DIAGNOSTIC'}
-                  </span>
-                </button>
-              </div>
 
             </div>
           </motion.div>
