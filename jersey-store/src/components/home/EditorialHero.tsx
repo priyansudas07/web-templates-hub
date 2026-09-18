@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
@@ -86,36 +86,10 @@ export const EditorialHero: React.FC = () => {
   const [activeViewIndex, setActiveViewIndex] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
 
-  // Parallax motion values
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 160 };
-  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), springConfig);
-  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
-  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
-  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-6, 6]), springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-
   const currentView = KIT_VIEWS[activeViewIndex];
 
   return (
     <section
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
 
@@ -229,15 +203,8 @@ export const EditorialHero: React.FC = () => {
              ============================================================ */}
           <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-2 xl:translate-x-4">
             
-            {/* Parallax 3D Container for Jersey Centerpiece */}
-            <motion.div
-              style={{
-                rotateX: jerseyRotateX,
-                rotateY: jerseyRotateY,
-                x: jerseyTranslateX,
-                y: jerseyTranslateY,
-                transformStyle: 'preserve-3d',
-              }}
+            {/* Jersey Centerpiece Container */}
+            <div
               className={`relative w-full max-w-[520px] sm:max-w-[620px] lg:max-w-[680px] xl:max-w-[720px] flex items-center justify-center z-10 scale-115 lg:scale-[1.26] xl:scale-[1.30] transition-transform duration-500 ease-out ${
                 activeViewIndex === 0
                   ? 'translate-y-9 sm:translate-y-11 lg:translate-y-10'
@@ -297,11 +264,11 @@ export const EditorialHero: React.FC = () => {
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
                     >
                       {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 group-hover:scale-105">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse" />
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
                         <span className="text-[8.5px] font-mono font-medium text-white/60">01</span>
                         <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase">
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
                           COLLAR
                         </span>
                       </div>
@@ -320,11 +287,11 @@ export const EditorialHero: React.FC = () => {
                       {/* Hairline */}
                       <div className="w-4 h-[1px] bg-gradient-to-r from-white/30 to-white/10" />
                       {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 group-hover:scale-105">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse" />
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
                         <span className="text-[8.5px] font-mono font-medium text-white/60">02</span>
                         <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase">
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
                           CREST
                         </span>
                       </div>
@@ -340,11 +307,11 @@ export const EditorialHero: React.FC = () => {
                       {/* Hairline */}
                       <div className="w-3 h-[1px] bg-gradient-to-r from-white/10 to-white/30" />
                       {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 group-hover:scale-105">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse" />
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
                         <span className="text-[8.5px] font-mono font-medium text-white/60">03</span>
                         <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase">
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
                           FABRIC
                         </span>
                       </div>
@@ -405,7 +372,7 @@ export const EditorialHero: React.FC = () => {
                 </AnimatePresence>
 
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* ============================================================
