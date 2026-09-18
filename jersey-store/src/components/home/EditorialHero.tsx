@@ -251,6 +251,14 @@ export const EditorialHero: React.FC = () => {
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
+                {/* Volumetric Theatrical Studio Backlight */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
+                  {/* Core Ruby Spotlight Behind Torso */}
+                  <div className="w-[320px] h-[360px] sm:w-[380px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.42)_0%,_rgba(180,20,15,0.20)_45%,_transparent_72%)] blur-2xl transform-gpu" />
+                  {/* Broad Atmospheric Haze */}
+                  <div className="absolute w-[500px] h-[540px] sm:w-[620px] sm:h-[660px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.16)_0%,_rgba(227,38,30,0.06)_50%,_transparent_75%)] blur-3xl transform-gpu" />
+                </div>
+
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentView.id}
