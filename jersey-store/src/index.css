@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Oswald', 'Manrope', sans-serif;
-  --font-sans: 'Manrope', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
   --color-ink-black: #0B0B0A;
   --color-charcoal: #151514;
@@ -28,7 +28,7 @@
   body {
     background-color: #0B0B0A;
     color: #F3F0E8;
-    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
     letter-spacing: 0.01em;
@@ -37,14 +37,14 @@
   }
 
   h1, h2 {
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+    line-height: 0.9;
     color: #F3F0E8;
   }
 
   h3, h4, h5, h6 {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #F3F0E8;
   }
 }
