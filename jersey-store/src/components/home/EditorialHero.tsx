@@ -160,17 +160,17 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col justify-center space-y-3.5 sm:space-y-4 text-left z-20"
+            className="lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-5 text-left z-20"
           >
             {/* Breadcrumb / Category Tag */}
-            <div className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase">
+            <div className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
               <span className="text-[#E3261E] font-bold">01</span>
               <span className="text-[#9B9992]">/ FOOTBALL</span>
             </div>
 
             {/* Main Editorial Campaign Headline */}
             <div className="space-y-0.5">
-              <h1 className="text-4xl sm:text-5xl lg:text-[4.2rem] xl:text-[4.8rem] font-display font-black uppercase tracking-tight leading-[0.88] text-[#F3F0E8]">
+              <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.2rem] font-display font-black uppercase tracking-tight leading-[0.85] text-[#F3F0E8]">
                 THE GAME <br />
                 <span className="text-white">NEVER STOPS.</span>
               </h1>
@@ -182,7 +182,7 @@ export const EditorialHero: React.FC = () => {
                 <span>PORTUGAL HOME</span>
                 <span className="line-through decoration-[#E3261E] decoration-2 text-stone-500">2025</span>
               </div>
-              <div className="text-[#F3F0E8] font-bold tracking-widest text-xs sm:text-sm">
+              <div className="text-[#F3F0E8] font-bold tracking-widest text-sm sm:text-base">
                 2025/26
               </div>
             </div>
@@ -190,19 +190,19 @@ export const EditorialHero: React.FC = () => {
             {/* Pricing Line with Red Dash Accent */}
             <div className="flex items-center gap-3 pt-0.5">
               <div className="w-5 h-[2px] bg-[#E3261E]" />
-              <span className="text-xl sm:text-2xl font-mono font-bold text-[#F3F0E8] tracking-tight">
+              <span className="text-2xl sm:text-3xl font-mono font-bold text-[#F3F0E8] tracking-tight">
                 ₹1,499
               </span>
             </div>
 
             {/* Action Buttons Row */}
-            <div className="pt-0.5 flex flex-wrap items-center gap-3.5 sm:gap-4">
+            <div className="pt-1 flex flex-wrap items-center gap-4 sm:gap-5">
               {/* Explore Collection Button */}
               <Link
                 to="/collection"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#E3261E] hover:bg-[#c81e17] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(227,38,30,0.5)] hover:shadow-[0_0_30px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#E3261E] hover:bg-[#c81e17] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98]"
               >
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 <span>EXPLORE COLLECTION</span>
               </Link>
 
@@ -211,12 +211,12 @@ export const EditorialHero: React.FC = () => {
                 href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button2 py-2 px-4 text-xs"
+                className="button2 py-2 px-4"
                 aria-label="Contact Concierge on WhatsApp"
               >
                 <div className="flex flex-col text-left leading-tight pr-2">
-                  <span className="text-[9px] text-[#9B9992] font-mono tracking-widest">WHATSAPP</span>
-                  <span className="text-[11px] font-mono font-bold text-white tracking-wider">CONCIERGE</span>
+                  <span className="text-[10px] text-[#9B9992] font-mono tracking-widest">WHATSAPP</span>
+                  <span className="text-xs font-mono font-bold text-white tracking-wider">CONCIERGE</span>
                 </div>
                 <svg viewBox="0 0 24 24" className="w-4 h-4">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
@@ -226,9 +226,9 @@ export const EditorialHero: React.FC = () => {
           </motion.div>
 
           {/* ============================================================
-              CENTER COLUMN: Unboxed Jersey (Shifted slightly Right to expose 07)
+              CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[360px] sm:min-h-[420px] lg:translate-x-6 xl:translate-x-8">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[420px] sm:min-h-[480px] lg:translate-x-4">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
@@ -239,10 +239,10 @@ export const EditorialHero: React.FC = () => {
                 y: jerseyTranslateY,
                 transformStyle: 'preserve-3d',
               }}
-              className="relative w-full max-w-[340px] sm:max-w-[390px] flex items-center justify-center z-10"
+              className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px] flex items-center justify-center z-10"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
-              <div className="relative w-full aspect-[4/4.2] flex items-center justify-center">
+              <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentView.id}
@@ -256,7 +256,7 @@ export const EditorialHero: React.FC = () => {
                       <img
                         src={currentView.image}
                         alt="Portugal 2025/26 Match Kit"
-                        className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] drop-shadow-[0_0_40px_rgba(227,38,30,0.22)] select-none pointer-events-auto"
+                        className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
                       />
                     ) : (
                       <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group">
