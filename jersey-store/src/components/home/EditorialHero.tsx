@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
@@ -86,10 +86,35 @@ export const EditorialHero: React.FC = () => {
   const [activeViewIndex, setActiveViewIndex] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
 
+  // Dynamic Parallax Motion Values for Hero Hover Interaction
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 160 };
+  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), springConfig);
+  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
+  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
+  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-6, 6]), springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   const currentView = KIT_VIEWS[activeViewIndex];
 
   return (
     <section
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
 
@@ -213,50 +238,68 @@ export const EditorialHero: React.FC = () => {
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
-                {/* Volumetric Theatrical Studio Backlight */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
-                  {/* Core Ruby Spotlight Behind Torso */}
-                  <div className="w-[320px] h-[360px] sm:w-[380px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.42)_0%,_rgba(180,20,15,0.20)_45%,_transparent_72%)] blur-2xl transform-gpu" />
-                  {/* Broad Atmospheric Haze */}
-                  <div className="absolute w-[500px] h-[540px] sm:w-[620px] sm:h-[660px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.16)_0%,_rgba(227,38,30,0.06)_50%,_transparent_75%)] blur-3xl transform-gpu" />
-                </div>
+                {/* 3D Parallax Tilt Layer for Jersey Centerpiece Artwork & Lighting */}
+                <motion.div
+                  style={{
+                    rotateX: jerseyRotateX,
+                    rotateY: jerseyRotateY,
+                    x: jerseyTranslateX,
+                    y: jerseyTranslateY,
+                    transformStyle: 'preserve-3d',
+                  }}
+                  className="relative w-full h-full flex items-center justify-center pointer-events-none"
+                >
+                  {/* Volumetric Theatrical Studio Backlight */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
+                    {/* Core Ruby Spotlight Behind Torso */}
+                    <div className="w-[320px] h-[360px] sm:w-[380px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.42)_0%,_rgba(180,20,15,0.20)_45%,_transparent_72%)] blur-2xl transform-gpu" />
+                    {/* Broad Atmospheric Haze */}
+                    <div className="absolute w-[500px] h-[540px] sm:w-[620px] sm:h-[660px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.16)_0%,_rgba(227,38,30,0.06)_50%,_transparent_75%)] blur-3xl transform-gpu" />
+                  </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentView.id}
-                    initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, scale: 1.04, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-full h-full flex items-center justify-center"
-                  >
-                    {currentView.isCutout ? (
-                      <img
-                        src={currentView.image}
-                        alt="Portugal 2025/26 Match Kit"
-                        className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
-                      />
-                    ) : (
-                      <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentView.id}
+                      initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
+                      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, scale: 1.04, filter: 'blur(4px)' }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative w-full h-full flex items-center justify-center"
+                    >
+                      {currentView.isCutout ? (
                         <img
                           src={currentView.image}
-                          alt={currentView.tag}
-                          className="w-full h-full object-cover rounded-sm filter contrast-110 group-hover:scale-105 transition-transform duration-700"
+                          alt="Portugal 2025/26 Match Kit"
+                          className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                        <div className="absolute bottom-3 left-3 right-3 text-left">
-                          <span className="text-[9px] font-mono text-[#E3261E] uppercase tracking-widest block">MACRO DETAIL WEAVE</span>
-                          <span className="text-xs font-mono font-bold text-white uppercase">{currentView.tag}</span>
+                      ) : (
+                        <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
+                          <img
+                            src={currentView.image}
+                            alt={currentView.tag}
+                            className="w-full h-full object-cover rounded-sm filter contrast-110 group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute bottom-3 left-3 right-3 text-left">
+                            <span className="text-[9px] font-mono text-[#E3261E] uppercase tracking-widest block">MACRO DETAIL WEAVE</span>
+                            <span className="text-xs font-mono font-bold text-white uppercase">{currentView.tag}</span>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </motion.div>
 
 
-                {/* Interactive Hotspots with Glassy Optics (Visible on FRONT view) */}
+                {/* 2D Parallax Layer for Hotspots: Tracks Jersey Motion while Maintaining Permanent Crystal-Clear Typography */}
                 {activeViewIndex === 0 && (
-                  <div className="absolute inset-0 pointer-events-none z-20">
+                  <motion.div
+                    style={{
+                      x: jerseyTranslateX,
+                      y: jerseyTranslateY,
+                    }}
+                    className="absolute inset-0 pointer-events-none z-20"
+                  >
                     
                     {/* Hotspot 01: Collar Callout (Floating Safely Below Navbar Above Collar) */}
                     <div
@@ -317,7 +360,7 @@ export const EditorialHero: React.FC = () => {
                       </div>
                     </div>
 
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Hotspot Spec Modal / Floating Glass Dossier Popover */}
