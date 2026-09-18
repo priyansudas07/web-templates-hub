@@ -218,7 +218,7 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] translate-y-5 sm:translate-y-7 lg:translate-y-6 lg:translate-x-8 xl:translate-x-12">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-8 xl:translate-x-12">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
@@ -229,7 +229,11 @@ export const EditorialHero: React.FC = () => {
                 y: jerseyTranslateY,
                 transformStyle: 'preserve-3d',
               }}
-              className="relative w-full max-w-[480px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[660px] flex items-center justify-center z-10 scale-110 lg:scale-[1.18]"
+              className={`relative w-full max-w-[480px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[660px] flex items-center justify-center z-10 scale-110 lg:scale-[1.18] transition-transform duration-500 ease-out ${
+                activeViewIndex === 0
+                  ? 'translate-y-9 sm:translate-y-11 lg:translate-y-10'
+                  : '-translate-y-3 sm:-translate-y-4 lg:-translate-y-2'
+              }`}
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
