@@ -287,56 +287,75 @@ export const EditorialHero: React.FC = () => {
                 </AnimatePresence>
 
 
-                {/* Interactive Hotspots with Leader Lines (Visible on FRONT view) */}
+                {/* Interactive Hotspots with Glassy Optics (Visible on FRONT view) */}
                 {activeViewIndex === 0 && (
                   <div className="absolute inset-0 pointer-events-none z-20">
+                    
                     {/* Hotspot 01: Collar Callout (Top Center-Left) */}
                     <div
-                      className="absolute top-[8%] left-[32%] pointer-events-auto cursor-pointer group"
+                      className="absolute top-[6%] left-[31%] pointer-events-auto cursor-pointer group flex flex-col items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
                     >
-                      <div className="flex items-center gap-1.5 bg-[#0B0B0A]/95 backdrop-blur-md border border-[#292927] group-hover:border-[#E3261E] px-2 py-0.5 rounded-full transition-all duration-300 shadow-xl">
-                        <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
-                          01
-                        </span>
-                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
+                      {/* Glass Capsule */}
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_8px_24px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 group-hover:scale-105">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] shadow-[0_0_8px_#E3261E] animate-pulse" />
+                        <span className="text-[9.5px] font-mono font-medium text-white/70">01</span>
+                        <span className="text-white/30 text-[9px]">•</span>
+                        <span className="text-[10px] font-sans font-bold tracking-[0.16em] text-[#F3F0E8] uppercase">
                           COLLAR
                         </span>
                       </div>
-                      <div className="w-[1px] h-3.5 bg-gradient-to-b from-[#9B9992]/60 to-transparent mx-auto" />
+                      {/* Hairline + Target Dot */}
+                      <div className="w-[1px] h-3 bg-gradient-to-b from-white/40 to-white/10" />
+                      <div className="w-2 h-2 rounded-full border border-white/50 bg-white/20 flex items-center justify-center shadow-[0_0_6px_rgba(255,255,255,0.4)]">
+                        <div className="w-1 h-1 rounded-full bg-[#E3261E]" />
+                      </div>
                     </div>
 
                     {/* Hotspot 02: Crest Callout (Right Upper Chest) */}
                     <div
-                      className="absolute top-[32%] right-[0%] sm:right-[3%] pointer-events-auto cursor-pointer group"
+                      className="absolute top-[31%] right-[1%] sm:right-[3%] pointer-events-auto cursor-pointer group flex items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'crest' ? null : HOTSPOTS[1])}
                     >
-                      <div className="flex items-center gap-1.5 bg-[#0B0B0A]/95 backdrop-blur-md border border-[#292927] group-hover:border-[#E3261E] px-2 py-0.5 rounded-full transition-all duration-300 shadow-xl">
-                        <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
-                          02
-                        </span>
-                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
+                      {/* Target Dot */}
+                      <div className="w-2 h-2 rounded-full border border-white/50 bg-white/20 flex items-center justify-center shadow-[0_0_6px_rgba(255,255,255,0.4)]">
+                        <div className="w-1 h-1 rounded-full bg-[#E3261E]" />
+                      </div>
+                      {/* Hairline */}
+                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/10 to-white/40" />
+                      {/* Glass Capsule */}
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_8px_24px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 group-hover:scale-105">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] shadow-[0_0_8px_#E3261E] animate-pulse" />
+                        <span className="text-[9.5px] font-mono font-medium text-white/70">02</span>
+                        <span className="text-white/30 text-[9px]">•</span>
+                        <span className="text-[10px] font-sans font-bold tracking-[0.16em] text-[#F3F0E8] uppercase">
                           CREST
                         </span>
                       </div>
-                      <div className="w-5 h-[1px] bg-gradient-to-l from-[#9B9992]/60 to-transparent -translate-x-2.5 -translate-y-2" />
                     </div>
 
                     {/* Hotspot 03: Fabric Callout (Lower Torso) */}
                     <div
-                      className="absolute top-[62%] right-[6%] sm:right-[8%] pointer-events-auto cursor-pointer group"
+                      className="absolute top-[61%] right-[5%] sm:right-[7%] pointer-events-auto cursor-pointer group flex items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'fabric' ? null : HOTSPOTS[2])}
                     >
-                      <div className="flex items-center gap-1.5 bg-[#0B0B0A]/95 backdrop-blur-md border border-[#292927] group-hover:border-[#E3261E] px-2 py-0.5 rounded-full transition-all duration-300 shadow-xl">
-                        <span className="w-4 h-4 rounded-full bg-[#151514] border border-[#292927] text-[9px] font-mono font-bold text-white flex items-center justify-center group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-colors">
-                          03
-                        </span>
-                        <span className="text-[9.5px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase pr-1">
+                      {/* Target Dot */}
+                      <div className="w-2 h-2 rounded-full border border-white/50 bg-white/20 flex items-center justify-center shadow-[0_0_6px_rgba(255,255,255,0.4)]">
+                        <div className="w-1 h-1 rounded-full bg-[#E3261E]" />
+                      </div>
+                      {/* Hairline */}
+                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/10 to-white/40" />
+                      {/* Glass Capsule */}
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_8px_24px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 group-hover:scale-105">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] shadow-[0_0_8px_#E3261E] animate-pulse" />
+                        <span className="text-[9.5px] font-mono font-medium text-white/70">03</span>
+                        <span className="text-white/30 text-[9px]">•</span>
+                        <span className="text-[10px] font-sans font-bold tracking-[0.16em] text-[#F3F0E8] uppercase">
                           FABRIC
                         </span>
                       </div>
-                      <div className="w-5 h-[1px] bg-gradient-to-l from-[#9B9992]/60 to-transparent -translate-x-2.5 -translate-y-2" />
                     </div>
+
                   </div>
                 )}
 
@@ -344,27 +363,27 @@ export const EditorialHero: React.FC = () => {
                 <AnimatePresence>
                   {activeHotspot && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      initial={{ opacity: 0, y: 10, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                      className="absolute bottom-1 inset-x-2 bg-[#0E0E0D]/95 backdrop-blur-md border border-[#E3261E]/70 p-3 rounded-sm shadow-2xl z-40 text-left"
+                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                      className="absolute bottom-1 inset-x-2 bg-[#0c0c0b]/85 backdrop-blur-2xl border border-white/15 p-3.5 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.15)] z-40 text-left"
                     >
-                      <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center justify-between mb-1.5">
                         <div className="flex items-center gap-2">
                           <span className="text-[9px] font-mono font-bold bg-[#E3261E] text-white px-1.5 py-0.5 rounded-xs">
                             {activeHotspot.number} // {activeHotspot.label}
                           </span>
-                          <span className="text-[9px] font-mono text-[#9B9992]">{activeHotspot.tech}</span>
+                          <span className="text-[9.5px] font-mono text-[#9B9992] tracking-wider">{activeHotspot.tech}</span>
                         </div>
                         <button
                           onClick={() => setActiveHotspot(null)}
-                          className="text-[#9B9992] hover:text-white text-xs font-mono px-1"
+                          className="text-[#9B9992] hover:text-white text-xs font-mono px-1 cursor-pointer transition-colors"
                         >
                           ✕
                         </button>
                       </div>
-                      <h4 className="text-xs font-mono font-bold text-white uppercase">{activeHotspot.title}</h4>
-                      <p className="text-[10px] text-[#9B9992] leading-relaxed mt-0.5">{activeHotspot.description}</p>
+                      <h4 className="text-xs font-sans font-bold text-white uppercase tracking-wider">{activeHotspot.title}</h4>
+                      <p className="text-[11px] font-sans text-[#9B9992] leading-relaxed mt-1">{activeHotspot.description}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
