@@ -56,7 +56,7 @@ const KIT_VIEWS = [
     label: 'BACK',
     num: '02',
     image: '/kits/portugal-back.png',
-    tag: 'RONALDO 7 MATCH ISSUE',
+    tag: 'AUTHENTIC REAR MATCH EDITION',
     isCutout: true,
   },
   {
