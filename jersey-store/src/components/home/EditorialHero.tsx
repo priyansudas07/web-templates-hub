@@ -379,7 +379,7 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 lg:translate-x-6 xl:translate-x-12 z-20"
           >
             {/* Unified Frosted Dark Glass Dossier Container */}
             <div className="relative rounded-sm bg-[#090908]/85 backdrop-blur-2xl border border-white/[0.09] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
