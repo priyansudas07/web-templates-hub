@@ -291,9 +291,9 @@ export const EditorialHero: React.FC = () => {
                 {activeViewIndex === 0 && (
                   <div className="absolute inset-0 pointer-events-none z-20">
                     
-                    {/* Hotspot 01: Collar Callout (Floating Above Collar) */}
+                    {/* Hotspot 01: Collar Callout (Floating Safely Below Navbar Above Collar) */}
                     <div
-                      className="absolute -top-[6%] left-[34.5%] pointer-events-auto cursor-pointer group flex flex-col items-center"
+                      className="absolute top-[1.5%] left-[38%] pointer-events-auto cursor-pointer group flex flex-col items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
                     >
                       {/* Compact Glass Capsule */}
@@ -305,20 +305,20 @@ export const EditorialHero: React.FC = () => {
                           COLLAR
                         </span>
                       </div>
-                      {/* Extended Precision Hairline String + Target Dot */}
-                      <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 via-white/25 to-white/10" />
+                      {/* Shortened Precision Hairline String + Target Dot */}
+                      <div className="w-[1px] h-5 bg-gradient-to-b from-white/40 via-white/25 to-white/10" />
                       <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
                     </div>
 
-                    {/* Hotspot 02: Crest Callout (Right Upper Chest) */}
+                    {/* Hotspot 02: Crest Callout (Right Chest Shield) */}
                     <div
-                      className="absolute top-[31%] right-[1%] sm:right-[3%] pointer-events-auto cursor-pointer group flex items-center"
+                      className="absolute top-[30%] left-[53.5%] -translate-y-1/2 pointer-events-auto cursor-pointer group flex items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'crest' ? null : HOTSPOTS[1])}
                     >
-                      {/* Target Dot */}
+                      {/* Target Dot directly on the Portuguese Shield */}
                       <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
                       {/* Hairline */}
-                      <div className="w-3 h-[1px] bg-gradient-to-r from-white/10 to-white/30" />
+                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/30 to-white/10" />
                       {/* Compact Glass Capsule */}
                       <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-xl border border-white/20 hover:border-white/45 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 group-hover:scale-105">
                         <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse" />
