@@ -128,7 +128,7 @@ export const EditorialHero: React.FC = () => {
       />
       
       {/* Subtle Crimson Studio Spotlight behind Center-Right Jersey */}
-      <div className="absolute top-1/2 left-[58%] -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
       
       {/* Floating Studio Dust Particles */}
       <DustParticles particleCount={45} />
@@ -227,7 +227,7 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-8 xl:translate-x-12">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-2 xl:translate-x-4">
             
             {/* Parallax 3D Container for Jersey Centerpiece */}
             <motion.div
