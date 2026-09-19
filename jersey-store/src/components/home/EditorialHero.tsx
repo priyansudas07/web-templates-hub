@@ -248,7 +248,7 @@ export const EditorialHero: React.FC = () => {
                               className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] transition-all duration-700 select-none pointer-events-auto cursor-pointer group-hover/jersey:contrast-[1.12] group-hover/jersey:brightness-[1.02]"
                             />
 
-                            {/* 4. Subtle Specular Light Sweep Across the Fabric Surface */}
+                            {/* 4. Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
                             <div
                               className="absolute inset-0 pointer-events-none mix-blend-screen z-10 overflow-hidden"
                               style={{
@@ -265,15 +265,15 @@ export const EditorialHero: React.FC = () => {
                               <motion.div
                                 animate={{
                                   x: ['-140%', '160%'],
-                                  opacity: [0, 0.25, 0.5, 0.25, 0],
+                                  opacity: [0, 0.08, 0.18, 0.08, 0],
                                 }}
                                 transition={{
-                                  duration: 6,
-                                  ease: [0.16, 1, 0.3, 1],
+                                  duration: 7.5,
+                                  ease: [0.25, 0.1, 0.25, 1],
                                   repeat: Infinity,
-                                  repeatDelay: 2.5,
+                                  repeatDelay: 3.5,
                                 }}
-                                className="w-[45%] h-[200%] -top-1/2 absolute bg-gradient-to-r from-transparent via-white/35 to-transparent -rotate-[22deg] blur-md"
+                                className="w-[35%] h-[200%] -top-1/2 absolute bg-gradient-to-r from-transparent via-white/18 to-transparent -rotate-[22deg] blur-xl"
                               />
                             </div>
 
