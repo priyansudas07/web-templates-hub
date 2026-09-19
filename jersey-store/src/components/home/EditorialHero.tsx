@@ -245,7 +245,7 @@ export const EditorialHero: React.FC = () => {
                             <img
                               src={currentView.image}
                               alt="Portugal 2025/26 Match Kit"
-                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] transition-all duration-700 select-none pointer-events-auto cursor-pointer group-hover/jersey:contrast-[1.14] group-hover/jersey:brightness-[1.03] group-hover/jersey:drop-shadow-[0_0_80px_rgba(227,38,30,0.55)]"
+                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] transition-all duration-700 select-none pointer-events-auto cursor-pointer group-hover/jersey:contrast-[1.12] group-hover/jersey:brightness-[1.02]"
                             />
 
                             {/* 4. Subtle Specular Light Sweep Across the Fabric Surface */}
