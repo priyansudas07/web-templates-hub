@@ -105,15 +105,15 @@ export const EditorialHero: React.FC = () => {
       {/* 3. Subtle Breathing Red Atmospheric Studio Glow behind Jersey */}
       <motion.div
         animate={{
-          scale: [1, 1.06, 1],
-          opacity: [0.65, 0.85, 0.65],
+          scale: [1, 1.04, 1],
+          opacity: [0.45, 0.60, 0.45],
         }}
         transition={{
           duration: 7.5,
           ease: 'easeInOut',
           repeat: Infinity,
         }}
-        className="absolute top-1/2 left-[56%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[850px] sm:h-[680px] bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.16)_0%,_rgba(180,20,15,0.06)_48%,_transparent_72%)] blur-3xl pointer-events-none z-0"
+        className="absolute top-1/2 left-[56%] -translate-x-1/2 -translate-y-1/2 w-[520px] h-[420px] sm:w-[620px] sm:h-[480px] bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.10)_0%,_rgba(180,20,15,0.03)_45%,_transparent_68%)] blur-3xl pointer-events-none z-0"
       />
       
       {/* Floating Studio Dust Particles */}
@@ -267,12 +267,12 @@ export const EditorialHero: React.FC = () => {
                     }}
                     className="relative w-full h-full flex items-center justify-center pointer-events-none"
                   >
-                    {/* Volumetric Theatrical Studio Backlight (Deep Radiant Separation) */}
+                    {/* Volumetric Theatrical Studio Backlight (Understated, Controlled Focus) */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
                       {/* Core Ruby Spotlight Behind Torso */}
-                      <div className="w-[360px] h-[400px] sm:w-[420px] sm:h-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.50)_0%,_rgba(180,20,15,0.24)_48%,_transparent_72%)] blur-2xl transform-gpu" />
+                      <div className="w-[280px] h-[320px] sm:w-[330px] sm:h-[370px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.32)_0%,_rgba(180,20,15,0.12)_45%,_transparent_68%)] blur-2xl transform-gpu" />
                       {/* Broad Atmospheric Haze */}
-                      <div className="absolute w-[540px] h-[580px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.20)_0%,_rgba(227,38,30,0.07)_52%,_transparent_75%)] blur-3xl transform-gpu" />
+                      <div className="absolute w-[420px] h-[460px] sm:w-[500px] sm:h-[540px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.11)_0%,_rgba(227,38,30,0.03)_50%,_transparent_70%)] blur-3xl transform-gpu" />
                     </div>
 
                     <AnimatePresence mode="wait">
@@ -290,7 +290,7 @@ export const EditorialHero: React.FC = () => {
                             <img
                               src={currentView.image}
                               alt="Portugal 2025/26 Match Kit"
-                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] select-none pointer-events-auto cursor-pointer"
+                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_36px_rgba(227,38,30,0.20)] drop-shadow-[0_0_12px_rgba(255,255,255,0.04)] select-none pointer-events-auto cursor-pointer"
                             />
 
                             {/* 4. Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
