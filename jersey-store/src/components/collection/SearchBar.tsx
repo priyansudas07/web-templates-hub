@@ -12,28 +12,28 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({
   searchQuery,
   onSearchChange,
-  placeholder = "Search kits, teams, players...",
+  placeholder = "SEARCH CATALOG...",
   className,
 }) => {
   return (
-    <div className={cn("relative flex items-center w-full max-w-xs sm:max-w-sm", className)}>
-      <Search className="absolute left-3 w-3.5 h-3.5 text-[#8E8C85] pointer-events-none" />
+    <div className={cn("relative flex items-center border-b border-white/10 hover:border-white/25 focus-within:border-[#E3261E] transition-colors duration-200 py-1", className)}>
+      <Search className="w-3.5 h-3.5 text-[#8E8C85] shrink-0 mr-2" />
       
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full h-9 pl-9 pr-8 bg-[#0E0E0D] hover:bg-[#141413] focus:bg-[#070706] border border-white/[0.08] hover:border-white/[0.16] focus:border-white/30 rounded-sm text-xs font-sans text-[#F3F0E8] placeholder:text-[#8E8C85]/60 outline-none transition-all duration-200"
+        className="w-full bg-transparent text-xs font-mono tracking-wider uppercase text-[#F3F0E8] placeholder:text-[#8E8C85]/50 outline-none"
       />
 
       {searchQuery && (
         <button
           onClick={() => onSearchChange('')}
           aria-label="Clear search"
-          className="absolute right-2.5 p-1 text-[#8E8C85] hover:text-[#F3F0E8] transition-colors"
+          className="p-0.5 text-[#8E8C85] hover:text-[#F3F0E8] transition-colors ml-1"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-3 h-3" />
         </button>
       )}
     </div>

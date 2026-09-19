@@ -6,7 +6,7 @@ import { CategoryFilter } from '../components/collection/CategoryFilter';
 import { ProductGrid } from '../components/collection/ProductGrid';
 import { EmptyState } from '../components/collection/EmptyState';
 import { SectionHeading } from '../components/common/SectionHeading';
-import { SlidersHorizontal, ShieldCheck, Truck, MessageCircle } from 'lucide-react';
+import { ShieldCheck, Truck, MessageCircle, ChevronDown } from 'lucide-react';
 
 export const Collection: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -91,6 +91,8 @@ export const Collection: React.FC = () => {
     setSortBy('featured');
   };
 
+  const isFiltered = selectedCategory !== 'all' || searchQuery || sortBy !== 'featured';
+
   return (
     <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] pt-8 sm:pt-12 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
@@ -104,9 +106,9 @@ export const Collection: React.FC = () => {
           />
         </div>
 
-        {/* Unified Sticky Controls Bar */}
-        <div className="sticky top-[64px] z-30 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 py-3 bg-[#0B0B0A]/90 backdrop-blur-xl border-y border-white/[0.08] shadow-2xl transition-all">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        {/* Unified Sticky Editorial Navigation Strip */}
+        <div className="sticky top-[64px] z-30 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 py-3 bg-[#0B0B0A]/95 backdrop-blur-xl border-y border-white/[0.08] shadow-2xl transition-all">
+          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
             
             {/* Category Filter Tabs */}
             <CategoryFilter
@@ -115,43 +117,42 @@ export const Collection: React.FC = () => {
               className="border-b-0 pb-0"
             />
 
-            {/* Right Controls: Search + Sort + Status */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 justify-between lg:justify-end">
+            {/* Right Side: Editorial Search, Sort & Count */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-6 justify-between lg:justify-end">
               
-              {/* Search Bar */}
+              {/* Borderless Editorial Search */}
               <SearchBar
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
-                placeholder="Search kits, players, teams..."
-                className="w-full sm:w-60"
+                placeholder="SEARCH CATALOG..."
+                className="w-full sm:w-48"
               />
 
-              {/* Sort Selector */}
-              <div className="relative flex items-center shrink-0">
-                <SlidersHorizontal className="absolute left-3 w-3 h-3 text-[#8E8C85] pointer-events-none" />
+              {/* Minimal Text Sort Trigger */}
+              <div className="relative flex items-center border-b border-white/10 hover:border-white/25 transition-colors py-1 shrink-0">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  aria-label="Sort collection products"
-                  className="h-9 pl-8 pr-7 bg-[#0E0E0D] hover:bg-[#141413] border border-white/[0.08] hover:border-white/[0.16] rounded-sm text-xs font-mono text-[#F3F0E8] outline-none cursor-pointer appearance-none uppercase tracking-wider"
+                  aria-label="Sort kits"
+                  className="bg-transparent text-xs font-mono tracking-wider uppercase text-[#8E8C85] hover:text-[#F3F0E8] outline-none cursor-pointer appearance-none pr-4"
                 >
                   <option value="featured" className="bg-[#0E0E0D] text-white">SORT: FEATURED</option>
                   <option value="newest" className="bg-[#0E0E0D] text-white">SORT: NEWEST</option>
                   <option value="price-asc" className="bg-[#0E0E0D] text-white">PRICE: LOW → HIGH</option>
                   <option value="price-desc" className="bg-[#0E0E0D] text-white">PRICE: HIGH → LOW</option>
                 </select>
-                <span className="absolute right-2.5 text-[10px] text-[#8E8C85] pointer-events-none">▾</span>
+                <ChevronDown className="w-3 h-3 text-[#8E8C85] absolute right-0 pointer-events-none" />
               </div>
 
-              {/* Kit Count & Reset */}
+              {/* Status Count & Clear Link */}
               <div className="flex items-center gap-2 text-[11px] font-mono text-[#8E8C85] shrink-0">
-                <span className="hidden sm:inline">[{filteredProducts.length} KITS]</span>
-                {(selectedCategory !== 'all' || searchQuery || sortBy !== 'featured') && (
+                <span>{filteredProducts.length} KITS</span>
+                {isFiltered && (
                   <button
                     onClick={handleReset}
-                    className="px-2 py-1 bg-[#E3261E]/10 hover:bg-[#E3261E] text-[#E3261E] hover:text-white border border-[#E3261E]/30 text-[10px] uppercase font-bold rounded-sm transition-all"
+                    className="text-[#E3261E] hover:text-[#F3F0E8] uppercase tracking-wider font-semibold transition-colors underline underline-offset-2 ml-1"
                   >
-                    RESET
+                    (CLEAR)
                   </button>
                 )}
               </div>
@@ -161,11 +162,15 @@ export const Collection: React.FC = () => {
           </div>
         </div>
 
-        {/* Asymmetric Product Layout or Empty State */}
+        {/* Asymmetric Product Layout or Editorial Empty State */}
         {filteredProducts.length > 0 ? (
           <ProductGrid products={filteredProducts} />
         ) : (
-          <EmptyState onReset={handleReset} />
+          <EmptyState
+            onReset={handleReset}
+            searchQuery={searchQuery}
+            onSelectQuery={(q) => setSearchQuery(q)}
+          />
         )}
 
         {/* Bottom Editorial Guarantees & Concierge Strip */}
