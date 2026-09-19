@@ -35,7 +35,7 @@ const KIT_VIEWS = [
     label: 'Fabric Weave',
     num: '04',
     image: '/kits/portugal-details.jpg',
-    tag: 'COLLAR & DRI-FIT ADV ARCHIVAL',
+    tag: 'COLLAR & DRI-FIT ADV',
     isCutout: false,
   },
 ];
@@ -237,13 +237,9 @@ export const EditorialHero: React.FC = () => {
              ============================================================ */}
           <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
             
-            {/* Jersey Centerpiece Container (Enhanced 8-12% Visual Scale & Central Placement) */}
+            {/* Jersey Centerpiece Container (Dominant Scale & Central Placement) */}
             <div
-              className={`relative w-full max-w-[540px] sm:max-w-[640px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.24] lg:scale-[1.38] xl:scale-[1.42] transition-transform duration-500 ease-out ${
-                activeViewIndex === 0
-                  ? 'translate-y-9 sm:translate-y-11 lg:translate-y-10'
-                  : '-translate-y-3 sm:-translate-y-4 lg:-translate-y-2'
-              }`}
+              className="relative w-full max-w-[540px] sm:max-w-[640px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.24] lg:scale-[1.38] xl:scale-[1.42] translate-y-9 sm:translate-y-11 lg:translate-y-10 transition-transform duration-500 ease-out"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
@@ -327,16 +323,16 @@ export const EditorialHero: React.FC = () => {
                             </div>
                           </div>
                         ) : (
-                          <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
+                          <div className="w-[62%] sm:w-[56%] lg:w-[50%] max-w-[340px] aspect-[4/3.2] p-1.5 bg-[#121211]/95 backdrop-blur-md border border-[#292927] rounded-sm overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] relative group pointer-events-auto">
                             <img
                               src={currentView.image}
                               alt={currentView.tag}
-                              className="w-full h-full object-cover rounded-sm filter contrast-110 group-hover:scale-105 transition-transform duration-700"
+                              className="w-full h-full object-cover rounded-xs filter contrast-105 brightness-95 group-hover:scale-105 transition-transform duration-700"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                            <div className="absolute bottom-3 left-3 right-3 text-left">
-                              <span className="text-[9px] font-mono text-[#E3261E] uppercase tracking-widest block">MACRO DETAIL WEAVE</span>
-                              <span className="text-xs font-mono font-bold text-white uppercase">{currentView.tag}</span>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-2.5 left-3 right-3 text-left">
+                              <span className="text-[8.5px] font-mono text-[#E3261E] uppercase tracking-widest block font-bold">MACRO SPEC // {currentView.num}</span>
+                              <span className="text-[11px] font-mono font-bold text-white uppercase tracking-wider line-clamp-1">{currentView.tag}</span>
                             </div>
                           </div>
                         )}
