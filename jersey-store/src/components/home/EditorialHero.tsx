@@ -46,7 +46,6 @@ const KIT_VIEWS = [
   {
     id: 'front',
     label: 'Front View',
-    sub: 'Match Issue Spec',
     num: '01',
     image: '/kits/portugal-front.png',
     tag: 'MATCH EDITION FRONT',
@@ -55,7 +54,6 @@ const KIT_VIEWS = [
   {
     id: 'back',
     label: 'Back Profile',
-    sub: 'Ronaldo 7 Edition',
     num: '02',
     image: '/kits/portugal-back.png',
     tag: 'AUTHENTIC REAR MATCH EDITION',
@@ -64,7 +62,6 @@ const KIT_VIEWS = [
   {
     id: 'crest',
     label: 'Club Crest',
-    sub: 'FPF 3D Shield',
     num: '03',
     image: '/kits/portugal-crest.jpg',
     tag: 'FPF EMBROIDERED SHIELD',
@@ -73,7 +70,6 @@ const KIT_VIEWS = [
   {
     id: 'details',
     label: 'Fabric Weave',
-    sub: 'Dri-FIT ADV Knit',
     num: '04',
     image: '/kits/portugal-details.jpg',
     tag: 'COLLAR & DRI-FIT ADV ARCHIVAL',
@@ -425,23 +421,23 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 lg:translate-x-12 xl:translate-x-18 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-14 xl:translate-x-20 z-20"
           >
             {/* Minimalist Editorial Gallery Strip */}
-            <div className="w-full max-w-[260px]">
+            <div className="w-full max-w-[210px]">
               
               {/* Understated Editorial Header */}
-              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/[0.06]">
-                <span className="text-[9.5px] font-sans font-semibold tracking-[0.22em] text-[#9B9992]/80 uppercase">
+              <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/[0.06]">
+                <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
                   PERSPECTIVES
                 </span>
-                <span className="text-[9.5px] font-mono tracking-widest text-[#9B9992]/50">
+                <span className="text-[9px] font-mono tracking-widest text-[#9B9992]/40">
                   0{activeViewIndex + 1} / 0{KIT_VIEWS.length}
                 </span>
               </div>
 
               {/* View Items */}
-              <div className="space-y-1">
+              <div className="space-y-2.5">
                 {KIT_VIEWS.map((view, index) => {
                   const isActive = index === activeViewIndex;
                   return (
@@ -451,54 +447,51 @@ export const EditorialHero: React.FC = () => {
                         setActiveViewIndex(index);
                         setActiveHotspot(null);
                       }}
-                      className={`w-full flex items-center justify-between p-1.5 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
+                      className={`w-full flex items-center justify-between px-2 py-1.5 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
                         isActive
-                          ? 'bg-white/[0.04] border-white/18 shadow-sm'
-                          : 'bg-transparent border-transparent opacity-35 hover:opacity-100 hover:bg-white/[0.02]'
+                          ? 'bg-white/[0.035] border-white/15 shadow-sm'
+                          : 'bg-transparent border-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        {/* Thumbnail */}
+                        {/* Smaller Minimalist Thumbnail */}
                         <div
-                          className={`w-9 h-9 shrink-0 rounded-xs bg-[#0e0e0d] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
+                          className={`w-7 h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
                             isActive
-                              ? 'border-white/25 ring-1 ring-white/10'
-                              : 'border-white/[0.06] group-hover:border-white/20'
+                              ? 'border-white/25 shadow-[0_0_8px_rgba(0,0,0,0.8)]'
+                              : 'border-white/[0.06] group-hover:border-white/15'
                           }`}
                         >
                           <img
                             src={view.image}
                             alt={view.label}
                             className={`w-full h-full object-contain p-0.5 filter ${
-                              isActive ? 'contrast-105 scale-105' : 'contrast-90 group-hover:scale-105'
-                            } transition-transform duration-300`}
+                              isActive ? 'contrast-105' : 'contrast-90 group-hover:contrast-100'
+                            } transition-all duration-300`}
                           />
                         </div>
 
-                        {/* Labels */}
-                        <div className="space-y-0.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className={`text-[10px] font-mono transition-colors ${isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]'}`}>
-                              {view.num}
-                            </span>
-                            <span className={`text-xs font-sans uppercase tracking-[0.08em] transition-colors ${
-                              isActive ? 'text-[#F3F0E8] font-bold' : 'text-[#9B9992] group-hover:text-[#F3F0E8] font-medium'
-                            }`}>
-                              {view.label}
-                            </span>
-                          </div>
-                          <span className="block text-[10px] font-sans text-[#9B9992]/70 font-normal">
-                            {view.sub}
+                        {/* Clean Single-Line Typography */}
+                        <div className="flex items-center gap-1.5 text-left">
+                          <span className={`text-[9.5px] font-mono transition-colors ${
+                            isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]/60 group-hover:text-[#9B9992]'
+                          }`}>
+                            {view.num}
+                          </span>
+                          <span className={`text-[11px] font-sans uppercase tracking-[0.1em] transition-colors ${
+                            isActive ? 'text-[#F3F0E8] font-bold' : 'text-[#9B9992] group-hover:text-[#F3F0E8] font-medium'
+                          }`}>
+                            {view.label}
                           </span>
                         </div>
                       </div>
 
-                      {/* Clean Active Indicator Dot */}
-                      <div className="pr-1.5">
+                      {/* Subtle Crimson Active Indicator */}
+                      <div className="pl-2">
                         {isActive ? (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] inline-block shadow-[0_0_6px_#E3261E]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] inline-block shadow-[0_0_8px_rgba(227,38,30,0.8)]" />
                         ) : (
-                          <span className="w-1 h-1 rounded-full bg-white/10 group-hover:bg-white/30 inline-block transition-colors" />
+                          <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-white/20 inline-block transition-colors" />
                         )}
                       </div>
                     </button>
