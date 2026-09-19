@@ -146,13 +146,33 @@ export const EditorialHero: React.FC = () => {
               <span className="font-sans font-semibold text-[#9B9992]/80">/ FOOTBALL</span>
             </div>
 
-            {/* Art-Directed Editorial Campaign Headline */}
-            <div className="space-y-1 sm:space-y-1.5">
-              <span className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none">
+            {/* Art-Directed Editorial Campaign Headline with Staggered Entrance */}
+            <div className="space-y-1 sm:space-y-1.5 overflow-hidden">
+              <motion.span
+                initial={{ opacity: 0, y: 14, filter: 'blur(3px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
+              >
                 THE GAME
-              </span>
-              <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8]">
-                NEVER <span className="text-[#E3261E]">STOPS.</span>
+              </motion.span>
+              <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-3.5">
+                <motion.span
+                  initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
+                >
+                  NEVER
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 22, scale: 0.94, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block text-[#E3261E]"
+                >
+                  STOPS.
+                </motion.span>
               </h1>
             </div>
 
