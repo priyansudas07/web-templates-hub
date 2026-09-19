@@ -17,11 +17,13 @@ export const products: Product[] = [
       '/kits/portugal-back.png'
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    description: 'Official national team home edition featuring breathable Dri-FIT moisture-wicking fabric, authentic heat-applied crest, and ergonomic athletic side paneling.',
+    description: 'Official national team home edition featuring breathable Dri-FIT ADV moisture-wicking fabric, authentic heat-applied crest, and ergonomic athletic side paneling.',
     featured: true,
     newArrival: true,
     availability: 'available',
-    badgeTag: 'MATCH VERSION'
+    badgeTag: 'MATCH VERSION',
+    archiveNo: '001',
+    techSpec: 'DRI-FIT ADV'
   },
   {
     id: 'real-madrid-home-2026',
@@ -42,7 +44,9 @@ export const products: Product[] = [
     featured: true,
     newArrival: false,
     availability: 'available',
-    badgeTag: 'NEW'
+    badgeTag: 'NEW',
+    archiveNo: '002',
+    techSpec: 'HEAT.RDY'
   },
   {
     id: 'argentina-three-star-retro',
@@ -63,7 +67,9 @@ export const products: Product[] = [
     featured: true,
     newArrival: false,
     availability: 'available',
-    badgeTag: 'RETRO GRAIL'
+    badgeTag: 'RETRO GRAIL',
+    archiveNo: '003',
+    techSpec: 'AEROREADY PRO'
   },
   {
     id: 'india-cricket-t20-jersey',
@@ -84,7 +90,9 @@ export const products: Product[] = [
     featured: true,
     newArrival: true,
     availability: 'available',
-    badgeTag: 'FEATURED'
+    badgeTag: 'FEATURED',
+    archiveNo: '004',
+    techSpec: 'PRO-VENT MESH'
   },
   {
     id: 'chicago-bulls-jordan-classic',
@@ -105,7 +113,9 @@ export const products: Product[] = [
     featured: true,
     newArrival: false,
     availability: 'available',
-    badgeTag: 'LIMITED'
+    badgeTag: 'LIMITED',
+    archiveNo: '005',
+    techSpec: 'SWINGMAN MESH'
   },
   {
     id: 'arsenal-away-black-gold',
@@ -126,7 +136,9 @@ export const products: Product[] = [
     featured: false,
     newArrival: true,
     availability: 'available',
-    badgeTag: 'NEW'
+    badgeTag: 'NEW',
+    archiveNo: '006',
+    techSpec: 'HEAT.RDY'
   },
   {
     id: 'lakers-city-edition-2025',
@@ -147,7 +159,9 @@ export const products: Product[] = [
     featured: false,
     newArrival: true,
     availability: 'available',
-    badgeTag: 'SPECIAL EDITION'
+    badgeTag: 'SPECIAL EDITION',
+    archiveNo: '007',
+    techSpec: 'DRI-FIT SWINGMAN'
   },
   {
     id: 'mumbai-indians-ipl-2025',
@@ -168,7 +182,9 @@ export const products: Product[] = [
     featured: false,
     newArrival: false,
     availability: 'available',
-    badgeTag: 'MATCH EDITION'
+    badgeTag: 'MATCH EDITION',
+    archiveNo: '008',
+    techSpec: 'AERO-MESH'
   },
   {
     id: 'manchester-united-retro-1999',
@@ -189,7 +205,9 @@ export const products: Product[] = [
     featured: true,
     newArrival: false,
     availability: 'available',
-    badgeTag: 'RETRO GRAIL'
+    badgeTag: 'RETRO GRAIL',
+    archiveNo: '009',
+    techSpec: 'HERITAGE POLYESTER'
   }
 ];
 

@@ -27,4 +27,6 @@ export interface Product {
   newArrival: boolean;
   availability: Availability;
   badgeTag?: string; // e.g. "MATCH EDITION", "RETRO GRAIL", "LIMITED"
+  archiveNo?: string; // e.g. "001"
+  techSpec?: string; // e.g. "DRI-FIT ADV"
 }
