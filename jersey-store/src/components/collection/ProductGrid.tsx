@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Product } from '../../types/product';
 import { ProductCard } from './ProductCard';
+import { EditorialMidwayBanner } from './EditorialMidwayBanner';
 
 interface ProductGridProps {
   products: Product[];
@@ -33,7 +34,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   const remainingProducts = products.slice(6);
 
   return (
-    <div className="space-y-12 sm:space-y-16">
+    <div id="collection-grid" className="space-y-12 sm:space-y-16">
       
       {/* ROW 1: Large Featured (58%) on Left + 2 Stacked (42%) on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-stretch">
@@ -49,6 +50,11 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
             ))}
           </div>
         )}
+      </div>
+
+      {/* FULL-WIDTH EDITORIAL SECTION BETWEEN PRODUCT ROWS */}
+      <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+        <EditorialMidwayBanner />
       </div>
 
       {/* ROW 2 (REVERSED): 2 Stacked (42%) on Left + Large Featured (58%) on Right */}
