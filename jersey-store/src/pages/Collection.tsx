@@ -111,9 +111,9 @@ export const Collection: React.FC = () => {
           />
         </div>
 
-        {/* Unified Sticky Editorial Navigation Strip */}
-        <div className="sticky top-[64px] z-30 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 py-3 bg-[#0B0B0A]/95 backdrop-blur-xl border-y border-white/[0.08] shadow-2xl transition-all">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
+        {/* Static Editorial Navigation & Control Bar (Non-sticky) */}
+        <div className="pb-4 border-b border-white/[0.08]">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
             
             {/* Category Filter Tabs */}
             <CategoryFilter
