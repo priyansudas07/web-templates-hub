@@ -54,12 +54,12 @@ export const EditorialMidwayBanner: React.FC<EditorialMidwayBannerProps> = ({ on
 
         </div>
 
-        {/* Right Column: Asymmetric Large Realistic Jersey Imagery */}
+        {/* Right Column: Asymmetric Large Authentic Jersey Showcase */}
         <div className="lg:col-span-5 relative">
           <div className="relative aspect-[4/5] sm:aspect-[3/4] bg-[#050504] border border-white/[0.08] rounded-sm overflow-hidden shadow-2xl group">
             <img
-              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=85"
-              alt="Editorial Archival Kit"
+              src="https://images.unsplash.com/photo-1745944756454-938dcb6e62ea?auto=format&fit=crop&w=1200&q=85"
+              alt="Archival Football Jersey Exhibition"
               loading="lazy"
               className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
             />
