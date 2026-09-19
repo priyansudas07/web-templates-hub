@@ -207,7 +207,7 @@ export const EditorialHero: React.FC = () => {
               {/* Explore Collection Button */}
               <Link
                 to="/collection"
-                className="h-12 inline-flex items-center justify-center gap-2.5 px-6 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98] rounded-xs"
+                className="group h-12 inline-flex items-center justify-center gap-2.5 px-6 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98] rounded-xs"
               >
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 <span>EXPLORE COLLECTION</span>
