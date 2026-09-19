@@ -16,6 +16,7 @@ const KIT_VIEWS = [
     camera: { scale: 1, x: 0, y: 0 },
     isBack: false,
     specNote: null,
+    specs: null,
   },
   {
     id: 'back',
@@ -27,6 +28,7 @@ const KIT_VIEWS = [
     camera: { scale: 1, x: 0, y: 0 },
     isBack: true,
     specNote: null,
+    specs: null,
   },
   {
     id: 'crest',
@@ -35,9 +37,17 @@ const KIT_VIEWS = [
     image: '/kits/portugal-front.png',
     thumbnail: '/kits/portugal-crest.jpg',
     tag: 'FPF EMBROIDERED CREST',
-    camera: { scale: 3.1, x: -140, y: 155 },
+    camera: { scale: 3.0, x: -130, y: 150 },
     isBack: false,
-    specNote: 'MAG: 3.1X // GOLD SHIELD EMBROIDERY',
+    specNote: 'MAG: 3.0X // GOLD SHIELD EMBROIDERY',
+    dossierTitle: 'FPF EMBROIDERED SHIELD',
+    dossierDescription: 'Dimensional high-density gold bullion embroidery with heat-applied silicone backing for zero weight distortion.',
+    specs: [
+      { label: 'THREAD SPEC', value: '380 GSM High-Density' },
+      { label: 'EMBLEM FINISH', value: '3D Gold Bullion Wire' },
+      { label: 'APPLICATION', value: 'Laser Heat-Applied' },
+      { label: 'AUTHENTICITY', value: 'Vault Certified Spec' },
+    ],
   },
   {
     id: 'details',
@@ -46,9 +56,17 @@ const KIT_VIEWS = [
     image: '/kits/portugal-front.png',
     thumbnail: '/kits/portugal-details.jpg',
     tag: 'COLLAR & DRI-FIT ADV',
-    camera: { scale: 3.0, x: -10, y: 310 },
+    camera: { scale: 2.9, x: -10, y: 300 },
     isBack: false,
-    specNote: 'MAG: 3.0X // ENGINEERED COLLAR & KNIT',
+    specNote: 'MAG: 2.9X // ENGINEERED COLLAR & KNIT',
+    dossierTitle: 'DRI-FIT ADV JACQUARD',
+    dossierDescription: 'Algorithmic body-mapped breathability weave with dual-tone archival ribbed collar construction.',
+    specs: [
+      { label: 'KNIT TECH', value: 'Dri-FIT ADV Jacquard' },
+      { label: 'ZONED MAPPING', value: 'Targeted Breathability' },
+      { label: 'COLLAR WEAVE', value: 'Dual-Tone Ribbed Trim' },
+      { label: 'COMPOSITION', value: '100% Recycled Poly' },
+    ],
   },
 ];
 
@@ -144,104 +162,198 @@ export const EditorialHero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-3 items-center">
           
           {/* ============================================================
-              LEFT COLUMN: Editorial Headline, Pricing, Buttons, Badges
+              LEFT COLUMN: Dynamic Editorial Headline & Technical Dossier
              ============================================================ */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-5 text-left z-20"
+            className="lg:col-span-5 flex flex-col justify-center text-left z-20 relative"
           >
-            {/* Breadcrumb / Category Tag */}
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
-              <span className="font-mono text-[#E3261E] font-bold">01</span>
-              <span className="font-sans font-semibold text-[#9B9992]/80">/ FOOTBALL</span>
-            </div>
+            {/* Soft Ambient Vignette Underlay to ensure crystal-clear text separation in Macro Zoom */}
+            <div 
+              className={`absolute -inset-x-6 -inset-y-8 bg-gradient-to-r from-[#070707]/95 via-[#070707]/75 to-transparent pointer-events-none transition-opacity duration-500 rounded-r-3xl -z-10 ${
+                activeViewIndex >= 2 ? 'opacity-100' : 'opacity-0'
+              }`} 
+            />
 
-            {/* Art-Directed Editorial Campaign Headline with Staggered Entrance */}
-            <div className="space-y-1 sm:space-y-1.5 overflow-hidden">
-              <motion.span
-                initial={{ opacity: 0, y: 14, filter: 'blur(3px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
-              >
-                THE GAME
-              </motion.span>
-              <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-3.5">
-                <motion.span
-                  initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block"
+            <AnimatePresence mode="wait">
+              {activeViewIndex < 2 ? (
+                <motion.div
+                  key="campaign-headline"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-4 sm:space-y-5"
                 >
-                  NEVER
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 22, scale: 0.94, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-                  transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block text-[#E3261E]"
+                  {/* Breadcrumb / Category Tag */}
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
+                    <span className="font-mono text-[#E3261E] font-bold">{currentView.num}</span>
+                    <span className="font-sans font-semibold text-[#9B9992]/80">
+                      / {activeViewIndex === 0 ? 'FOOTBALL' : 'PLAYER SPEC'}
+                    </span>
+                  </div>
+
+                  {/* Art-Directed Editorial Campaign Headline with Staggered Entrance */}
+                  <div className="space-y-1 sm:space-y-1.5 overflow-hidden">
+                    <motion.span
+                      initial={{ opacity: 0, y: 14, filter: 'blur(3px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                      className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
+                    >
+                      THE GAME
+                    </motion.span>
+                    <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-3.5">
+                      <motion.span
+                        initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                        className="inline-block"
+                      >
+                        NEVER
+                      </motion.span>
+                      <motion.span
+                        initial={{ opacity: 0, y: 22, scale: 0.94, filter: 'blur(6px)' }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                        className="inline-block text-[#E3261E]"
+                      >
+                        STOPS.
+                      </motion.span>
+                    </h1>
+                  </div>
+
+                  {/* Product Meta: Official Release Spec */}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
+                      <span>OFFICIAL MATCH ISSUE</span>
+                      <span className="text-white/20">•</span>
+                      <span className="text-[#E3261E]">2026 WORLD CUP</span>
+                    </div>
+                    <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.16em] text-sm sm:text-base uppercase">
+                      PORTUGAL HOME KIT 2025/26
+                    </div>
+                  </div>
+
+                  {/* Pricing Line with Red Dash Accent & Strikethrough Original Price */}
+                  <div className="flex items-baseline gap-3 pt-0.5">
+                    <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
+                    <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
+                      ₹1,499
+                    </span>
+                    <span className="text-sm sm:text-base font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70 decoration-1">
+                      ₹2,999
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.5 rounded-xs tracking-wider uppercase">
+                      50% OFF
+                    </span>
+                  </div>
+
+                  {/* Action Buttons Row */}
+                  <div className="pt-1 flex flex-wrap items-center gap-4 sm:gap-5">
+                    {/* Explore Collection Button */}
+                    <Link
+                      to="/collection"
+                      className="group h-12 inline-flex items-center justify-center gap-3 px-6 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 rounded-xs hover:shadow-[0_4px_22px_rgba(227,38,30,0.40)] active:scale-[0.99]"
+                    >
+                      <span>EXPLORE COLLECTION</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-[5px]" />
+                    </Link>
+
+                    {/* User-Requested WhatsApp Concierge Button (.button2) */}
+                    <a
+                      href={createGeneralWhatsAppLink()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button2 h-12 py-0 px-5 flex items-center rounded-xs"
+                      aria-label="Contact Concierge on WhatsApp"
+                    >
+                      <div className="flex flex-col text-left leading-tight pr-4">
+                        <span className="text-[9px] text-[#9B9992] font-sans tracking-[0.24em]">WHATSAPP</span>
+                        <span className="text-xs font-sans font-bold text-white tracking-[0.14em]">CONCIERGE</span>
+                      </div>
+                      <svg viewBox="0 0 24 24" className="w-4 h-4">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`dossier-${currentView.id}`}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-3 sm:space-y-3.5"
                 >
-                  STOPS.
-                </motion.span>
-              </h1>
-            </div>
+                  {/* Dossier Header */}
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
+                    <span className="font-mono text-[#E3261E] font-bold">{currentView.num}</span>
+                    <span className="font-sans font-semibold text-[#9B9992]/80">/ ARCHIVAL SPECIFICATION</span>
+                  </div>
 
-            {/* Product Meta: Official Release Spec */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
-                <span>OFFICIAL MATCH ISSUE</span>
-                <span className="text-white/20">•</span>
-                <span className="text-[#E3261E]">2026 WORLD CUP</span>
-              </div>
-              <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.16em] text-sm sm:text-base uppercase">
-                PORTUGAL HOME KIT 2025/26
-              </div>
-            </div>
+                  {/* Dossier Title & Description */}
+                  <div className="space-y-1 max-w-md">
+                    <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-display font-black uppercase tracking-tight text-[#F3F0E8] leading-[0.95]">
+                      {currentView.dossierTitle}
+                    </h2>
+                    <p className="text-xs sm:text-[12.5px] text-[#9B9992] font-sans font-normal leading-relaxed">
+                      {currentView.dossierDescription}
+                    </p>
+                  </div>
 
-            {/* Pricing Line with Red Dash Accent & Strikethrough Original Price */}
-            <div className="flex items-baseline gap-3 pt-0.5">
-              <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
-              <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
-                ₹1,499
-              </span>
-              <span className="text-sm sm:text-base font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70 decoration-1">
-                ₹2,999
-              </span>
-              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.5 rounded-xs tracking-wider uppercase">
-                50% OFF
-              </span>
-            </div>
+                  {/* 2x2 Technical Spec Grid */}
+                  <div className="grid grid-cols-2 gap-2 max-w-md pt-0.5">
+                    {currentView.specs?.map((spec, i) => (
+                      <div key={i} className="p-2 sm:p-2.5 bg-white/[0.035] border border-white/[0.08] rounded-xs">
+                        <span className="text-[8px] sm:text-[8.5px] font-mono uppercase tracking-widest text-[#E3261E] block font-bold">
+                          {spec.label}
+                        </span>
+                        <span className="text-[10.5px] sm:text-[11.5px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
-            {/* Action Buttons Row */}
-            <div className="pt-1 flex flex-wrap items-center gap-4 sm:gap-5">
-              {/* Explore Collection Button */}
-              <Link
-                to="/collection"
-                className="group h-12 inline-flex items-center justify-center gap-3 px-6 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 rounded-xs hover:shadow-[0_4px_22px_rgba(227,38,30,0.40)] active:scale-[0.99]"
-              >
-                <span>EXPLORE COLLECTION</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-[5px]" />
-              </Link>
+                  {/* Pricing Line */}
+                  <div className="flex items-baseline gap-3 pt-0.5">
+                    <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
+                    <span className="text-2xl sm:text-3xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
+                      ₹1,499
+                    </span>
+                    <span className="text-xs sm:text-sm font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70">
+                      ₹2,999
+                    </span>
+                    <span className="text-[9px] font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.5 rounded-xs tracking-wider uppercase">
+                      50% OFF
+                    </span>
+                  </div>
 
-              {/* User-Requested WhatsApp Concierge Button (.button2) */}
-              <a
-                href={createGeneralWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button2 h-12 py-0 px-5 flex items-center rounded-xs"
-                aria-label="Contact Concierge on WhatsApp"
-              >
-                <div className="flex flex-col text-left leading-tight pr-4">
-                  <span className="text-[9px] text-[#9B9992] font-sans tracking-[0.24em]">WHATSAPP</span>
-                  <span className="text-xs font-sans font-bold text-white tracking-[0.14em]">CONCIERGE</span>
-                </div>
-                <svg viewBox="0 0 24 24" className="w-4 h-4">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-              </a>
-            </div>
+                  {/* Action Buttons Row with Reset to Full View Option */}
+                  <div className="pt-0.5 flex flex-wrap items-center gap-3 sm:gap-4">
+                    <Link
+                      to="/collection"
+                      className="group h-11 inline-flex items-center justify-center gap-2.5 px-5 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 rounded-xs hover:shadow-[0_4px_22px_rgba(227,38,30,0.40)] active:scale-[0.99]"
+                    >
+                      <span>EXPLORE COLLECTION</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-[5px]" />
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveViewIndex(0)}
+                      className="h-11 px-3.5 inline-flex items-center justify-center gap-1.5 border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] hover:border-white/30 text-[#F3F0E8] font-mono text-[9.5px] uppercase tracking-widest transition-colors rounded-xs cursor-pointer"
+                    >
+                      <span>FULL VIEW</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* ============================================================
