@@ -5,43 +5,6 @@ import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
 import { ArrowRight } from 'lucide-react';
-
-interface Hotspot {
-  id: string;
-  number: string;
-  label: string;
-  title: string;
-  description: string;
-  tech: string;
-}
-
-const HOTSPOTS: Hotspot[] = [
-  {
-    id: 'collar',
-    number: '01',
-    label: 'COLLAR',
-    title: 'DRI-FIT ADV HYBRID RIB',
-    description: 'Precision-engineered ergonomic collar with dual-color green & black tipping and zero-abrasion seam bonding.',
-    tech: 'BONDED RIBBED KNIT',
-  },
-  {
-    id: 'crest',
-    number: '02',
-    label: 'CREST',
-    title: 'FEDERAÇÃO PORTUGUESA SHIELD',
-    description: 'High-definition dimensional heat-applied crest with micro-embossed golden cross and authentic match-spec backing.',
-    tech: 'DIMENSIONAL 3D SILICONE',
-  },
-  {
-    id: 'fabric',
-    number: '03',
-    label: 'FABRIC',
-    title: 'HEAT-MAPPED JACQUARD WEAVE',
-    description: 'Generative moisture-wicking open-hole knit pattern mapped directly to athlete sweat data for optimal ventilation.',
-    tech: '100% RECYCLED POLYESTER',
-  },
-];
-
 const KIT_VIEWS = [
   {
     id: 'front',
@@ -80,7 +43,6 @@ const KIT_VIEWS = [
 export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
-  const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
 
   // Dynamic Parallax Motion Values for Hero Hover Interaction
   const mouseX = useMotionValue(0);
@@ -288,130 +250,6 @@ export const EditorialHero: React.FC = () => {
                   </AnimatePresence>
                 </motion.div>
 
-
-                {/* 2D Parallax Layer for Hotspots: Tracks Jersey Motion with Understated, Non-Competing Intensity */}
-                {activeViewIndex === 0 && (
-                  <motion.div
-                    style={{
-                      x: jerseyTranslateX,
-                      y: jerseyTranslateY,
-                    }}
-                    className="absolute inset-0 pointer-events-none z-20"
-                  >
-                    
-                    {/* Hotspot 01: Collar Callout (Floating Safely Below Navbar Above Collar) */}
-                    <div
-                      className="absolute top-[1.5%] left-[38%] pointer-events-auto cursor-pointer group flex flex-col items-center"
-                      onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
-                    >
-                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/40">01</span>
-                        <span className="text-white/15 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
-                          COLLAR
-                        </span>
-                      </div>
-                      {/* Delicate Hairline String + Softened Target Dot */}
-                      <div className="w-[1px] h-5 bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
-                    </div>
-
-                    {/* Hotspot 02: Crest Callout (Right Chest Shield) */}
-                    <div
-                      className="absolute top-[30%] left-[53.5%] -translate-y-1/2 pointer-events-auto cursor-pointer group flex items-center"
-                      onClick={() => setActiveHotspot(activeHotspot?.id === 'crest' ? null : HOTSPOTS[1])}
-                    >
-                      {/* Softened Target Dot directly on the Portuguese Shield */}
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
-                      {/* Delicate Hairline */}
-                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
-                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/40">02</span>
-                        <span className="text-white/15 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
-                          CREST
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Hotspot 03: Fabric Callout (Lower Torso) */}
-                    <div
-                      className="absolute top-[61%] right-[5%] sm:right-[7%] pointer-events-auto cursor-pointer group flex items-center"
-                      onClick={() => setActiveHotspot(activeHotspot?.id === 'fabric' ? null : HOTSPOTS[2])}
-                    >
-                      {/* Softened Target Dot */}
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
-                      {/* Delicate Hairline */}
-                      <div className="w-3 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-white/20" />
-                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/40">03</span>
-                        <span className="text-white/15 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
-                          FABRIC
-                        </span>
-                      </div>
-                    </div>
-
-                  </motion.div>
-                )}
-
-                {/* Hotspot Spec Modal / Floating Glass Dossier Popover */}
-                <AnimatePresence>
-                  {activeHotspot && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 12, scale: 0.96 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute bottom-3 inset-x-0 mx-auto max-w-[340px] w-[92%] bg-[#080807]/92 backdrop-blur-2xl border border-white/[0.14] p-4 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(227,38,30,0.12),inset_0_1px_0_rgba(255,255,255,0.18)] z-40 text-left"
-                    >
-                      {/* Header Row */}
-                      <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[8.5px] font-mono font-bold bg-[#E3261E] text-white px-2 py-0.5 rounded-xs tracking-wider uppercase shadow-[0_0_10px_rgba(227,38,30,0.5)]">
-                            {activeHotspot.number} // {activeHotspot.label}
-                          </span>
-                          <span className="text-[9px] font-mono text-[#9B9992]/80 tracking-wider uppercase">
-                            {activeHotspot.tech}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => setActiveHotspot(null)}
-                          className="w-5 h-5 rounded-full bg-white/[0.05] hover:bg-white/[0.15] border border-white/10 flex items-center justify-center text-[#9B9992] hover:text-white text-xs font-mono transition-colors cursor-pointer"
-                          aria-label="Close specification"
-                        >
-                          ✕
-                        </button>
-                      </div>
-
-                      {/* Content Body */}
-                      <h4 className="text-xs font-sans font-bold text-white uppercase tracking-wider mt-2.5">
-                        {activeHotspot.title}
-                      </h4>
-                      <p className="text-[11px] font-sans text-[#9B9992] leading-relaxed mt-1 font-normal">
-                        {activeHotspot.description}
-                      </p>
-
-                      {/* Technical Footer Telemetry */}
-                      <div className="border-t border-white/[0.06] mt-3 pt-2 flex items-center justify-between text-[9px] font-mono">
-                        <span className="text-[#9B9992]/50 tracking-widest uppercase">
-                          POR-2026 // MATCH ISSUE
-                        </span>
-                        <span className="text-emerald-400 font-semibold tracking-wider flex items-center gap-1.5 uppercase">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#34d399]" />
-                          OFFICIAL SPEC
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
               </div>
             </div>
           </div>
@@ -468,10 +306,7 @@ export const EditorialHero: React.FC = () => {
                   return (
                     <button
                       key={view.id}
-                      onClick={() => {
-                        setActiveViewIndex(index);
-                        setActiveHotspot(null);
-                      }}
+                      onClick={() => setActiveViewIndex(index)}
                       className={`w-full flex items-center justify-between px-2 py-1.5 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
                         isActive
                           ? 'bg-white/[0.035] border-white/15 shadow-sm'
