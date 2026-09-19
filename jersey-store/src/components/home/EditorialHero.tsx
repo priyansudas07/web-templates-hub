@@ -428,14 +428,37 @@ export const EditorialHero: React.FC = () => {
             {/* Minimalist Editorial Gallery Strip */}
             <div className="w-full max-w-[210px]">
               
-              {/* Understated Editorial Header */}
-              <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/[0.06]">
-                <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
-                  PERSPECTIVES
-                </span>
-                <span className="text-[9px] font-mono tracking-widest text-[#9B9992]/40">
-                  0{activeViewIndex + 1} / 0{KIT_VIEWS.length}
-                </span>
+              {/* Understated Editorial Header with Dynamic Progress Indicator */}
+              <div className="pb-2.5 mb-3">
+                <div className="flex items-center justify-between pb-1.5">
+                  <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
+                    PERSPECTIVES
+                  </span>
+                  <div className="flex items-center font-mono">
+                    <span className="text-[9.5px] font-bold text-[#F3F0E8] transition-colors">
+                      0{activeViewIndex + 1}
+                    </span>
+                    <span className="text-[8.5px] tracking-widest text-[#9B9992]/40">
+                      &nbsp;/ 0{KIT_VIEWS.length}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Progress Track & Animated Progress Line (25% -> 50% -> 75% -> 100%) */}
+                <div className="w-full h-[1.5px] bg-white/[0.06] rounded-full overflow-hidden relative">
+                  <motion.div
+                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)]"
+                    initial={false}
+                    animate={{
+                      width: `${((activeViewIndex + 1) / KIT_VIEWS.length) * 100}%`,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 24,
+                    }}
+                  />
+                </div>
               </div>
 
               {/* View Items */}
