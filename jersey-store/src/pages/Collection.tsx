@@ -72,10 +72,10 @@ export const Collection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] py-8 sm:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+    <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] py-8 sm:py-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
-        {/* Editorial Top Heading */}
+        {/* Editorial Top Heading & Search Bar */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
           <SectionHeading
             tag="AUTHENTIC CATALOG"
@@ -83,8 +83,7 @@ export const Collection: React.FC = () => {
             subtitle="Engineered match kits, historic retro grails, and official federation player editions."
           />
           
-          {/* Subtle Dark Search Field */}
-          <div className="w-full md:w-auto shrink-0 pb-10">
+          <div className="w-full md:w-auto shrink-0 pb-2 md:pb-10">
             <SearchBar
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
@@ -93,7 +92,7 @@ export const Collection: React.FC = () => {
           </div>
         </div>
 
-        {/* Clean Horizontal Filter Bar */}
+        {/* Clean Horizontal Filter Bar & Count Status */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <CategoryFilter
             selectedCategory={selectedCategory}
@@ -101,13 +100,13 @@ export const Collection: React.FC = () => {
             className="flex-grow"
           />
 
-          <div className="flex items-center gap-3 text-xs font-mono text-[#9B9992] shrink-0">
+          <div className="flex items-center gap-3 text-xs font-mono text-[#8E8C85] shrink-0 pt-1 sm:pt-0">
             <span>
               {filteredProducts.length} {filteredProducts.length === 1 ? 'KIT' : 'KITS'} AVAILABLE
             </span>
             {(selectedCategory !== 'all' || searchQuery) && (
               <>
-                <span>•</span>
+                <span className="text-white/20">•</span>
                 <button
                   onClick={handleReset}
                   className="text-[#E3261E] hover:text-[#F3F0E8] uppercase tracking-wider font-bold transition-colors focus-visible:outline-none focus-visible:underline"
