@@ -6,7 +6,8 @@ import { CategoryFilter } from '../components/collection/CategoryFilter';
 import { ProductGrid } from '../components/collection/ProductGrid';
 import { EmptyState } from '../components/collection/EmptyState';
 import { SectionHeading } from '../components/common/SectionHeading';
-import { ChevronDown, ArrowUp, ArrowRight, MessageSquare } from 'lucide-react';
+import { ConciergeSourcingPass } from '../components/collection/ConciergeSourcingPass';
+import { ChevronDown, ArrowUp } from 'lucide-react';
 
 export const Collection: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -177,44 +178,12 @@ export const Collection: React.FC = () => {
           />
         )}
 
-        {/* Option 1: Archival Concierge Grail Sourcing Callout */}
-        <div className="pt-10 sm:pt-14 mt-10 sm:mt-14 border-t border-white/[0.08]">
-          <div className="p-8 sm:p-12 bg-[#0E0E0D] border border-white/[0.07] rounded-sm shadow-2xl relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            
-            {/* Left Column: Heading & Archival Manifesto */}
-            <div className="space-y-3 max-w-2xl">
-              <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.22em] text-[#E3261E] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
-                <span>// ARCHIVAL SOURCING CONCIERGE</span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold uppercase tracking-tight text-[#F3F0E8] leading-tight">
-                CAN'T FIND A SPECIFIC KIT OR RETRO GRAIL?
-              </h3>
-
-              <p className="text-xs sm:text-sm text-[#8E8C85] font-sans leading-relaxed">
-                Our kit curators source rare historical match-worn editions, sold-out tournament kits, deadstock grails, and personalized player name-sets on request.
-              </p>
-            </div>
-
-            {/* Right Column: WhatsApp Concierge Action Button */}
-            <div className="shrink-0">
-              <a
-                href="https://wa.me/919876543210?text=Hi%20Sports%20Gear,%20I'm%20looking%20for%20a%20specific%20kit/retro%20grail"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-6 py-4 rounded-sm bg-white/[0.05] hover:bg-[#E3261E] border border-white/10 hover:border-[#E3261E] text-xs font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-300 shadow-md"
-              >
-                <MessageSquare className="w-4 h-4 text-[#E3261E] group-hover:text-white transition-colors" />
-                <span>INQUIRE WITH A CURATOR</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </a>
-            </div>
-
-          </div>
+        {/* Interactive Concierge Sourcing Pass Section */}
+        <div className="pt-10 sm:pt-14 mt-10 sm:mt-14 border-t border-white/[0.08] space-y-6">
+          <ConciergeSourcingPass />
 
           {/* End of Catalog Sign-off & Back to Top Strip */}
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[#8E8C85]/80">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[#8E8C85]/80">
             <div className="flex items-center gap-2 tracking-widest uppercase text-[11px]">
               <span className="text-[#E3261E]">●</span>
               <span>END OF ARCHIVE — {filteredProducts.length} SPECIMENS DISPLAYED</span>
