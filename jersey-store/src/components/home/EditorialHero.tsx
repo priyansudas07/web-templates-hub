@@ -241,11 +241,11 @@ export const EditorialHero: React.FC = () => {
                       >
                         {currentView.isCutout ? (
                           <div className="relative w-full h-full flex items-center justify-center">
-                            {/* 3. Base Jersey Artwork with Hover Fabric Texture / Contrast Boost */}
+                            {/* 3. Base Jersey Artwork */}
                             <img
                               src={currentView.image}
                               alt="Portugal 2025/26 Match Kit"
-                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] transition-all duration-700 select-none pointer-events-auto cursor-pointer group-hover/jersey:contrast-[1.12] group-hover/jersey:brightness-[1.02]"
+                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] select-none pointer-events-auto cursor-pointer"
                             />
 
                             {/* 4. Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
@@ -276,22 +276,6 @@ export const EditorialHero: React.FC = () => {
                                 className="w-[35%] h-[200%] -top-1/2 absolute bg-gradient-to-r from-transparent via-white/18 to-transparent -rotate-[22deg] blur-xl"
                               />
                             </div>
-
-                            {/* 5. Micro Weave Fabric Texture Illuminator on Hover */}
-                            <div 
-                              className="absolute inset-0 pointer-events-none opacity-0 group-hover/jersey:opacity-100 transition-opacity duration-700 mix-blend-overlay"
-                              style={{
-                                maskImage: `url(${currentView.image})`,
-                                WebkitMaskImage: `url(${currentView.image})`,
-                                maskSize: 'contain',
-                                WebkitMaskSize: 'contain',
-                                maskRepeat: 'no-repeat',
-                                WebkitMaskRepeat: 'no-repeat',
-                                maskPosition: 'center',
-                                WebkitMaskPosition: 'center',
-                                backgroundImage: `radial-gradient(circle at center, rgba(255,255,255,0.18) 0%, transparent 80%)`,
-                              }}
-                            />
                           </div>
                         ) : (
                           <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
