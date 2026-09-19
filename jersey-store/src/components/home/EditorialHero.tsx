@@ -76,19 +76,48 @@ export const EditorialHero: React.FC = () => {
       className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
 
-      {/* Subtle Analog Film Grain Texture */}
+      {/* 1. Extremely Faint Analog Film Grain Texture */}
       <div 
-        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.035] mix-blend-screen"
+        className="absolute inset-0 pointer-events-none z-[2] opacity-[0.025] mix-blend-screen"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* 2. Slow Moving Ambient Background Gradient Drift */}
+      <motion.div
+        animate={{
+          x: ['-3%', '3%', '-3%'],
+          y: ['-2%', '2%', '-2%'],
+          rotate: [-1.5, 1.5, -1.5],
+        }}
+        transition={{
+          duration: 18,
+          ease: 'easeInOut',
+          repeat: Infinity,
+        }}
+        className="absolute -inset-20 pointer-events-none z-0 opacity-40 blur-3xl"
+        style={{
+          background: `radial-gradient(ellipse 65% 55% at 55% 50%, rgba(227,38,30,0.10) 0%, rgba(30,10,10,0.03) 50%, transparent 80%), radial-gradient(circle at 85% 25%, rgba(227,38,30,0.05) 0%, transparent 55%)`,
         }}
       />
       
-      {/* Subtle Crimson Studio Spotlight behind Center-Right Jersey */}
-      <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
+      {/* 3. Subtle Breathing Red Atmospheric Studio Glow behind Jersey */}
+      <motion.div
+        animate={{
+          scale: [1, 1.06, 1],
+          opacity: [0.65, 0.85, 0.65],
+        }}
+        transition={{
+          duration: 7.5,
+          ease: 'easeInOut',
+          repeat: Infinity,
+        }}
+        className="absolute top-1/2 left-[56%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[850px] sm:h-[680px] bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.16)_0%,_rgba(180,20,15,0.06)_48%,_transparent_72%)] blur-3xl pointer-events-none z-0"
+      />
       
       {/* Floating Studio Dust Particles */}
-      <DustParticles particleCount={45} />
+      <DustParticles particleCount={35} />
 
       {/* Far Left Vertical Technical Telemetry Bar */}
       <div className="hidden xl:flex absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 items-center gap-3 z-10 pointer-events-none opacity-40">
