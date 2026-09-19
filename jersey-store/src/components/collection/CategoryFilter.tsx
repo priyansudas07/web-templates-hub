@@ -16,7 +16,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   return (
     <div
       className={cn(
-        "flex items-center gap-1 sm:gap-2 overflow-x-auto pb-1 scrollbar-none touch-pan-x border-b border-white/[0.08]",
+        "flex items-center gap-2 sm:gap-4 overflow-x-auto pb-2 scrollbar-none touch-pan-x border-b border-white/[0.07]",
         className
       )}
       role="tablist"
@@ -31,16 +31,16 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
             aria-selected={active}
             onClick={() => onCategorySelect(cat.id)}
             className={cn(
-              "relative px-3.5 sm:px-4 py-2 text-[11px] sm:text-xs font-mono font-semibold tracking-[0.14em] uppercase whitespace-nowrap transition-all duration-200 shrink-0",
+              "relative px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-mono font-bold tracking-[0.18em] uppercase whitespace-nowrap transition-all duration-200 shrink-0",
               "focus-visible:outline-none focus-visible:text-white",
               active
-                ? "text-[#F3F0E8] font-bold"
-                : "text-[#9B9992]/80 hover:text-[#F3F0E8]"
+                ? "text-[#F3F0E8]"
+                : "text-[#7E7C76] hover:text-[#F3F0E8]"
             )}
           >
             <span>{cat.name}</span>
             {active && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#E3261E] rounded-full" />
+              <span className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#E3261E]" />
             )}
           </button>
         );

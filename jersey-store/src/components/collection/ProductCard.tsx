@@ -37,17 +37,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const badgeLabel = getBadgeLabel();
 
-  // 1. LARGE FEATURED PRODUCT CARD (~55-60% width)
+  // 1. LARGE FEATURED CARD (occupying ~55-60% width)
   if (variant === 'large') {
     return (
       <div
         className={cn(
-          "group bg-[#121211] border border-[#242422] hover:border-[#3d3d39] transition-all duration-300 rounded-sm flex flex-col justify-between overflow-hidden shadow-lg",
+          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 rounded-sm flex flex-col justify-between overflow-hidden shadow-2xl",
           className
         )}
       >
-        {/* Product Image Area */}
-        <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] bg-[#090908] overflow-hidden">
+        {/* Large Product Photography */}
+        <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] bg-[#060605] overflow-hidden">
           <Link
             to={`/collection/${product.id}`}
             className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               src={product.images[currentImageIndex] || product.images[0]}
               alt={`${product.name} - ${currentImageIndex === 0 ? 'Front' : 'Back'}`}
               loading="lazy"
-              className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+              className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
             />
           </Link>
 
@@ -65,8 +65,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {hasBackImage && (
             <button
               onClick={toggleView}
-              aria-label="Toggle front and back jersey view"
-              className="absolute bottom-3 right-3 z-10 px-2.5 py-1 rounded-sm bg-[#0B0B0A]/85 backdrop-blur-sm text-[#9B9992] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1.5 transition-all opacity-85 hover:opacity-100"
+              aria-label="Toggle jersey view"
+              className="absolute bottom-3 right-3 z-10 px-2.5 py-1 rounded-sm bg-[#080807]/85 backdrop-blur-md text-[#9B9992] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1.5 transition-all opacity-85 hover:opacity-100"
             >
               <RotateCcw className="w-3 h-3 text-[#E3261E]" />
               <span>{currentImageIndex === 0 ? 'BACK VIEW' : 'FRONT VIEW'}</span>
@@ -75,18 +75,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Details Underneath Image */}
-        <div className="p-5 sm:p-6 flex flex-col justify-between gap-4 flex-grow bg-[#121211]">
+        <div className="p-6 sm:p-7 flex flex-col justify-between gap-5 flex-grow bg-[#0E0E0D]">
           <div className="space-y-2">
             {/* Small Label with Orange Accent */}
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
-              <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.18em] text-[#E3261E] uppercase">
+              <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#E3261E] uppercase">
                 {badgeLabel}
               </span>
               {product.season && (
                 <>
-                  <span className="text-[#3d3d39]">•</span>
-                  <span className="text-[10px] font-mono text-[#9B9992]">{product.season}</span>
+                  <span className="text-white/20">•</span>
+                  <span className="text-[10px] font-mono text-[#8E8C85] tracking-wider">{product.season}</span>
                 </>
               )}
             </div>
@@ -96,23 +96,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               to={`/collection/${product.id}`}
               className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded"
             >
-              <h3 className="font-sans font-bold text-lg sm:text-2xl text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight leading-snug">
+              <h3 className="font-sans font-extrabold text-xl sm:text-2xl lg:text-3xl text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight leading-tight">
                 {product.name}
               </h3>
             </Link>
 
             {product.team && (
-              <p className="text-xs sm:text-sm text-[#9B9992] font-sans font-normal">
-                {product.team} {product.player ? `• ${product.player}` : ''}
+              <p className="text-xs sm:text-sm text-[#8E8C85] font-sans font-normal">
+                {product.team} {product.player ? `// ${product.player}` : ''}
               </p>
             )}
           </div>
 
           {/* Price & View Kit Link */}
-          <div className="pt-4 border-t border-[#242422] flex items-center justify-between gap-4">
+          <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-mono text-[#9B9992]/80 uppercase tracking-wider block">PRICE</span>
-              <span className="text-lg sm:text-xl font-mono font-bold text-[#F3F0E8] tracking-tight">
+              <span className="text-[10px] font-mono text-[#8E8C85] uppercase tracking-widest block">MATCH PRICE</span>
+              <span className="text-xl sm:text-2xl font-mono font-bold text-[#F3F0E8] tracking-tight">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
             </div>
@@ -135,12 +135,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     return (
       <div
         className={cn(
-          "group bg-[#121211] border border-[#242422] hover:border-[#3d3d39] transition-all duration-300 rounded-sm flex flex-col sm:flex-row overflow-hidden flex-1 shadow-md",
+          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 rounded-sm flex flex-col sm:flex-row overflow-hidden flex-1 shadow-lg",
           className
         )}
       >
-        {/* Product Image Area */}
-        <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto min-h-[160px] bg-[#090908] overflow-hidden shrink-0">
+        {/* Product Photography */}
+        <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto min-h-[170px] bg-[#060605] overflow-hidden shrink-0">
           <Link
             to={`/collection/${product.id}`}
             className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
@@ -150,18 +150,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               src={product.images[currentImageIndex] || product.images[0]}
               alt={`${product.name}`}
               loading="lazy"
-              className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+              className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700 ease-out"
             />
           </Link>
         </div>
 
         {/* Details Area */}
-        <div className="p-4 sm:p-4.5 flex flex-col justify-between gap-3 flex-grow bg-[#121211]">
+        <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 flex-grow bg-[#0E0E0D]">
           <div className="space-y-1.5">
             {/* Small Label with Orange Accent */}
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
-              <span className="text-[9.5px] sm:text-[10px] font-mono font-bold tracking-[0.16em] text-[#E3261E] uppercase">
+              <span className="text-[9.5px] sm:text-[10px] font-mono font-bold tracking-[0.18em] text-[#E3261E] uppercase">
                 {badgeLabel}
               </span>
             </div>
@@ -177,21 +177,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </Link>
 
             {product.team && (
-              <p className="text-xs text-[#9B9992] font-sans font-normal line-clamp-1">
+              <p className="text-xs text-[#8E8C85] font-sans font-normal line-clamp-1">
                 {product.team}
               </p>
             )}
           </div>
 
           {/* Price & View Kit Link */}
-          <div className="pt-2.5 border-t border-[#242422] flex items-center justify-between gap-2">
-            <span className="text-sm sm:text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
+          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-2">
+            <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
               ₹{product.price.toLocaleString('en-IN')}
             </span>
 
             <Link
               to={`/collection/${product.id}`}
-              className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8]/90 group-hover:text-[#E3261E] uppercase transition-colors"
+              className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] uppercase transition-colors"
             >
               <span>VIEW KIT</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -206,12 +206,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       className={cn(
-        "group bg-[#121211] border border-[#242422] hover:border-[#3d3d39] transition-all duration-300 flex flex-col rounded-sm overflow-hidden shadow-md",
+        "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 flex flex-col rounded-sm overflow-hidden shadow-lg",
         className
       )}
     >
-      {/* Product Image Area */}
-      <div className="relative aspect-[4/5] bg-[#090908] overflow-hidden">
+      {/* Product Photography */}
+      <div className="relative aspect-[4/5] bg-[#060605] overflow-hidden">
         <Link
           to={`/collection/${product.id}`}
           className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
@@ -221,7 +221,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             src={product.images[currentImageIndex] || product.images[0]}
             alt={`${product.name}`}
             loading="lazy"
-            className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+            className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           />
         </Link>
 
@@ -229,7 +229,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={toggleView}
             aria-label="Toggle jersey view"
-            className="absolute bottom-3 right-3 z-10 p-1.5 rounded-sm bg-[#0B0B0A]/85 backdrop-blur-sm text-[#9B9992] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1 transition-all"
+            className="absolute bottom-3 right-3 z-10 p-1.5 rounded-sm bg-[#080807]/85 backdrop-blur-md text-[#9B9992] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1 transition-all"
           >
             <RotateCcw className="w-3 h-3 text-[#E3261E]" />
             <span className="hidden sm:inline">{currentImageIndex === 0 ? 'BACK' : 'FRONT'}</span>
@@ -238,11 +238,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Details Underneath Image */}
-      <div className="p-4 sm:p-5 flex flex-col flex-grow justify-between gap-4 bg-[#121211]">
+      <div className="p-5 flex flex-col flex-grow justify-between gap-4 bg-[#0E0E0D]">
         <div className="space-y-1.5">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
-            <span className="text-[10px] font-mono font-bold tracking-[0.16em] text-[#E3261E] uppercase">
+            <span className="text-[10px] font-mono font-bold tracking-[0.18em] text-[#E3261E] uppercase">
               {badgeLabel}
             </span>
           </div>
@@ -257,14 +257,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </Link>
 
           {product.team && (
-            <p className="text-xs text-[#9B9992] font-sans font-normal line-clamp-1">
-              {product.team} {product.player ? `• ${product.player}` : ''}
+            <p className="text-xs text-[#8E8C85] font-sans font-normal line-clamp-1">
+              {product.team} {product.player ? `// ${product.player}` : ''}
             </p>
           )}
         </div>
 
         {/* Price & View Kit Link */}
-        <div className="pt-3 border-t border-[#242422] flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
           <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
             ₹{product.price.toLocaleString('en-IN')}
           </span>

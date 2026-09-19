@@ -12,7 +12,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   // When filtered count is small (1 or 2 products)
   if (products.length < 3) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} variant="standard" />
         ))}
@@ -33,10 +33,10 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   const remainingProducts = products.slice(6);
 
   return (
-    <div className="space-y-8 sm:space-y-10">
+    <div className="space-y-12 sm:space-y-16">
       
       {/* ROW 1: Large Featured (58%) on Left + 2 Stacked (42%) on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-stretch">
         {row1Large && (
           <div className="lg:col-span-7 flex flex-col">
             <ProductCard product={row1Large} variant="large" className="h-full" />
@@ -53,7 +53,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
 
       {/* ROW 2 (REVERSED): 2 Stacked (42%) on Left + Large Featured (58%) on Right */}
       {row2Products.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-stretch">
           {row2Stacked.length > 0 && (
             <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8 justify-between order-2 lg:order-1">
               {row2Stacked.map((product) => (
@@ -71,7 +71,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
 
       {/* REMAINING PRODUCTS: Elegant Editorial Standard Grid */}
       {remainingProducts.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 pt-4">
           {remainingProducts.map((product) => (
             <ProductCard key={product.id} product={product} variant="standard" />
           ))}
