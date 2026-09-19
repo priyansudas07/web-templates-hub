@@ -207,10 +207,10 @@ export const EditorialHero: React.FC = () => {
               {/* Explore Collection Button */}
               <Link
                 to="/collection"
-                className="group h-12 inline-flex items-center justify-center gap-2.5 px-6 bg-[#E3261E] hover:bg-[#c81e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[0_0_25px_rgba(227,38,30,0.5)] hover:shadow-[0_0_35px_rgba(227,38,30,0.75)] hover:scale-[1.02] active:scale-[0.98] rounded-xs"
+                className="group h-12 inline-flex items-center justify-center gap-3 px-6 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 rounded-xs hover:shadow-[0_4px_22px_rgba(227,38,30,0.40)] active:scale-[0.99]"
               >
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 <span>EXPLORE COLLECTION</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-[5px]" />
               </Link>
 
               {/* User-Requested WhatsApp Concierge Button (.button2) */}
