@@ -73,6 +73,14 @@ const KIT_VIEWS = [
 export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
+  const [prevViewIndex, setPrevViewIndex] = useState(0);
+
+  const handleSelectView = (index: number) => {
+    setPrevViewIndex(activeViewIndex);
+    setActiveViewIndex(index);
+  };
+
+  const spinDirection = activeViewIndex >= prevViewIndex ? 1 : -1;
 
   // Dynamic Parallax Motion Values for Hero Hover Interaction (Subtle, Buttery Luxury Physics)
   const mouseX = useMotionValue(0);
@@ -345,7 +353,7 @@ export const EditorialHero: React.FC = () => {
 
                     <button
                       type="button"
-                      onClick={() => setActiveViewIndex(0)}
+                      onClick={() => handleSelectView(0)}
                       className="h-11 px-3.5 inline-flex items-center justify-center gap-1.5 border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] hover:border-white/30 text-[#F3F0E8] font-mono text-[9.5px] uppercase tracking-widest transition-colors rounded-xs cursor-pointer"
                     >
                       <span>FULL VIEW</span>
@@ -412,18 +420,41 @@ export const EditorialHero: React.FC = () => {
                         damping: 22,
                         mass: 0.85,
                       }}
-                      className="relative w-full h-full flex items-center justify-center"
+                      className="relative w-full h-full flex items-center justify-center [perspective:1400px]"
                     >
-                      <AnimatePresence mode="wait">
+                      <AnimatePresence mode="wait" custom={spinDirection}>
                         <motion.div
                           key={currentView.isBack ? 'back' : 'front'}
-                          initial={{ opacity: 0, filter: 'blur(6px)' }}
-                          animate={{ opacity: 1, filter: 'blur(0px)' }}
-                          exit={{ opacity: 0, filter: 'blur(6px)' }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="relative w-full h-full flex items-center justify-center group/jersey"
+                          custom={spinDirection}
+                          initial={(dir: number) => ({
+                            rotateY: dir * -85,
+                            scale: 0.93,
+                            opacity: 0,
+                            filter: 'blur(3px)',
+                          })}
+                          animate={{
+                            rotateY: 0,
+                            scale: 1,
+                            opacity: 1,
+                            filter: 'blur(0px)',
+                            transition: {
+                              duration: 0.52,
+                              ease: [0.16, 1, 0.3, 1],
+                            },
+                          }}
+                          exit={(dir: number) => ({
+                            rotateY: dir * 85,
+                            scale: 0.93,
+                            opacity: 0,
+                            filter: 'blur(3px)',
+                            transition: {
+                              duration: 0.42,
+                              ease: [0.16, 1, 0.3, 1],
+                            },
+                          })}
+                          className="relative w-full h-full flex items-center justify-center group/jersey [transform-style:preserve-3d]"
                         >
-                          <div className="relative w-full h-full flex items-center justify-center">
+                          <div className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
                             {/* Base High-Resolution Jersey Artwork */}
                             <img
                               src={currentView.image}
@@ -540,7 +571,7 @@ export const EditorialHero: React.FC = () => {
                   return (
                     <button
                       key={view.id}
-                      onClick={() => setActiveViewIndex(index)}
+                      onClick={() => handleSelectView(index)}
                       className={`relative w-full flex items-center justify-between px-2.5 py-2 rounded-xs transition-colors duration-300 text-left group cursor-pointer border ${
                         isActive
                           ? 'border-white/18 bg-white/[0.035] shadow-sm'
