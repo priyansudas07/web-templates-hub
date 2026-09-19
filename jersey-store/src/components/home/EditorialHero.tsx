@@ -226,11 +226,11 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:translate-x-2 xl:translate-x-4">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
             
-            {/* Jersey Centerpiece Container */}
+            {/* Jersey Centerpiece Container (Enhanced 8-12% Visual Scale & Central Placement) */}
             <div
-              className={`relative w-full max-w-[520px] sm:max-w-[620px] lg:max-w-[680px] xl:max-w-[720px] flex items-center justify-center z-10 scale-115 lg:scale-[1.26] xl:scale-[1.30] transition-transform duration-500 ease-out ${
+              className={`relative w-full max-w-[540px] sm:max-w-[640px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.24] lg:scale-[1.38] xl:scale-[1.42] transition-transform duration-500 ease-out ${
                 activeViewIndex === 0
                   ? 'translate-y-9 sm:translate-y-11 lg:translate-y-10'
                   : '-translate-y-3 sm:-translate-y-4 lg:-translate-y-2'
@@ -249,12 +249,12 @@ export const EditorialHero: React.FC = () => {
                   }}
                   className="relative w-full h-full flex items-center justify-center pointer-events-none"
                 >
-                  {/* Volumetric Theatrical Studio Backlight */}
+                  {/* Volumetric Theatrical Studio Backlight (Deep Radiant Separation) */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
                     {/* Core Ruby Spotlight Behind Torso */}
-                    <div className="w-[320px] h-[360px] sm:w-[380px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.42)_0%,_rgba(180,20,15,0.20)_45%,_transparent_72%)] blur-2xl transform-gpu" />
+                    <div className="w-[360px] h-[400px] sm:w-[420px] sm:h-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.50)_0%,_rgba(180,20,15,0.24)_48%,_transparent_72%)] blur-2xl transform-gpu" />
                     {/* Broad Atmospheric Haze */}
-                    <div className="absolute w-[500px] h-[540px] sm:w-[620px] sm:h-[660px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.16)_0%,_rgba(227,38,30,0.06)_50%,_transparent_75%)] blur-3xl transform-gpu" />
+                    <div className="absolute w-[540px] h-[580px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.20)_0%,_rgba(227,38,30,0.07)_52%,_transparent_75%)] blur-3xl transform-gpu" />
                   </div>
 
                   <AnimatePresence mode="wait">
@@ -270,7 +270,7 @@ export const EditorialHero: React.FC = () => {
                         <img
                           src={currentView.image}
                           alt="Portugal 2025/26 Match Kit"
-                          className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] drop-shadow-[0_0_50px_rgba(227,38,30,0.25)] select-none pointer-events-auto"
+                          className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] select-none pointer-events-auto"
                         />
                       ) : (
                         <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
@@ -291,7 +291,7 @@ export const EditorialHero: React.FC = () => {
                 </motion.div>
 
 
-                {/* 2D Parallax Layer for Hotspots: Tracks Jersey Motion while Maintaining Permanent Crystal-Clear Typography */}
+                {/* 2D Parallax Layer for Hotspots: Tracks Jersey Motion with Understated, Non-Competing Intensity */}
                 {activeViewIndex === 0 && (
                   <motion.div
                     style={{
@@ -306,18 +306,18 @@ export const EditorialHero: React.FC = () => {
                       className="absolute top-[1.5%] left-[38%] pointer-events-auto cursor-pointer group flex flex-col items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'collar' ? null : HOTSPOTS[0])}
                     >
-                      {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/60">01</span>
-                        <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
+                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
+                        <span className="text-[8.5px] font-mono font-medium text-white/40">01</span>
+                        <span className="text-white/15 text-[8px]">•</span>
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
                           COLLAR
                         </span>
                       </div>
-                      {/* Shortened Precision Hairline String + Target Dot */}
-                      <div className="w-[1px] h-5 bg-gradient-to-b from-white/40 via-white/25 to-white/10" />
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
+                      {/* Delicate Hairline String + Softened Target Dot */}
+                      <div className="w-[1px] h-5 bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
+                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
                     </div>
 
                     {/* Hotspot 02: Crest Callout (Right Chest Shield) */}
@@ -325,16 +325,16 @@ export const EditorialHero: React.FC = () => {
                       className="absolute top-[30%] left-[53.5%] -translate-y-1/2 pointer-events-auto cursor-pointer group flex items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'crest' ? null : HOTSPOTS[1])}
                     >
-                      {/* Target Dot directly on the Portuguese Shield */}
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
-                      {/* Hairline */}
-                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/30 to-white/10" />
-                      {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/60">02</span>
-                        <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
+                      {/* Softened Target Dot directly on the Portuguese Shield */}
+                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
+                      {/* Delicate Hairline */}
+                      <div className="w-4 h-[1px] bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
+                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
+                        <span className="text-[8.5px] font-mono font-medium text-white/40">02</span>
+                        <span className="text-white/15 text-[8px]">•</span>
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
                           CREST
                         </span>
                       </div>
@@ -345,16 +345,16 @@ export const EditorialHero: React.FC = () => {
                       className="absolute top-[61%] right-[5%] sm:right-[7%] pointer-events-auto cursor-pointer group flex items-center"
                       onClick={() => setActiveHotspot(activeHotspot?.id === 'fabric' ? null : HOTSPOTS[2])}
                     >
-                      {/* Target Dot */}
-                      <div className="w-1.5 h-1.5 rounded-full border border-white/60 bg-[#E3261E] shadow-[0_0_8px_#E3261E]" />
-                      {/* Hairline */}
-                      <div className="w-3 h-[1px] bg-gradient-to-r from-white/10 to-white/30" />
-                      {/* Compact Glass Capsule */}
-                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/80 hover:bg-[#0A0A09]/95 backdrop-blur-md border border-white/20 hover:border-white/50 shadow-[0_6px_20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
-                        <span className="w-1 h-1 rounded-full bg-[#E3261E] shadow-[0_0_6px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
-                        <span className="text-[8.5px] font-mono font-medium text-white/60">03</span>
-                        <span className="text-white/20 text-[8px]">•</span>
-                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8] uppercase antialiased">
+                      {/* Softened Target Dot */}
+                      <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-[#E3261E] shadow-[0_0_4px_rgba(227,38,30,0.5)]" />
+                      {/* Delicate Hairline */}
+                      <div className="w-3 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-white/20" />
+                      {/* Compact Glass Capsule (Subtle, Understated Contrast) */}
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0A0A09]/70 hover:bg-[#0A0A09]/90 backdrop-blur-md border border-white/12 hover:border-white/35 shadow-[0_4px_16px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.85),0_0_12px_rgba(227,38,30,0.25)] transition-all duration-200">
+                        <span className="w-1 h-1 rounded-full bg-[#E3261E]/90 shadow-[0_0_4px_#E3261E] animate-pulse group-hover:scale-125 transition-transform" />
+                        <span className="text-[8.5px] font-mono font-medium text-white/40">03</span>
+                        <span className="text-white/15 text-[8px]">•</span>
+                        <span className="text-[9px] font-sans font-bold tracking-[0.14em] text-[#F3F0E8]/90 uppercase antialiased">
                           FABRIC
                         </span>
                       </div>
@@ -425,23 +425,23 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-10 xl:translate-x-16 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-4 lg:translate-x-12 xl:translate-x-18 z-20"
           >
             {/* Minimalist Editorial Gallery Strip */}
-            <div className="w-full max-w-[280px]">
+            <div className="w-full max-w-[260px]">
               
               {/* Understated Editorial Header */}
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
-                <span className="text-[10px] font-sans font-semibold tracking-[0.25em] text-[#9B9992] uppercase">
+              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/[0.06]">
+                <span className="text-[9.5px] font-sans font-semibold tracking-[0.22em] text-[#9B9992]/80 uppercase">
                   PERSPECTIVES
                 </span>
-                <span className="text-[10px] font-mono tracking-widest text-[#9B9992]/60">
+                <span className="text-[9.5px] font-mono tracking-widest text-[#9B9992]/50">
                   0{activeViewIndex + 1} / 0{KIT_VIEWS.length}
                 </span>
               </div>
 
               {/* View Items */}
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 {KIT_VIEWS.map((view, index) => {
                   const isActive = index === activeViewIndex;
                   return (
@@ -451,19 +451,19 @@ export const EditorialHero: React.FC = () => {
                         setActiveViewIndex(index);
                         setActiveHotspot(null);
                       }}
-                      className={`w-full flex items-center justify-between p-2 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
+                      className={`w-full flex items-center justify-between p-1.5 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
                         isActive
-                          ? 'bg-white/[0.04] border-white/20 shadow-sm'
-                          : 'bg-transparent border-transparent opacity-45 hover:opacity-100 hover:bg-white/[0.02]'
+                          ? 'bg-white/[0.04] border-white/18 shadow-sm'
+                          : 'bg-transparent border-transparent opacity-35 hover:opacity-100 hover:bg-white/[0.02]'
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5">
                         {/* Thumbnail */}
                         <div
-                          className={`w-10 h-10 shrink-0 rounded-xs bg-[#0e0e0d] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
+                          className={`w-9 h-9 shrink-0 rounded-xs bg-[#0e0e0d] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
                             isActive
-                              ? 'border-white/30 ring-1 ring-white/10'
-                              : 'border-white/[0.07] group-hover:border-white/20'
+                              ? 'border-white/25 ring-1 ring-white/10'
+                              : 'border-white/[0.06] group-hover:border-white/20'
                           }`}
                         >
                           <img
