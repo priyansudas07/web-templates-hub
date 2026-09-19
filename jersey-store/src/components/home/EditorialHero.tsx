@@ -282,10 +282,10 @@ export const EditorialHero: React.FC = () => {
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentView.id}
-                        initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
-                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                        exit={{ opacity: 0, scale: 1.04, filter: 'blur(4px)' }}
-                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        initial={{ opacity: 0, scale: 0.94, y: 10, filter: 'blur(8px)' }}
+                        animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, scale: 1.05, y: -8, filter: 'blur(8px)' }}
+                        transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
                         className="relative w-full h-full flex items-center justify-center group/jersey"
                       >
                         {currentView.isCutout ? (
@@ -402,29 +402,45 @@ export const EditorialHero: React.FC = () => {
                     <button
                       key={view.id}
                       onClick={() => setActiveViewIndex(index)}
-                      className={`w-full flex items-center justify-between px-2 py-1.5 rounded-xs transition-all duration-300 text-left group cursor-pointer border ${
+                      className={`relative w-full flex items-center justify-between px-2.5 py-2 rounded-xs transition-colors duration-300 text-left group cursor-pointer border ${
                         isActive
-                          ? 'bg-white/[0.035] border-white/15 shadow-sm'
-                          : 'bg-transparent border-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
+                          ? 'border-white/18 bg-white/[0.035] shadow-sm'
+                          : 'border-transparent bg-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        {/* Smaller Minimalist Thumbnail */}
-                        <div
-                          className={`w-7 h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-all duration-300 ${
+                        {/* Smooth Scaling Minimalist Thumbnail */}
+                        <motion.div
+                          animate={{
+                            scale: isActive ? 1.14 : 1,
+                          }}
+                          transition={{
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 24,
+                          }}
+                          className={`w-7 h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-colors duration-300 ${
                             isActive
-                              ? 'border-white/25 shadow-[0_0_8px_rgba(0,0,0,0.8)]'
+                              ? 'border-white/35 shadow-[0_0_12px_rgba(0,0,0,0.9)] ring-1 ring-[#E3261E]/40'
                               : 'border-white/[0.06] group-hover:border-white/15'
                           }`}
                         >
-                          <img
+                          <motion.img
                             src={view.image}
                             alt={view.label}
+                            animate={{
+                              scale: isActive ? 1.08 : 1,
+                            }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 300,
+                              damping: 24,
+                            }}
                             className={`w-full h-full object-contain p-0.5 filter ${
-                              isActive ? 'contrast-105' : 'contrast-90 group-hover:contrast-100'
-                            } transition-all duration-300`}
+                              isActive ? 'contrast-105 brightness-105' : 'contrast-90 group-hover:contrast-100'
+                            }`}
                           />
-                        </div>
+                        </motion.div>
 
                         {/* Clean Single-Line Typography */}
                         <div className="flex items-center gap-1.5 text-left">
@@ -441,12 +457,18 @@ export const EditorialHero: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Subtle Crimson Active Indicator */}
-                      <div className="pl-2">
-                        {isActive ? (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] inline-block shadow-[0_0_8px_rgba(227,38,30,0.8)]" />
-                        ) : (
-                          <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-white/20 inline-block transition-colors" />
+                      {/* Active Red Indicator: Smoothly Slides across Selected Items */}
+                      <div className="relative w-3.5 h-3.5 flex items-center justify-center pr-1">
+                        {isActive && (
+                          <motion.div
+                            layoutId="activePerspectiveIndicator"
+                            transition={{
+                              type: 'spring',
+                              stiffness: 320,
+                              damping: 28,
+                            }}
+                            className="w-1.5 h-1.5 rounded-full bg-[#E3261E] shadow-[0_0_8px_#E3261E,0_0_2px_#ffffff]"
+                          />
                         )}
                       </div>
                     </button>
