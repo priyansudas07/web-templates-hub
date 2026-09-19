@@ -39,12 +39,12 @@ export const Navbar: React.FC = () => {
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 relative overflow-hidden ${
       scrolled 
-        ? 'bg-[#050505]/65 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.09] shadow-[0_10px_35px_rgba(0,0,0,0.5)]' 
-        : 'bg-[#050505]/15 backdrop-blur-xl backdrop-saturate-150 border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.2)]'
+        ? 'bg-[#070707]/80 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.08] shadow-[0_10px_35px_rgba(0,0,0,0.6)]' 
+        : 'bg-[#070707]/50 backdrop-blur-xl backdrop-saturate-150 border-b border-white/[0.05] shadow-[0_4px_30px_rgba(0,0,0,0.25)]'
     }`}>
       {/* Specular Glass Surface Sheen & Ambient Refraction Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-white/[0.01] to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/8 to-transparent pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="relative flex items-center justify-between h-21 sm:h-22">
