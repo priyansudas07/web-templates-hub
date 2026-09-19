@@ -106,17 +106,14 @@ export function SpotlightNavbar({
     <div className={cn("relative flex items-center justify-center", className)}>
       <nav
         ref={navRef}
-        className="relative h-10 px-2 sm:px-3 flex items-center transition-all duration-300 overflow-hidden rounded-full bg-[#0c0c0b]/85 backdrop-blur-2xl backdrop-saturate-150 border border-white/[0.09] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.13),inset_0_-1px_0_0_rgba(0,0,0,0.7),0_10px_30px_rgba(0,0,0,0.65)]"
+        className="relative h-10 px-2.5 sm:px-3.5 flex items-center transition-all duration-300 overflow-hidden rounded-full bg-[#0A0A09]/75 backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.08),0_8px_32px_rgba(0,0,0,0.6)]"
         style={{
           ['--spotlight-color' as string]: 'rgba(227, 38, 30, 0.28)',
           ['--ambience-color' as string]: '#E3261E',
         }}
       >
-        {/* Specular Inner Glass Sheen */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-white/[0.01] to-transparent pointer-events-none rounded-full" />
-
         {/* Nav Items List */}
-        <ul className="relative flex items-center h-full gap-1 sm:gap-1.5 z-10">
+        <ul className="relative flex items-center h-full gap-2 z-10">
           {items.map((item, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -127,11 +124,11 @@ export function SpotlightNavbar({
                   onClick={() => onItemClick?.(item, idx)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "px-3.5 sm:px-4 py-1.5 text-[11px] sm:text-[11.5px] font-sans font-semibold uppercase tracking-[0.16em] transition-colors duration-200 rounded-full flex items-center gap-1.5",
+                    "px-4 py-1.5 text-[11.5px] sm:text-xs font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-200 rounded-full flex items-center gap-1.5",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]",
                     isActive
                       ? "text-[#F3F0E8] font-bold"
-                      : "text-[#9B9992]/75 hover:text-[#F3F0E8]"
+                      : "text-[#9B9992]/80 hover:text-[#F3F0E8]"
                   )}
                 >
                   {item.label}
@@ -154,7 +151,7 @@ export function SpotlightNavbar({
         <div
           className="pointer-events-none absolute bottom-0 left-0 w-full h-[1.5px] z-1"
           style={{
-            background: `radial-gradient(55px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, rgba(227,38,30,0.5) 50%, transparent 100%)`,
+            background: `radial-gradient(45px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)`,
           }}
         />
       </nav>
