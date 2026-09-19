@@ -508,44 +508,59 @@ export const EditorialHero: React.FC = () => {
       </div>
 
       {/* ============================================================
-          BOTTOM SECTION: 3 Value Pillars & Technical Archive Spec
+          BOTTOM SECTION: Understated Brand Assurance Modules & Archival Spec
          ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-2.5 border-t border-[#292927]/40">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-3 pb-1 border-t border-white/[0.04]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           
-          {/* 3 Value Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 text-left">
-            <div className="space-y-0.5">
-              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
-                PREMIUM QUALITY
-              </span>
-              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
-                AUTHENTIC KITS
-              </span>
+          {/* Brand Assurance Modules (More Spacing, Lighter Visual Weight) */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-12 lg:gap-16 text-left">
+            
+            {/* Module 1: Quality Spec */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-[#E3261E]/70" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  MATCH ISSUE SPEC
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / AUTHENTIC
+                </span>
+              </div>
             </div>
 
-            <div className="space-y-0.5">
-              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
-                GLOBAL SHIPPING
-              </span>
-              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
-                WORLDWIDE DELIVERY
-              </span>
+            {/* Module 2: Logistics */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  WORLDWIDE DISPATCH
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / TRACKED
+                </span>
+              </div>
             </div>
 
-            <div className="space-y-0.5">
-              <span className="block text-[10px] font-sans text-[#F3F0E8] font-bold uppercase tracking-[0.14em]">
-                TRUSTED BY FANS
-              </span>
-              <span className="block text-[9.5px] font-sans text-[#9B9992] tracking-wider uppercase">
-                100% ORIGINAL
-              </span>
+            {/* Module 3: Verification */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  VAULT VERIFIED
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / 100% OFFICIAL
+                </span>
+              </div>
             </div>
+
           </div>
 
           {/* Right Micro Technical Archive Spec (Subtle Pedigree Tag) */}
-          <div className="hidden md:flex items-center gap-2 text-right opacity-35">
-            <span className="text-[9px] font-mono tracking-[0.25em] text-[#9B9992] uppercase">
+          <div className="hidden md:flex items-center gap-2 text-right opacity-40">
+            <span className="w-1 h-1 rounded-full bg-emerald-500/60" />
+            <span className="text-[9px] font-mono tracking-[0.26em] text-[#9B9992] uppercase">
               ARCHIVAL SPEC // POR-2026-HM
             </span>
           </div>
