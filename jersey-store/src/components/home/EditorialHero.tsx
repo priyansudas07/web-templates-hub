@@ -4,15 +4,21 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { DustParticles } from '../common/DustParticles';
 import { products } from '../../data/products';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
+
+interface HotspotSpec {
+  label: string;
+  value: string;
+}
 
 interface Hotspot {
   id: string;
   number: string;
   label: string;
   title: string;
-  description: string;
-  tech: string;
+  category: string;
+  specs: HotspotSpec[];
+  verdict: string;
 }
 
 const HOTSPOTS: Hotspot[] = [
@@ -20,25 +26,40 @@ const HOTSPOTS: Hotspot[] = [
     id: 'collar',
     number: '01',
     label: 'COLLAR',
-    title: 'DRI-FIT ADV HYBRID RIB',
-    description: 'Precision-engineered ergonomic collar with dual-color green & black tipping and zero-abrasion seam bonding.',
-    tech: 'BONDED RIBBED KNIT',
+    title: 'ERGONOMIC HYBRID RIB COLLAR',
+    category: 'BONDED MICRO-KNIT',
+    specs: [
+      { label: 'CONSTRUCTION', value: 'Zero-Abrasion Sonic Seam Welds' },
+      { label: 'PROFILE', value: 'Dual-Tone Tipping (Clover / Obsidian)' },
+      { label: 'FIT SPEC', value: 'Ergonomic Dynamic Compression' },
+    ],
+    verdict: 'FPF MATCH ACCREDITATION',
   },
   {
     id: 'crest',
     number: '02',
     label: 'CREST',
-    title: 'FEDERAÇÃO PORTUGUESA SHIELD',
-    description: 'High-definition dimensional heat-applied crest with micro-embossed golden cross and authentic match-spec backing.',
-    tech: 'DIMENSIONAL 3D SILICONE',
+    title: 'FPF PORTUGUESE FEDERATION SHIELD',
+    category: '3D DIMENSIONAL SILICONE',
+    specs: [
+      { label: 'APPLICATION', value: 'Precision Thermal Bonded Seal' },
+      { label: 'SURFACE', value: 'Micro-Embossed Cruz de Cristo' },
+      { label: 'WEIGHT SPEC', value: 'Ultra-Light (0.8g) Low-Drag Profile' },
+    ],
+    verdict: 'AUTHENTIC 3D MATCH EMBLEM',
   },
   {
     id: 'fabric',
     number: '03',
     label: 'FABRIC',
-    title: 'HEAT-MAPPED JACQUARD WEAVE',
-    description: 'Generative moisture-wicking open-hole knit pattern mapped directly to athlete sweat data for optimal ventilation.',
-    tech: '100% RECYCLED POLYESTER',
+    title: 'DRI-FIT ADV GENERATIVE JACQUARD',
+    category: 'HEAT-MAPPED OPEN-HOLE KNIT',
+    specs: [
+      { label: 'COMPOSITION', value: '100% Recycled Poly Micro-Filament' },
+      { label: 'VENTILATION', value: '4D Athlete Sweat-Zone Data Mapping' },
+      { label: 'WEAVE TECH', value: 'Targeted High-Velocity Airflow' },
+    ],
+    verdict: 'AEROREADY 2026 ARCHIVAL KNIT',
   },
 ];
 
@@ -363,51 +384,73 @@ export const EditorialHero: React.FC = () => {
                   </motion.div>
                 )}
 
-                {/* Hotspot Spec Modal / Floating Glass Dossier Popover */}
+                {/* Technical Match Dossier Spec Modal / HUD Card */}
                 <AnimatePresence>
                   {activeHotspot && (
                     <motion.div
-                      initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                      initial={{ opacity: 0, y: 14, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute bottom-3 inset-x-0 mx-auto max-w-[340px] w-[92%] bg-[#080807]/92 backdrop-blur-2xl border border-white/[0.14] p-4 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(227,38,30,0.12),inset_0_1px_0_rgba(255,255,255,0.18)] z-40 text-left"
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute bottom-1 inset-x-0 mx-auto max-w-[390px] w-[95%] bg-[#080807]/95 backdrop-blur-2xl border border-white/[0.14] p-3.5 sm:p-4 rounded-xs shadow-[0_30px_70px_rgba(0,0,0,0.95),0_0_30px_rgba(227,38,30,0.12),inset_0_1px_0_rgba(255,255,255,0.2)] z-40 text-left relative overflow-hidden"
                     >
-                      {/* Header Row */}
-                      <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+                      {/* Top-Right Decorative Corner Crosshair */}
+                      <span className="absolute top-1.5 right-1.5 font-mono text-[8px] text-white/20 select-none pointer-events-none">
+                        +
+                      </span>
+                      {/* Bottom-Left Decorative Corner Crosshair */}
+                      <span className="absolute bottom-1.5 left-1.5 font-mono text-[8px] text-white/20 select-none pointer-events-none">
+                        +
+                      </span>
+
+                      {/* Header Row: Laser-Cut Badge + Close Button */}
+                      <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
                         <div className="flex items-center gap-2">
-                          <span className="text-[8.5px] font-mono font-bold bg-[#E3261E] text-white px-2 py-0.5 rounded-xs tracking-wider uppercase shadow-[0_0_10px_rgba(227,38,30,0.5)]">
-                            {activeHotspot.number} // {activeHotspot.label}
+                          <span className="text-[8.5px] font-mono font-bold bg-[#E3261E] text-white px-2 py-0.5 rounded-2xs tracking-widest uppercase shadow-[0_0_12px_rgba(227,38,30,0.4)]">
+                            SPEC // {activeHotspot.number}
                           </span>
-                          <span className="text-[9px] font-mono text-[#9B9992]/80 tracking-wider uppercase">
-                            {activeHotspot.tech}
+                          <span className="text-[9px] font-mono font-semibold text-[#9B9992] tracking-[0.16em] uppercase">
+                            {activeHotspot.category}
                           </span>
                         </div>
                         <button
                           onClick={() => setActiveHotspot(null)}
-                          className="w-5 h-5 rounded-full bg-white/[0.05] hover:bg-white/[0.15] border border-white/10 flex items-center justify-center text-[#9B9992] hover:text-white text-xs font-mono transition-colors cursor-pointer"
-                          aria-label="Close specification"
+                          className="w-6 h-6 rounded-2xs bg-white/[0.04] hover:bg-white/[0.12] border border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all cursor-pointer group/btn"
+                          aria-label="Close specification dossier"
                         >
-                          ✕
+                          <X className="w-3 h-3 transition-transform group-hover/btn:rotate-90 duration-200" />
                         </button>
                       </div>
 
-                      {/* Content Body */}
-                      <h4 className="text-xs font-sans font-bold text-white uppercase tracking-wider mt-2.5">
-                        {activeHotspot.title}
-                      </h4>
-                      <p className="text-[11px] font-sans text-[#9B9992] leading-relaxed mt-1 font-normal">
-                        {activeHotspot.description}
-                      </p>
+                      {/* Component Title */}
+                      <div className="mt-2.5">
+                        <h4 className="text-xs sm:text-[13px] font-sans font-black text-[#F3F0E8] uppercase tracking-wide leading-snug">
+                          {activeHotspot.title}
+                        </h4>
+                      </div>
+
+                      {/* Structured 2-Column Telemetry Specs Grid */}
+                      <div className="mt-2.5 py-2 border-y border-white/[0.08] space-y-2 bg-white/[0.02] px-3 rounded-2xs">
+                        {activeHotspot.specs.map((spec, idx) => (
+                          <div key={idx} className="flex items-baseline justify-between gap-2.5 text-xs leading-tight">
+                            <span className="text-[9px] font-mono text-[#9B9992]/70 tracking-wider uppercase font-medium whitespace-nowrap shrink-0">
+                              {spec.label}
+                            </span>
+                            <span className="text-[10px] sm:text-[10.5px] font-sans text-[#F3F0E8] font-semibold tracking-wide text-right">
+                              {spec.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
 
                       {/* Technical Footer Telemetry */}
-                      <div className="border-t border-white/[0.06] mt-3 pt-2 flex items-center justify-between text-[9px] font-mono">
-                        <span className="text-[#9B9992]/50 tracking-widest uppercase">
-                          POR-2026 // MATCH ISSUE
+                      <div className="mt-2.5 flex items-center justify-between text-[8.5px] font-mono">
+                        <span className="text-[#9B9992]/50 tracking-widest uppercase whitespace-nowrap">
+                          SPEC // POR-2026
                         </span>
-                        <span className="text-emerald-400 font-semibold tracking-wider flex items-center gap-1.5 uppercase">
+                        <span className="text-emerald-400 font-bold tracking-wider flex items-center gap-1.5 uppercase whitespace-nowrap">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#34d399]" />
-                          OFFICIAL SPEC
+                          {activeHotspot.verdict}
                         </span>
                       </div>
                     </motion.div>
