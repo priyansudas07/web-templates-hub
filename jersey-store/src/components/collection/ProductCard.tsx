@@ -42,7 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     return (
       <div
         className={cn(
-          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 rounded-sm flex flex-col justify-between overflow-hidden shadow-2xl",
+          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-300 ease-out rounded-sm flex flex-col justify-between overflow-hidden shadow-2xl",
           className
         )}
       >
@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               src={product.images[currentImageIndex] || product.images[0]}
               alt={`${product.name} - ${currentImageIndex === 0 ? 'Front' : 'Back'}`}
               loading="lazy"
-              className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+              className="w-full h-full object-cover object-center group-hover:scale-[1.04] group-hover:brightness-[1.04] transition-all duration-300 ease-out"
             />
           </Link>
 
@@ -74,8 +74,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Details Underneath Image */}
-        <div className="p-6 sm:p-7 flex flex-col justify-between gap-5 flex-grow bg-[#0E0E0D]">
+        {/* Details Underneath Image with Upward Shift Micro-interaction */}
+        <div className="p-6 sm:p-7 flex flex-col justify-between gap-5 flex-grow bg-[#0E0E0D] group-hover:-translate-y-1 sm:group-hover:-translate-y-1.5 transition-transform duration-300 ease-out">
           <div className="space-y-2">
             {/* Small Label with Orange Accent */}
             <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {/* Price & View Kit Link */}
+          {/* Price & Revealed View Kit Action */}
           <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
             <div>
               <span className="text-[10px] font-mono text-[#8E8C85] uppercase tracking-widest block">MATCH PRICE</span>
@@ -119,10 +119,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             <Link
               to={`/collection/${product.id}`}
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-widest text-[#F3F0E8] group-hover:text-[#E3261E] uppercase transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-widest text-[#F3F0E8] group-hover:text-[#E3261E] uppercase opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-1 sm:group-hover:translate-x-0 transition-all duration-300 ease-out"
             >
               <span>VIEW KIT</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
             </Link>
           </div>
         </div>
@@ -135,7 +135,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     return (
       <div
         className={cn(
-          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 rounded-sm flex flex-col sm:flex-row overflow-hidden flex-1 shadow-lg",
+          "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-300 ease-out rounded-sm flex flex-col sm:flex-row overflow-hidden flex-1 shadow-lg",
           className
         )}
       >
@@ -150,13 +150,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               src={product.images[currentImageIndex] || product.images[0]}
               alt={`${product.name}`}
               loading="lazy"
-              className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+              className="w-full h-full object-cover object-center group-hover:scale-[1.04] group-hover:brightness-[1.04] transition-all duration-300 ease-out"
             />
           </Link>
         </div>
 
-        {/* Details Area */}
-        <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 flex-grow bg-[#0E0E0D]">
+        {/* Details Area with Upward Shift Micro-interaction */}
+        <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 flex-grow bg-[#0E0E0D] group-hover:-translate-y-1 sm:group-hover:-translate-y-1.5 transition-transform duration-300 ease-out">
           <div className="space-y-1.5">
             {/* Small Label with Orange Accent */}
             <div className="flex items-center gap-1.5">
@@ -183,7 +183,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {/* Price & View Kit Link */}
+          {/* Price & Revealed View Kit Action */}
           <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-2">
             <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
               ₹{product.price.toLocaleString('en-IN')}
@@ -191,7 +191,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             <Link
               to={`/collection/${product.id}`}
-              className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] uppercase transition-colors"
+              className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] uppercase opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-1 sm:group-hover:translate-x-0 transition-all duration-300 ease-out"
             >
               <span>VIEW KIT</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -206,7 +206,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       className={cn(
-        "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-500 flex flex-col rounded-sm overflow-hidden shadow-lg",
+        "group bg-[#0E0E0D] border border-white/[0.06] hover:border-white/[0.18] transition-all duration-300 ease-out flex flex-col rounded-sm overflow-hidden shadow-lg",
         className
       )}
     >
@@ -221,7 +221,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             src={product.images[currentImageIndex] || product.images[0]}
             alt={`${product.name}`}
             loading="lazy"
-            className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+            className="w-full h-full object-cover object-center group-hover:scale-[1.04] group-hover:brightness-[1.04] transition-all duration-300 ease-out"
           />
         </Link>
 
@@ -237,8 +237,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Details Underneath Image */}
-      <div className="p-5 flex flex-col flex-grow justify-between gap-4 bg-[#0E0E0D]">
+      {/* Details Underneath Image with Upward Shift Micro-interaction */}
+      <div className="p-5 flex flex-col flex-grow justify-between gap-4 bg-[#0E0E0D] group-hover:-translate-y-1 sm:group-hover:-translate-y-1.5 transition-transform duration-300 ease-out">
         <div className="space-y-1.5">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
@@ -263,7 +263,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Price & View Kit Link */}
+        {/* Price & Revealed View Kit Action */}
         <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
           <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
             ₹{product.price.toLocaleString('en-IN')}
@@ -271,7 +271,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           <Link
             to={`/collection/${product.id}`}
-            className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-widest text-[#F3F0E8] group-hover:text-[#E3261E] uppercase transition-colors"
+            className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-widest text-[#F3F0E8] group-hover:text-[#E3261E] uppercase opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-1 sm:group-hover:translate-x-0 transition-all duration-300 ease-out"
           >
             <span>VIEW KIT</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
