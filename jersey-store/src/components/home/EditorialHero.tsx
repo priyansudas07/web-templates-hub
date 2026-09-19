@@ -11,32 +11,44 @@ const KIT_VIEWS = [
     label: 'Front View',
     num: '01',
     image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-front.png',
     tag: 'MATCH EDITION FRONT',
-    isCutout: true,
+    camera: { scale: 1, x: 0, y: 0 },
+    isBack: false,
+    specNote: null,
   },
   {
     id: 'back',
     label: 'Back Profile',
     num: '02',
     image: '/kits/portugal-back.png',
+    thumbnail: '/kits/portugal-back.png',
     tag: 'AUTHENTIC REAR MATCH EDITION',
-    isCutout: true,
+    camera: { scale: 1, x: 0, y: 0 },
+    isBack: true,
+    specNote: null,
   },
   {
     id: 'crest',
     label: 'Club Crest',
     num: '03',
-    image: '/kits/portugal-crest.jpg',
-    tag: 'FPF EMBROIDERED SHIELD',
-    isCutout: false,
+    image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-crest.jpg',
+    tag: 'FPF EMBROIDERED CREST',
+    camera: { scale: 3.1, x: -140, y: 155 },
+    isBack: false,
+    specNote: 'MAG: 3.1X // GOLD SHIELD EMBROIDERY',
   },
   {
     id: 'details',
     label: 'Fabric Weave',
     num: '04',
-    image: '/kits/portugal-details.jpg',
+    image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-details.jpg',
     tag: 'COLLAR & DRI-FIT ADV',
-    isCutout: false,
+    camera: { scale: 3.0, x: -10, y: 310 },
+    isBack: false,
+    specNote: 'MAG: 3.0X // ENGINEERED COLLAR & KNIT',
   },
 ];
 
@@ -275,25 +287,39 @@ export const EditorialHero: React.FC = () => {
                       <div className="absolute w-[580px] h-[620px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
                     </div>
 
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentView.id}
-                        initial={{ opacity: 0, scale: 0.94, y: 10, filter: 'blur(8px)' }}
-                        animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-                        exit={{ opacity: 0, scale: 1.05, y: -8, filter: 'blur(8px)' }}
-                        transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative w-full h-full flex items-center justify-center group/jersey"
-                      >
-                        {currentView.isCutout ? (
+                    {/* Camera Zoom Stage (Smoothly zooms and translates camera to focal areas) */}
+                    <motion.div
+                      animate={{
+                        scale: currentView.camera.scale,
+                        x: currentView.camera.x,
+                        y: currentView.camera.y,
+                      }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 95,
+                        damping: 22,
+                        mass: 0.85,
+                      }}
+                      className="relative w-full h-full flex items-center justify-center"
+                    >
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentView.isBack ? 'back' : 'front'}
+                          initial={{ opacity: 0, filter: 'blur(6px)' }}
+                          animate={{ opacity: 1, filter: 'blur(0px)' }}
+                          exit={{ opacity: 0, filter: 'blur(6px)' }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="relative w-full h-full flex items-center justify-center group/jersey"
+                        >
                           <div className="relative w-full h-full flex items-center justify-center">
-                            {/* 3. Base Jersey Artwork */}
+                            {/* Base High-Resolution Jersey Artwork */}
                             <img
                               src={currentView.image}
                               alt="Portugal 2025/26 Match Kit"
                               className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_46px_rgba(227,38,30,0.22)] drop-shadow-[0_0_12px_rgba(255,255,255,0.04)] select-none pointer-events-auto cursor-pointer"
                             />
 
-                            {/* 4. Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
+                            {/* Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
                             <div
                               className="absolute inset-0 pointer-events-none mix-blend-screen z-10 overflow-hidden"
                               style={{
@@ -322,21 +348,26 @@ export const EditorialHero: React.FC = () => {
                               />
                             </div>
                           </div>
-                        ) : (
-                          <div className="w-[62%] sm:w-[56%] lg:w-[50%] max-w-[340px] aspect-[4/3.2] p-1.5 bg-[#121211]/95 backdrop-blur-md border border-[#292927] rounded-sm overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] relative group pointer-events-auto">
-                            <img
-                              src={currentView.image}
-                              alt={currentView.tag}
-                              className="w-full h-full object-cover rounded-xs filter contrast-105 brightness-95 group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-                            <div className="absolute bottom-2.5 left-3 right-3 text-left">
-                              <span className="text-[8.5px] font-mono text-[#E3261E] uppercase tracking-widest block font-bold">MACRO SPEC // {currentView.num}</span>
-                              <span className="text-[11px] font-mono font-bold text-white uppercase tracking-wider line-clamp-1">{currentView.tag}</span>
-                            </div>
-                          </div>
-                        )}
-                      </motion.div>
+                        </motion.div>
+                      </AnimatePresence>
+                    </motion.div>
+
+                    {/* Macro Spec Telemetry Badge when Zoomed */}
+                    <AnimatePresence>
+                      {currentView.specNote && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.28, ease: 'easeOut' }}
+                          className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#0b0b0a]/90 backdrop-blur-md border border-white/15 rounded-xs flex items-center gap-2 z-30 pointer-events-none shadow-[0_10px_30px_rgba(0,0,0,0.8)] whitespace-nowrap"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
+                          <span className="text-[9px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase">
+                            {currentView.specNote}
+                          </span>
+                        </motion.div>
+                      )}
                     </AnimatePresence>
                   </motion.div>
                 </motion.div>
@@ -422,7 +453,7 @@ export const EditorialHero: React.FC = () => {
                           }`}
                         >
                           <motion.img
-                            src={view.image}
+                            src={view.thumbnail || view.image}
                             alt={view.label}
                             animate={{
                               scale: isActive ? 1.08 : 1,
@@ -432,7 +463,7 @@ export const EditorialHero: React.FC = () => {
                               stiffness: 300,
                               damping: 24,
                             }}
-                            className={`w-full h-full object-contain p-0.5 filter ${
+                            className={`w-full h-full object-cover p-0.5 filter ${
                               isActive ? 'contrast-105 brightness-105' : 'contrast-90 group-hover:contrast-100'
                             }`}
                           />
