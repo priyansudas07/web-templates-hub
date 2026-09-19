@@ -44,15 +44,15 @@ export const EditorialHero: React.FC = () => {
   const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
 
-  // Dynamic Parallax Motion Values for Hero Hover Interaction
+  // Dynamic Parallax Motion Values for Hero Hover Interaction (Subtle, Buttery Luxury Physics)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 160 };
-  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), springConfig);
-  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
-  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
-  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-6, 6]), springConfig);
+  const springConfig = { damping: 30, stiffness: 120 };
+  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [2.5, -2.5]), springConfig);
+  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3.5, 3.5]), springConfig);
+  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-4, 4]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -198,56 +198,118 @@ export const EditorialHero: React.FC = () => {
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
-                {/* 3D Parallax Tilt Layer for Jersey Centerpiece Artwork & Lighting */}
+                
+                {/* 1. Very Slow Organic Floating Movement (~4-6px) */}
                 <motion.div
-                  style={{
-                    rotateX: jerseyRotateX,
-                    rotateY: jerseyRotateY,
-                    x: jerseyTranslateX,
-                    y: jerseyTranslateY,
-                    transformStyle: 'preserve-3d',
+                  animate={{
+                    y: [-4.5, 4.5, -4.5],
+                  }}
+                  transition={{
+                    duration: 6.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
                   }}
                   className="relative w-full h-full flex items-center justify-center pointer-events-none"
                 >
-                  {/* Volumetric Theatrical Studio Backlight (Deep Radiant Separation) */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
-                    {/* Core Ruby Spotlight Behind Torso */}
-                    <div className="w-[360px] h-[400px] sm:w-[420px] sm:h-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.50)_0%,_rgba(180,20,15,0.24)_48%,_transparent_72%)] blur-2xl transform-gpu" />
-                    {/* Broad Atmospheric Haze */}
-                    <div className="absolute w-[540px] h-[580px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.20)_0%,_rgba(227,38,30,0.07)_52%,_transparent_75%)] blur-3xl transform-gpu" />
-                  </div>
+                  {/* 2. Extremely Subtle 3D Mouse Rotation & Parallax Layer */}
+                  <motion.div
+                    style={{
+                      rotateX: jerseyRotateX,
+                      rotateY: jerseyRotateY,
+                      x: jerseyTranslateX,
+                      y: jerseyTranslateY,
+                      transformStyle: 'preserve-3d',
+                    }}
+                    className="relative w-full h-full flex items-center justify-center pointer-events-none"
+                  >
+                    {/* Volumetric Theatrical Studio Backlight (Deep Radiant Separation) */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
+                      {/* Core Ruby Spotlight Behind Torso */}
+                      <div className="w-[360px] h-[400px] sm:w-[420px] sm:h-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.50)_0%,_rgba(180,20,15,0.24)_48%,_transparent_72%)] blur-2xl transform-gpu" />
+                      {/* Broad Atmospheric Haze */}
+                      <div className="absolute w-[540px] h-[580px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.20)_0%,_rgba(227,38,30,0.07)_52%,_transparent_75%)] blur-3xl transform-gpu" />
+                    </div>
 
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentView.id}
-                      initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
-                      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, scale: 1.04, filter: 'blur(4px)' }}
-                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                      className="relative w-full h-full flex items-center justify-center"
-                    >
-                      {currentView.isCutout ? (
-                        <img
-                          src={currentView.image}
-                          alt="Portugal 2025/26 Match Kit"
-                          className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] select-none pointer-events-auto"
-                        />
-                      ) : (
-                        <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
-                          <img
-                            src={currentView.image}
-                            alt={currentView.tag}
-                            className="w-full h-full object-cover rounded-sm filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                          <div className="absolute bottom-3 left-3 right-3 text-left">
-                            <span className="text-[9px] font-mono text-[#E3261E] uppercase tracking-widest block">MACRO DETAIL WEAVE</span>
-                            <span className="text-xs font-mono font-bold text-white uppercase">{currentView.tag}</span>
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentView.id}
+                        initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
+                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, scale: 1.04, filter: 'blur(4px)' }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative w-full h-full flex items-center justify-center group/jersey"
+                      >
+                        {currentView.isCutout ? (
+                          <div className="relative w-full h-full flex items-center justify-center">
+                            {/* 3. Base Jersey Artwork with Hover Fabric Texture / Contrast Boost */}
+                            <img
+                              src={currentView.image}
+                              alt="Portugal 2025/26 Match Kit"
+                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_60px_rgba(227,38,30,0.35)] drop-shadow-[0_0_12px_rgba(255,255,255,0.05)] transition-all duration-700 select-none pointer-events-auto cursor-pointer group-hover/jersey:contrast-[1.14] group-hover/jersey:brightness-[1.03] group-hover/jersey:drop-shadow-[0_0_80px_rgba(227,38,30,0.55)]"
+                            />
+
+                            {/* 4. Subtle Specular Light Sweep Across the Fabric Surface */}
+                            <div
+                              className="absolute inset-0 pointer-events-none mix-blend-screen z-10 overflow-hidden"
+                              style={{
+                                maskImage: `url(${currentView.image})`,
+                                WebkitMaskImage: `url(${currentView.image})`,
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center',
+                              }}
+                            >
+                              <motion.div
+                                animate={{
+                                  x: ['-140%', '160%'],
+                                  opacity: [0, 0.25, 0.5, 0.25, 0],
+                                }}
+                                transition={{
+                                  duration: 6,
+                                  ease: [0.16, 1, 0.3, 1],
+                                  repeat: Infinity,
+                                  repeatDelay: 2.5,
+                                }}
+                                className="w-[45%] h-[200%] -top-1/2 absolute bg-gradient-to-r from-transparent via-white/35 to-transparent -rotate-[22deg] blur-md"
+                              />
+                            </div>
+
+                            {/* 5. Micro Weave Fabric Texture Illuminator on Hover */}
+                            <div 
+                              className="absolute inset-0 pointer-events-none opacity-0 group-hover/jersey:opacity-100 transition-opacity duration-700 mix-blend-overlay"
+                              style={{
+                                maskImage: `url(${currentView.image})`,
+                                WebkitMaskImage: `url(${currentView.image})`,
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center',
+                                backgroundImage: `radial-gradient(circle at center, rgba(255,255,255,0.18) 0%, transparent 80%)`,
+                              }}
+                            />
                           </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
+                        ) : (
+                          <div className="w-full h-full p-2 bg-[#121211] border border-[#292927] rounded-sm overflow-hidden shadow-2xl relative group pointer-events-auto">
+                            <img
+                              src={currentView.image}
+                              alt={currentView.tag}
+                              className="w-full h-full object-cover rounded-sm filter contrast-110 group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute bottom-3 left-3 right-3 text-left">
+                              <span className="text-[9px] font-mono text-[#E3261E] uppercase tracking-widest block">MACRO DETAIL WEAVE</span>
+                              <span className="text-xs font-mono font-bold text-white uppercase">{currentView.tag}</span>
+                            </div>
+                          </div>
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                  </motion.div>
                 </motion.div>
 
               </div>
