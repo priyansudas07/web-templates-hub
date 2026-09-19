@@ -6,7 +6,7 @@ import { CategoryFilter } from '../components/collection/CategoryFilter';
 import { ProductGrid } from '../components/collection/ProductGrid';
 import { EmptyState } from '../components/collection/EmptyState';
 import { SectionHeading } from '../components/common/SectionHeading';
-import { ShieldCheck, Truck, MessageCircle, ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowUp, ArrowRight, MessageSquare } from 'lucide-react';
 
 export const Collection: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -91,10 +91,14 @@ export const Collection: React.FC = () => {
     setSortBy('featured');
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const isFiltered = selectedCategory !== 'all' || searchQuery || sortBy !== 'featured';
 
   return (
-    <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] pt-8 sm:pt-12 pb-16">
+    <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] pt-8 sm:pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
         {/* Editorial Top Heading */}
@@ -173,38 +177,56 @@ export const Collection: React.FC = () => {
           />
         )}
 
-        {/* Bottom Editorial Guarantees & Concierge Strip */}
-        <div className="pt-16 mt-16 border-t border-white/[0.08]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="p-6 bg-[#0E0E0D] border border-white/[0.06] rounded-sm space-y-2">
-              <div className="flex items-center gap-2 text-[#E3261E] text-xs font-mono font-bold uppercase tracking-wider">
-                <ShieldCheck className="w-4 h-4" />
-                <span>100% MATCH-GRADE AUTHENTICITY</span>
+        {/* Option 1: Archival Concierge Grail Sourcing Callout */}
+        <div className="pt-10 sm:pt-14 mt-10 sm:mt-14 border-t border-white/[0.08]">
+          <div className="p-8 sm:p-12 bg-[#0E0E0D] border border-white/[0.07] rounded-sm shadow-2xl relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            
+            {/* Left Column: Heading & Archival Manifesto */}
+            <div className="space-y-3 max-w-2xl">
+              <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.22em] text-[#E3261E] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+                <span>// ARCHIVAL SOURCING CONCIERGE</span>
               </div>
-              <p className="text-xs text-[#8E8C85] font-sans leading-relaxed">
-                Every kit is rigorously inspected for official federation heat seals, player cuts, and verified serial batch embroidery.
+
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold uppercase tracking-tight text-[#F3F0E8] leading-tight">
+                CAN'T FIND A SPECIFIC KIT OR RETRO GRAIL?
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[#8E8C85] font-sans leading-relaxed">
+                Our kit curators source rare historical match-worn editions, sold-out tournament kits, deadstock grails, and personalized player name-sets on request.
               </p>
             </div>
 
-            <div className="p-6 bg-[#0E0E0D] border border-white/[0.06] rounded-sm space-y-2">
-              <div className="flex items-center gap-2 text-[#E3261E] text-xs font-mono font-bold uppercase tracking-wider">
-                <Truck className="w-4 h-4" />
-                <span>DISPATCHED IN ARCHIVAL VAULT BOXES</span>
-              </div>
-              <p className="text-xs text-[#8E8C85] font-sans leading-relaxed">
-                Packaged in custom moisture-resistant matte black collector boxes with archival acid-free tissue wrap.
-              </p>
+            {/* Right Column: WhatsApp Concierge Action Button */}
+            <div className="shrink-0">
+              <a
+                href="https://wa.me/919876543210?text=Hi%20Sports%20Gear,%20I'm%20looking%20for%20a%20specific%20kit/retro%20grail"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 py-4 rounded-sm bg-white/[0.05] hover:bg-[#E3261E] border border-white/10 hover:border-[#E3261E] text-xs font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-300 shadow-md"
+              >
+                <MessageSquare className="w-4 h-4 text-[#E3261E] group-hover:text-white transition-colors" />
+                <span>INQUIRE WITH A CURATOR</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+              </a>
             </div>
 
-            <div className="p-6 bg-[#0E0E0D] border border-white/[0.06] rounded-sm space-y-2">
-              <div className="flex items-center gap-2 text-[#E3261E] text-xs font-mono font-bold uppercase tracking-wider">
-                <MessageCircle className="w-4 h-4" />
-                <span>DIRECT WHATSAPP CONCIERGE</span>
-              </div>
-              <p className="text-xs text-[#8E8C85] font-sans leading-relaxed">
-                Connect with our personal kit curators for sizing recommendations, custom name-set inquiries, or grail sourcing.
-              </p>
+          </div>
+
+          {/* End of Catalog Sign-off & Back to Top Strip */}
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[#8E8C85]/80">
+            <div className="flex items-center gap-2 tracking-widest uppercase text-[11px]">
+              <span className="text-[#E3261E]">●</span>
+              <span>END OF ARCHIVE — {filteredProducts.length} SPECIMENS DISPLAYED</span>
             </div>
+
+            <button
+              onClick={scrollToTop}
+              className="group inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#F3F0E8] uppercase tracking-wider text-[11px] font-semibold transition-colors"
+            >
+              <span>BACK TO TOP</span>
+              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+            </button>
           </div>
         </div>
 
