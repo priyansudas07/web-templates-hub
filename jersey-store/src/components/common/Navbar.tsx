@@ -39,26 +39,26 @@ export const Navbar: React.FC = () => {
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-[#050505]/65 backdrop-blur-xl border-b border-white/15 shadow-xl' 
-        : 'bg-[#050505]/25 backdrop-blur-sm border-b border-white/5'
+        ? 'bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 shadow-xl' 
+        : 'bg-[#050505]/30 backdrop-blur-md border-b border-white/[0.04]'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="relative flex items-center justify-between h-21 sm:h-22">
           
           {/* Logo Brand */}
           <Link
             to="/"
-            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm z-10"
+            className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm z-10"
             aria-label="Sports Gear Home Page"
           >
-            <div className="w-10 h-10 rounded-sm bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-lg tracking-wider group-hover:bg-[#c91e17] transition-colors shadow-sm">
+            <div className="w-8 h-8 rounded-2xs bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-sm tracking-wider group-hover:bg-[#c91e17] transition-all duration-300 shadow-[0_0_15px_rgba(227,38,30,0.4)] group-hover:shadow-[0_0_20px_rgba(227,38,30,0.6)]">
               SG
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-wider text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors">
+              <span className="font-extrabold text-sm sm:text-base tracking-[0.08em] text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors leading-tight">
                 SPORTS GEAR
               </span>
-              <span className="text-[10px] tracking-widest text-[#9B9992] font-medium uppercase -mt-1 font-mono">
+              <span className="text-[8.5px] tracking-[0.24em] text-[#9B9992]/80 font-semibold uppercase -mt-0.5 font-mono">
                 Authentic Kit Vault
               </span>
             </div>
