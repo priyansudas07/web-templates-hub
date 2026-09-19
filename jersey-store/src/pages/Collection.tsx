@@ -39,12 +39,20 @@ export const Collection: React.FC = () => {
 
     return products.filter((p) => {
       // Category Match
-      const matchesCategory =
-        selectedCategory === 'all' ||
-        p.category === selectedCategory ||
-        p.sport === selectedCategory;
+      let matchesCategory = false;
+      if (selectedCategory === 'all') {
+        matchesCategory = true;
+      } else if (selectedCategory === 'football' || selectedCategory === 'cricket' || selectedCategory === 'basketball') {
+        matchesCategory = p.sport === selectedCategory;
+      } else if (selectedCategory === 'clubs') {
+        matchesCategory = p.category === 'club-teams';
+      } else if (selectedCategory === 'national') {
+        matchesCategory = p.category === 'national-teams';
+      } else {
+        matchesCategory = p.category === selectedCategory || p.sport === selectedCategory;
+      }
 
-      // Search Query Match (matches name, team, player, sport, category, season)
+      // Search Query Match
       const matchesSearch =
         !query ||
         p.name.toLowerCase().includes(query) ||
@@ -64,49 +72,61 @@ export const Collection: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      
-      {/* Editorial Header */}
-      <SectionHeading
-        tag="FULL CATALOG"
-        title="THE COLLECTION"
-        subtitle="Jerseys built around the game you follow. Explore authentic match editions, retro grails, and club kits."
-      />
+    <div className="min-h-screen bg-[#0B0B0A] text-[#F3F0E8] py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        
+        {/* Editorial Top Heading */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
+          <SectionHeading
+            tag="AUTHENTIC CATALOG"
+            title="THE COLLECTION"
+            subtitle="Engineered match kits, historic retro grails, and official federation player editions."
+          />
+          
+          {/* Subtle Dark Search Field */}
+          <div className="w-full md:w-auto shrink-0 pb-10">
+            <SearchBar
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              placeholder="Search kits, players, teams..."
+            />
+          </div>
+        </div>
 
-      {/* Controls Bar: Search & Category Chips */}
-      <div className="space-y-5 bg-[#151514] p-5 sm:p-6 rounded-sm border border-[#292927] shadow-xl">
-        <SearchBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          placeholder="Search by team, jersey name, player, sport, or season..."
-        />
+        {/* Clean Horizontal Filter Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onCategorySelect={setSelectedCategory}
+            className="flex-grow"
+          />
 
-        <CategoryFilter
-          selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        />
-      </div>
+          <div className="flex items-center gap-3 text-xs font-mono text-[#9B9992] shrink-0">
+            <span>
+              {filteredProducts.length} {filteredProducts.length === 1 ? 'KIT' : 'KITS'} AVAILABLE
+            </span>
+            {(selectedCategory !== 'all' || searchQuery) && (
+              <>
+                <span>•</span>
+                <button
+                  onClick={handleReset}
+                  className="text-[#E3261E] hover:text-[#F3F0E8] uppercase tracking-wider font-bold transition-colors focus-visible:outline-none focus-visible:underline"
+                >
+                  RESET
+                </button>
+              </>
+            )}
+          </div>
+        </div>
 
-      {/* Results Header */}
-      <div className="flex items-center justify-between text-xs text-slate-400 font-bold uppercase tracking-wider pt-2">
-        <span>Displaying {filteredProducts.length} {filteredProducts.length === 1 ? 'Kit' : 'Kits'}</span>
-        {(selectedCategory !== 'all' || searchQuery) && (
-          <button
-            onClick={handleReset}
-            className="text-rose-400 hover:text-rose-300 underline font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded"
-          >
-            Reset Filters
-          </button>
+        {/* Asymmetric Product Layout or Empty State */}
+        {filteredProducts.length > 0 ? (
+          <ProductGrid products={filteredProducts} />
+        ) : (
+          <EmptyState onReset={handleReset} />
         )}
+
       </div>
-
-      {/* Product Grid or Empty State */}
-      {filteredProducts.length > 0 ? (
-        <ProductGrid products={filteredProducts} />
-      ) : (
-        <EmptyState onReset={handleReset} />
-      )}
-
     </div>
   );
 };

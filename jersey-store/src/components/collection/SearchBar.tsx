@@ -1,59 +1,39 @@
-import React, { useMemo } from 'react';
-import { GooeySearch } from '../ui/gooey-search';
-import { products } from '../../data/products';
-import { X } from 'lucide-react';
+import React from 'react';
+import { Search, X } from 'lucide-react';
+import { cn } from '../../lib/utils';
 
 interface SearchBarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   placeholder?: string;
+  className?: string;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   searchQuery,
   onSearchChange,
-  placeholder = "Search kits, teams, players..."
+  placeholder = "Search kits, teams, players...",
+  className,
 }) => {
-  const searchItems = useMemo(() => {
-    const list: string[] = [];
-    products.forEach((p) => {
-      if (!list.includes(p.name)) list.push(p.name);
-      if (p.team && !list.includes(p.team)) list.push(p.team);
-      if (p.player && !list.includes(p.player)) list.push(p.player);
-      if (p.season && !list.includes(p.season)) list.push(p.season);
-    });
-    return list;
-  }, []);
-
   return (
-    <div className="w-full flex items-center justify-between gap-4 py-1">
-      {/* Gooey Morphing Search Button & Input */}
-      <div 
-        className="relative flex items-center"
-        style={{
-          ['--foreground' as string]: '#F3F0E8',
-          ['--background' as string]: '#0B0B0A',
-        }}
-      >
-        <GooeySearch
-          items={searchItems}
-          placeholder={placeholder}
-          buttonLabel={searchQuery ? `Filtering: ${searchQuery}` : "Search Catalog"}
-          onChangeQuery={(val) => onSearchChange(val)}
-          onSelect={(selected) => onSearchChange(selected)}
-          debounceMs={200}
-          maxResults={5}
-        />
-      </div>
+    <div className={cn("relative flex items-center w-full max-w-sm", className)}>
+      <Search className="absolute left-3 w-3.5 h-3.5 text-[#9B9992]/70 pointer-events-none" />
+      
+      <input
+        type="text"
+        value={searchQuery}
+        onChange={(e) => onSearchChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full h-9 pl-9 pr-8 bg-white/[0.04] hover:bg-white/[0.06] focus:bg-[#0B0B0A] border border-white/[0.08] hover:border-white/[0.15] focus:border-white/25 rounded-sm text-xs font-sans text-[#F3F0E8] placeholder:text-[#9B9992]/50 outline-none transition-all duration-200"
+      />
 
-      {/* Clear Active Search Query */}
       {searchQuery && (
         <button
           onClick={() => onSearchChange('')}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#151514] border border-[#292927] text-[#E3261E] hover:text-[#F3F0E8] hover:bg-[#E3261E] text-xs font-mono font-bold uppercase transition-colors shrink-0"
+          aria-label="Clear search"
+          className="absolute right-2.5 p-1 text-[#9B9992]/70 hover:text-[#F3F0E8] transition-colors"
         >
           <X className="w-3.5 h-3.5" />
-          <span>Clear ({searchQuery})</span>
         </button>
       )}
     </div>

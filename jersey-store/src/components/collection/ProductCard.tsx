@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
-import { Badge } from '../common/Badge';
-import { ArrowUpRight, RotateCcw } from 'lucide-react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
+  className?: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const hasBackImage = product.images.length > 1;
 
   const toggleView = (e: React.MouseEvent) => {
@@ -21,67 +20,69 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
   };
 
-  const getBadgeVariant = (badge?: string) => {
-    if (!badge) return 'default';
-    if (badge.includes('NEW')) return 'new';
-    if (badge.includes('RETRO')) return 'retro';
-    if (badge.includes('MATCH')) return 'match';
-    if (badge.includes('LIMITED')) return 'limited';
-    return 'featured';
+  const formatCategory = () => {
+    const sport = product.sport.toUpperCase();
+    const cat = product.category.replace('-', ' ').toUpperCase();
+    return `${sport} • ${cat}`;
   };
 
   return (
-    <div className="group bg-[#151514] border border-[#292927] hover:border-[#9B9992]/40 transition-all duration-300 flex flex-col overflow-hidden rounded-sm">
+    <div className={`group bg-[#121211] border border-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col rounded-sm overflow-hidden ${className}`}>
       
-      {/* Product Image Container */}
-      <div className="relative aspect-[4/5] bg-[#0B0B0A] overflow-hidden">
+      {/* Product Image Area */}
+      <div className="relative aspect-[4/5] bg-[#090908] overflow-hidden">
         <Link
           to={`/collection/${product.id}`}
           className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
-          aria-label={`${product.name} details page`}
+          aria-label={`${product.name} details`}
         >
           <img
             src={product.images[currentImageIndex] || product.images[0]}
-            alt={`${product.name} - View ${currentImageIndex === 0 ? 'Front' : 'Back'}`}
+            alt={`${product.name} - ${currentImageIndex === 0 ? 'Front' : 'Back'}`}
             loading="lazy"
             className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 ease-out"
           />
         </Link>
 
-        {/* Top Badges */}
-        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
-          {product.badgeTag && (
-            <Badge label={product.badgeTag} variant={getBadgeVariant(product.badgeTag)} />
-          )}
-        </div>
+        {/* Edition / Type Badge */}
+        {product.badgeTag && (
+          <div className="absolute top-3 left-3 z-10 pointer-events-none">
+            <span className="inline-block px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold tracking-widest uppercase bg-[#0B0B0A]/90 text-[#F3F0E8] border border-white/10 rounded-sm">
+              {product.badgeTag}
+            </span>
+          </div>
+        )}
 
-        {/* Front/Back View Switcher Button */}
+        {/* Front / Back Toggle Button */}
         {hasBackImage && (
           <button
             onClick={toggleView}
-            aria-label="Toggle front and back jersey view"
-            className="absolute bottom-3 right-3 z-10 px-2.5 py-1.5 rounded-sm bg-[#0B0B0A]/90 backdrop-blur-md text-[#F3F0E8] hover:text-white border border-[#292927] text-xs font-sans font-semibold flex items-center gap-1.5 shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
+            aria-label="Toggle jersey view"
+            className="absolute bottom-3 right-3 z-10 p-1.5 sm:px-2 sm:py-1 rounded-sm bg-[#0B0B0A]/85 backdrop-blur-sm text-[#9B9992] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1 transition-all opacity-80 hover:opacity-100"
           >
             <RotateCcw className="w-3 h-3 text-[#E3261E]" />
-            <span className="hidden sm:inline">{currentImageIndex === 0 ? 'BACK VIEW' : 'FRONT VIEW'}</span>
+            <span className="hidden sm:inline">{currentImageIndex === 0 ? 'BACK' : 'FRONT'}</span>
           </button>
         )}
       </div>
 
-      {/* Card Details */}
-      <div className="p-4 flex flex-col flex-grow justify-between space-y-4">
-        <div className="space-y-1">
-          <div className="flex items-center justify-between text-[11px] font-mono font-semibold uppercase tracking-wider text-[#E3261E]">
-            <span>[ {product.sport} / {product.category.replace('-', ' ')} ]</span>
-            {product.season && <span className="text-[#9B9992] font-mono">{product.season}</span>}
+      {/* Product Details Area */}
+      <div className="p-4 sm:p-5 flex flex-col flex-grow justify-between gap-4">
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono font-medium tracking-wider text-[#9B9992]/80 uppercase">
+            <span>{formatCategory()}</span>
+            {product.season && <span>{product.season}</span>}
           </div>
 
-          <Link to={`/collection/${product.id}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded">
-            <h3 className="font-sans font-extrabold text-sm sm:text-base text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors line-clamp-1 uppercase tracking-tight leading-snug">
+          <Link
+            to={`/collection/${product.id}`}
+            className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded"
+          >
+            <h3 className="font-sans font-bold text-sm sm:text-base text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight line-clamp-1 leading-snug">
               {product.name}
             </h3>
           </Link>
-          
+
           {product.team && (
             <p className="text-xs text-[#9B9992] font-sans font-normal line-clamp-1">
               {product.team} {product.player ? `• ${product.player}` : ''}
@@ -89,37 +90,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </div>
 
-        <div className="pt-3 border-t border-[#292927] flex items-center justify-between gap-2">
+        {/* Price & View Kit Interaction */}
+        <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
           <div>
-            <span className="text-[10px] font-mono text-[#9B9992] block uppercase tracking-wider">Price</span>
             <span className="text-base sm:text-lg font-mono font-bold text-[#F3F0E8] tracking-tight">
               ₹{product.price.toLocaleString('en-IN')}
             </span>
           </div>
 
-          {/* Sizes Bar */}
-          {product.sizes && product.sizes.length > 0 && (
-            <div className="flex items-center gap-1" aria-label="Available sizes">
-              {product.sizes.slice(0, 4).map((size) => (
-                <span
-                  key={size}
-                  className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-sm bg-[#0B0B0A] text-[#F3F0E8] border border-[#292927]"
-                >
-                  {size}
-                </span>
-              ))}
-              {product.sizes.length > 4 && (
-                <span className="text-[10px] font-mono text-[#9B9992] font-bold">+1</span>
-              )}
-            </div>
-          )}
-
           <Link
             to={`/collection/${product.id}`}
-            aria-label={`View details for ${product.name}`}
-            className="p-2 rounded-sm bg-[#E3261E]/10 hover:bg-[#E3261E] text-[#E3261E] hover:text-[#F3F0E8] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
+            className="inline-flex items-center gap-1 text-[11px] font-mono font-bold tracking-widest text-[#F3F0E8]/80 group-hover:text-[#E3261E] uppercase transition-colors"
           >
-            <ArrowUpRight className="w-4 h-4" />
+            <span>VIEW KIT</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
           </Link>
         </div>
       </div>
