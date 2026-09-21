@@ -26,7 +26,7 @@ export function SpotlightNavbar({
   const getActiveIndex = () => {
     const idx = items.findIndex((item) => {
       if (item.href === "/" && location.pathname === "/") return true;
-      if (item.href !== "/" && location.pathname.startsWith(item.href)) return true;
+      if (item.href !== "/" && (location.pathname.startsWith(item.href) || (item.href === "/collection" && location.pathname.startsWith("/product/")))) return true;
       return false;
     });
     return idx >= 0 ? idx : 0;

@@ -49,21 +49,30 @@ export const Navbar: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="relative flex items-center justify-between h-21 sm:h-22">
           
-          {/* Logo Brand */}
+          {/* Logo Brand - Option 1: Modernist Atelier Wordmark */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded-sm z-10"
+            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E3261E] rounded-sm z-10 py-1"
             aria-label="Sports Gear Home Page"
           >
-            <div className="w-8 h-8 rounded-2xs bg-[#E3261E] flex items-center justify-center font-black text-[#F3F0E8] text-sm tracking-wider group-hover:bg-[#c91e17] transition-all duration-300 shadow-[0_0_15px_rgba(227,38,30,0.4)] group-hover:shadow-[0_0_20px_rgba(227,38,30,0.6)]">
-              SG
+            {/* Minimalist Monogram with Precision Crimson Accent */}
+            <div className="relative flex items-center justify-center">
+              <span className="text-2xl sm:text-3xl font-['Bebas_Neue',sans-serif] tracking-wider text-[#F3F0E8] font-bold leading-none group-hover:text-[#E3261E] transition-colors duration-300">
+                SG
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] absolute -top-0.5 -right-2 shadow-[0_0_10px_rgba(227,38,30,0.8)]" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-sm sm:text-base tracking-[0.08em] text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors leading-tight">
+
+            {/* Razor-thin Hairline Divider */}
+            <div className="h-6 w-[1px] bg-white/15" />
+
+            {/* Wordmark & Folio */}
+            <div className="flex flex-col justify-center">
+              <span className="text-base sm:text-lg font-['Bebas_Neue',sans-serif] tracking-[0.14em] text-[#F3F0E8] leading-none uppercase group-hover:text-[#E3261E] transition-colors duration-300 font-bold">
                 SPORTS GEAR
               </span>
-              <span className="text-[8.5px] tracking-[0.24em] text-[#9B9992]/80 font-semibold uppercase -mt-0.5 font-mono">
-                Authentic Kit Vault
+              <span className="text-[8.5px] sm:text-[9px] tracking-[0.24em] text-[#8E8C85] font-mono uppercase font-normal pt-0.5">
+                AUTHENTIC KIT VAULT
               </span>
             </div>
           </Link>
@@ -117,16 +126,16 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          <div className="pt-2 border-t border-[#292927]">
+          <div className="pt-3 border-t border-white/[0.08]">
             <a
               href={createGeneralWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 min-h-[48px] rounded-sm bg-[#151514] border border-[#292927] text-[#F3F0E8] font-mono font-bold text-sm tracking-wide shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]"
+              className="w-full flex items-center justify-center gap-3 px-5 py-3.5 min-h-[48px] rounded-xs bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.16em] shadow-[0_4px_20px_rgba(227,38,30,0.35)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <MessageCircle className="w-5 h-5 text-[#25D366]" />
-              <span>Enquire on WhatsApp</span>
+              <MessageCircle className="w-4 h-4 text-white" />
+              <span>START WHATSAPP INQUIRY</span>
             </a>
           </div>
         </div>

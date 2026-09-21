@@ -1,144 +1,163 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
-import { storeInfo, navItems } from '../../data/store';
+import { ArrowUpRight } from 'lucide-react';
+import { storeInfo } from '../../data/store';
 import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-[#070706] border-t border-white/[0.08] text-[#8E8C85] mt-0 overflow-hidden">
+    <footer className="relative bg-[#070706] border-t border-white/[0.08] text-[#8E8C85] overflow-hidden">
       {/* Top Specular Micro-Line */}
-      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 space-y-20 sm:space-y-28">
         
-        {/* Main 4-Column Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          
-          {/* Column 1: Brand & Manifesto (4 cols) */}
-          <div className="lg:col-span-4 space-y-5">
-            <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-sm bg-[#E3261E] flex items-center justify-center font-sans font-black text-[#F3F0E8] text-sm shadow-md group-hover:scale-95 transition-transform duration-200">
-                SG
-              </div>
-              <div className="flex flex-col">
-                <span className="font-sans font-black text-xl tracking-tight text-[#F3F0E8] uppercase leading-none">
-                  SPORTS GEAR
-                </span>
-                <span className="text-[9px] font-mono tracking-[0.24em] text-[#8E8C85] uppercase pt-1">
-                  AUTHENTIC KIT VAULT // MUMBAI
-                </span>
-              </div>
-            </Link>
-            
-            <p className="text-xs text-[#8E8C85] leading-relaxed font-sans max-w-sm">
-              Curating verified match-grade kits, historic retro grails, and official federation player editions for collectors and athletes worldwide.
-            </p>
+        {/* Top Part: Memorable Magazine Brand Closing */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+            <span>AUTHENTIC ARCHIVE SIGN-OFF</span>
+          </div>
 
-            <div className="inline-flex items-center gap-2 text-[9.5px] font-mono font-bold text-[#F3F0E8] bg-white/[0.03] border border-white/[0.08] px-3 py-1.5 rounded-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#E3261E]" />
-              <span className="tracking-[0.16em] uppercase">[ 100% MATCH SPECIMEN VERIFIED ]</span>
+          <div className="space-y-1">
+            <h2 className="text-6xl sm:text-8xl lg:text-[7.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">
+              SPORTS GEAR
+            </h2>
+            <div className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#6E6C65] font-['Bebas_Neue',sans-serif] leading-[0.88]">
+              THE AUTHENTIC KIT VAULT.
+            </div>
+          </div>
+        </div>
+
+        {/* Thin Minimal Divider */}
+        <div className="h-[1px] w-full bg-white/[0.08]" />
+
+        {/* Two Simple Navigation Groups + Minimal Contacts */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Brief Archival Descriptor (5 Cols) */}
+          <div className="md:col-span-5 space-y-4">
+            <p className="text-sm sm:text-base text-[#9B9992] font-sans leading-relaxed max-w-sm">
+              Curating match-grade shirts, historic retro grails, and player editions across global football, cricket, and hardwood basketball.
+            </p>
+            <div className="text-xs font-mono text-white/40 tracking-wider uppercase pt-2">
+              Boutique Sourcing Atelier // Mumbai, India
             </div>
           </div>
 
-          {/* Column 2: Archival Vault Index (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
-              <span className="text-[#E3261E]">//</span>
-              <span>01 ARCHIVE INDEX</span>
-            </div>
-
-            <ul className="space-y-2.5 text-xs font-mono">
-              {navItems.map((item, idx) => (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    className="text-[#8E8C85] hover:text-[#F3F0E8] uppercase tracking-wider transition-all duration-200 inline-flex items-center gap-2 group py-0.5"
-                  >
-                    <span className="text-[10px] text-[#8E8C85]/50 group-hover:text-[#E3261E] transition-colors">
-                      0{idx + 1} //
-                    </span>
-                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">
-                      {item.label}
-                    </span>
+          {/* Right Columns: Two Navigation Groups (EXPLORE & INFORMATION) + Social (7 Cols) */}
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
+            
+            {/* Group 1: EXPLORE */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
+                EXPLORE
+              </div>
+              <ul className="space-y-3 text-sm font-sans">
+                <li>
+                  <Link to="/collection" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Collection
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Physical Atelier / Store (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
-              <span className="text-[#E3261E]">//</span>
-              <span>02 ATELIER</span>
+                <li>
+                  <Link to="/collection?sport=football" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Football
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collection?sport=cricket" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Cricket
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collection?sport=basketball" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Basketball
+                  </Link>
+                </li>
+              </ul>
             </div>
 
-            <div className="space-y-3 text-xs text-[#8E8C85] font-sans">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block">LOCATION</span>
-                <p className="leading-snug">123 Stadium Road, Sports Hub District, Mumbai</p>
+            {/* Group 2: INFORMATION */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
+                INFORMATION
               </div>
+              <ul className="space-y-3 text-sm font-sans">
+                <li>
+                  <Link to="/about" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact#faq" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact#shipping" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                    Shipping
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-              <div className="space-y-1 pt-1">
-                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block">HOURS</span>
-                <p className="leading-snug">Mon – Sat: 10:00 – 21:00</p>
+            {/* Group 3: SOCIAL / CONTACT */}
+            <div className="space-y-4 col-span-2 sm:col-span-1">
+              <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
+                CONNECT
               </div>
+              <ul className="space-y-3 text-sm font-sans">
+                <li>
+                  <a
+                    href={createGeneralWhatsAppLink()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#25D366] transition-colors"
+                  >
+                    <span>WhatsApp</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`https://instagram.com/${storeInfo.instagram.replace('@', '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#F3F0E8] transition-colors"
+                  >
+                    <span>Instagram</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${storeInfo.email}`}
+                    className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors"
+                  >
+                    Email
+                  </a>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* Column 4: Direct Concierge & Channels (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
-              <span className="text-[#E3261E]">//</span>
-              <span>03 CONCIERGE</span>
-            </div>
-
-            <div className="space-y-3.5">
-              {/* Live Status Indicator */}
-              <div className="flex items-center gap-2 text-[10px] font-mono text-[#8E8C85]">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="tracking-wider uppercase">CURATORS ACTIVE ONLINE</span>
-              </div>
-
-              {/* Minimal WhatsApp Inquire Trigger */}
-              <a
-                href={createGeneralWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between px-3.5 py-2.5 rounded-sm bg-white/[0.03] hover:bg-[#E3261E] text-[#F3F0E8] border border-white/[0.08] hover:border-[#E3261E] text-xs font-mono uppercase tracking-wider transition-all duration-300"
-              >
-                <span>INQUIRE VIA WHATSAPP</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
-              </a>
-
-              {/* Instagram Handle */}
-              <a
-                href={`https://instagram.com/${storeInfo.instagram.replace('@', '')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-mono text-[#8E8C85] hover:text-[#F3F0E8] tracking-wider transition-colors pt-1"
-              >
-                <span className="text-[#E3261E]">@</span>
-                <span>SPORTSGEAR.VAULT</span>
-              </a>
-            </div>
           </div>
 
         </div>
 
-        {/* Bottom Archival Metadata Row */}
-        <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-[10.5px] text-[#8E8C85] gap-4 font-mono">
-          <p>© {new Date().getFullYear()} {storeInfo.name.toUpperCase()} // ARCHIVAL SPECIMEN VAULT.</p>
-          <div className="flex flex-wrap items-center gap-3 text-[#8E8C85]/70 uppercase tracking-widest text-[9.5px]">
-            <span>19.0760° N, 72.8777° E</span>
+        {/* Very Bottom Archival Specimen Row */}
+        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E8C85] gap-4 font-mono">
+          <p className="tracking-wider uppercase">
+            SPORTS GEAR © 2026 AUTHENTIC KIT VAULT
+          </p>
+          <div className="flex items-center gap-4 text-white/40 tracking-widest text-[11px] uppercase">
+            <span>VERIFIED MATCH SPECIMENS</span>
             <span>•</span>
             <span>ZERO CHECKOUT FRICTION</span>
-            <span>•</span>
-            <span>INSURED DISPATCH</span>
           </div>
         </div>
 

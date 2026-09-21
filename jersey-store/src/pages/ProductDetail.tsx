@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getProductById, products } from '../data/products';
 import { ProductGallery } from '../components/product/ProductGallery';
 import { ProductInfo } from '../components/product/ProductInfo';
+import { ProductStory } from '../components/product/ProductStory';
 import { ProductGrid } from '../components/collection/ProductGrid';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { NotFound } from '../components/common/NotFound';
@@ -62,43 +63,64 @@ export const ProductDetail: React.FC = () => {
     .slice(0, 4);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <div className="bg-[#0B0B0A] text-[#F3F0E8] min-h-screen">
       
-      {/* Back Link */}
-      <Link
-        to="/collection"
-        className="inline-flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-rose-400 uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span>Back to Full Collection</span>
-      </Link>
+      {/* 1. PRODUCT HERO SECTION */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-20 sm:pb-28 space-y-10 sm:space-y-14">
+        
+        {/* Minimal Editorial Back Navigation & Archival Folio */}
+        <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
+          <Link
+            to="/collection"
+            className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.24em] text-[#8E8C85] hover:text-[#E3261E] uppercase transition-colors group focus-visible:outline-none"
+          >
+            <ArrowLeft className="w-4 h-4 text-[#E3261E] group-hover:-translate-x-1.5 transition-transform duration-300" />
+            <span>01 // ARCHIVE DIRECTORY</span>
+          </Link>
 
-      {/* PDP Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <div className="lg:col-span-6">
-          <ProductGallery
-            images={product.images}
-            productName={product.name}
-            badgeTag={product.badgeTag}
-          />
+          <div className="flex items-center gap-6 text-[11px] font-mono tracking-[0.22em] text-[#6E6C65] uppercase hidden sm:flex">
+            <span>DISCIPLINE // {product.sport.toUpperCase()}</span>
+            <span className="text-white/20">/</span>
+            <span>SPEC NO. {product.archiveNo || '001'}</span>
+          </div>
         </div>
-        <div className="lg:col-span-6">
-          <ProductInfo product={product} />
+
+        {/* Two-Column Editorial Product Hero */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          {/* Left Column: Visual Hero Stage (7 Columns on large screens) */}
+          <div className="lg:col-span-7">
+            <ProductGallery
+              images={product.images}
+              productName={product.name}
+              badgeTag={product.badgeTag}
+              archiveNo={product.archiveNo}
+            />
+          </div>
+
+          {/* Right Column: Spec & Action Details (5 Columns on large screens) */}
+          <div className="lg:col-span-5">
+            <ProductInfo product={product} />
+          </div>
         </div>
+
       </div>
 
-      {/* Related Kits Section */}
+      {/* 2. FULL-WIDTH EDITORIAL STORY & CLOSE-UP DETAILS SECTION */}
+      <ProductStory product={product} />
+
+      {/* 3. RELATED ARCHIVAL SPECIMENS SECTION */}
       {relatedProducts.length > 0 && (
-        <div className="pt-12 border-t border-slate-800 space-y-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 space-y-12">
           <SectionHeading
-            tag="SIMILAR KITS"
-            title="YOU MAY ALSO LIKE"
-            subtitle="Explore additional jerseys in the same sport and kit category."
+            tag="04 / ARCHIVAL PAIRINGS"
+            title="COMPLETE THE VAULT"
+            action={{ label: "VIEW ALL SPECIMENS", href: "/collection" }}
           />
           <ProductGrid products={relatedProducts} />
-        </div>
+        </section>
       )}
 
     </div>
   );
 };
+

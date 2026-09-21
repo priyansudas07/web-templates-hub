@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Product, Size } from '../../types/product';
-import { ShieldCheck, Truck, RotateCcw, Check } from 'lucide-react';
-import { WhatsAppButton } from './WhatsAppButton';
+import { MessageCircle, ArrowRight } from 'lucide-react';
+import { createWhatsAppLink } from '../../utils/whatsapp';
 
 interface ProductInfoProps {
   product: Product;
@@ -12,55 +12,68 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined
   );
 
+  const whatsappUrl = createWhatsAppLink(product, selectedSize);
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-10 text-[#F3F0E8] lg:pl-4">
       
-      {/* Category & Tactical Tag */}
-      <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-4">
-        <span className="text-xs font-extrabold uppercase tracking-widest text-rose-500">
-          {product.sport} • {product.category.replace('-', ' ')}
-        </span>
-        <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
-          <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
-          <span>[ SG / {product.badgeTag || 'AUTHENTIC'} ]</span>
+      {/* 1. Archival Spec Header & Category Provenance */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-3 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+          <span>// {product.sport.toUpperCase()} — {product.category.replace('-', ' ').toUpperCase()}</span>
         </div>
-      </div>
 
-      {/* Product Title */}
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-100 uppercase tracking-tight">
-        {product.name}
-      </h1>
+        {/* 2. Monumental Product Title */}
+        <h1 className="text-5xl sm:text-7xl lg:text-[4.75rem] font-['Bebas_Neue',sans-serif] tracking-tight uppercase leading-[0.84] text-[#F3F0E8]">
+          {product.name}
+        </h1>
 
-      {/* Team / Player Subtitle */}
-      {product.team && (
-        <p className="text-sm font-semibold text-slate-400">
-          Team: <span className="text-slate-200">{product.team}</span>
-          {product.player && <span> • Player: <span className="text-slate-200">{product.player}</span></span>}
-          {product.season && <span> • Season: <span className="text-slate-200">{product.season}</span></span>}
-        </p>
-      )}
-
-      {/* Price */}
-      <div className="py-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Price</span>
-        <div className="flex items-baseline gap-3">
-          <span className="text-3xl sm:text-4xl font-black text-slate-100">
-            ₹{product.price.toLocaleString('en-IN')}
-          </span>
-          <span className="text-xs text-slate-400 font-medium">(Taxes Included)</span>
-        </div>
-      </div>
-
-      {/* Size Selector */}
-      {product.sizes && product.sizes.length > 0 && (
-        <div className="space-y-3 pt-2">
-          <div className="flex items-center justify-between">
-            <span id="size-selector-label" className="text-xs font-bold uppercase tracking-wider text-slate-300">
-              Select Size: {selectedSize && <span className="text-rose-400 ml-1">{selectedSize}</span>}
+        {/* Supporting Curatorial Metadata */}
+        <div className="pt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm font-mono tracking-[0.16em] text-[#8E8C85] uppercase">
+          {product.player && (
+            <span className="text-[#F3F0E8] font-bold">
+              {product.player}
             </span>
+          )}
+          {product.player && <span className="text-white/20">/</span>}
+          {product.team && (
+            <span>{product.team}</span>
+          )}
+          {product.team && <span className="text-white/20">/</span>}
+          <span>SEASON {product.season || '2025/26'}</span>
+          {product.techSpec && (
+            <>
+              <span className="text-white/20">/</span>
+              <span className="text-[#E3261E] font-bold">{product.techSpec}</span>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* 3. Acquisition & Price Block */}
+      <div className="pt-2 flex items-baseline gap-4 border-b border-white/[0.08] pb-8">
+        <span className="text-5xl sm:text-6xl font-['Bebas_Neue',sans-serif] tracking-tight text-[#F3F0E8] leading-none">
+          ₹{product.price.toLocaleString('en-IN')}
+        </span>
+        <div className="text-[11px] font-mono tracking-[0.2em] text-[#8E8C85] uppercase">
+          <span>TAXES INCLUDED</span>
+          <span className="text-[#6E6C65] mx-2">·</span>
+          <span>ATELIER VERIFIED</span>
+        </div>
+      </div>
+
+      {/* 4. Size Selection - Typographic Editorial Selector */}
+      {product.sizes && product.sizes.length > 0 && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#8E8C85]">
+            <span>SELECT SPECIMEN SIZE</span>
+            {selectedSize && (
+              <span className="text-[#E3261E]">SELECTED // {selectedSize}</span>
+            )}
           </div>
 
-          <div className="flex flex-wrap gap-2.5" role="group" aria-labelledby="size-selector-label">
+          <div className="flex flex-wrap gap-2.5">
             {['S', 'M', 'L', 'XL', 'XXL'].map((s) => {
               const available = product.sizes.includes(s as Size);
               const isSelected = selectedSize === s;
@@ -69,15 +82,14 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
                 <button
                   key={s}
                   disabled={!available}
-                  aria-pressed={isSelected}
-                  aria-label={`Select size ${s}${!available ? ' (unavailable)' : ''}`}
                   onClick={() => available && setSelectedSize(s as Size)}
-                  className={`min-w-[50px] min-h-[48px] rounded-xl text-sm font-bold transition-all flex items-center justify-center border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
+                  aria-label={`Select size ${s}${!available ? ' (unavailable)' : ''}`}
+                  className={`min-w-[58px] h-12 rounded-sm text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E3261E] ${
                     !available
-                      ? 'bg-slate-900/40 text-slate-600 border-slate-800 cursor-not-allowed line-through'
+                      ? 'bg-transparent text-[#4A4843] border-white/[0.04] cursor-not-allowed line-through'
                       : isSelected
-                      ? 'bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-950/50 scale-105'
-                      : 'bg-slate-800/80 text-slate-200 border-slate-700 hover:border-slate-500 hover:text-white'
+                      ? 'bg-[#E3261E] text-[#F3F0E8] border-[#E3261E] shadow-[0_0_20px_rgba(227,38,30,0.35)]'
+                      : 'bg-[#111110] text-[#9B9992] border-white/[0.1] hover:border-white/30 hover:text-white'
                   }`}
                 >
                   {s}
@@ -88,41 +100,53 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         </div>
       )}
 
-      {/* Description */}
-      <div className="space-y-2 pt-2">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">Kit Specifications & Fit</h3>
-        <p className="text-slate-400 text-sm leading-relaxed">
+      {/* 5. Kit Specifications & Fit Notes */}
+      <div className="space-y-2.5 pt-2">
+        <h2 className="text-xs font-mono font-bold tracking-[0.25em] text-[#8E8C85] uppercase">
+          // SPECIFICATION NOTES
+        </h2>
+        <p className="text-sm sm:text-base text-[#B5B3AA] leading-relaxed font-sans font-normal">
           {product.description}
         </p>
       </div>
 
-      {/* Stock Status */}
-      <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-3 py-2 rounded-lg w-fit">
-        <Check className="w-4 h-4 text-emerald-400" />
-        <span>Stock Status: {product.availability === 'available' ? 'Available for Inquiry & Pickup' : 'Contact Store for Availability'}</span>
+      {/* 6. Curatorial Stock Allocation */}
+      <div className="flex items-center gap-2.5 text-xs font-mono tracking-[0.2em] text-emerald-400 uppercase pt-1">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+        <span>ARCHIVE ALLOCATION: IN STOCK</span>
+        <span className="text-[#6E6C65]">·</span>
+        <span className="text-[#8E8C85] text-[11px]">IMMEDIATE STORE PICKUP</span>
       </div>
 
-      {/* Primary WhatsApp Action CTA */}
-      <div className="pt-4 space-y-3">
-        <WhatsAppButton product={product} selectedSize={selectedSize} size="lg" />
+      {/* 7. Primary Action CTA - Solid Editorial Orange Button */}
+      <div className="space-y-3.5 pt-4">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-3.5 bg-[#E3261E] hover:bg-[#c91e17] text-[#F3F0E8] font-mono font-bold tracking-[0.24em] text-sm sm:text-base uppercase py-4.5 px-8 rounded-sm transition-all duration-300 shadow-2xl hover:shadow-[0_0_35px_rgba(227,38,30,0.35)] group"
+        >
+          <MessageCircle className="w-5 h-5 fill-current text-[#F3F0E8]" />
+          <span>WHATSAPP TO ORDER</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+        </a>
 
-        <p className="text-[11px] text-slate-500 text-center">
-          No credit card or registration required. Clicking initiates a direct WhatsApp message.
+        <p className="text-xs font-mono tracking-wider text-[#6E6C65] text-center uppercase">
+          No account required · Direct confirmation with Mumbai desk
         </p>
       </div>
 
-      {/* Trust Highlights */}
-      <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800 text-xs text-slate-400">
-        <div className="flex items-center gap-2">
-          <Truck className="w-4 h-4 text-rose-500 shrink-0" />
-          <span>Express Local Pickup & Delivery</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <RotateCcw className="w-4 h-4 text-rose-500 shrink-0" />
-          <span>Easy Size Exchange Guarantee</span>
-        </div>
+      {/* 8. Minimal Spec Footnote Row */}
+      <div className="pt-6 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-y-2 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-[#8E8C85] uppercase">
+        <span>LOCAL PICKUP</span>
+        <span className="text-white/20 hidden sm:inline">●</span>
+        <span>DELIVERY AVAILABLE</span>
+        <span className="text-white/20 hidden sm:inline">●</span>
+        <span>EASY SIZE EXCHANGE</span>
       </div>
 
     </div>
   );
 };
+
+

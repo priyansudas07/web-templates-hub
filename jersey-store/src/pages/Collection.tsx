@@ -2,12 +2,12 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
 import { SearchBar } from '../components/collection/SearchBar';
+import { SortDropdown } from '../components/collection/SortDropdown';
 import { CategoryFilter } from '../components/collection/CategoryFilter';
 import { ProductGrid } from '../components/collection/ProductGrid';
 import { EmptyState } from '../components/collection/EmptyState';
 import { SectionHeading } from '../components/common/SectionHeading';
-import { ConciergeSourcingPass } from '../components/collection/ConciergeSourcingPass';
-import { ChevronDown, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 
 export const Collection: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -105,63 +105,49 @@ export const Collection: React.FC = () => {
         {/* Editorial Top Heading */}
         <div className="space-y-2">
           <SectionHeading
-            tag="AUTHENTIC ARCHIVE"
-            title="THE COLLECTION"
-            subtitle="Engineered match kits, historic retro grails, and official federation player editions."
+            tag="01 / COMPLETE ARCHIVE"
+            title="THE VAULT & COLLECTION"
           />
         </div>
 
-        {/* Static Editorial Navigation & Control Bar (Non-sticky) */}
-        <div className="pb-4 border-b border-white/[0.08]">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
+        {/* Editorial Navigation & Control Bar */}
+        <div className="space-y-4 pb-4 border-b border-white/[0.08]">
+          
+          {/* Tier 1: Category Filter Tabs - Full Unobstructed Width */}
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onCategorySelect={setSelectedCategory}
+            className="border-b-0 pb-0"
+          />
+
+          {/* Tier 2: Search & Sort Controls Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
             
-            {/* Category Filter Tabs */}
-            <CategoryFilter
-              selectedCategory={selectedCategory}
-              onCategorySelect={setSelectedCategory}
-              className="border-b-0 pb-0"
+            {/* Expanded Search Bar */}
+            <SearchBar
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              placeholder="SEARCH ARCHIVE BY CLUB, PLAYER, TOURNAMENT..."
+              className="w-full sm:max-w-md"
             />
 
-            {/* Right Side: Editorial Search, Sort & Count */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-6 justify-between lg:justify-end">
-              
-              {/* Borderless Editorial Search */}
-              <SearchBar
-                searchQuery={searchQuery}
-                onSearchChange={setSearchQuery}
-                placeholder="SEARCH CATALOG..."
-                className="w-full sm:w-48"
-              />
-
-              {/* Minimal Text Sort Trigger */}
-              <div className="relative flex items-center border-b border-white/10 hover:border-white/25 transition-colors py-1 shrink-0">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  aria-label="Sort kits"
-                  className="bg-transparent text-xs font-mono tracking-wider uppercase text-[#8E8C85] hover:text-[#F3F0E8] outline-none cursor-pointer appearance-none pr-4"
+            {/* Right Side: Sort Dropdown & Optional Clear Link */}
+            <div className="flex items-center gap-4 self-end sm:self-center shrink-0">
+              {isFiltered && (
+                <button
+                  onClick={handleReset}
+                  className="text-xs font-mono tracking-wider text-[#E3261E] hover:text-[#F3F0E8] font-bold uppercase transition-colors"
+                  title="Reset all filters"
                 >
-                  <option value="featured" className="bg-[#0E0E0D] text-white">SORT: FEATURED</option>
-                  <option value="newest" className="bg-[#0E0E0D] text-white">SORT: NEWEST</option>
-                  <option value="price-asc" className="bg-[#0E0E0D] text-white">PRICE: LOW → HIGH</option>
-                  <option value="price-desc" className="bg-[#0E0E0D] text-white">PRICE: HIGH → LOW</option>
-                </select>
-                <ChevronDown className="w-3 h-3 text-[#8E8C85] absolute right-0 pointer-events-none" />
-              </div>
+                  [CLEAR FILTERS]
+                </button>
+              )}
 
-              {/* Status Count & Clear Link */}
-              <div className="flex items-center gap-2 text-[11px] font-mono text-[#8E8C85] shrink-0">
-                <span>{filteredProducts.length} KITS</span>
-                {isFiltered && (
-                  <button
-                    onClick={handleReset}
-                    className="text-[#E3261E] hover:text-[#F3F0E8] uppercase tracking-wider font-semibold transition-colors underline underline-offset-2 ml-1"
-                  >
-                    (CLEAR)
-                  </button>
-                )}
-              </div>
-
+              {/* Custom Editorial Sort Dropdown */}
+              <SortDropdown
+                value={sortBy}
+                onChange={setSortBy}
+              />
             </div>
 
           </div>
@@ -178,25 +164,20 @@ export const Collection: React.FC = () => {
           />
         )}
 
-        {/* Interactive Concierge Sourcing Pass Section */}
-        <div className="pt-10 sm:pt-14 mt-10 sm:mt-14 border-t border-white/[0.08] space-y-6">
-          <ConciergeSourcingPass />
-
-          {/* End of Catalog Sign-off & Back to Top Strip */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[#8E8C85]/80">
-            <div className="flex items-center gap-2 tracking-widest uppercase text-[11px]">
-              <span className="text-[#E3261E]">●</span>
-              <span>END OF ARCHIVE — {filteredProducts.length} SPECIMENS DISPLAYED</span>
-            </div>
-
-            <button
-              onClick={scrollToTop}
-              className="group inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#F3F0E8] uppercase tracking-wider text-[11px] font-semibold transition-colors"
-            >
-              <span>BACK TO TOP</span>
-              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-            </button>
+        {/* Clean End-of-Archive Sign-off & Back to Top Strip */}
+        <div className="pt-8 mt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#8E8C85]">
+          <div className="flex items-center gap-2.5 tracking-[0.16em] uppercase text-[11px]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+            <span>END OF ARCHIVE // {filteredProducts.length} SPECIMENS DISPLAYED</span>
           </div>
+
+          <button
+            onClick={scrollToTop}
+            className="group inline-flex items-center gap-2 text-[#8E8C85] hover:text-[#F3F0E8] uppercase tracking-wider text-[11px] font-semibold transition-colors"
+          >
+            <span>BACK TO TOP</span>
+            <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+          </button>
         </div>
 
       </div>
