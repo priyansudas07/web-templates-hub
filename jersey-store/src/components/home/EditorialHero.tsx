@@ -559,18 +559,36 @@ export const EditorialHero: React.FC = () => {
                   </span>
                   <div className="flex items-center font-mono">
                     <span className="text-[9.5px] font-bold text-[#F3F0E8] transition-colors">
-                      0{activeViewIndex + 1}
+                      <span className="lg:hidden">0{Math.min(activeViewIndex + 1, 2)}</span>
+                      <span className="hidden lg:inline">0{activeViewIndex + 1}</span>
                     </span>
-                    <span className="text-[8.5px] tracking-widest text-[#9B9992]/40">
+                    <span className="lg:hidden text-[8.5px] tracking-widest text-[#9B9992]/40">
+                      &nbsp;/ 02
+                    </span>
+                    <span className="hidden lg:inline text-[8.5px] tracking-widest text-[#9B9992]/40">
                       &nbsp;/ 0{KIT_VIEWS.length}
                     </span>
                   </div>
                 </div>
 
-                {/* Progress Track & Animated Progress Line (25% -> 50% -> 75% -> 100%) */}
+                {/* Progress Track & Animated Progress Line (Responsive 2-Step on Mobile/Tablet, 4-Step on Desktop) */}
                 <div className="w-full h-[1.5px] bg-white/[0.06] rounded-full overflow-hidden relative">
+                  {/* Mobile & Tablet Progress Line */}
                   <motion.div
-                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)]"
+                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)] lg:hidden"
+                    initial={false}
+                    animate={{
+                      width: `${((Math.min(activeViewIndex, 1) + 1) / 2) * 100}%`,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 24,
+                    }}
+                  />
+                  {/* Desktop Progress Line */}
+                  <motion.div
+                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)] hidden lg:block"
                     initial={false}
                     animate={{
                       width: `${((activeViewIndex + 1) / KIT_VIEWS.length) * 100}%`,
@@ -584,15 +602,18 @@ export const EditorialHero: React.FC = () => {
                 </div>
               </div>
 
-              {/* View Items - 2-Column Grid on Mobile, 4-Column on Tablet, Vertical Stack on Desktop */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-col gap-2 sm:gap-2.5">
+              {/* View Items - 2-Column Grid on Mobile & Tablet (Front & Back), Vertical Stack on Desktop (All 4 Perspectives) */}
+              <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2 sm:gap-2.5">
                 {KIT_VIEWS.map((view, index) => {
                   const isActive = index === activeViewIndex;
+                  const isDesktopOnly = index >= 2;
                   return (
                     <button
                       key={view.id}
                       onClick={() => handleSelectView(index)}
-                      className={`min-h-[44px] relative w-full flex items-center justify-between px-2.5 py-2 sm:py-2.5 rounded-xs transition-colors duration-200 text-left group cursor-pointer border ${
+                      className={`min-h-[44px] relative w-full ${
+                        isDesktopOnly ? 'hidden lg:flex' : 'flex'
+                      } items-center justify-between px-2.5 py-2 sm:py-2.5 rounded-xs transition-colors duration-200 text-left group cursor-pointer border ${
                         isActive
                           ? 'border-white/18 bg-white/[0.035] shadow-sm'
                           : 'border-transparent bg-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
