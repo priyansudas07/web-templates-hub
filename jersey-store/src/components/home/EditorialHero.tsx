@@ -273,11 +273,11 @@ export const EditorialHero: React.FC = () => {
                 </motion.div>
               ) : (
                 <motion.div
-                  key={`dossier-${currentView.id}`}
-                  initial={{ opacity: 0, y: 14 }}
+                  key="dossier-panel"
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="space-y-3 sm:space-y-3.5"
                 >
                   {/* Dossier Header */}
@@ -286,18 +286,30 @@ export const EditorialHero: React.FC = () => {
                     <span className="font-sans font-semibold text-[#9B9992]/80">/ ARCHIVAL SPECIFICATION</span>
                   </div>
 
-                  {/* Dossier Title & Description */}
-                  <div className="space-y-1 max-w-md">
+                  {/* Dossier Title & Description with Smooth Crossfade */}
+                  <motion.div 
+                    key={`title-${currentView.id}`}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="space-y-1 max-w-md"
+                  >
                     <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] font-display font-normal uppercase tracking-[0.05em] text-[#F3F0E8] leading-[1.02]">
                       {currentView.dossierTitle}
                     </h2>
                     <p className="text-xs sm:text-[12.5px] text-[#9B9992] font-sans font-normal leading-relaxed">
                       {currentView.dossierDescription}
                     </p>
-                  </div>
+                  </motion.div>
 
                   {/* Open 2x2 Technical Blueprint Matrix with Center Crosshair (+) */}
-                  <div className="relative max-w-md my-1.5 border-y border-white/[0.08] py-1">
+                  <motion.div 
+                    key={`specs-${currentView.id}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="relative max-w-md my-1.5 border-y border-white/[0.08] py-1"
+                  >
                     {/* Center Crosshair '+' Mark */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-4 h-4 flex items-center justify-center pointer-events-none text-white/40 font-mono text-[11px] select-none">
                       +
@@ -352,7 +364,7 @@ export const EditorialHero: React.FC = () => {
                         </div>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Pricing Line */}
                   <div className="flex items-baseline gap-3 pt-0.5">
@@ -442,12 +454,10 @@ export const EditorialHero: React.FC = () => {
                         y: currentView.camera.y,
                       }}
                       transition={{
-                        type: 'spring',
-                        stiffness: 95,
-                        damping: 22,
-                        mass: 0.85,
+                        duration: 0.58,
+                        ease: [0.16, 1, 0.3, 1],
                       }}
-                      className="relative w-full h-full flex items-center justify-center [perspective:1400px]"
+                      className="relative w-full h-full flex items-center justify-center [perspective:1400px] transform-gpu will-change-transform"
                     >
                       <AnimatePresence mode="wait" custom={spinDirection}>
                         <motion.div
