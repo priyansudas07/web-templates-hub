@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, MessageCircle, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { storeInfo } from '../data/store';
 import { createGeneralWhatsAppLink } from '../utils/whatsapp';
 import { CylinderCarousel } from '../components/ui/cylinder-carousel';

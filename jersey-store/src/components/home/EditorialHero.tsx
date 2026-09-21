@@ -1,10 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, type Variants } from 'framer-motion';
 import { DustParticles } from '../common/DustParticles';
-import { products } from '../../data/products';
-import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const flipVariants: Variants = {
+  initial: (dir: number) => ({
+    rotateY: dir * -85,
+    scale: 0.93,
+    opacity: 0,
+    filter: 'blur(3px)',
+  }),
+  animate: {
+    rotateY: 0,
+    scale: 1,
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.52,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir: number) => ({
+    rotateY: dir * 85,
+    scale: 0.93,
+    opacity: 0,
+    filter: 'blur(3px)',
+    transition: {
+      duration: 0.42,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 const KIT_VIEWS = [
   {
     id: 'front',
@@ -71,9 +99,20 @@ const KIT_VIEWS = [
 ];
 
 export const EditorialHero: React.FC = () => {
-  const spotlightProduct = products[0]; // Portugal 2026 Home Kit
   const [activeViewIndex, setActiveViewIndex] = useState(0);
   const [prevViewIndex, setPrevViewIndex] = useState(0);
+
+  // Preload secondary perspective images in the background
+  useEffect(() => {
+    KIT_VIEWS.slice(1).forEach((view) => {
+      const img = new Image();
+      img.src = view.image;
+      if (view.thumbnail && view.thumbnail !== view.image) {
+        const thumb = new Image();
+        thumb.src = view.thumbnail;
+      }
+    });
+  }, []);
 
   const handleSelectView = (index: number) => {
     setPrevViewIndex(activeViewIndex);
@@ -463,32 +502,10 @@ export const EditorialHero: React.FC = () => {
                         <motion.div
                           key={currentView.isBack ? 'back' : 'front'}
                           custom={spinDirection}
-                          initial={(dir: number) => ({
-                            rotateY: dir * -85,
-                            scale: 0.93,
-                            opacity: 0,
-                            filter: 'blur(3px)',
-                          })}
-                          animate={{
-                            rotateY: 0,
-                            scale: 1,
-                            opacity: 1,
-                            filter: 'blur(0px)',
-                            transition: {
-                              duration: 0.52,
-                              ease: [0.16, 1, 0.3, 1],
-                            },
-                          }}
-                          exit={(dir: number) => ({
-                            rotateY: dir * 85,
-                            scale: 0.93,
-                            opacity: 0,
-                            filter: 'blur(3px)',
-                            transition: {
-                              duration: 0.42,
-                              ease: [0.16, 1, 0.3, 1],
-                            },
-                          })}
+                          variants={flipVariants}
+                          initial="initial"
+                          animate="animate"
+                          exit="exit"
                           className="relative w-full h-full flex items-center justify-center group/jersey [transform-style:preserve-3d]"
                         >
                           <div className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
@@ -496,6 +513,8 @@ export const EditorialHero: React.FC = () => {
                             <img
                               src={currentView.image}
                               alt="Portugal 2025/26 Match Kit"
+                              fetchPriority="high"
+                              decoding="async"
                               className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_46px_rgba(227,38,30,0.22)] drop-shadow-[0_0_12px_rgba(255,255,255,0.04)] select-none pointer-events-auto cursor-pointer"
                             />
 

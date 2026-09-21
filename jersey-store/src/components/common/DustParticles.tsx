@@ -64,8 +64,16 @@ export const DustParticles: React.FC<DustParticlesProps> = ({
       };
     });
 
+    let isVisible = true;
+    let isRunning = false;
+
     // Render Loop
     const render = () => {
+      if (!isVisible) {
+        isRunning = false;
+        return;
+      }
+      isRunning = true;
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p) => {
@@ -123,11 +131,58 @@ export const DustParticles: React.FC<DustParticlesProps> = ({
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    const startAnimation = () => {
+      if (!isRunning && isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      isRunning = false;
+    };
+
+    // IntersectionObserver to pause when scrolled out of viewport
+    let observer: IntersectionObserver | null = null;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          isVisible = entry.isIntersecting && !document.hidden;
+          if (isVisible) {
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(canvas);
+    } else {
+      startAnimation();
+    }
+
+    // Pause when browser tab is inactive
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        isVisible = false;
+        stopAnimation();
+      } else if (observer && canvas) {
+        // Re-check visibility
+        isVisible = true;
+        startAnimation();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (observer) observer.disconnect();
+      stopAnimation();
     };
   }, [particleCount]);
 

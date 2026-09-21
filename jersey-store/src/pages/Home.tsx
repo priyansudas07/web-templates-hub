@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { ProductGrid } from '../components/collection/ProductGrid';
-import { Button } from '../components/common/Button';
 import { getFeaturedProducts, getNewArrivals } from '../data/products';
 import { categories } from '../data/categories';
 import { createGeneralWhatsAppLink } from '../utils/whatsapp';
-import { ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { EditorialHero } from '../components/home/EditorialHero';
 
 export const Home: React.FC = () => {
