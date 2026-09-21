@@ -26,7 +26,7 @@ export function SpotlightNavbar({
   const getActiveIndex = () => {
     const idx = items.findIndex((item) => {
       if (item.href === "/" && location.pathname === "/") return true;
-      if (item.href !== "/" && location.pathname.startsWith(item.href)) return true;
+      if (item.href !== "/" && (location.pathname.startsWith(item.href) || (item.href === "/collection" && location.pathname.startsWith("/product/")))) return true;
       return false;
     });
     return idx >= 0 ? idx : 0;
@@ -106,14 +106,14 @@ export function SpotlightNavbar({
     <div className={cn("relative flex items-center justify-center", className)}>
       <nav
         ref={navRef}
-        className="relative h-10 px-2 flex items-center transition-all duration-300 overflow-hidden"
+        className="relative h-10 px-2.5 sm:px-3.5 flex items-center transition-all duration-300 overflow-hidden rounded-full bg-[#0A0A09]/75 backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.08),0_8px_32px_rgba(0,0,0,0.6)]"
         style={{
-          ['--spotlight-color' as string]: 'rgba(227, 38, 30, 0.25)',
+          ['--spotlight-color' as string]: 'rgba(227, 38, 30, 0.28)',
           ['--ambience-color' as string]: '#E3261E',
         }}
       >
         {/* Nav Items List */}
-        <ul className="relative flex items-center h-full gap-1 z-10">
+        <ul className="relative flex items-center h-full gap-2 z-10">
           {items.map((item, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -124,11 +124,11 @@ export function SpotlightNavbar({
                   onClick={() => onItemClick?.(item, idx)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider transition-colors duration-200 rounded-full flex items-center gap-1.5",
+                    "px-4 py-1.5 text-[11.5px] sm:text-xs font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-200 rounded-full flex items-center gap-1.5",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E]",
                     isActive
-                      ? "text-[#F3F0E8] font-extrabold"
-                      : "text-[#9B9992] hover:text-[#F3F0E8]"
+                      ? "text-[#F3F0E8] font-bold"
+                      : "text-[#9B9992]/80 hover:text-[#F3F0E8]"
                   )}
                 >
                   {item.label}
@@ -138,20 +138,20 @@ export function SpotlightNavbar({
           })}
         </ul>
 
-        {/* Moving Spotlight (Follows Cursor) */}
+        {/* Moving Spotlight (Follows Cursor & Glows) */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
             opacity: hoverX !== null ? 1 : 0,
-            background: `radial-gradient(100px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 70%)`,
+            background: `radial-gradient(110px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 70%)`,
           }}
         />
 
-        {/* Active Ambience Glow Bar */}
+        {/* Thinner Precision Active Ambience Glow Bar */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-1"
+          className="pointer-events-none absolute bottom-0 left-0 w-full h-[1.5px] z-1"
           style={{
-            background: `radial-gradient(50px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)`,
+            background: `radial-gradient(45px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)`,
           }}
         />
       </nav>

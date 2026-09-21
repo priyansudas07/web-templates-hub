@@ -34,7 +34,7 @@ export function createWhatsAppLink(
     size = selectedSize;
   }
 
-  let text = `Hi Sports Gear! I am interested in ordering the ${productName}.`;
+  let text = `Hi Sports Gear! I would like to inquire about the ${productName}.`;
   if (price > 0) {
     text += `\nPrice: ₹${price.toLocaleString('en-IN')}`;
   }

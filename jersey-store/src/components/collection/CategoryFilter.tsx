@@ -1,37 +1,50 @@
 import React from 'react';
 import { categories } from '../../data/categories';
+import { cn } from '../../lib/utils';
 
 interface CategoryFilterProps {
   selectedCategory: string;
   onCategorySelect: (categoryId: string) => void;
+  className?: string;
 }
 
 export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedCategory,
   onCategorySelect,
+  className,
 }) => {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none touch-pan-x" role="group" aria-label="Catalog Categories Filter">
-      {categories.map((cat) => {
+    <div
+      className={cn(
+        "flex items-center gap-2 sm:gap-4 overflow-x-auto pb-2 scrollbar-none touch-pan-x border-b border-white/[0.07]",
+        className
+      )}
+      role="tablist"
+      aria-label="Category Filters"
+    >
+      {categories.map((cat, index) => {
         const active = selectedCategory === cat.id;
+        const numStr = index.toString().padStart(2, '0');
         return (
           <button
             key={cat.id}
+            role="tab"
+            aria-selected={active}
             onClick={() => onCategorySelect(cat.id)}
-            aria-pressed={active}
-            className={`px-4 py-2 rounded-sm text-xs font-mono font-bold tracking-wider uppercase whitespace-nowrap transition-all shrink-0 min-h-[42px] flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] ${
+            className={cn(
+              "relative px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-200 shrink-0 flex items-center gap-2",
+              "focus-visible:outline-none focus-visible:text-white group",
               active
-                ? 'bg-[#E3261E] text-[#F3F0E8] border border-[#E3261E] shadow-sm'
-                : 'bg-[#0B0B0A] text-[#9B9992] hover:bg-[#151514] hover:text-[#F3F0E8] border border-[#292927]'
-            }`}
+                ? "text-[#F3F0E8]"
+                : "text-[#6E6C65] hover:text-[#F3F0E8]"
+            )}
           >
+            <span className={cn("text-[10px]", active ? "text-[#E3261E]" : "text-[#55534E] group-hover:text-[#8E8C85]")}>
+              {numStr}
+            </span>
             <span>{cat.name}</span>
-            {cat.countBadge && (
-              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm ${
-                active ? 'bg-white/20 text-[#F3F0E8]' : 'bg-[#151514] text-[#9B9992] border border-[#292927]'
-              }`}>
-                {cat.countBadge}
-              </span>
+            {active && (
+              <span className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#E3261E]" />
             )}
           </button>
         );

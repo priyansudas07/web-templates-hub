@@ -1,65 +1,140 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Button } from '../common/Button';
-import { Jersey3DViewer } from '../common/Jersey3DViewer';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, type Variants } from 'framer-motion';
 import { DustParticles } from '../common/DustParticles';
-import { products } from '../../data/products';
-import { createGeneralWhatsAppLink } from '../../utils/whatsapp';
-import { ArrowRight, MessageCircle, ChevronRight, Layers, Box } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const KIT_ANGLES = [
+const flipVariants: Variants = {
+  initial: (dir: number) => ({
+    rotateY: dir * -85,
+    scale: 0.93,
+    opacity: 0,
+    filter: 'blur(3px)',
+  }),
+  animate: {
+    rotateY: 0,
+    scale: 1,
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.52,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir: number) => ({
+    rotateY: dir * 85,
+    scale: 0.93,
+    opacity: 0,
+    filter: 'blur(3px)',
+    transition: {
+      duration: 0.42,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
+const KIT_VIEWS = [
   {
     id: 'front',
-    label: 'FRONT',
-    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1000&q=85',
-    tag: 'MATCH EDITION FRONT',
-    is3D: false
+    label: 'Front View',
+    num: '01',
+    image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-front.png',
+    tag: 'FRONT PERSPECTIVE',
+    camera: { scale: 1, x: 0, y: 0 },
+    isBack: false,
+    specNote: null,
+    specs: null,
   },
   {
     id: 'back',
-    label: 'BACK',
-    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85',
-    tag: 'CUSTOM NAMEPRINT BACK',
-    is3D: false
+    label: 'Back Profile',
+    num: '02',
+    image: '/kits/portugal-back.png',
+    thumbnail: '/kits/portugal-back.png',
+    tag: 'REAR PROFILE & NAMESET',
+    camera: { scale: 1, x: 0, y: 0 },
+    isBack: true,
+    specNote: null,
+    specs: null,
   },
   {
-    id: 'detail',
-    label: 'CREST',
-    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85',
-    tag: 'AUTHENTIC EMBLEM WEAVE',
-    is3D: false
+    id: 'crest',
+    label: 'Club Crest',
+    num: '03',
+    image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-crest.jpg',
+    tag: 'EMBROIDERED CREST',
+    camera: { scale: 3.0, x: -130, y: 150 },
+    isBack: false,
+    specNote: 'MAG: 3.0X // EMBROIDERED SHIELD',
+    dossierTitle: 'EMBROIDERED TEAM CREST',
+    dossierDescription: 'High-density textured gold bullion embroidery with heat-applied backing for clean, friction-free wear.',
+    specs: [
+      { label: 'THREAD SPEC', value: 'High-Density Embroidery' },
+      { label: 'EMBLEM FINISH', value: 'Textured Bullion Wire' },
+      { label: 'APPLICATION', value: 'Heat-Applied Backing' },
+      { label: 'CLASSIFICATION', value: 'Archival Specimen' },
+    ],
   },
   {
-    id: '3d-model',
-    label: '3D 360°',
-    image: '',
-    tag: '3D INTERACTIVE VAULT MODEL',
-    is3D: true
-  }
+    id: 'details',
+    label: 'Fabric Weave',
+    num: '04',
+    image: '/kits/portugal-front.png',
+    thumbnail: '/kits/portugal-details.jpg',
+    tag: 'COLLAR & FABRIC DETAIL',
+    camera: { scale: 2.9, x: -10, y: 300 },
+    isBack: false,
+    specNote: 'MAG: 2.9X // JACQUARD KNIT & COLLAR',
+    dossierTitle: 'DRI-FIT ADV JACQUARD',
+    dossierDescription: 'Body-mapped breathable jacquard knit structure with dual-tone ribbed collar construction.',
+    specs: [
+      { label: 'KNIT TECH', value: 'Dri-FIT ADV Jacquard' },
+      { label: 'ZONE MAPPING', value: 'Engineered Breathability' },
+      { label: 'COLLAR WEAVE', value: 'Dual-Tone Ribbed Trim' },
+      { label: 'COMPOSITION', value: '100% Recycled Poly' },
+    ],
+  },
 ];
 
 export const EditorialHero: React.FC = () => {
-  const spotlightProduct = products[0]; // Portugal 2026 Home Kit
-  const [activeAngleIndex, setActiveAngleIndex] = useState(0);
+  const [activeViewIndex, setActiveViewIndex] = useState(0);
+  const [prevViewIndex, setPrevViewIndex] = useState(0);
 
-  // Parallax motion tracking
+  // Preload secondary perspective images in the background
+  useEffect(() => {
+    KIT_VIEWS.slice(1).forEach((view) => {
+      const img = new Image();
+      img.src = view.image;
+      if (view.thumbnail && view.thumbnail !== view.image) {
+        const thumb = new Image();
+        thumb.src = view.thumbnail;
+      }
+    });
+  }, []);
+
+  const handleSelectView = (index: number) => {
+    setPrevViewIndex(activeViewIndex);
+    setActiveViewIndex(index);
+  };
+
+  const spinDirection = activeViewIndex >= prevViewIndex ? 1 : -1;
+
+  // Dynamic Parallax Motion Values for Hero Hover Interaction (Subtle, Buttery Luxury Physics)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for fluid movement
-  const springConfig = { damping: 25, stiffness: 150 };
-  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig);
-  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
-  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
-  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-10, 10]), springConfig);
+  const springConfig = { damping: 30, stiffness: 120 };
+  const jerseyRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [2.5, -2.5]), springConfig);
+  const jerseyRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3.5, 3.5]), springConfig);
+  const jerseyTranslateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+  const jerseyTranslateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-4, 4]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const x = (e.clientX - rect.left) / width - 0.5;
-    const y = (e.clientY - rect.top) / height - 0.5;
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
   };
@@ -69,214 +144,623 @@ export const EditorialHero: React.FC = () => {
     mouseY.set(0);
   };
 
-  const currentAngle = KIT_ANGLES[activeAngleIndex];
+  const currentView = KIT_VIEWS[activeViewIndex];
 
   return (
-    <section 
+    <section
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[95vh] lg:min-h-screen -mt-20 pt-28 pb-16 lg:pb-24 bg-[#050505] text-[#F3F0E8] overflow-hidden flex flex-col justify-center border-b border-[#292927]"
+      className="relative min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] bg-[#070707] text-[#F3F0E8] overflow-hidden flex flex-col justify-between pt-3 pb-3 select-none border-b border-[#292927]/60"
     >
-      {/* Real Photography Studio Backdrop Image (Darker Studio Paper & Shifted Frame) */}
+
+      {/* 1. Extremely Faint Analog Film Grain Texture */}
       <div 
-        className="absolute -top-24 inset-x-0 bottom-0 bg-[size:105%_100%] bg-[position:48%_center] bg-no-repeat opacity-95 pointer-events-none z-0 filter contrast-110 brightness-80 transform-gpu"
-        style={{ backgroundImage: `url('/studio-backdrop.png')` }}
+        className="absolute inset-0 pointer-events-none z-[2] opacity-[0.025] mix-blend-screen"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
       />
 
-      {/* Typography Legibility Gradient Mask (Darkens Left Side behind Headline) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-[#050505]/35 to-transparent pointer-events-none z-0" />
+      {/* 2. Slow Moving Ambient Background Gradient Drift */}
+      <motion.div
+        animate={{
+          x: ['-3%', '3%', '-3%'],
+          y: ['-2%', '2%', '-2%'],
+          rotate: [-1.5, 1.5, -1.5],
+        }}
+        transition={{
+          duration: 18,
+          ease: 'easeInOut',
+          repeat: Infinity,
+        }}
+        className="absolute -inset-20 pointer-events-none z-0 opacity-40 blur-3xl"
+        style={{
+          background: `radial-gradient(ellipse 65% 55% at 55% 50%, rgba(227,38,30,0.10) 0%, rgba(30,10,10,0.03) 50%, transparent 80%), radial-gradient(circle at 85% 25%, rgba(227,38,30,0.05) 0%, transparent 55%)`,
+        }}
+      />
+      
+      {/* 3. Subtle Breathing Red Atmospheric Studio Glow behind Jersey */}
+      <motion.div
+        animate={{
+          scale: [1, 1.05, 1],
+          opacity: [0.45, 0.65, 0.45],
+        }}
+        transition={{
+          duration: 7.5,
+          ease: 'easeInOut',
+          repeat: Infinity,
+        }}
+        className="absolute top-1/2 left-[56%] -translate-x-1/2 -translate-y-1/2 w-[680px] h-[540px] sm:w-[800px] sm:h-[620px] bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.11)_0%,_rgba(180,20,15,0.035)_48%,_transparent_74%)] blur-3xl pointer-events-none z-0"
+      />
+      
+      {/* Floating Studio Dust Particles */}
+      <DustParticles particleCount={35} />
 
-      {/* Bottom & Top Blends to Smoothly Integrate Stage into Navbar & Next Section */}
-      <div className="absolute -top-24 inset-x-0 h-32 bg-gradient-to-b from-[#050505]/60 via-[#050505]/20 to-transparent pointer-events-none z-0" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent pointer-events-none z-0" />
+      {/* Far Left Vertical Technical Telemetry Bar */}
+      <div className="hidden xl:flex absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 items-center gap-3 z-10 pointer-events-none opacity-40">
+        <div className="h-16 w-[1px] bg-[#9B9992]/40" />
+        <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-[#9B9992] -rotate-90 origin-left whitespace-nowrap">
+          SM90 DIGTS 01000
+        </span>
+      </div>
 
-      {/* Unified Crimson Studio Spotlight Beam */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E3261E]/18 via-transparent to-transparent blur-3xl pointer-events-none z-0" />
-
-      {/* Live Floating Studio Dust Particles */}
-      <DustParticles particleCount={55} />
-
-      {/* Main Asymmetric Campaign Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+      {/* Main Campaign Stage Grid */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full my-auto flex-1 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-3 items-center">
           
-          {/* Left Column: Oversized Editorial Typography & Narrative */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-5 lg:space-y-6 text-left lg:pl-6 xl:pl-8"
+          {/* ============================================================
+              LEFT COLUMN: Dynamic Editorial Headline & Technical Dossier
+             ============================================================ */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col justify-center text-left z-20 relative"
           >
-            {/* Responsive Editorial Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.2rem] font-display font-bold uppercase tracking-tight leading-[0.93] text-[#F3F0E8]">
-              THE GAME <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3F0E8] via-[#F3F0E8] to-[#9B9992] relative">
-                NEVER STOPS.
-              </span>
-            </h1>
+            {/* Soft Ambient Vignette Underlay to ensure crystal-clear text separation in Macro Zoom */}
+            <div 
+              className={`absolute -inset-x-6 -inset-y-8 bg-gradient-to-r from-[#070707]/95 via-[#070707]/75 to-transparent pointer-events-none transition-opacity duration-500 rounded-r-3xl -z-10 ${
+                activeViewIndex >= 2 ? 'opacity-100' : 'opacity-0'
+              }`} 
+            />
 
-            {/* Editorial Paragraph */}
-            <p className="text-[#9B9992] text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-sans font-medium pt-0.5">
-              Presented as a valuable piece of football culture. Engineered for peak athletic performance, collectible vault archival, and pure street culture.
-            </p>
-
-            {/* Primary Action Buttons Group with Crimson Neon Backlight Glow */}
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-              
-              {/* Crimson Glowing CTA Wrapper */}
-              <div className="relative group w-full sm:w-auto">
-                <div className="absolute -inset-1 bg-[#E3261E] rounded-sm blur-xl opacity-75 group-hover:opacity-100 transition duration-500 group-hover:blur-2xl animate-pulse" />
-                <Button
-                  href="/collection"
-                  variant="primary"
-                  size="lg"
-                  className="relative w-full sm:w-auto justify-center bg-[#E3261E] hover:bg-[#d01f17] text-white border-0 font-mono font-bold tracking-wider uppercase shadow-[0_0_35px_rgba(227,38,30,0.6)]"
-                  icon={<ArrowRight className="w-5 h-5" />}
+            <AnimatePresence mode="wait">
+              {activeViewIndex < 2 ? (
+                <motion.div
+                  key="campaign-headline"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-4 sm:space-y-5"
                 >
-                  Explore Collection
-                </Button>
-              </div>
+                  {/* Breadcrumb / Category Tag */}
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
+                    <span className="font-mono text-[#E3261E] font-bold">{currentView.num}</span>
+                    <span className="font-sans font-semibold text-[#9B9992]/80">
+                      / {activeViewIndex === 0 ? 'FOOTBALL' : 'PLAYER SPEC'}
+                    </span>
+                  </div>
 
-              {/* User-Requested Liquid Wave Fill WhatsApp Button (.button2) */}
-              <a
-                href={createGeneralWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button2 sm:ml-2"
-                aria-label="Contact Concierge on WhatsApp"
-              >
-                <span>WhatsApp Concierge</span>
-                <svg viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-              </a>
+                  {/* Art-Directed Editorial Campaign Headline with Staggered Entrance */}
+                  <div className="space-y-1 sm:space-y-1.5 overflow-hidden">
+                    <motion.span
+                      initial={{ opacity: 0, y: 14, filter: 'blur(3px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                      className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
+                    >
+                      THE GAME
+                    </motion.span>
+                    <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-3.5">
+                      <motion.span
+                        initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                        className="inline-block"
+                      >
+                        NEVER
+                      </motion.span>
+                      <motion.span
+                        initial={{ opacity: 0, y: 22, scale: 0.94, filter: 'blur(6px)' }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                        className="inline-block text-[#E3261E]"
+                      >
+                        STOPS.
+                      </motion.span>
+                    </h1>
+                  </div>
+
+                  {/* Product Meta: Official Release Spec */}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
+                      <span>PORTUGAL 2025/26</span>
+                      <span className="text-white/20">•</span>
+                      <span className="text-[#E3261E]">HOME SPECIMEN</span>
+                    </div>
+                    <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.16em] text-sm sm:text-base uppercase">
+                      PORTUGAL HOME KIT 2025/26
+                    </div>
+                  </div>
+
+                  {/* Pricing Line with Red Dash Accent & Transparent Spec */}
+                  <div className="flex items-baseline gap-3 pt-0.5">
+                    <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
+                    <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
+                      ₹1,499
+                    </span>
+                    <span className="text-xs sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
+                      TAXES INCLUDED · SIZES S–XXL
+                    </span>
+                  </div>
+
+                  {/* Action Button: Focused Primary CTA */}
+                  <div className="pt-1 flex items-center">
+                    <Link
+                      to="/collection"
+                      className="group h-12 inline-flex items-center justify-center gap-3 px-8 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-150 ease-out rounded-xs hover:shadow-[0_4px_24px_rgba(227,38,30,0.50)] active:scale-[0.98]"
+                    >
+                      <span>EXPLORE COLLECTION</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-150 ease-out group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="dossier-panel"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  {/* Dossier Header */}
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
+                    <span className="font-mono text-[#E3261E] font-bold">{currentView.num}</span>
+                    <span className="font-sans font-semibold text-[#9B9992]/80">/ ARCHIVAL SPECIFICATION</span>
+                  </div>
+
+                  {/* Dossier Title & Description with Smooth Crossfade */}
+                  <motion.div 
+                    key={`title-${currentView.id}`}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="space-y-1 max-w-md"
+                  >
+                    <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] font-display font-normal uppercase tracking-[0.05em] text-[#F3F0E8] leading-[1.02]">
+                      {currentView.dossierTitle}
+                    </h2>
+                    <p className="text-xs sm:text-[12.5px] text-[#9B9992] font-sans font-normal leading-relaxed">
+                      {currentView.dossierDescription}
+                    </p>
+                  </motion.div>
+
+                  {/* Open 2x2 Technical Blueprint Matrix with Center Crosshair (+) */}
+                  <motion.div 
+                    key={`specs-${currentView.id}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="relative max-w-md my-1.5 border-y border-white/[0.08] py-1"
+                  >
+                    {/* Center Crosshair '+' Mark */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-4 h-4 flex items-center justify-center pointer-events-none text-white/40 font-mono text-[11px] select-none">
+                      +
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      {/* Top Left */}
+                      {currentView.specs?.[0] && (
+                        <div className="pr-3.5 pb-2.5 border-r border-b border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[0].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[0].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Top Right */}
+                      {currentView.specs?.[1] && (
+                        <div className="pl-3.5 pb-2.5 border-b border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[1].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[1].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Bottom Left */}
+                      {currentView.specs?.[2] && (
+                        <div className="pr-3.5 pt-2.5 border-r border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[2].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[2].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Bottom Right */}
+                      {currentView.specs?.[3] && (
+                        <div className="pl-3.5 pt-2.5">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[3].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[3].value}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+
+                  {/* Pricing Line */}
+                  <div className="flex items-baseline gap-3 pt-0.5">
+                    <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
+                    <span className="text-2xl sm:text-3xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
+                      ₹1,499
+                    </span>
+                    <span className="text-xs sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
+                      TAXES INCLUDED · SIZES S–XXL
+                    </span>
+                  </div>
+
+                  {/* Action Buttons Row with Reset to Full View Option */}
+                  <div className="pt-0.5 flex flex-wrap items-center gap-3 sm:gap-4">
+                    <Link
+                      to="/collection"
+                      className="group h-11 inline-flex items-center justify-center gap-2.5 px-5 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-none rounded-xs hover:shadow-[0_4px_18px_rgba(227,38,30,0.40)] active:scale-[0.98]"
+                    >
+                      <span>EXPLORE COLLECTION</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-75 ease-out group-hover:translate-x-1" />
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => handleSelectView(0)}
+                      className="h-11 px-4 inline-flex items-center justify-center gap-1.5 border border-white/20 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/60 hover:text-white hover:shadow-[0_0_8px_1px_rgba(255,255,255,0.14)] text-[#F3F0E8] font-mono text-[10px] font-bold uppercase tracking-widest transition-none rounded-xs cursor-pointer active:scale-[0.98]"
+                    >
+                      <span>FULL VIEW</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* ============================================================
+              CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
+             ============================================================ */}
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[360px] sm:min-h-[440px] lg:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
+            
+            {/* Jersey Centerpiece Container (Dominant Scale & Central Placement) */}
+            <div
+              className="relative w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.06] sm:scale-[1.2] lg:scale-[1.38] xl:scale-[1.42] translate-y-2 sm:translate-y-6 lg:translate-y-10 transition-transform duration-500 ease-out"
+            >
+              {/* High-Resolution Jersey Image or Macro Detail View */}
+              <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
+                
+                {/* 1. Very Slow Organic Floating Movement (~4-6px) */}
+                <motion.div
+                  animate={{
+                    y: [-4.5, 4.5, -4.5],
+                  }}
+                  transition={{
+                    duration: 6.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                  className="relative w-full h-full flex items-center justify-center pointer-events-none"
+                >
+                  {/* 2. Extremely Subtle 3D Mouse Rotation & Parallax Layer */}
+                  <motion.div
+                    style={{
+                      rotateX: jerseyRotateX,
+                      rotateY: jerseyRotateY,
+                      x: jerseyTranslateX,
+                      y: jerseyTranslateY,
+                      transformStyle: 'preserve-3d',
+                    }}
+                    className="relative w-full h-full flex items-center justify-center pointer-events-none"
+                  >
+                    {/* Volumetric Theatrical Studio Backlight (Broad, Soft Atmosphere) */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
+                      {/* Core Ruby Spotlight Behind Torso */}
+                      <div className="w-[280px] h-[320px] sm:w-[390px] sm:h-[430px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.26)_0%,_rgba(180,20,15,0.10)_48%,_transparent_72%)] blur-2xl transform-gpu" />
+                      {/* Broad Atmospheric Haze */}
+                      <div className="absolute w-[440px] h-[480px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
+                    </div>
+
+                    {/* Camera Zoom Stage (Smoothly zooms and translates camera to focal areas) */}
+                    <motion.div
+                      animate={{
+                        scale: currentView.camera.scale,
+                        x: currentView.camera.x,
+                        y: currentView.camera.y,
+                      }}
+                      transition={{
+                        duration: 0.58,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="relative w-full h-full flex items-center justify-center [perspective:1400px] transform-gpu will-change-transform"
+                    >
+                      <AnimatePresence mode="wait" custom={spinDirection}>
+                        <motion.div
+                          key={currentView.isBack ? 'back' : 'front'}
+                          custom={spinDirection}
+                          variants={flipVariants}
+                          initial="initial"
+                          animate="animate"
+                          exit="exit"
+                          className="relative w-full h-full flex items-center justify-center group/jersey [transform-style:preserve-3d]"
+                        >
+                          <div className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
+                            {/* Base High-Resolution Jersey Artwork */}
+                            <img
+                              src={currentView.image}
+                              alt="Portugal 2025/26 Match Kit"
+                              fetchPriority="high"
+                              decoding="async"
+                              className="w-full h-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.92)] drop-shadow-[0_0_46px_rgba(227,38,30,0.22)] drop-shadow-[0_0_12px_rgba(255,255,255,0.04)] select-none pointer-events-auto cursor-pointer"
+                            />
+
+                            {/* Ultra-Subtle Specular Light Sheen Across the Fabric Surface */}
+                            <div
+                              className="absolute inset-0 pointer-events-none mix-blend-screen z-10 overflow-hidden"
+                              style={{
+                                maskImage: `url(${currentView.image})`,
+                                WebkitMaskImage: `url(${currentView.image})`,
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center',
+                              }}
+                            >
+                              <motion.div
+                                animate={{
+                                  x: ['-140%', '160%'],
+                                  opacity: [0, 0.08, 0.18, 0.08, 0],
+                                }}
+                                transition={{
+                                  duration: 7.5,
+                                  ease: [0.25, 0.1, 0.25, 1],
+                                  repeat: Infinity,
+                                  repeatDelay: 3.5,
+                                }}
+                                className="w-[35%] h-[200%] -top-1/2 absolute bg-gradient-to-r from-transparent via-white/18 to-transparent -rotate-[22deg] blur-xl"
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
+                    </motion.div>
+
+                  </motion.div>
+                </motion.div>
+
+              </div>
             </div>
+          </div>
 
-            {/* Quick Spec Metadata Row */}
-            <div className="pt-6 border-t border-[#292927] grid grid-cols-3 gap-2 sm:gap-4 max-w-lg text-left">
-              <div>
-                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">CUT / FIT</span>
-                <span className="text-xs sm:text-sm font-mono font-bold text-[#F3F0E8]">ATHLETIC PRO</span>
+          {/* ============================================================
+              RIGHT COLUMN: NikeLab Technical Archival Inspector Dock
+             ============================================================ */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-14 xl:translate-x-20 z-20 w-full"
+          >
+            {/* Minimalist Editorial Gallery Strip - Responsive Horizontal Grid on Mobile */}
+            <div className="w-full max-w-full lg:max-w-[210px]">
+              
+              {/* Understated Editorial Header with Dynamic Progress Indicator */}
+              <div className="pb-2.5 mb-2.5 sm:mb-3">
+                <div className="flex items-center justify-between pb-1.5">
+                  <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
+                    PERSPECTIVES
+                  </span>
+                  <div className="flex items-center font-mono">
+                    <span className="text-[9.5px] font-bold text-[#F3F0E8] transition-colors">
+                      <span className="lg:hidden">0{Math.min(activeViewIndex + 1, 2)}</span>
+                      <span className="hidden lg:inline">0{activeViewIndex + 1}</span>
+                    </span>
+                    <span className="lg:hidden text-[8.5px] tracking-widest text-[#9B9992]/40">
+                      &nbsp;/ 02
+                    </span>
+                    <span className="hidden lg:inline text-[8.5px] tracking-widest text-[#9B9992]/40">
+                      &nbsp;/ 0{KIT_VIEWS.length}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Progress Track & Animated Progress Line (Responsive 2-Step on Mobile/Tablet, 4-Step on Desktop) */}
+                <div className="w-full h-[1.5px] bg-white/[0.06] rounded-full overflow-hidden relative">
+                  {/* Mobile & Tablet Progress Line */}
+                  <motion.div
+                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)] lg:hidden"
+                    initial={false}
+                    animate={{
+                      width: `${((Math.min(activeViewIndex, 1) + 1) / 2) * 100}%`,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 24,
+                    }}
+                  />
+                  {/* Desktop Progress Line */}
+                  <motion.div
+                    className="h-full bg-[#E3261E] rounded-full shadow-[0_0_8px_rgba(227,38,30,0.8)] hidden lg:block"
+                    initial={false}
+                    animate={{
+                      width: `${((activeViewIndex + 1) / KIT_VIEWS.length) * 100}%`,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 24,
+                    }}
+                  />
+                </div>
               </div>
-              <div>
-                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">FABRIC TECH</span>
-                <span className="text-xs sm:text-sm font-mono font-bold text-[#F3F0E8]">DRI-FIT ADV</span>
+
+              {/* View Items - 2-Column Grid on Mobile & Tablet (Front & Back), Vertical Stack on Desktop (All 4 Perspectives) */}
+              <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2 sm:gap-2.5">
+                {KIT_VIEWS.map((view, index) => {
+                  const isActive = index === activeViewIndex;
+                  const isDesktopOnly = index >= 2;
+                  return (
+                    <button
+                      key={view.id}
+                      onClick={() => handleSelectView(index)}
+                      className={`min-h-[44px] relative w-full ${
+                        isDesktopOnly ? 'hidden lg:flex' : 'flex'
+                      } items-center justify-between px-2.5 py-2 sm:py-2.5 rounded-xs transition-colors duration-200 text-left group cursor-pointer border ${
+                        isActive
+                          ? 'border-white/18 bg-white/[0.035] shadow-sm'
+                          : 'border-transparent bg-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        {/* Smooth Scaling Minimalist Thumbnail */}
+                        <motion.div
+                          animate={{
+                            scale: isActive ? 1.14 : 1,
+                          }}
+                          transition={{
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 24,
+                          }}
+                          className={`w-7 h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-colors duration-300 ${
+                            isActive
+                              ? 'border-white/35 shadow-[0_0_12px_rgba(0,0,0,0.9)] ring-1 ring-[#E3261E]/40'
+                              : 'border-white/[0.06] group-hover:border-white/15'
+                          }`}
+                        >
+                          <motion.img
+                            src={view.thumbnail || view.image}
+                            alt={view.label}
+                            animate={{
+                              scale: isActive ? 1.08 : 1,
+                            }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 300,
+                              damping: 24,
+                            }}
+                            className={`w-full h-full object-cover p-0.5 filter ${
+                              isActive ? 'contrast-105 brightness-105' : 'contrast-90 group-hover:contrast-100'
+                            }`}
+                          />
+                        </motion.div>
+
+                        {/* Clean Single-Line Typography */}
+                        <div className="flex items-center gap-1.5 text-left">
+                          <span className={`text-[9.5px] font-mono transition-colors ${
+                            isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]/60 group-hover:text-[#9B9992]'
+                          }`}>
+                            {view.num}
+                          </span>
+                          <span className={`text-[11px] font-sans uppercase tracking-[0.1em] transition-colors ${
+                            isActive ? 'text-[#F3F0E8] font-bold' : 'text-[#9B9992] group-hover:text-[#F3F0E8] font-medium'
+                          }`}>
+                            {view.label}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Active Red Indicator: Smoothly Slides across Selected Items */}
+                      <div className="relative w-3.5 h-3.5 flex items-center justify-center pr-1">
+                        {isActive && (
+                          <motion.div
+                            layoutId="activePerspectiveIndicator"
+                            transition={{
+                              type: 'spring',
+                              stiffness: 320,
+                              damping: 28,
+                            }}
+                            className="w-1.5 h-1.5 rounded-full bg-[#E3261E] shadow-[0_0_8px_#E3261E,0_0_2px_#ffffff]"
+                          />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
-              <div>
-                <span className="block text-[9px] sm:text-[10px] font-mono text-[#9B9992] uppercase tracking-wider">AVAILABILITY</span>
-                <span className="text-xs sm:text-sm font-mono font-bold text-[#E3261E]">LIMITED DROP</span>
-              </div>
+
             </div>
           </motion.div>
 
-          {/* Right Column: Featured Jersey Showcase with Interactive Parallax & Angle Switcher */}
-          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            <motion.div 
-              style={{
-                rotateX: jerseyRotateX,
-                rotateY: jerseyRotateY,
-                x: jerseyTranslateX,
-                y: jerseyTranslateY,
-                transformStyle: 'preserve-3d',
-              }}
-              initial={{ opacity: 0, scale: 0.92, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[380px] sm:max-w-[410px] group cursor-pointer"
-            >
-              {/* Product Visual Container with Asymmetric Frame */}
-              <div className="relative bg-[#151514] border border-[#292927] p-2.5 sm:p-3 shadow-2xl overflow-hidden rounded-sm group-hover:border-[#E3261E]/50 transition-colors duration-500">
-                
-                {/* Top Visual Header & Angle Switcher Controls */}
-                <div className="flex items-center justify-between px-2.5 py-1.5 bg-[#0B0B0A] border border-[#292927] mb-2.5 text-xs font-mono">
-                  <div className="flex items-center gap-1.5 text-[#E3261E] font-bold uppercase tracking-wider">
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>[ SPOTLIGHT ]</span>
-                  </div>
+        </div>
+      </div>
 
-                  {/* Interactive Angle Switcher Tabs */}
-                  <div className="flex items-center gap-1">
-                    {KIT_ANGLES.map((angle, index) => {
-                      const isActive = index === activeAngleIndex;
-                      return (
-                        <button
-                          key={angle.id}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setActiveAngleIndex(index);
-                          }}
-                          className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase transition-all rounded-sm flex items-center gap-1 ${
-                            isActive
-                              ? 'bg-[#E3261E] text-white'
-                              : 'bg-[#151514] text-[#9B9992] hover:text-[#F3F0E8] border border-[#292927]'
-                          }`}
-                        >
-                          {angle.is3D && <Box className="w-2.5 h-2.5" />}
-                          <span>{angle.label}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Main Dynamic Image or 3D Model Display */}
-                {currentAngle.is3D ? (
-                  <div className="aspect-[4/4.3] bg-[#0B0B0A] overflow-hidden rounded-sm relative">
-                    <Jersey3DViewer modelUrl="/jersey.glb" altText="3D Jersey Model" showControls={true} />
-                  </div>
-                ) : (
-                  <Link to={`/collection/${spotlightProduct?.id || '1'}`} className="block relative aspect-[4/4.3] bg-[#0B0B0A] overflow-hidden group">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={currentAngle.id}
-                        src={currentAngle.image}
-                        alt={spotlightProduct.name}
-                        initial={{ opacity: 0, scale: 1.08 }}
-                        animate={{ opacity: 1, scale: 1.04 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.35, ease: 'easeInOut' }}
-                        className="w-full h-full object-cover object-center filter contrast-105"
-                      />
-                    </AnimatePresence>
-                    
-                    {/* Subtle Dark Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0A] via-transparent to-transparent opacity-80" />
-
-                    {/* Dynamic Angle Callout Tag */}
-                    <div className="absolute top-3 right-3 bg-[#0B0B0A]/90 border border-[#292927] px-2.5 py-1 text-[10px] font-mono font-bold text-[#E3261E] tracking-widest rounded-sm">
-                      {currentAngle.tag}
-                    </div>
-
-                    {/* On-Image Product Title */}
-                    <div className="absolute bottom-4 left-4 right-4 text-left">
-                      <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-widest block mb-1">
-                        NATIONAL TEAM ISSUE // 2026
-                      </span>
-                      <h3 className="text-2xl font-display font-bold text-[#F3F0E8] uppercase tracking-wide leading-tight">
-                        {spotlightProduct?.name || 'Portugal 2026 Home Kit'}
-                      </h3>
-                    </div>
-                  </Link>
-                )}
-
-                {/* Card Footer Info */}
-                <div className="p-4 bg-[#151514] border-t border-[#292927] flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] font-mono text-[#9B9992] block uppercase tracking-wider">OFFICIAL PRICE</span>
-                    <span className="text-xl font-mono font-bold text-[#F3F0E8]">₹{spotlightProduct?.price.toLocaleString('en-IN') || '4,999'}</span>
-                  </div>
-                  
-                  <Link
-                    to={`/collection/${spotlightProduct?.id || '1'}`}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#E3261E] hover:bg-[#c81e17] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-sm transition-colors"
-                  >
-                    <span>INSPECT KIT</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+      {/* ============================================================
+          BOTTOM SECTION: Understated Brand Assurance Modules & Archival Spec
+         ============================================================ */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-3 pb-1 border-t border-white/[0.04]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+          
+          {/* Brand Assurance Modules (More Spacing, Lighter Visual Weight) */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-12 lg:gap-16 text-left">
+            
+            {/* Module 1: Quality Spec */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-[#E3261E]/70" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  MATCH-SPEC WEAVE
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / ATHLETIC CUT
+                </span>
               </div>
+            </div>
 
-            </motion.div>
+            {/* Module 2: Logistics */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  PAN-INDIA DISPATCH
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / TRACKED
+                </span>
+              </div>
+            </div>
+
+            {/* Module 3: Verification */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <div className="flex items-baseline gap-1.5 font-sans">
+                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                  ATELIER SOURCED
+                </span>
+                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                  / INSPECTED
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Micro Technical Archive Spec (Subtle Pedigree Tag) */}
+          <div className="hidden md:flex items-center gap-2 text-right opacity-40">
+            <span className="w-1 h-1 rounded-full bg-emerald-500/60" />
+            <span className="text-[9px] font-mono tracking-[0.26em] text-[#9B9992] uppercase">
+              CATALOG ID // POR-2025-HM
+            </span>
           </div>
 
         </div>
@@ -285,3 +769,4 @@ export const EditorialHero: React.FC = () => {
     </section>
   );
 };
+

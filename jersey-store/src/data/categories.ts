@@ -3,41 +3,35 @@ import type { CategoryItem } from '../types/category';
 export const categories: CategoryItem[] = [
   {
     id: 'all',
-    name: 'All Collection',
-    description: 'Browse all available kits across Football, Cricket, and Basketball.',
-    countBadge: '12 KITS'
+    name: 'ALL',
+    description: 'All authentic match kits, retro grails, and player editions.',
   },
   {
     id: 'football',
-    name: 'Football Kits',
+    name: 'FOOTBALL',
     sport: 'football',
-    description: 'Authentic club and national team match kits from top European leagues and tournaments.',
-    countBadge: '6 KITS'
+    description: 'European leagues, Champions League editions, and national kits.',
   },
   {
     id: 'cricket',
-    name: 'Cricket Jerseys',
+    name: 'CRICKET',
     sport: 'cricket',
-    description: 'Official national team jerseys and IPL franchise fan editions.',
-    countBadge: '3 KITS'
+    description: 'International test, ODI, and T20 pro-match jerseys.',
   },
   {
     id: 'basketball',
-    name: 'Basketball',
+    name: 'BASKETBALL',
     sport: 'basketball',
-    description: 'NBA hardwood classics, city edition swingman jerseys, and iconic signature gear.',
-    countBadge: '3 KITS'
+    description: 'Hardwood classics, city editions, and signature jerseys.',
   },
   {
-    id: 'club-teams',
-    name: 'Club Teams',
-    description: 'Domestic and international club kits from Real Madrid, Arsenal, Barcelona, and more.',
-    countBadge: '7 KITS'
+    id: 'clubs',
+    name: 'CLUBS',
+    description: 'Domestic and international club match kits.',
   },
   {
-    id: 'national-teams',
-    name: 'National Teams',
-    description: 'World Cup and international tournament jerseys for Portugal, Argentina, India, and more.',
-    countBadge: '5 KITS'
+    id: 'national',
+    name: 'NATIONAL',
+    description: 'World Cup and international tournament national team kits.',
   }
 ];
