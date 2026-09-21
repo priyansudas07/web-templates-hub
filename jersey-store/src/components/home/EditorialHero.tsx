@@ -407,11 +407,8 @@ export const EditorialHero: React.FC = () => {
                     <span className="text-2xl sm:text-3xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
                       ₹1,499
                     </span>
-                    <span className="text-xs sm:text-sm font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70">
-                      ₹2,999
-                    </span>
-                    <span className="text-xs sm:text-sm font-mono font-bold text-[#E3261E] tracking-wider">
-                      50%
+                    <span className="text-xs sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
+                      TAXES INCLUDED · SIZES S–XXL
                     </span>
                   </div>
 
