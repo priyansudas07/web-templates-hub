@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { Layout } from './components/common/Layout';
 import { Home } from './pages/Home';
 
@@ -48,6 +49,7 @@ export const App: React.FC = () => {
           </Routes>
         </Suspense>
       </Layout>
+      <Analytics />
     </BrowserRouter>
   );
 };
