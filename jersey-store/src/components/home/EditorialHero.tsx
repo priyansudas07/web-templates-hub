@@ -314,18 +314,62 @@ export const EditorialHero: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* 2x2 Technical Spec Grid */}
-                  <div className="grid grid-cols-2 gap-2 max-w-md pt-0.5">
-                    {currentView.specs?.map((spec, i) => (
-                      <div key={i} className="p-2 sm:p-2.5 bg-white/[0.035] border border-white/[0.08] rounded-xs">
-                        <span className="text-[8px] sm:text-[8.5px] font-mono uppercase tracking-widest text-[#E3261E] block font-bold">
-                          {spec.label}
-                        </span>
-                        <span className="text-[10.5px] sm:text-[11.5px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
-                          {spec.value}
-                        </span>
-                      </div>
-                    ))}
+                  {/* Open 2x2 Technical Blueprint Matrix with Center Crosshair (+) */}
+                  <div className="relative max-w-md my-1.5 border-y border-white/[0.08] py-1">
+                    {/* Center Crosshair '+' Mark */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-4 h-4 flex items-center justify-center pointer-events-none text-white/40 font-mono text-[11px] select-none">
+                      +
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      {/* Top Left */}
+                      {currentView.specs?.[0] && (
+                        <div className="pr-3.5 pb-2.5 border-r border-b border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[0].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[0].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Top Right */}
+                      {currentView.specs?.[1] && (
+                        <div className="pl-3.5 pb-2.5 border-b border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[1].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[1].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Bottom Left */}
+                      {currentView.specs?.[2] && (
+                        <div className="pr-3.5 pt-2.5 border-r border-white/[0.08]">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[2].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[2].value}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Bottom Right */}
+                      {currentView.specs?.[3] && (
+                        <div className="pl-3.5 pt-2.5">
+                          <span className="text-[8.5px] font-mono uppercase tracking-[0.22em] text-[#E3261E] block font-bold">
+                            {currentView.specs[3].label}
+                          </span>
+                          <span className="text-[11px] sm:text-[12px] font-mono font-bold text-[#F3F0E8] uppercase tracking-wider block mt-0.5 truncate">
+                            {currentView.specs[3].value}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Pricing Line */}
