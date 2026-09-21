@@ -20,10 +20,10 @@ export const About: React.FC = () => {
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#E3261E]/[0.025] rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-8 items-center">
             
-            {/* Left Column: Dramatic Editorial Typography (7 Cols) */}
-            <div className="lg:col-span-7 space-y-10">
+            {/* Left Column: Dramatic Editorial Typography (7 Cols on tablet & desktop) */}
+            <div className="md:col-span-7 space-y-8 sm:space-y-10">
               
               {/* Small Restrained Orange Label */}
               <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
@@ -33,10 +33,10 @@ export const About: React.FC = () => {
 
               {/* Oversized Condensed Campaign Headline */}
               <div className="space-y-1">
-                <h1 className="text-6xl sm:text-8xl lg:text-[6.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
+                <h1 className="text-6xl sm:text-7xl lg:text-[6.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   BUILT FOR THE GAME.
                 </h1>
-                <div className="text-5xl sm:text-7xl lg:text-[5.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#6E6C65] font-['Bebas_Neue',sans-serif]">
+                <div className="text-5xl sm:text-6xl lg:text-[5.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#6E6C65] font-['Bebas_Neue',sans-serif]">
                   NOT JUST THE JERSEY.
                 </div>
               </div>
@@ -58,8 +58,8 @@ export const About: React.FC = () => {
 
             </div>
 
-            {/* Right Column: Asymmetric Realistic Macro Kit Texture (5 Cols) */}
-            <div className="lg:col-span-5 relative mt-4 lg:mt-0">
+            {/* Right Column: Asymmetric Realistic Macro Kit Texture (5 Cols on tablet & desktop) */}
+            <div className="md:col-span-5 relative mt-4 md:mt-0">
               
               <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-sm group">
                 

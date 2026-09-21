@@ -86,9 +86,9 @@ export const ProductDetail: React.FC = () => {
         </div>
 
         {/* Two-Column Editorial Product Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          {/* Left Column: Visual Hero Stage (7 Columns on large screens) */}
-          <div className="lg:col-span-7">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
+          {/* Left Column: Visual Hero Stage (6 Cols on tablet, 7 on desktop) */}
+          <div className="md:col-span-6 lg:col-span-7">
             <ProductGallery
               images={product.images}
               productName={product.name}
@@ -97,8 +97,8 @@ export const ProductDetail: React.FC = () => {
             />
           </div>
 
-          {/* Right Column: Spec & Action Details (5 Columns on large screens) */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Spec & Action Details (6 Cols on tablet, 5 on desktop) */}
+          <div className="md:col-span-6 lg:col-span-5">
             <ProductInfo product={product} />
           </div>
         </div>

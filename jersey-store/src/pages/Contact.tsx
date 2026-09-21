@@ -42,10 +42,10 @@ export const Contact: React.FC = () => {
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#E3261E]/[0.03] rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-8 items-center">
             
-            {/* Left Column (6 Cols) */}
-            <div className="lg:col-span-6 space-y-8">
+            {/* Left Column (6 Cols on tablet & desktop) */}
+            <div className="md:col-span-6 space-y-6 sm:space-y-8">
               
               {/* Restrained Accent Tag */}
               <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
@@ -55,13 +55,13 @@ export const Contact: React.FC = () => {
 
               {/* Oversized Athletic Display Headline */}
               <div className="space-y-2">
-                <h1 className="text-6xl sm:text-8xl lg:text-[7.2rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">
+                <h1 className="text-6xl sm:text-7xl lg:text-[7.2rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">
                   LET'S TALK KIT.
                 </h1>
               </div>
 
               {/* Editorial Quote Statement */}
-              <p className="text-xl sm:text-2xl text-[#A19F97] font-normal leading-snug font-sans max-w-xl">
+              <p className="text-lg sm:text-xl lg:text-2xl text-[#A19F97] font-normal leading-snug font-sans max-w-xl">
                 “Questions about a kit, sizing, availability or your next pickup? We're here.”
               </p>
 
@@ -71,7 +71,7 @@ export const Contact: React.FC = () => {
                   href={createGeneralWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3.5 text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase text-white bg-[#E3261E] hover:bg-[#c91e17] px-8 py-4 rounded-xs transition-all duration-300 shadow-[0_4px_24px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_32px_rgba(227,38,30,0.55)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="group inline-flex items-center gap-3.5 text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase text-white bg-[#E3261E] hover:bg-[#c91e17] px-7 sm:px-8 py-3.5 sm:py-4 rounded-xs transition-all duration-300 shadow-[0_4px_24px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_32px_rgba(227,38,30,0.55)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <MessageCircle className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
                   <span>START WHATSAPP INQUIRY</span>
@@ -82,8 +82,8 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Right Column (6 Cols) — 3D Archival Cylinder Carousel */}
-            <div className="lg:col-span-6 relative flex items-center justify-center">
-              <div className="w-full h-[460px] sm:h-[520px] relative">
+            <div className="md:col-span-6 relative flex items-center justify-center">
+              <div className="w-full h-[420px] sm:h-[480px] lg:h-[520px] relative">
                 <CylinderCarousel
                   images={[
                     { src: '/kits/portugal-front.png', title: 'PORTUGAL 25/26' },
@@ -108,13 +108,13 @@ export const Contact: React.FC = () => {
       {/* =========================================================================
           02 — THE STORE & PHYSICAL ATELIER (Direction 1: Editorial Flagship)
           ========================================================================= */}
-      <section className="py-24 sm:py-36 border-b border-white/[0.06]">
+      <section className="py-20 sm:py-28 lg:py-36 border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-center">
             
-            {/* LEFT: THE STORE & CURATORIAL DESK (5 Cols) */}
-            <div className="lg:col-span-5 space-y-10">
+            {/* LEFT: THE STORE & CURATORIAL DESK (6 Cols tablet, 5 Cols desktop) */}
+            <div className="md:col-span-6 lg:col-span-5 space-y-8 sm:space-y-10">
               
               <div className="space-y-3 border-b border-white/[0.08] pb-6">
                 <div className="text-xs font-mono font-bold text-[#E3261E] tracking-[0.28em] uppercase">
