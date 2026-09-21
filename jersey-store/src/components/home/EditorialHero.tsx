@@ -40,7 +40,7 @@ const KIT_VIEWS = [
     num: '01',
     image: '/kits/portugal-front.png',
     thumbnail: '/kits/portugal-front.png',
-    tag: 'MATCH EDITION FRONT',
+    tag: 'FRONT PERSPECTIVE',
     camera: { scale: 1, x: 0, y: 0 },
     isBack: false,
     specNote: null,
@@ -52,7 +52,7 @@ const KIT_VIEWS = [
     num: '02',
     image: '/kits/portugal-back.png',
     thumbnail: '/kits/portugal-back.png',
-    tag: 'AUTHENTIC REAR MATCH EDITION',
+    tag: 'REAR PROFILE & NAMESET',
     camera: { scale: 1, x: 0, y: 0 },
     isBack: true,
     specNote: null,
@@ -64,17 +64,17 @@ const KIT_VIEWS = [
     num: '03',
     image: '/kits/portugal-front.png',
     thumbnail: '/kits/portugal-crest.jpg',
-    tag: 'FPF EMBROIDERED CREST',
+    tag: 'EMBROIDERED CREST',
     camera: { scale: 3.0, x: -130, y: 150 },
     isBack: false,
-    specNote: 'MAG: 3.0X // GOLD SHIELD EMBROIDERY',
-    dossierTitle: 'FPF EMBROIDERED SHIELD',
-    dossierDescription: 'Dimensional high-density gold bullion embroidery with heat-applied silicone backing for zero weight distortion.',
+    specNote: 'MAG: 3.0X // EMBROIDERED SHIELD',
+    dossierTitle: 'EMBROIDERED TEAM CREST',
+    dossierDescription: 'High-density textured gold bullion embroidery with heat-applied backing for clean, friction-free wear.',
     specs: [
-      { label: 'THREAD SPEC', value: '380 GSM High-Density' },
-      { label: 'EMBLEM FINISH', value: '3D Gold Bullion Wire' },
-      { label: 'APPLICATION', value: 'Laser Heat-Applied' },
-      { label: 'AUTHENTICITY', value: 'Vault Certified Spec' },
+      { label: 'THREAD SPEC', value: 'High-Density Embroidery' },
+      { label: 'EMBLEM FINISH', value: 'Textured Bullion Wire' },
+      { label: 'APPLICATION', value: 'Heat-Applied Backing' },
+      { label: 'CLASSIFICATION', value: 'Archival Specimen' },
     ],
   },
   {
@@ -83,15 +83,15 @@ const KIT_VIEWS = [
     num: '04',
     image: '/kits/portugal-front.png',
     thumbnail: '/kits/portugal-details.jpg',
-    tag: 'COLLAR & DRI-FIT ADV',
+    tag: 'COLLAR & FABRIC DETAIL',
     camera: { scale: 2.9, x: -10, y: 300 },
     isBack: false,
-    specNote: 'MAG: 2.9X // ENGINEERED COLLAR & KNIT',
+    specNote: 'MAG: 2.9X // JACQUARD KNIT & COLLAR',
     dossierTitle: 'DRI-FIT ADV JACQUARD',
-    dossierDescription: 'Algorithmic body-mapped breathability weave with dual-tone archival ribbed collar construction.',
+    dossierDescription: 'Body-mapped breathable jacquard knit structure with dual-tone ribbed collar construction.',
     specs: [
       { label: 'KNIT TECH', value: 'Dri-FIT ADV Jacquard' },
-      { label: 'ZONED MAPPING', value: 'Targeted Breathability' },
+      { label: 'ZONE MAPPING', value: 'Engineered Breathability' },
       { label: 'COLLAR WEAVE', value: 'Dual-Tone Ribbed Trim' },
       { label: 'COMPOSITION', value: '100% Recycled Poly' },
     ],
@@ -275,27 +275,23 @@ export const EditorialHero: React.FC = () => {
                   {/* Product Meta: Official Release Spec */}
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
-                      <span>OFFICIAL MATCH ISSUE</span>
+                      <span>PORTUGAL 2025/26</span>
                       <span className="text-white/20">•</span>
-                      <span className="text-[#E3261E]">2026 WORLD CUP</span>
+                      <span className="text-[#E3261E]">HOME SPECIMEN</span>
                     </div>
                     <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.16em] text-sm sm:text-base uppercase">
                       PORTUGAL HOME KIT 2025/26
                     </div>
                   </div>
 
-                  {/* Pricing Line with Red Dash Accent & Strikethrough Original Price */}
+                  {/* Pricing Line with Red Dash Accent & Transparent Spec */}
                   <div className="flex items-baseline gap-3 pt-0.5">
                     <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
                     <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
                       ₹1,499
                     </span>
-                    <span className="text-sm sm:text-base font-sans font-medium text-[#9B9992]/50 line-through decoration-[#E3261E]/70 decoration-1">
-                      ₹2,999
-                    </span>
-                    {/* 50% Clean Label (No Box) */}
-                    <span className="text-xs sm:text-sm font-mono font-bold text-[#E3261E] tracking-wider">
-                      50%
+                    <span className="text-xs sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
+                      TAXES INCLUDED · SIZES S–XXL
                     </span>
                   </div>
 
@@ -726,10 +722,10 @@ export const EditorialHero: React.FC = () => {
               <span className="w-1 h-1 rounded-full bg-[#E3261E]/70" />
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
-                  MATCH ISSUE SPEC
+                  MATCH-SPEC WEAVE
                 </span>
                 <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
-                  / AUTHENTIC
+                  / ATHLETIC CUT
                 </span>
               </div>
             </div>
@@ -739,7 +735,7 @@ export const EditorialHero: React.FC = () => {
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
-                  WORLDWIDE DISPATCH
+                  PAN-INDIA DISPATCH
                 </span>
                 <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
                   / TRACKED
@@ -752,10 +748,10 @@ export const EditorialHero: React.FC = () => {
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
-                  VAULT VERIFIED
+                  ATELIER SOURCED
                 </span>
                 <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
-                  / 100% OFFICIAL
+                  / INSPECTED
                 </span>
               </div>
             </div>
@@ -766,7 +762,7 @@ export const EditorialHero: React.FC = () => {
           <div className="hidden md:flex items-center gap-2 text-right opacity-40">
             <span className="w-1 h-1 rounded-full bg-emerald-500/60" />
             <span className="text-[9px] font-mono tracking-[0.26em] text-[#9B9992] uppercase">
-              ARCHIVAL SPEC // POR-2026-HM
+              CATALOG ID // POR-2025-HM
             </span>
           </div>
 

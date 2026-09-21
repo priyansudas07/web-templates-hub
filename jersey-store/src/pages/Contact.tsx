@@ -319,7 +319,7 @@ export const Contact: React.FC = () => {
                 WHATSAPP
               </h3>
               <p className="text-sm text-[#9B9992] leading-relaxed font-sans">
-                Real-time stock inquiries, sizing recommendations, custom name-sets, and instant direct order placement.
+                Real-time stock inquiries, sizing recommendations, and direct inquiry with our Mumbai team.
               </p>
             </a>
 

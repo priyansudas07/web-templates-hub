@@ -52,8 +52,8 @@ export const About: React.FC = () => {
                   <span className="text-[#E3261E]">●</span>
                   <span className="text-[#F3F0E8]">VAULT ARCHIVE NO. 001</span>
                 </div>
-                <span>100% MATCH-SPEC WEAVE</span>
-                <span>AUTHENTICATED SPECIMENS</span>
+                <span>MATCH-SPEC WEAVE</span>
+                <span>CURATED SPECIMENS</span>
               </div>
 
             </div>
@@ -215,7 +215,7 @@ export const About: React.FC = () => {
               </h2>
             </div>
             <p className="text-xs font-mono text-[#8E8C85] uppercase tracking-widest max-w-xs text-left sm:text-right">
-              MUSEUM-GRADE KITS ACROSS THREE GLOBAL DISCIPLINES
+              CURATED KITS ACROSS THREE GLOBAL DISCIPLINES
             </p>
           </div>
 

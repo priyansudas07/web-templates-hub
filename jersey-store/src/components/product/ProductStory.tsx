@@ -52,7 +52,7 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
 
           <div className="lg:col-span-4 space-y-3">
             <p className="text-[#8E8C85] text-xs sm:text-sm font-sans leading-relaxed">
-              Every seam, crest weave and micro-ventilation channel has been engineered to exact athlete-spec tolerances. Discover the craftsmanship behind this archival issue.
+              Curated for tactile fabric weave, detailed embroidered heraldry, and authentic matchday aesthetic. Discover the craftsmanship behind this catalog issue.
             </p>
             <div className="text-[11px] font-mono tracking-[0.2em] text-[#E3261E] uppercase font-bold">
               SPECIMEN PROVENANCE // STORE ARCHIVE
@@ -77,8 +77,8 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-mono tracking-widest text-[#8E8C85] uppercase bg-[#070706]/90 backdrop-blur-md px-4 py-2 border border-white/10">
-                <span>01 // HERALDRY SPECIFICATION</span>
-                <span className="text-[#E3261E] font-bold">THERMAL-BOND EMBROIDERY</span>
+                <span>01 // HERALDRY DETAIL</span>
+                <span className="text-[#E3261E] font-bold">EMBROIDERED EMBLEM</span>
               </div>
             </div>
 
@@ -87,7 +87,7 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
                 HIGH-DEFINITION TACTILE CREST
               </h3>
               <p className="text-xs sm:text-sm text-[#8E8C85] font-sans leading-relaxed max-w-2xl">
-                Precision silicone shield application paired with metallic-thread heraldic embroidery. Bonded directly onto the chest fabric using heat-activation to ensure friction-free contact during competitive motion.
+                Dimensional embroidered club heraldry with reinforced heat-applied backing, designed for durability and a crisp textured finish.
               </p>
             </div>
           </div>
@@ -109,8 +109,8 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono tracking-widest text-[#8E8C85] uppercase bg-[#070706]/90 backdrop-blur-sm px-3 py-1.5 border border-white/10">
-                  <span>02 // AIRFLOW</span>
-                  <span className="text-[#E3261E]">MICRO-JACQUARD</span>
+                  <span>02 // WEAVE DETAIL</span>
+                  <span className="text-[#E3261E]">{product.techSpec || 'JACQUARD WEAVE'}</span>
                 </div>
               </div>
 
@@ -119,7 +119,7 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
                   ZONE-MAPPED KNIT TEXTURE
                 </h4>
                 <p className="text-xs text-[#8E8C85] font-sans leading-relaxed">
-                  Engineered moisture-wicking jacquard weave structured with variable porosity mapped to body heat zones for continuous air exchange.
+                  Breathable moisture-wicking knit structure engineered with micro-ventilation porosity for comfort during active wear.
                 </p>
               </div>
             </div>
@@ -135,16 +135,16 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono tracking-widest text-[#8E8C85] uppercase bg-[#070706]/90 backdrop-blur-sm px-3 py-1.5 border border-white/10">
                   <span>03 // TAILORING</span>
-                  <span className="text-[#E3261E]">TOURNAMENT CUT</span>
+                  <span className="text-[#E3261E]">ATHLETIC FIT</span>
                 </div>
               </div>
 
               <div className="space-y-1">
                 <h4 className="text-xl sm:text-2xl font-['Bebas_Neue',sans-serif] tracking-wide uppercase text-[#F3F0E8] group-hover:text-[#E3261E] transition-colors">
-                  COLLAR & NAMESET ARCHITECTURE
+                  COLLAR & NAMESET PROFILE
                 </h4>
                 <p className="text-xs text-[#8E8C85] font-sans leading-relaxed">
-                  Ribbed athletic neckline paired with player-spec heat-pressed nameset typography, reinforced hem tape, and flatlock anti-chafing seams.
+                  Ribbed athletic neckline paired with clean match-edition typography prints, finished hemline tape, and reinforced seams.
                 </p>
               </div>
             </div>
@@ -157,19 +157,19 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
         <div className="pt-8 border-t border-white/[0.08] grid grid-cols-2 md:grid-cols-4 gap-6 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-[#8E8C85] uppercase">
           <div>
             <span className="block text-[#6E6C65] text-[9px]">FABRIC STRUCTURE</span>
-            <span className="text-[#F3F0E8] font-bold">100% DRI-FIT ADV JACQUARD</span>
+            <span className="text-[#F3F0E8] font-bold">{product.techSpec || 'PERFORMANCE JACQUARD'}</span>
           </div>
           <div>
             <span className="block text-[#6E6C65] text-[9px]">HERALDRY EMBOSS</span>
-            <span className="text-[#F3F0E8] font-bold">3D HEAT-SEALED BADGE</span>
+            <span className="text-[#F3F0E8] font-bold">EMBROIDERED EMBLEM</span>
           </div>
           <div>
             <span className="block text-[#6E6C65] text-[9px]">FIT CLASSIFICATION</span>
-            <span className="text-[#F3F0E8] font-bold">PRO ATHLETIC TAILORING</span>
+            <span className="text-[#F3F0E8] font-bold">ATHLETIC TAILORING</span>
           </div>
           <div>
-            <span className="block text-[#6E6C65] text-[9px]">AUTHENTICITY LEVEL</span>
-            <span className="text-[#E3261E] font-bold">VERIFIED MATCH SPECIMEN</span>
+            <span className="block text-[#6E6C65] text-[9px]">QUALITY STATUS</span>
+            <span className="text-[#E3261E] font-bold">QUALITY INSPECTED</span>
           </div>
         </div>
 
