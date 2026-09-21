@@ -522,23 +522,6 @@ export const EditorialHero: React.FC = () => {
                       </AnimatePresence>
                     </motion.div>
 
-                    {/* Macro Spec Telemetry Badge when Zoomed */}
-                    <AnimatePresence>
-                      {currentView.specNote && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.28, ease: 'easeOut' }}
-                          className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#0b0b0a]/90 backdrop-blur-md border border-white/15 rounded-xs flex items-center gap-2 z-30 pointer-events-none shadow-[0_10px_30px_rgba(0,0,0,0.8)] whitespace-nowrap"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
-                          <span className="text-[9px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase">
-                            {currentView.specNote}
-                          </span>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </motion.div>
                 </motion.div>
 
