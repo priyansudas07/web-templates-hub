@@ -406,11 +406,11 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[480px] sm:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[360px] sm:min-h-[440px] lg:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
             
             {/* Jersey Centerpiece Container (Dominant Scale & Central Placement) */}
             <div
-              className="relative w-full max-w-[540px] sm:max-w-[640px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.24] lg:scale-[1.38] xl:scale-[1.42] translate-y-9 sm:translate-y-11 lg:translate-y-10 transition-transform duration-500 ease-out"
+              className="relative w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.06] sm:scale-[1.2] lg:scale-[1.38] xl:scale-[1.42] translate-y-2 sm:translate-y-6 lg:translate-y-10 transition-transform duration-500 ease-out"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
@@ -441,9 +441,9 @@ export const EditorialHero: React.FC = () => {
                     {/* Volumetric Theatrical Studio Backlight (Broad, Soft Atmosphere) */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
                       {/* Core Ruby Spotlight Behind Torso */}
-                      <div className="w-[340px] h-[380px] sm:w-[390px] sm:h-[430px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.26)_0%,_rgba(180,20,15,0.10)_48%,_transparent_72%)] blur-2xl transform-gpu" />
+                      <div className="w-[280px] h-[320px] sm:w-[390px] sm:h-[430px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.26)_0%,_rgba(180,20,15,0.10)_48%,_transparent_72%)] blur-2xl transform-gpu" />
                       {/* Broad Atmospheric Haze */}
-                      <div className="absolute w-[580px] h-[620px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
+                      <div className="absolute w-[440px] h-[480px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
                     </div>
 
                     {/* Camera Zoom Stage (Smoothly zooms and translates camera to focal areas) */}
@@ -546,13 +546,13 @@ export const EditorialHero: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-14 xl:translate-x-20 z-20"
+            className="lg:col-span-3 flex flex-col justify-center lg:pl-6 lg:translate-x-14 xl:translate-x-20 z-20 w-full"
           >
-            {/* Minimalist Editorial Gallery Strip */}
-            <div className="w-full max-w-[210px]">
+            {/* Minimalist Editorial Gallery Strip - Responsive Horizontal Grid on Mobile */}
+            <div className="w-full max-w-full lg:max-w-[210px]">
               
               {/* Understated Editorial Header with Dynamic Progress Indicator */}
-              <div className="pb-2.5 mb-3">
+              <div className="pb-2.5 mb-2.5 sm:mb-3">
                 <div className="flex items-center justify-between pb-1.5">
                   <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
                     PERSPECTIVES
@@ -584,15 +584,15 @@ export const EditorialHero: React.FC = () => {
                 </div>
               </div>
 
-              {/* View Items */}
-              <div className="space-y-2.5">
+              {/* View Items - 2-Column Grid on Mobile, 4-Column on Tablet, Vertical Stack on Desktop */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-col gap-2 sm:gap-2.5">
                 {KIT_VIEWS.map((view, index) => {
                   const isActive = index === activeViewIndex;
                   return (
                     <button
                       key={view.id}
                       onClick={() => handleSelectView(index)}
-                      className={`relative w-full flex items-center justify-between px-2.5 py-2 rounded-xs transition-colors duration-300 text-left group cursor-pointer border ${
+                      className={`min-h-[44px] relative w-full flex items-center justify-between px-2.5 py-2 sm:py-2.5 rounded-xs transition-colors duration-200 text-left group cursor-pointer border ${
                         isActive
                           ? 'border-white/18 bg-white/[0.035] shadow-sm'
                           : 'border-transparent bg-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'

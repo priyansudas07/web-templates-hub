@@ -33,10 +33,10 @@ export const CylinderCarousel = React.forwardRef<HTMLDivElement, CylinderCarouse
   ) => {
     const N = images.length;
     
-    // We compute the CSS variables here instead of polluting the global CSS
+    // Responsive card width calculation for mobile vs desktop
     const customStyle = {
       "--n": N,
-      "--w": `${cardWidth}px`,
+      "--w": `clamp(135px, 36vw, ${cardWidth}px)`,
       "--ba": `calc(1turn / var(--n))`,
       "--anim-dur": `${animationDuration}s`,
     } as React.CSSProperties;
@@ -45,13 +45,13 @@ export const CylinderCarousel = React.forwardRef<HTMLDivElement, CylinderCarouse
       <div
         ref={ref}
         className={cn(
-          "relative w-full h-full min-h-[480px] sm:min-h-[520px] grid place-items-center overflow-hidden",
+          "relative w-full h-full min-h-[380px] sm:min-h-[520px] grid place-items-center overflow-hidden",
           className
         )}
         style={{
-          perspective: "48em",
-          maskImage: "linear-gradient(90deg, transparent 0%, #000 18% 82%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 18% 82%, transparent 100%)",
+          perspective: "clamp(32em, 80vw, 48em)",
+          maskImage: "linear-gradient(90deg, transparent 0%, #000 15% 85%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 15% 85%, transparent 100%)",
         }}
         {...props}
       >
