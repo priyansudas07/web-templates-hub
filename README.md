@@ -1,57 +1,173 @@
-# Web Templates Hub 🚀
+# Sports Gear — Authentic Kit Vault ⚡
 
-A curated collection of modern, high-converting, production-ready website templates and custom web applications built for clients and business deployment.
+<div align="center">
 
----
+![Sports Gear Banner](./screenshots/01-hero-showcase.png)
 
-## 🏆 Available Website Templates
+**A luxury digital sportswear catalog and interactive kit discovery experience.**  
+*Engineered for premium kit collectors, football enthusiasts, and atelier sourcing.*
 
-### 1. Sports Gear — Premium Sportswear & Jersey Catalog
-- **Folder**: [`/jersey-store`](./jersey-store)
-- **Tech Stack**: React 18, TypeScript, Vite, Tailwind CSS, React Router v6, Lucide Icons, Framer Motion
-- **Documentation**: [`/docs`](./docs) ([`PRD.md`](./docs/PRD.md), [`Design.md`](./docs/Design.md), [`Schema.md`](./docs/Schema.md), [`TRD.md`](./docs/TRD.md), [`ImplementationPlan.md`](./docs/ImplementationPlan.md), [`Rules.md`](./docs/Rules.md), [`AppFlow.md`](./docs/AppFlow.md))
-- **Key Features**:
-  - Dark stadium aesthetic with electric crimson accents and field grid typography.
-  - Front & Back view image toggle on product cards.
-  - Real-time instant search across team, player, sport, category, and season.
-  - Interactive multi-category filtering (`Football`, `Cricket`, `Basketball`, `Club Teams`, `National Teams`).
-  - Detailed product page with high-res gallery, size selector (`S`, `M`, `L`, `XL`, `XXL`), fabric specs, and availability badges.
-  - **Zero-Friction WhatsApp Inquiry Engine**: Auto-generates pre-formatted inquiry messages with selected product name, price in ₹ (INR), and size.
-  - **Signature Brand Element**: The `"SG"` Tactical Spec Tag (`[ SG / MATCH-ISSUE / 01 ]`).
-  - Mobile-first responsive design, WCAG AA accessibility, SEO metadata, `sitemap.xml`, and `robots.txt`.
-  - **Zero Backend Required**: Fully static frontend catalog ready for static host deployment (Vercel, Netlify, Cloudflare Pages, GitHub Pages).
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-13.4-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-Ready-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+</div>
 
 ---
 
-## 🛠️ How to Run Locally
+## 📖 Overview
 
-### Sports Gear (`jersey-store`)
+**Sports Gear** is designed from the ground up as a **bespoke digital kit catalog and specimen showcase** rather than a generic e-commerce website. 
+
+Instead of traditional cart and checkout flows, it pairs **high-fidelity editorial presentation** with a **zero-friction WhatsApp Concierge procurement workflow**, allowing collectors to explore tactile match specimens and inquire directly with Mumbai-based kit curators.
+
+---
+
+## ✨ Key Features & Visual Walkthrough
+
+### 1. Interactive Kit Discovery & Macro Telemetry
+The centerpiece hero stage showcases iconic match kits with realistic 3D cursor parallax, atmospheric volumetric lighting, floating studio particles, and a **4-angle technical inspection dock**:
+- **01 / Front View**: Full silhouette framing with dynamic entrance typography.
+- **02 / Back Profile**: Seamless 3D flip rotation displaying official match nameset alignment.
+- **03 / Club Crest**: High-density 3.0× macro zoom with gold bullion embroidery specifications.
+- **04 / Fabric Weave**: 2.9× zoom revealing engineered Dri-FIT ADV breathability zones and collar trim.
+
+<div align="center">
+  <img src="./screenshots/01-hero-showcase.png" alt="Interactive Kit Hero Showcase" width="100%" />
+</div>
+
+---
+
+### 2. The Vault & Archival Collection
+A curated registry of authentic club and national kits featuring:
+- **Instant Multi-Vector Search**: Filter effortlessly across product name, club, player, sport, season, and edition.
+- **Disciplines & Classifications**: Categorized across *Football*, *Cricket*, *Basketball*, *Club Heritage*, and *National Teams*.
+- **Quick-Flip Specimen Cards**: Instant front/back perspective flip, live stock badges, and verified INR pricing (`₹1,499`).
+
+<div align="center">
+  <img src="./screenshots/02-collection-vault.png" alt="Collection Vault and Search Filter" width="100%" />
+</div>
+
+---
+
+### 3. Editorial Brand Story & Craftsmanship
+An immersive atelier narrative celebrating the culture of the pitch — preserving the tactile heritage of match-worn threads, embroidered shields, and legendary player numbers.
+
+<div align="center">
+  <img src="./screenshots/03-about-story.png" alt="About and Brand Story" width="100%" />
+</div>
+
+---
+
+### 4. Direct WhatsApp Concierge & 3D Interactive Carousel
+- **Deep-Linked Inquiry Engine**: Eliminates checkout friction. Generates pre-formatted WhatsApp payloads containing item name, catalog ID, selected size (`S`, `M`, `L`, `XL`, `XXL`), and pricing.
+- **3D Cylinder Carousel**: Interactive gesture-driven 3D gallery showcasing hero kit rotations and match crest details.
+- **Atelier Location Switch**: High-contrast interactive dark-mode map and showroom visiting guide.
+
+<div align="center">
+  <img src="./screenshots/04-contact-concierge.png" alt="Contact Concierge & 3D Carousel" width="100%" />
+</div>
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+| Layer | Technology |
+|---|---|
+| **Framework** | [React 19](https://react.dev/) + [Vite 8](https://vitejs.dev/) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) (Strict Mode) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) with Custom Design Tokens |
+| **Motion & 3D** | [Framer Motion](https://www.framer.com/motion/) + Dynamic Spring Physics |
+| **Routing** | [React Router v7](https://reactrouter.com/) with Code-Split `React.lazy()` Routes |
+| **Icons** | [Lucide React](https://lucide.dev/) |
+| **Linter** | [Oxlint](https://oxc.rs/) (Sub-30ms High-Performance Linting) |
+
+---
+
+## ⚡ Performance & Quality Engineering
+
+- **Route Splitting**: All pages (`/`, `/collection`, `/collection/:id`, `/about`, `/contact`, `/404`) are lazily evaluated and chunked for instant initial bundle delivery.
+- **Asset Preloading**: Critical hero specimens utilize `<link rel="preload">` and `fetchpriority="high"` for sub-second Largest Contentful Paint (LCP).
+- **Reduced Motion Support**: Fully respects `@media (prefers-reduced-motion: reduce)` system settings for accessibility.
+- **Production-Ready SEO**: Pre-configured `sitemap.xml`, `robots.txt`, Open Graph, and Twitter metadata cards.
+- **Single Page Application (SPA) Routing**: Includes `vercel.json` and `_redirects` rules to guarantee 0 routing errors on direct URL access or refresh.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+* **Node.js** (v18 or higher recommended)
+* **npm** or **pnpm** / **yarn**
+
+### 1. Clone the Repository
 ```bash
-cd jersey-store
-npm install
-npm run dev
+git clone https://github.com/priyansudas07/web-templates-hub.git
+cd web-templates-hub/jersey-store
 ```
 
-### Build for Production
+### 2. Install Dependencies
 ```bash
-cd jersey-store
+npm install
+```
+
+### 3. Start Local Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### 4. Build for Production
+```bash
 npm run build
 ```
 
 ---
 
-## 📜 Repository Structure
+## 🌐 Deploy to Vercel
+
+1. Import the repository on [Vercel](https://vercel.com).
+2. Set **Root Directory** to `jersey-store`.
+3. Set **Framework Preset** to `Vite`.
+4. Click **Deploy**.
+
+---
+
+## 📂 Repository Structure
+
 ```text
 web-templates-hub/
-├── docs/                   # Full engineering & product specifications
-│   ├── PRD.md
-│   ├── Design.md
-│   ├── Schema.md
-│   ├── TRD.md
-│   ├── ImplementationPlan.md
-│   ├── Rules.md
-│   ├── AppFlow.md
-│   └── Tracker.md
-├── jersey-store/           # Sports Gear React Web App
+├── docs/                        # Specifications & Architecture Documentation
+├── screenshots/                 # High-resolution showcase screenshots
+│   ├── 01-hero-showcase.png
+│   ├── 02-collection-vault.png
+│   ├── 03-about-story.png
+│   └── 04-contact-concierge.png
+├── jersey-store/                # Sports Gear Application Root
+│   ├── public/                  # Static assets, sitemap, robots.txt, redirects
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── collection/      # Grids, filters, search, midway banners
+│   │   │   ├── common/          # Navbars, footers, headings, particle systems
+│   │   │   ├── home/            # Interactive kit hero showcase
+│   │   │   ├── product/         # Details, galleries, WhatsApp triggers
+│   │   │   └── ui/              # 3D cylinder carousel, spotlight capsules
+│   │   ├── data/                # Centralized product catalog & categories
+│   │   ├── pages/               # Route views (Home, Collection, About, Contact, 404)
+│   │   ├── utils/               # WhatsApp deep-link generators & helpers
+│   │   ├── App.tsx              # Code-split application routing
+│   │   └── main.tsx             # React DOM root mounting
+│   ├── vercel.json              # Vercel SPA rewrite configuration
+│   ├── vite.config.ts           # Rollup chunking & Vite build config
+│   └── package.json             # Dependencies and scripts
 └── README.md
 ```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
