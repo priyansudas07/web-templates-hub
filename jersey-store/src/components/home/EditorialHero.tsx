@@ -260,33 +260,15 @@ export const EditorialHero: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Action Buttons Row */}
-                  <div className="pt-1 flex flex-wrap items-center gap-4 sm:gap-5">
-                    {/* Explore Collection Button */}
+                  {/* Action Button: Focused Primary CTA */}
+                  <div className="pt-1 flex items-center">
                     <Link
                       to="/collection"
-                      className="group h-12 inline-flex items-center justify-center gap-3 px-7 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-150 ease-out rounded-xs hover:shadow-[0_4px_24px_rgba(227,38,30,0.50)] active:scale-[0.98]"
+                      className="group h-12 inline-flex items-center justify-center gap-3 px-8 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-150 ease-out rounded-xs hover:shadow-[0_4px_24px_rgba(227,38,30,0.50)] active:scale-[0.98]"
                     >
                       <span>EXPLORE COLLECTION</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-150 ease-out group-hover:translate-x-1" />
                     </Link>
-
-                    {/* Sourcing Concierge Button */}
-                    <a
-                      href={createGeneralWhatsAppLink()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group h-12 inline-flex items-center gap-3.5 px-5 bg-[#111110] hover:bg-[#181816] text-[#F3F0E8] border border-white/15 hover:border-[#E3261E] font-sans font-bold text-xs uppercase tracking-[0.14em] transition-all duration-150 ease-out rounded-xs active:scale-[0.98]"
-                      aria-label="Contact Concierge on WhatsApp"
-                    >
-                      <div className="flex items-center justify-center w-6 h-6 rounded-xs bg-[#1A1A18] border border-white/10 group-hover:border-[#E3261E] group-hover:bg-[#E3261E] transition-all duration-150 ease-out">
-                        <MessageCircle className="w-3.5 h-3.5 text-[#E3261E] group-hover:text-white transition-colors" />
-                      </div>
-                      <div className="flex flex-col text-left leading-none">
-                        <span className="text-[8px] font-mono text-[#8E8C85] tracking-[0.22em] uppercase">MUMBAI DESK</span>
-                        <span className="text-xs font-bold text-[#F3F0E8] tracking-[0.12em] group-hover:text-[#E3261E] transition-colors mt-0.5">WHATSAPP</span>
-                      </div>
-                    </a>
                   </div>
                 </motion.div>
               ) : (
