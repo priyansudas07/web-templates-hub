@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, MessageCircle, MapPin } from 'lucide-react';
 import { storeInfo } from '../data/store';
@@ -6,6 +6,8 @@ import { createGeneralWhatsAppLink } from '../utils/whatsapp';
 import { CylinderCarousel } from '../components/ui/cylinder-carousel';
 
 export const Contact: React.FC = () => {
+  const [atelierView, setAtelierView] = useState<'map' | 'showroom'>('map');
+
   useEffect(() => {
     document.title = 'Get In Touch & Store Location | Sports Gear';
 
@@ -184,46 +186,79 @@ export const Contact: React.FC = () => {
 
             </div>
 
-            {/* RIGHT: EDITORIAL ATELIER GALLERY & DIRECTIONS (7 Cols) */}
-            <div className="lg:col-span-7 space-y-4">
+            {/* RIGHT: EDITORIAL ATELIER GALLERY, MAP & DIRECTIONS (6 Cols tablet, 7 Cols desktop) */}
+            <div className="md:col-span-6 lg:col-span-7 space-y-4">
               
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.24em] text-[#8E8C85] uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
                   <span>MUMBAI VAULT & SPECIMEN ARCHIVE</span>
                 </div>
-                <span className="text-xs font-mono text-[#8E8C85] uppercase">
-                  EST. 2026
-                </span>
+
+                {/* Map vs Showroom View Switcher */}
+                <div className="flex items-center gap-1 p-0.5 bg-[#111110] border border-white/10 rounded-xs">
+                  <button
+                    type="button"
+                    onClick={() => setAtelierView('map')}
+                    className={`px-2.5 sm:px-3 py-1 text-[9.5px] sm:text-[10px] font-mono font-bold tracking-wider uppercase rounded-2xs transition-colors cursor-pointer ${
+                      atelierView === 'map'
+                        ? 'bg-[#E3261E] text-white shadow-sm'
+                        : 'text-[#8E8C85] hover:text-[#F3F0E8]'
+                    }`}
+                  >
+                    MAP
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAtelierView('showroom')}
+                    className={`px-2.5 sm:px-3 py-1 text-[9.5px] sm:text-[10px] font-mono font-bold tracking-wider uppercase rounded-2xs transition-colors cursor-pointer ${
+                      atelierView === 'showroom'
+                        ? 'bg-[#E3261E] text-white shadow-sm'
+                        : 'text-[#8E8C85] hover:text-[#F3F0E8]'
+                    }`}
+                  >
+                    SHOWROOM
+                  </button>
+                </div>
               </div>
 
-              {/* Architectural Storefront Frame */}
-              <div className="relative rounded-xs overflow-hidden bg-[#0B0B0A] border border-white/15 shadow-2xl h-[460px] sm:h-[520px] group">
-                {/* High-Resolution Atelier Showroom Image */}
-                <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
-                  alt="Sports Gear Mumbai Atelier Interior"
-                  className="w-full h-full object-cover grayscale-[20%] contrast-115 brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=85';
-                  }}
-                />
+              {/* Architectural Storefront / Map Frame */}
+              <div className="relative rounded-xs overflow-hidden bg-[#0B0B0A] border border-white/15 shadow-2xl h-[420px] sm:h-[480px] lg:h-[520px] group">
+                {atelierView === 'map' ? (
+                  /* Interactive Dark-Mode Google Map Embed */
+                  <iframe
+                    title="Sports Gear Mumbai Store Location"
+                    src="https://maps.google.com/maps?q=Churchgate%2C%20Mumbai%20Maharashtra%20400020&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    className="w-full h-full border-0 filter invert-[90%] hue-rotate-180 contrast-[1.2] grayscale-[35%]"
+                    loading="lazy"
+                  />
+                ) : (
+                  /* High-Resolution Atelier Showroom Image */
+                  <img
+                    src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+                    alt="Sports Gear Mumbai Atelier Interior"
+                    className="w-full h-full object-cover grayscale-[20%] contrast-115 brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=85';
+                    }}
+                  />
+                )}
 
                 {/* Subtle Cinematic Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-[#070706]/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-transparent to-transparent pointer-events-none" />
 
                 {/* Top Specular Micro-Line */}
                 <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20 pointer-events-none" />
 
                 {/* Bottom Action Folio Bar */}
-                <div className="absolute bottom-5 left-5 right-5 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#070706]/90 backdrop-blur-md px-5 py-4 border border-white/15 shadow-2xl">
-                  <div className="space-y-1">
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-[#070706]/92 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 border border-white/15 shadow-2xl">
+                  <div className="space-y-0.5 sm:space-y-1">
                     <div className="flex items-center gap-2 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
                       <span className="w-2 h-2 rounded-full bg-[#E3261E] animate-pulse" />
                       <span>SPORTS GEAR FLAGSHIP ATELIER</span>
                     </div>
-                    <p className="text-[11px] font-mono text-[#8E8C85] tracking-widest uppercase">
+                    <p className="text-[10px] sm:text-[11px] font-mono text-[#8E8C85] tracking-widest uppercase">
                       CHURCHGATE · 123 STADIUM ROAD
                     </p>
                   </div>
@@ -232,7 +267,7 @@ export const Contact: React.FC = () => {
                     href={storeInfo.locationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-5 py-3 rounded-xs font-sans font-bold text-xs uppercase tracking-[0.16em] transition-all shadow-[0_4px_20px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_28px_rgba(227,38,30,0.55)] active:scale-[0.99] group/btn"
+                    className="inline-flex items-center justify-center gap-2.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xs font-sans font-bold text-xs uppercase tracking-[0.16em] transition-all shadow-[0_4px_20px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_28px_rgba(227,38,30,0.55)] active:scale-[0.99] group/btn shrink-0"
                   >
                     <span>GET DIRECTIONS</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />

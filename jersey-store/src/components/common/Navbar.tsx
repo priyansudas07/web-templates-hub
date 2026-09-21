@@ -78,17 +78,15 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation centered in the middle */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
             <SpotlightNavbar items={navItems} />
           </div>
 
-
-
-          {/* Mobile Menu Toggle Button */}
-          <div className="flex md:hidden z-10">
+          {/* Mobile & Tablet Menu Toggle Button */}
+          <div className="flex lg:hidden z-10">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-3 min-h-[48px] min-w-[48px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
+              className="p-3 min-h-[48px] min-w-[48px] rounded-sm text-[#9B9992] hover:text-[#F3F0E8] hover:bg-[#151514] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center cursor-pointer"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
@@ -99,11 +97,11 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile & Tablet Menu Drawer */}
       {mobileMenuOpen && (
         <div
           id="mobile-navigation-drawer"
-          className="md:hidden bg-[#151514] border-b border-[#292927] px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200"
+          className="lg:hidden bg-[#151514] border-b border-[#292927] px-4 sm:px-6 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200"
         >
           <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">
             {navItems.map((item) => {
