@@ -32,11 +32,11 @@ export const About: React.FC = () => {
               </div>
 
               {/* Oversized Condensed Campaign Headline */}
-              <div className="space-y-2">
-                <h1 className="text-6xl sm:text-7xl lg:text-[6.8rem] font-black uppercase tracking-[0.01em] leading-[0.92] text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
+              <div className="space-y-1">
+                <h1 className="text-6xl sm:text-7xl lg:text-[6.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   BUILT FOR THE GAME.
                 </h1>
-                <div className="text-5xl sm:text-6xl lg:text-[5.8rem] font-black uppercase tracking-[0.01em] leading-[0.92] text-[#6E6C65] font-['Bebas_Neue',sans-serif]">
+                <div className="text-5xl sm:text-6xl lg:text-[5.8rem] font-black uppercase tracking-[-0.01em] leading-[0.84] text-[#6E6C65] font-['Bebas_Neue',sans-serif]">
                   NOT JUST THE JERSEY.
                 </div>
               </div>
@@ -107,12 +107,12 @@ export const About: React.FC = () => {
           
           {/* Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-8">
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.24em] text-[#E3261E] uppercase">
                 <span>//</span>
                 <span>02 — THE MANIFESTO</span>
               </div>
-              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                 THREE PILLARS OF THE VAULT
               </h2>
             </div>
@@ -135,7 +135,7 @@ export const About: React.FC = () => {
                 </span>
               </div>
               <div className="lg:col-span-9 space-y-6">
-                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   THE KIT
                 </h3>
                 <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F3F0E8] leading-tight font-sans max-w-3xl border-l-2 border-[#E3261E] pl-6 py-1">
@@ -158,7 +158,7 @@ export const About: React.FC = () => {
                 </span>
               </div>
               <div className="lg:col-span-9 lg:order-1 space-y-6">
-                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   THE CULTURE
                 </h3>
                 <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F3F0E8] leading-tight font-sans max-w-3xl border-l-2 border-white/30 pl-6 py-1">
@@ -181,7 +181,7 @@ export const About: React.FC = () => {
                 </span>
               </div>
               <div className="lg:col-span-9 space-y-6">
-                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   THE VAULT
                 </h3>
                 <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F3F0E8] leading-tight font-sans max-w-3xl border-l-2 border-[#E3261E] pl-6 py-1">
@@ -205,12 +205,12 @@ export const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-8">
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.24em] text-[#E3261E] uppercase">
                 <span>//</span>
                 <span>03 — DISCIPLINES</span>
               </div>
-              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                 SPORTING DISCIPLINES
               </h2>
             </div>
@@ -248,17 +248,17 @@ export const About: React.FC = () => {
                 <span className="text-xs font-mono text-[#E3261E] uppercase tracking-[0.2em] block">
                   CLUBS & NATIONAL FEDERATIONS
                 </span>
-                <h3 className="text-4xl sm:text-5xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-5xl sm:text-7xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-none">
                   FOOTBALL
                 </h3>
-                <p className="text-xs sm:text-sm text-[#9B9992] font-sans max-w-md pt-1">
-                  From iconic Champions League finals to legendary South American derbies. Verified match-issue specifications.
+                <p className="text-sm text-[#9B9992] max-w-lg font-sans leading-relaxed pt-1">
+                  Premier League, La Liga, Serie A, and iconic FIFA World Cup player-issue editions engineered with micro-knit aerodynamics.
                 </p>
               </div>
             </Link>
 
-            {/* Right Stack: Cricket & Basketball (5-Column Asymmetric Stack) */}
-            <div className="lg:col-span-5 flex flex-col gap-8 justify-between">
+            {/* Right Column: CRICKET (02) & BASKETBALL (03) Stacked Asymmetrically (5 Cols) */}
+            <div className="lg:col-span-5 flex flex-col gap-8">
               
               {/* Discipline 02: CRICKET */}
               <Link
@@ -280,11 +280,11 @@ export const About: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="relative z-10 space-y-2 pt-6">
+                <div className="relative z-10 space-y-1 pt-6">
                   <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-[0.2em] block">
                     NATIONAL T20 & FRANCHISES
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-none">
                     CRICKET
                   </h3>
                   <p className="text-xs text-[#9B9992] font-sans line-clamp-2 pt-1">
@@ -313,11 +313,11 @@ export const About: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="relative z-10 space-y-2 pt-6">
+                <div className="relative z-10 space-y-1 pt-6">
                   <span className="text-[10px] font-mono text-[#E3261E] uppercase tracking-[0.2em] block">
                     HARDWOOD CLASSICS & SWINGMAN
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-none">
                     BASKETBALL
                   </h3>
                   <p className="text-xs text-[#9B9992] font-sans line-clamp-2 pt-1">
@@ -347,10 +347,10 @@ export const About: React.FC = () => {
                 <span>//</span>
                 <span>04 — STANDARDS</span>
               </div>
-              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[1.04] sm:leading-[1.0]">
+              <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.9]">
                 VERIFIED ARCHIVAL CRITERIA
               </h2>
-              <p className="text-sm sm:text-base text-[#9B9992] font-sans leading-relaxed max-w-md pt-1">
+              <p className="text-sm sm:text-base text-[#9B9992] font-sans leading-relaxed max-w-md">
                 We operate as a focused atelier for collectors and true fans who demand verifiable authenticity. Every specimen is inspected before inclusion in the vault.
               </p>
             </div>
@@ -359,31 +359,31 @@ export const About: React.FC = () => {
             <div className="lg:col-span-7 space-y-12">
               
               {/* 01 — AUTHENTICITY */}
-              <div className="space-y-4 pb-8 border-b border-white/[0.08]">
+              <div className="space-y-3 pb-8 border-b border-white/[0.08]">
                 <div className="flex items-center gap-3 text-xs font-mono font-bold text-[#E3261E] tracking-[0.24em] uppercase">
                   <span>01</span>
                   <span>//</span>
                   <span>AUTHENTICITY</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   MATCH-GRADE DETAIL & FABRIC INTEGRITY
                 </h3>
-                <p className="text-sm sm:text-base text-[#9B9992] leading-relaxed font-sans pt-0.5">
+                <p className="text-sm sm:text-base text-[#9B9992] leading-relaxed font-sans">
                   Verified match-grade kits and attention to badge, stitching and material details. We examine heat-pressed badges, official font typography, and player-spec breathability.
                 </p>
               </div>
 
               {/* 02 — CURATION */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center gap-3 text-xs font-mono font-bold text-[#E3261E] tracking-[0.24em] uppercase">
                   <span>02</span>
                   <span>//</span>
                   <span>CURATION</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif]">
                   ICONIC ERAS & CULTURAL RARITY
                 </h3>
-                <p className="text-sm sm:text-base text-[#9B9992] leading-relaxed font-sans pt-0.5">
+                <p className="text-sm sm:text-base text-[#9B9992] leading-relaxed font-sans">
                   Selected for collectors, fans and people who appreciate the culture surrounding the game. Every piece in the vault represents a landmark moment, legendary squad, or design breakthrough.
                 </p>
               </div>
@@ -420,11 +420,11 @@ export const About: React.FC = () => {
             <span>●</span>
           </div>
 
-          <div className="space-y-2 sm:space-y-3">
-            <h2 className="text-6xl sm:text-8xl lg:text-[8.5rem] font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.94] sm:leading-[0.9]">
+          <div className="space-y-1 sm:space-y-2">
+            <h2 className="text-6xl sm:text-8xl lg:text-[8.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">
               THE KIT IS
             </h2>
-            <div className="text-6xl sm:text-8xl lg:text-[8.5rem] font-black uppercase tracking-wide text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.94] sm:leading-[0.9] flex items-center justify-center">
+            <div className="text-6xl sm:text-8xl lg:text-[8.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84] flex items-center justify-center">
               <MorphText
                 words={["THE MEMORY.", "THE GRAIL.", "THE LEGACY.", "THE OBSESSION."]}
                 fontFamily="'Bebas Neue', sans-serif"
