@@ -142,10 +142,7 @@ export const Navbar: React.FC = () => {
           >
             {/* Top Micro Telemetry Strip */}
             <div className="px-4 sm:px-6 pt-3 pb-2 border-b border-white/[0.04] flex items-center justify-between text-[9px] font-mono tracking-[0.24em] text-[#8E8C85] uppercase">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
-                <span>NAVIGATION</span>
-              </span>
+              <span>// NAVIGATION</span>
               <span>VAULT NO. 01</span>
             </div>
 

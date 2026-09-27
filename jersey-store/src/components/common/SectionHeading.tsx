@@ -48,7 +48,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       <div className="space-y-1.5 sm:space-y-2">
         {tag && (
           <div className="inline-flex items-center gap-2 text-[10.5px] sm:text-xs font-mono font-bold tracking-[0.22em] sm:tracking-[0.25em] text-[#E3261E] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
             <span>{tag}</span>
           </div>
         )}

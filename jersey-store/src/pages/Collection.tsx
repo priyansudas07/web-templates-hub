@@ -166,8 +166,7 @@ export const Collection: React.FC = () => {
 
         {/* Clean End-of-Archive Sign-off & Back to Top Strip */}
         <div className="pt-8 mt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#8E8C85]">
-          <div className="flex items-center gap-2.5 tracking-[0.16em] uppercase text-[11px]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+          <div className="flex items-center gap-2 tracking-[0.16em] uppercase text-[11px]">
             <span>END OF ARCHIVE // {filteredProducts.length} SPECIMENS DISPLAYED</span>
           </div>
 

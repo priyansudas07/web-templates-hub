@@ -20,7 +20,6 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       {/* 1. Archival Spec Header & Category Provenance */}
       <div className="space-y-3">
         <div className="flex items-center gap-3 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
           <span>// {product.sport.toUpperCase()} — {product.category.replace('-', ' ').toUpperCase()}</span>
         </div>
 

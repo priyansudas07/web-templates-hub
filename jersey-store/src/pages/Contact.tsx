@@ -50,8 +50,7 @@ export const Contact: React.FC = () => {
             <div className="md:col-span-6 space-y-6 sm:space-y-8">
               
               {/* Restrained Accent Tag */}
-              <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
                 <span>// GET IN TOUCH</span>
               </div>
 
@@ -191,8 +190,7 @@ export const Contact: React.FC = () => {
               
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.24em] text-[#8E8C85] uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
-                  <span>MUMBAI VAULT & SPECIMEN ARCHIVE</span>
+                  <span>// MUMBAI VAULT & SPECIMEN ARCHIVE</span>
                 </div>
 
                 {/* Map vs Showroom View Switcher */}
@@ -255,7 +253,6 @@ export const Contact: React.FC = () => {
                 <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#080807]/95 backdrop-blur-xl px-4 py-3 sm:px-5 sm:py-3.5 border-t border-white/[0.12] shadow-2xl">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
                       <span>SPORTS GEAR FLAGSHIP ATELIER</span>
                     </div>
                     <p className="text-[10px] sm:text-[10.5px] font-mono text-[#8E8C85] tracking-[0.18em] uppercase">
@@ -384,9 +381,7 @@ export const Contact: React.FC = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
           
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.3em] text-[#E3261E] uppercase">
-            <span>●</span>
-            <span>DIRECT ARCHIVE FULFILLMENT</span>
-            <span>●</span>
+            <span>// DIRECT ARCHIVE FULFILLMENT</span>
           </div>
 
           <h2 className="text-6xl sm:text-8xl lg:text-[8.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">

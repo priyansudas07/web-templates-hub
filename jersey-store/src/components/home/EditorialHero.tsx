@@ -715,8 +715,7 @@ export const EditorialHero: React.FC = () => {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-8 lg:gap-16 text-left">
             
             {/* Module 1: Quality Spec */}
-            <div className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-[#E3261E]/70" />
+            <div className="flex items-center gap-1.5">
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   MATCH-SPEC WEAVE
@@ -728,8 +727,7 @@ export const EditorialHero: React.FC = () => {
             </div>
 
             {/* Module 2: Logistics */}
-            <div className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-white/20" />
+            <div className="flex items-center gap-1.5">
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   PAN-INDIA DISPATCH
@@ -741,8 +739,7 @@ export const EditorialHero: React.FC = () => {
             </div>
 
             {/* Module 3: Verification */}
-            <div className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-white/20" />
+            <div className="flex items-center gap-1.5">
               <div className="flex items-baseline gap-1.5 font-sans">
                 <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   ATELIER SOURCED
@@ -757,7 +754,6 @@ export const EditorialHero: React.FC = () => {
 
           {/* Right Micro Technical Archive Spec (Subtle Pedigree Tag) */}
           <div className="hidden md:flex items-center gap-2 text-right opacity-40">
-            <span className="w-1 h-1 rounded-full bg-emerald-500/60" />
             <span className="text-[9px] font-mono tracking-[0.26em] text-[#9B9992] uppercase">
               CATALOG ID // POR-2025-HM
             </span>

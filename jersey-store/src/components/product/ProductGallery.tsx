@@ -31,7 +31,6 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
         {/* Minimal Specimen Markers */}
         <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between pointer-events-none z-10 text-[9.5px] sm:text-[11px] font-mono tracking-[0.25em] text-[#8E8C85] uppercase">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
             <span>ARCHIVE NO. {archiveNo}</span>
           </div>
           {badgeTag && (

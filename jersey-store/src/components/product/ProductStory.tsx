@@ -39,7 +39,6 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-4 border-b border-white/[0.08]">
           <div className="lg:col-span-8 space-y-4">
             <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
               <span>// ARCHIVAL ANATOMY</span>
             </div>
 

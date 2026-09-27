@@ -26,8 +26,7 @@ export const About: React.FC = () => {
             <div className="md:col-span-7 space-y-8 sm:space-y-10">
               
               {/* Small Restrained Orange Label */}
-              <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
                 <span>// THE STORY</span>
               </div>
 
@@ -49,7 +48,6 @@ export const About: React.FC = () => {
               {/* Minimal Campaign Specification Metadata Strip */}
               <div className="pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-mono tracking-[0.2em] text-[#8E8C85] uppercase">
                 <div className="flex items-center gap-2">
-                  <span className="text-[#E3261E]">●</span>
                   <span className="text-[#F3F0E8]">VAULT ARCHIVE NO. 001</span>
                 </div>
                 <span>MATCH-SPEC WEAVE</span>
@@ -85,7 +83,6 @@ export const About: React.FC = () => {
                 {/* Archival Specimen Label */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono text-white/80 uppercase tracking-widest bg-[#070706]/90 backdrop-blur-md px-4 py-2.5 border border-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
                     <span>SPECIMEN // 001</span>
                   </div>
                   <span className="text-[#8E8C85]">DRI-FIT ADV / HEAT-APPLIED CREST</span>
@@ -415,9 +412,7 @@ export const About: React.FC = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
           
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.3em] text-[#E3261E] uppercase">
-            <span>●</span>
-            <span>THE SPORTS GEAR MANIFESTO</span>
-            <span>●</span>
+            <span>// THE SPORTS GEAR MANIFESTO</span>
           </div>
 
           <div className="space-y-1 sm:space-y-2">

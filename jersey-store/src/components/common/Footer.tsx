@@ -15,8 +15,7 @@ export const Footer: React.FC = () => {
         {/* Top Part: Memorable Magazine Brand Closing */}
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center gap-2 sm:gap-2.5 text-[10.5px] sm:text-xs font-mono font-bold tracking-[0.24em] sm:tracking-[0.28em] text-[#E3261E] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
-            <span>AUTHENTIC ARCHIVE SIGN-OFF</span>
+            <span>// AUTHENTIC ARCHIVE SIGN-OFF</span>
           </div>
 
           <div className="space-y-1">

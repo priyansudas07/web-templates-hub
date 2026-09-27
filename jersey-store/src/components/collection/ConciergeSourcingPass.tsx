@@ -45,10 +45,9 @@ export const ConciergeSourcingPass: React.FC = () => {
       
       {/* Top Archival Ticket Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
-        <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#E3261E] shadow-sm" />
+        <div className="flex items-center gap-2">
           <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.22em] text-[#F3F0E8] uppercase">
-            SPECIMEN PASS // BESPOKE SOURCING DESK
+            // SPECIMEN PASS // BESPOKE SOURCING DESK
           </span>
         </div>
 

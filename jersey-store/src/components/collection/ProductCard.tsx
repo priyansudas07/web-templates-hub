@@ -95,8 +95,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="space-y-2 sm:space-y-2.5">
             {/* Label with Orange Accent */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+              <div className="flex items-center gap-1.5">
                 <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#E3261E] uppercase">
                   {badgeLabel}
                 </span>
@@ -191,7 +190,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Top Bar with Archive Tag & Badge */}
             <div className="flex items-center justify-between text-[9px] sm:text-[9.5px] font-mono">
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
                 <span className="font-bold tracking-[0.18em] text-[#E3261E] uppercase">
                   {badgeLabel}
                 </span>
@@ -287,7 +285,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
               <span className="text-[10px] font-mono font-bold tracking-[0.18em] text-[#E3261E] uppercase">
                 {badgeLabel}
               </span>

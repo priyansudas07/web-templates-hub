@@ -22,7 +22,6 @@ export const EditorialMidwayBanner: React.FC<EditorialMidwayBannerProps> = ({ on
           
           {/* Small Orange Editorial Tag */}
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
             <span className="text-[9.5px] sm:text-[11px] font-mono font-bold tracking-[0.20em] sm:tracking-[0.22em] text-[#E3261E] uppercase">
               // ARCHIVAL CAMPAIGN • ISSUE 04
             </span>
