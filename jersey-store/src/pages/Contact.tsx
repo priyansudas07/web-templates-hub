@@ -134,9 +134,9 @@ export const Contact: React.FC = () => {
                   <h3 className="text-xl sm:text-2xl font-bold text-[#F3F0E8] font-sans">
                     Churchgate, South Mumbai
                   </h3>
-                  <p className="text-base text-[#9B9992] font-sans leading-relaxed pt-1">
-                    123 Stadium Road, Sports Hub District<br />
-                    Mumbai, Maharashtra 400001
+                  <p className="text-sm sm:text-base text-[#9B9992] font-sans leading-relaxed pt-1">
+                    Veer Nariman Road, Opp. Wankhede Stadium Gate 3<br />
+                    Churchgate, Mumbai, Maharashtra 400020
                   </p>
                 </div>
 
@@ -233,14 +233,14 @@ export const Contact: React.FC = () => {
                     loading="lazy"
                   />
                 ) : (
-                  /* High-Resolution Atelier Showroom Image */
+                  /* High-Resolution Atelier Showroom Image (Authentic Sports Kit Locker & Vault Atmosphere) */
                   <img
-                    src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
-                    alt="Sports Gear Mumbai Atelier Interior"
-                    className="w-full h-full object-cover grayscale-[20%] contrast-115 brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+                    src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=85"
+                    alt="Sports Gear Mumbai Atelier Interior & Kit Vault"
+                    className="w-full h-full object-cover grayscale-[15%] contrast-110 brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
-                        'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=85';
+                        'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=85';
                     }}
                   />
                 )}
@@ -251,15 +251,15 @@ export const Contact: React.FC = () => {
                 {/* Top Specular Micro-Line */}
                 <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20 pointer-events-none" />
 
-                {/* Bottom Action Folio Bar */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-[#070706]/92 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 border border-white/15 shadow-2xl">
-                  <div className="space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
-                      <span className="w-2 h-2 rounded-full bg-[#E3261E] animate-pulse" />
-                      <span>SPORTS GEAR FLAGSHIP ATELIER</span>
+                {/* Bottom Action Folio Bar - Sleek Boutique Editorial Caption */}
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0B0B0A]/95 backdrop-blur-xl px-4 py-3 sm:px-5 sm:py-3.5 border border-white/10 rounded-xs shadow-2xl">
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
+                      <span>SPORTS GEAR MUMBAI ATELIER</span>
                     </div>
-                    <p className="text-[10px] sm:text-[11px] font-mono text-[#8E8C85] tracking-widest uppercase">
-                      CHURCHGATE · 123 STADIUM ROAD
+                    <p className="text-[9.5px] sm:text-[10.5px] font-mono text-[#8E8C85] tracking-widest uppercase">
+                      CHURCHGATE · OPP. WANKHEDE GATE 3
                     </p>
                   </div>
                   
@@ -267,10 +267,10 @@ export const Contact: React.FC = () => {
                     href={storeInfo.locationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xs font-sans font-bold text-xs uppercase tracking-[0.16em] transition-all shadow-[0_4px_20px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_28px_rgba(227,38,30,0.55)] active:scale-[0.99] group/btn shrink-0"
+                    className="inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-[#E3261E] active:bg-[#c91e17] text-[#F3F0E8] hover:text-white border border-white/15 hover:border-[#E3261E] px-4 py-2 sm:py-2.5 rounded-xs font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all duration-200 group/btn shrink-0 shadow-sm"
                   >
                     <span>GET DIRECTIONS</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#E3261E] group-hover/btn:text-white transition-colors duration-200" />
                   </a>
                 </div>
               </div>
