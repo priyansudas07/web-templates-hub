@@ -254,11 +254,8 @@ export const Contact: React.FC = () => {
                 {/* Bottom Integrated Studio Caption & Directions Bar */}
                 <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#080807]/95 backdrop-blur-xl px-4 py-3 sm:px-5 sm:py-3.5 border-t border-white/[0.12] shadow-2xl">
                   <div className="space-y-1">
-                    <div className="flex items-center gap-2.5 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
-                      <span className="relative flex h-2 w-2 items-center justify-center">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E3261E] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#E3261E]" />
-                      </span>
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
                       <span>SPORTS GEAR FLAGSHIP ATELIER</span>
                     </div>
                     <p className="text-[10px] sm:text-[10.5px] font-mono text-[#8E8C85] tracking-[0.18em] uppercase">
