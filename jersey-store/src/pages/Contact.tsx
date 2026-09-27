@@ -251,14 +251,17 @@ export const Contact: React.FC = () => {
                 {/* Top Specular Micro-Line */}
                 <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20 pointer-events-none" />
 
-                {/* Bottom Action Folio Bar */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-[#070706]/92 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 border border-white/15 shadow-2xl">
-                  <div className="space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
-                      <span className="w-2 h-2 rounded-full bg-[#E3261E] animate-pulse" />
+                {/* Bottom Integrated Studio Caption & Directions Bar */}
+                <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#080807]/95 backdrop-blur-xl px-4 py-3 sm:px-5 sm:py-3.5 border-t border-white/[0.12] shadow-2xl">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2.5 text-xs font-mono text-[#F3F0E8] font-bold uppercase tracking-wider">
+                      <span className="relative flex h-2 w-2 items-center justify-center">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E3261E] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#E3261E]" />
+                      </span>
                       <span>SPORTS GEAR FLAGSHIP ATELIER</span>
                     </div>
-                    <p className="text-[10px] sm:text-[11px] font-mono text-[#8E8C85] tracking-widest uppercase">
+                    <p className="text-[10px] sm:text-[10.5px] font-mono text-[#8E8C85] tracking-[0.18em] uppercase">
                       CHURCHGATE · 123 STADIUM ROAD
                     </p>
                   </div>
@@ -267,10 +270,10 @@ export const Contact: React.FC = () => {
                     href={storeInfo.locationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xs font-sans font-bold text-xs uppercase tracking-[0.16em] transition-all shadow-[0_4px_20px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_28px_rgba(227,38,30,0.55)] active:scale-[0.99] group/btn shrink-0"
+                    className="inline-flex items-center justify-center gap-2 bg-[#141413] hover:bg-[#E3261E] active:bg-[#c91e17] text-[#F3F0E8] hover:text-white border border-white/15 hover:border-[#E3261E] px-4 py-2 sm:py-2.5 rounded-xs font-mono font-bold text-xs uppercase tracking-[0.14em] transition-all duration-200 group/btn shrink-0 shadow-sm"
                   >
                     <span>GET DIRECTIONS</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#E3261E] group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-200" />
                   </a>
                 </div>
               </div>
