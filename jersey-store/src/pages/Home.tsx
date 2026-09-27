@@ -153,9 +153,7 @@ export const Home: React.FC = () => {
 
               {/* Minimal Archival Spec Strip */}
               <div className="pt-4 sm:pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-4 sm:gap-x-8 gap-y-2 text-[9px] sm:text-[11px] font-mono tracking-[0.16em] sm:tracking-[0.2em] text-[#8E8C85] uppercase">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[#F3F0E8]">PRIVATE ACQUISITION DESK</span>
-                </div>
+                <span>PRIVATE ACQUISITION DESK</span>
                 <span>DIRECT CONFIRMATION</span>
                 <span>ZERO CHECKOUT FRICTION</span>
               </div>

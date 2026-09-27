@@ -47,9 +47,7 @@ export const About: React.FC = () => {
 
               {/* Minimal Campaign Specification Metadata Strip */}
               <div className="pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-mono tracking-[0.2em] text-[#8E8C85] uppercase">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#F3F0E8]">VAULT ARCHIVE NO. 001</span>
-                </div>
+                <span>VAULT ARCHIVE NO. 001</span>
                 <span>MATCH-SPEC WEAVE</span>
                 <span>CURATED SPECIMENS</span>
               </div>
