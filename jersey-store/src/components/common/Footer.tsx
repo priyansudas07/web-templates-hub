@@ -49,28 +49,28 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
             
             {/* Group 1: EXPLORE */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
                 EXPLORE
               </div>
-              <ul className="space-y-3 text-sm font-sans">
+              <ul className="space-y-1 sm:space-y-3 text-xs sm:text-sm font-sans">
                 <li>
-                  <Link to="/collection" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/collection" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Collection
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collection?sport=football" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/collection?sport=football" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Football
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collection?sport=cricket" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/collection?sport=cricket" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Cricket
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collection?sport=basketball" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/collection?sport=basketball" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Basketball
                   </Link>
                 </li>
@@ -78,28 +78,28 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Group 2: INFORMATION */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
                 INFORMATION
               </div>
-              <ul className="space-y-3 text-sm font-sans">
+              <ul className="space-y-1 sm:space-y-3 text-xs sm:text-sm font-sans">
                 <li>
-                  <Link to="/about" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/about" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/contact" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact#faq" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/contact#faq" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact#shipping" className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors">
+                  <Link to="/contact#shipping" className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-[#E3261E] transition-colors">
                     Shipping
                   </Link>
                 </li>
@@ -107,17 +107,17 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Group 3: SOCIAL / CONTACT */}
-            <div className="space-y-4 col-span-2 sm:col-span-1">
+            <div className="space-y-3 sm:space-y-4 col-span-2 sm:col-span-1 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
               <div className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#F3F0E8]">
                 CONNECT
               </div>
-              <ul className="space-y-3 text-sm font-sans">
+              <ul className="flex flex-wrap sm:flex-col gap-x-6 sm:gap-x-0 sm:space-y-3 text-xs sm:text-sm font-sans">
                 <li>
                   <a
                     href={createGeneralWhatsAppLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#25D366] transition-colors"
+                    className="inline-flex items-center gap-1.5 py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#25D366] active:text-[#25D366] transition-colors"
                   >
                     <span>WhatsApp</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
                     href={`https://instagram.com/${storeInfo.instagram.replace('@', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[#8E8C85] hover:text-[#F3F0E8] transition-colors"
+                    className="inline-flex items-center gap-1.5 py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-white transition-colors"
                   >
                     <span>Instagram</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href={`mailto:${storeInfo.email}`}
-                    className="text-[#8E8C85] hover:text-[#F3F0E8] transition-colors"
+                    className="inline-flex items-center py-1 sm:py-0 min-h-[36px] sm:min-h-0 text-[#8E8C85] hover:text-[#F3F0E8] active:text-white transition-colors"
                   >
                     Email
                   </a>
@@ -150,11 +150,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Very Bottom Archival Specimen Row */}
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E8C85] gap-4 font-mono">
+        <div className="pt-6 sm:pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10.5px] sm:text-xs text-[#8E8C85] gap-3 sm:gap-4 font-mono">
           <p className="tracking-wider uppercase">
             SPORTS GEAR © 2026 AUTHENTIC KIT VAULT
           </p>
-          <div className="flex items-center gap-4 text-white/40 tracking-widest text-[11px] uppercase">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-white/40 tracking-widest text-[9.5px] sm:text-[11px] uppercase">
             <span>VERIFIED MATCH SPECIMENS</span>
             <span>•</span>
             <span>ZERO CHECKOUT FRICTION</span>
