@@ -34,6 +34,7 @@
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   h1, h2 {
@@ -47,6 +48,14 @@
     font-family: 'Inter', sans-serif;
     color: #F3F0E8;
   }
+}
+
+/* Safe Area Inset Utility Classes for iOS Notch and Home Indicator */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Micro-interactions & Mobile Touch Optimization */

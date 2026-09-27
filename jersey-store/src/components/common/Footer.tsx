@@ -10,20 +10,20 @@ export const Footer: React.FC = () => {
       {/* Top Specular Micro-Line */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 space-y-20 sm:space-y-28">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 lg:py-36 space-y-12 sm:space-y-20 lg:space-y-28 pb-[calc(3rem+env(safe-area-inset-bottom,0px))]">
         
         {/* Top Part: Memorable Magazine Brand Closing */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex items-center gap-2 sm:gap-2.5 text-[10.5px] sm:text-xs font-mono font-bold tracking-[0.24em] sm:tracking-[0.28em] text-[#E3261E] uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
             <span>AUTHENTIC ARCHIVE SIGN-OFF</span>
           </div>
 
           <div className="space-y-1">
-            <h2 className="text-6xl sm:text-8xl lg:text-[7.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.84]">
+            <h2 className="text-4xl sm:text-7xl lg:text-[7.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.88] sm:leading-[0.84]">
               SPORTS GEAR
             </h2>
-            <div className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#6E6C65] font-['Bebas_Neue',sans-serif] leading-[0.88]">
+            <div className="text-2xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-[#6E6C65] font-['Bebas_Neue',sans-serif] leading-[0.92] sm:leading-[0.88]">
               THE AUTHENTIC KIT VAULT.
             </div>
           </div>
