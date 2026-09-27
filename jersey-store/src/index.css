@@ -49,12 +49,22 @@
   }
 }
 
-/* Micro-interactions */
+/* Micro-interactions & Mobile Touch Optimization */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
 .active-press {
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), opacity 150ms ease;
+  user-select: none;
 }
 .active-press:active {
   transform: scale(0.98);
+  opacity: 0.92;
 }
 
 /* Custom Sportswear Vault Scrollbar */
