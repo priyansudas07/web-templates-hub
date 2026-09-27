@@ -60,27 +60,27 @@ export const Home: React.FC = () => {
               <Link
                 key={cat.id}
                 to={`/collection?category=${cat.id}`}
-                className="group py-6 px-2 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors duration-200"
+                className="group py-4 sm:py-6 px-1 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-white/[0.02] active:bg-white/[0.04] transition-colors duration-200"
               >
-                <div className="flex items-center gap-6 sm:gap-8">
-                  <span className="text-xl sm:text-2xl font-mono font-bold text-[#6E6C65] group-hover:text-[#E3261E] transition-colors">
+                <div className="flex items-start sm:items-center gap-3.5 sm:gap-8">
+                  <span className="text-lg sm:text-2xl font-mono font-bold text-[#6E6C65] group-hover:text-[#E3261E] transition-colors pt-0.5 sm:pt-0">
                     {numStr}
                   </span>
                   <div>
-                    <h3 className="text-2xl sm:text-4xl font-['Bebas_Neue',sans-serif] tracking-wide text-[#F3F0E8] uppercase group-hover:text-[#E3261E] group-hover:translate-x-1.5 transition-all duration-300">
+                    <h3 className="text-2xl sm:text-4xl font-['Bebas_Neue',sans-serif] tracking-wide text-[#F3F0E8] uppercase group-hover:text-[#E3261E] group-hover:translate-x-1.5 transition-all duration-300 leading-tight">
                       {cat.name}
                     </h3>
-                    <p className="text-[#8E8C85] text-xs sm:text-sm mt-0.5 max-w-xl font-sans font-normal">
+                    <p className="text-[#8E8C85] text-xs sm:text-sm mt-0.5 max-w-xl font-sans font-normal leading-relaxed">
                       {cat.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 self-end sm:self-center">
-                  <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-[#8E8C85] uppercase">
+                <div className="flex items-center justify-between w-full sm:w-auto gap-4 self-stretch sm:self-center pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.03]">
+                  <span className="text-[9.5px] sm:text-[11px] font-mono tracking-[0.18em] sm:tracking-[0.2em] text-[#8E8C85] uppercase">
                     {cat.countBadge || 'AUTHENTIC SPECIMEN'}
                   </span>
-                  <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[#8E8C85] group-hover:text-white group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-all duration-300">
+                  <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[#8E8C85] group-hover:text-white group-hover:bg-[#E3261E] group-hover:border-[#E3261E] transition-all duration-300 shrink-0">
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. CINEMATIC ATELIER & SOURCING BANNER (Luxury Editorial Experience) */}
-      <section className="relative py-28 sm:py-36 overflow-hidden border-t border-b border-white/[0.08] bg-[#070706]">
+      <section className="relative py-16 sm:py-24 lg:py-36 overflow-hidden border-t border-b border-white/[0.08] bg-[#070706]">
         
         {/* Subtle Watermark 07 in Background */}
         <div 
@@ -106,35 +106,35 @@ export const Home: React.FC = () => {
         <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
             
             {/* Left Content (8 Cols) */}
-            <div className="lg:col-span-8 space-y-8">
+            <div className="lg:col-span-8 space-y-6 sm:space-y-8">
               
-              <div className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.28em] text-[#E3261E] uppercase">
+              <div className="inline-flex items-center gap-2 text-[10.5px] sm:text-xs font-mono font-bold tracking-[0.24em] sm:tracking-[0.28em] text-[#E3261E] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
                 <span>// DIRECT ATELIER SOURCING</span>
               </div>
 
-              <div className="space-y-2">
-                <h2 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.86]">
+              <div className="space-y-1.5 sm:space-y-2">
+                <h2 className="text-3xl sm:text-6xl lg:text-[5.5rem] font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] leading-[0.90] sm:leading-[0.86]">
                   HUNTING A RARE GRAIL
                   <br />
                   <span className="text-[#6E6C65]">OR CUSTOM MATCH PRINT?</span>
                 </h2>
               </div>
 
-              <p className="text-base sm:text-lg text-[#9B9992] max-w-2xl font-sans leading-relaxed">
+              <p className="text-sm sm:text-lg text-[#9B9992] max-w-2xl font-sans leading-relaxed">
                 Direct access to our Mumbai kit curators. Inquire about unlisted tournament deadstock, player-issue sizing, or official heat-pressed match namesets.
               </p>
 
-              {/* Action Buttons Row - Option A: Iconic Crimson Slab */}
-              <div className="pt-4 flex flex-wrap items-center gap-6">
+              {/* Action Buttons Row */}
+              <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
                 <a
                   href={createGeneralWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-7 py-4 rounded-xs transition-all duration-300 shadow-[0_4px_24px_rgba(227,38,30,0.35)] hover:shadow-[0_6px_32px_rgba(227,38,30,0.55)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="group inline-flex items-center justify-center gap-3.5 bg-[#E3261E] hover:bg-[#c91e17] text-white px-6 sm:px-7 py-3.5 sm:py-4 min-h-[48px] rounded-xs transition-all duration-300 shadow-[0_4px_24px_rgba(227,38,30,0.35)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <MessageCircle className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase">
@@ -145,7 +145,7 @@ export const Home: React.FC = () => {
 
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#8E8C85] hover:text-[#F3F0E8] transition-colors py-3 border-b border-white/15 hover:border-[#E3261E] group"
+                  className="inline-flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#8E8C85] hover:text-[#F3F0E8] transition-colors py-2.5 sm:py-3 border-b border-white/15 hover:border-[#E3261E] group"
                 >
                   <span>ATELIER LOCATION & HOURS</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#E3261E] group-hover:translate-x-1 transition-transform" />
@@ -153,7 +153,7 @@ export const Home: React.FC = () => {
               </div>
 
               {/* Minimal Archival Spec Strip */}
-              <div className="pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-8 gap-y-2 text-[11px] font-mono tracking-[0.2em] text-[#8E8C85] uppercase">
+              <div className="pt-4 sm:pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-2 text-[9.5px] sm:text-[11px] font-mono tracking-[0.18em] sm:tracking-[0.2em] text-[#8E8C85] uppercase">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E] animate-pulse" />
                   <span className="text-[#F3F0E8]">PRIVATE ACQUISITION DESK</span>
