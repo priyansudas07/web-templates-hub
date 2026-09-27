@@ -19,7 +19,6 @@ export function createWhatsAppLink(
   priceOrSize?: number | Size | string,
   selectedSize?: Size | string
 ): string {
-  const number = storeInfo.whatsapp;
   let productName: string;
   let price = 0;
   let size: string | undefined;
@@ -43,13 +42,18 @@ export function createWhatsAppLink(
     text += `\nSize: ${size}`;
   }
   
-  text += `\n\nIs this available for delivery or pickup?`;
-
-  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  const number = storeInfo.whatsapp ? storeInfo.whatsapp.replace(/[^0-9]/g, '') : '';
+  if (number) {
+    return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  }
+  return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
 }
 
 export const createGeneralWhatsAppLink = (): string => {
-  const number = storeInfo.whatsapp;
+  const number = storeInfo.whatsapp ? storeInfo.whatsapp.replace(/[^0-9]/g, '') : '';
   const text = `Hi Sports Gear! I am visiting your website and have a general inquiry about your sportswear collection.`;
-  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  if (number) {
+    return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  }
+  return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
 };

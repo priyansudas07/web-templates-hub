@@ -38,7 +38,7 @@ const SOURCING_OPTIONS: SourcingOption[] = [
 export const ConciergeSourcingPass: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<SourcingOption>(SOURCING_OPTIONS[0]);
 
-  const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(selectedOption.prefillMessage)}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(selectedOption.prefillMessage)}`;
 
   return (
     <div className="relative bg-[#0E0E0D] border border-white/[0.08] rounded-sm shadow-2xl overflow-hidden p-6 sm:p-10 lg:p-12">

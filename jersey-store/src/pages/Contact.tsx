@@ -20,7 +20,7 @@ export const Contact: React.FC = () => {
       'name': storeInfo.name,
       'description': storeInfo.description,
       'address': storeInfo.address,
-      'telephone': storeInfo.phone,
+      'email': storeInfo.email,
       'openingHours': storeInfo.openingHours,
       'url': 'https://sportsgear.in/contact'
     });
@@ -320,20 +320,20 @@ export const Contact: React.FC = () => {
               </p>
             </a>
 
-            {/* Channel 02: PHONE */}
+            {/* Channel 02: EMAIL */}
             <a
-              href={`tel:${storeInfo.phone.replace(/[^0-9+]/g, '')}`}
+              href={`mailto:${storeInfo.email}`}
               className="group space-y-3 pb-8 border-b border-white/[0.08] hover:border-[#E3261E] transition-colors duration-300 block"
             >
               <div className="flex items-center justify-between text-xs font-mono text-[#8E8C85] uppercase tracking-widest">
-                <span className="text-[#E3261E] font-bold">02 // VOICE</span>
+                <span className="text-[#E3261E] font-bold">02 // INQUIRIES</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 text-white/40 group-hover:text-[#E3261E] transition-transform duration-200" />
               </div>
               <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F3F0E8] font-['Bebas_Neue',sans-serif] group-hover:text-[#E3261E] transition-colors">
-                PHONE
+                EMAIL DESK
               </h3>
               <p className="text-sm text-[#9B9992] leading-relaxed font-sans">
-                Speak directly with atelier store staff regarding local pickup, urgent dispatch, or physical store visits.
+                Direct written correspondence with our curators for custom match printing, bulk orders, or archival authentication.
               </p>
             </a>
 
