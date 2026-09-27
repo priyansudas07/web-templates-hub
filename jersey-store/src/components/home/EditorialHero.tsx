@@ -235,7 +235,7 @@ export const EditorialHero: React.FC = () => {
                   className="space-y-4 sm:space-y-5"
                 >
                   {/* Breadcrumb / Category Tag */}
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em]">
+                  <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em]">
                     <span className="font-mono text-[#E3261E] font-bold">{currentView.num}</span>
                     <span className="font-sans font-semibold text-[#9B9992]/80">
                       / {activeViewIndex === 0 ? 'FOOTBALL' : 'PLAYER SPEC'}
@@ -243,16 +243,16 @@ export const EditorialHero: React.FC = () => {
                   </div>
 
                   {/* Art-Directed Editorial Campaign Headline with Staggered Entrance */}
-                  <div className="space-y-1 sm:space-y-1.5 overflow-hidden">
+                  <div className="space-y-0.5 sm:space-y-1.5 overflow-hidden">
                     <motion.span
                       initial={{ opacity: 0, y: 14, filter: 'blur(3px)' }}
                       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                       transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                      className="block text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
+                      className="block text-xl sm:text-2xl lg:text-[2.5rem] xl:text-[3rem] font-display font-bold uppercase tracking-[0.06em] text-[#F3F0E8]/80 leading-none"
                     >
                       THE GAME
                     </motion.span>
-                    <h1 className="text-5xl sm:text-7xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.82] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-3.5">
+                    <h1 className="text-4xl sm:text-6xl lg:text-[5.4rem] xl:text-[6.3rem] font-display font-black uppercase tracking-tight leading-[0.84] text-[#F3F0E8] flex flex-wrap items-baseline gap-x-2.5 sm:gap-x-3.5">
                       <motion.span
                         initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
                         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -273,33 +273,33 @@ export const EditorialHero: React.FC = () => {
                   </div>
 
                   {/* Product Meta: Official Release Spec */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
+                  <div className="space-y-0.5 sm:space-y-1">
+                    <div className="flex items-center gap-1.5 sm:gap-2 font-sans text-[9.5px] sm:text-[10.5px] tracking-[0.20em] sm:tracking-[0.26em] uppercase font-semibold text-[#9B9992]">
                       <span>PORTUGAL 2025/26</span>
                       <span className="text-white/20">•</span>
                       <span className="text-[#E3261E]">HOME SPECIMEN</span>
                     </div>
-                    <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.16em] text-sm sm:text-base uppercase">
+                    <div className="text-[#F3F0E8] font-sans font-bold tracking-[0.14em] sm:tracking-[0.16em] text-xs sm:text-base uppercase">
                       PORTUGAL HOME KIT 2025/26
                     </div>
                   </div>
 
                   {/* Pricing Line with Red Dash Accent & Transparent Spec */}
-                  <div className="flex items-baseline gap-3 pt-0.5">
-                    <div className="w-5 h-[2px] bg-[#E3261E] self-center" />
-                    <span className="text-3xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
+                  <div className="flex items-baseline gap-2.5 sm:gap-3 pt-0.5">
+                    <div className="w-4 sm:w-5 h-[2px] bg-[#E3261E] self-center" />
+                    <span className="text-2xl sm:text-4xl font-sans font-extrabold text-[#F3F0E8] tracking-tight">
                       ₹1,499
                     </span>
-                    <span className="text-xs sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
+                    <span className="text-[10.5px] sm:text-sm font-mono text-[#9B9992] tracking-wider uppercase">
                       TAXES INCLUDED · SIZES S–XXL
                     </span>
                   </div>
 
                   {/* Action Button: Focused Primary CTA */}
-                  <div className="pt-1 flex items-center">
+                  <div className="pt-1 flex items-center w-full sm:w-auto">
                     <Link
                       to="/collection"
-                      className="group h-12 inline-flex items-center justify-center gap-3 px-8 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-150 ease-out rounded-xs hover:shadow-[0_4px_24px_rgba(227,38,30,0.50)] active:scale-[0.98]"
+                      className="group h-12 w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 bg-[#E3261E] hover:bg-[#c91e17] text-white font-sans font-bold text-xs uppercase tracking-[0.18em] transition-all duration-150 ease-out rounded-xs hover:shadow-[0_4px_24px_rgba(227,38,30,0.50)] active:scale-[0.98]"
                     >
                       <span>EXPLORE COLLECTION</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-150 ease-out group-hover:translate-x-1" />
@@ -438,11 +438,11 @@ export const EditorialHero: React.FC = () => {
           {/* ============================================================
               CENTER COLUMN: Unboxed Jersey (Dominant Scale & Placement)
              ============================================================ */}
-          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[360px] sm:min-h-[440px] lg:min-h-[540px] lg:-translate-x-1 xl:-translate-x-2">
+          <div className="lg:col-span-4 relative flex items-center justify-center min-h-[290px] sm:min-h-[380px] lg:min-h-[540px] my-1 sm:my-3 lg:my-0 lg:-translate-x-1 xl:-translate-x-2">
             
             {/* Jersey Centerpiece Container (Dominant Scale & Central Placement) */}
             <div
-              className="relative w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.06] sm:scale-[1.2] lg:scale-[1.38] xl:scale-[1.42] translate-y-2 sm:translate-y-6 lg:translate-y-10 transition-transform duration-500 ease-out"
+              className="relative w-full max-w-[320px] sm:max-w-[480px] lg:max-w-[700px] xl:max-w-[750px] flex items-center justify-center z-10 scale-[1.02] sm:scale-[1.15] lg:scale-[1.38] xl:scale-[1.42] translate-y-0 sm:translate-y-4 lg:translate-y-10 transition-transform duration-500 ease-out"
             >
               {/* High-Resolution Jersey Image or Macro Detail View */}
               <div className="relative w-full aspect-[4/4.3] flex items-center justify-center">
@@ -473,9 +473,9 @@ export const EditorialHero: React.FC = () => {
                     {/* Volumetric Theatrical Studio Backlight (Broad, Soft Atmosphere) */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 select-none">
                       {/* Core Ruby Spotlight Behind Torso */}
-                      <div className="w-[280px] h-[320px] sm:w-[390px] sm:h-[430px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.26)_0%,_rgba(180,20,15,0.10)_48%,_transparent_72%)] blur-2xl transform-gpu" />
+                      <div className="w-[240px] h-[260px] sm:w-[390px] sm:h-[430px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(227,38,30,0.26)_0%,_rgba(180,20,15,0.10)_48%,_transparent_72%)] blur-2xl transform-gpu" />
                       {/* Broad Atmospheric Haze */}
-                      <div className="absolute w-[440px] h-[480px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
+                      <div className="absolute w-[360px] h-[380px] sm:w-[680px] sm:h-[720px] rounded-full bg-[radial-gradient(circle,_rgba(227,38,30,0.10)_0%,_rgba(227,38,30,0.03)_52%,_transparent_75%)] blur-3xl transform-gpu" />
                     </div>
 
                     {/* Camera Zoom Stage (Smoothly zooms and translates camera to focal areas) */}
@@ -564,8 +564,8 @@ export const EditorialHero: React.FC = () => {
             <div className="w-full max-w-full lg:max-w-[210px]">
               
               {/* Understated Editorial Header with Dynamic Progress Indicator */}
-              <div className="pb-2.5 mb-2.5 sm:mb-3">
-                <div className="flex items-center justify-between pb-1.5">
+              <div className="pb-2 mb-2 sm:mb-3">
+                <div className="flex items-center justify-between pb-1">
                   <span className="text-[9px] font-sans font-semibold tracking-[0.25em] text-[#9B9992]/70 uppercase">
                     PERSPECTIVES
                   </span>
@@ -631,7 +631,7 @@ export const EditorialHero: React.FC = () => {
                           : 'border-transparent bg-transparent opacity-40 hover:opacity-100 hover:border-white/[0.06] hover:bg-white/[0.015]'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
+                      <div className="flex items-center gap-2 sm:gap-2.5">
                         {/* Smooth Scaling Minimalist Thumbnail */}
                         <motion.div
                           animate={{
@@ -642,7 +642,7 @@ export const EditorialHero: React.FC = () => {
                             stiffness: 300,
                             damping: 24,
                           }}
-                          className={`w-7 h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-colors duration-300 ${
+                          className={`w-6 h-6 sm:w-7 sm:h-7 shrink-0 rounded-2xs bg-[#0b0b0a] flex items-center justify-center overflow-hidden border transition-colors duration-300 ${
                             isActive
                               ? 'border-white/35 shadow-[0_0_12px_rgba(0,0,0,0.9)] ring-1 ring-[#E3261E]/40'
                               : 'border-white/[0.06] group-hover:border-white/15'
@@ -667,12 +667,12 @@ export const EditorialHero: React.FC = () => {
 
                         {/* Clean Single-Line Typography */}
                         <div className="flex items-center gap-1.5 text-left">
-                          <span className={`text-[9.5px] font-mono transition-colors ${
+                          <span className={`text-[9px] sm:text-[9.5px] font-mono transition-colors ${
                             isActive ? 'text-[#E3261E] font-bold' : 'text-[#9B9992]/60 group-hover:text-[#9B9992]'
                           }`}>
                             {view.num}
                           </span>
-                          <span className={`text-[11px] font-sans uppercase tracking-[0.1em] transition-colors ${
+                          <span className={`text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] transition-colors ${
                             isActive ? 'text-[#F3F0E8] font-bold' : 'text-[#9B9992] group-hover:text-[#F3F0E8] font-medium'
                           }`}>
                             {view.label}
@@ -681,7 +681,7 @@ export const EditorialHero: React.FC = () => {
                       </div>
 
                       {/* Active Red Indicator: Smoothly Slides across Selected Items */}
-                      <div className="relative w-3.5 h-3.5 flex items-center justify-center pr-1">
+                      <div className="relative w-3.5 h-3.5 flex items-center justify-center pr-0.5 sm:pr-1">
                         {isActive && (
                           <motion.div
                             layoutId="activePerspectiveIndicator"
@@ -708,46 +708,46 @@ export const EditorialHero: React.FC = () => {
       {/* ============================================================
           BOTTOM SECTION: Understated Brand Assurance Modules & Archival Spec
          ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-3 pb-1 border-t border-white/[0.04]">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 w-full pt-4 pb-2 sm:pt-3 sm:pb-1 border-t border-white/[0.04]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6">
           
-          {/* Brand Assurance Modules (More Spacing, Lighter Visual Weight) */}
-          <div className="flex flex-wrap items-center gap-6 sm:gap-12 lg:gap-16 text-left">
+          {/* Brand Assurance Modules (Clean Responsive Row / Wrap) */}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-8 lg:gap-16 text-left">
             
             {/* Module 1: Quality Spec */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-[#E3261E]/70" />
               <div className="flex items-baseline gap-1.5 font-sans">
-                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   MATCH-SPEC WEAVE
                 </span>
-                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                <span className="text-[8px] sm:text-[8.5px] font-mono tracking-[0.14em] sm:tracking-[0.16em] text-[#9B9992]/40 uppercase">
                   / ATHLETIC CUT
                 </span>
               </div>
             </div>
 
             {/* Module 2: Logistics */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <div className="flex items-baseline gap-1.5 font-sans">
-                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   PAN-INDIA DISPATCH
                 </span>
-                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                <span className="text-[8px] sm:text-[8.5px] font-mono tracking-[0.14em] sm:tracking-[0.16em] text-[#9B9992]/40 uppercase">
                   / TRACKED
                 </span>
               </div>
             </div>
 
             {/* Module 3: Verification */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <div className="flex items-baseline gap-1.5 font-sans">
-                <span className="text-[10px] font-medium tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
+                <span className="text-[9.5px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.22em] text-[#F3F0E8]/75 uppercase">
                   ATELIER SOURCED
                 </span>
-                <span className="text-[8.5px] font-mono tracking-[0.16em] text-[#9B9992]/40 uppercase">
+                <span className="text-[8px] sm:text-[8.5px] font-mono tracking-[0.14em] sm:tracking-[0.16em] text-[#9B9992]/40 uppercase">
                   / INSPECTED
                 </span>
               </div>
