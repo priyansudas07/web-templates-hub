@@ -49,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
       >
         {/* Top Archival Spec Bar */}
-        <div className="px-5 py-2.5 bg-[#0A0A09] border-b border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-[#8E8C85] tracking-widest uppercase">
+        <div className="px-4 sm:px-5 py-2.5 bg-[#0A0A09] border-b border-white/[0.06] flex items-center justify-between text-[9.5px] sm:text-[10px] font-mono text-[#8E8C85] tracking-widest uppercase">
           <span className="flex items-center gap-1.5">
             <span className="text-[#E3261E] font-bold">//</span>
             <span>ARCHIVE NO. {product.archiveNo || '001'}</span>
@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Large Product Photography with Full Silhouette Framing */}
-        <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] bg-[#060605] overflow-hidden flex items-center justify-center p-2 sm:p-4">
+        <div className="relative w-full aspect-[4/3.5] sm:aspect-[16/11] bg-[#060605] overflow-hidden flex items-center justify-center p-3 sm:p-4">
           <Link
             to={`/collection/${product.id}`}
             className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
@@ -72,27 +72,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               loading="lazy"
               className={cn(
                 "w-full h-full group-hover:scale-[1.03] group-hover:brightness-[1.04] transition-all duration-500 ease-out",
-                isPngKit ? "object-contain p-2" : "object-cover object-center"
+                isPngKit ? "object-contain p-1 sm:p-2 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" : "object-cover object-center"
               )}
             />
           </Link>
 
-          {/* Front / Back Toggle Button */}
+          {/* Front / Back Toggle Button with Mobile Touch Target */}
           {hasBackImage && (
             <button
               onClick={toggleView}
               aria-label="Toggle jersey view"
-              className="absolute bottom-3 right-3 z-10 px-2.5 py-1 rounded-sm bg-[#080807]/90 backdrop-blur-md text-[#8E8C85] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1.5 transition-all opacity-90 hover:opacity-100 shadow-md"
+              className="absolute bottom-3 right-3 z-10 px-3 py-1.5 sm:py-1 rounded-sm bg-[#080807]/90 backdrop-blur-md text-[#8E8C85] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1.5 transition-all opacity-95 hover:opacity-100 shadow-md cursor-pointer active:scale-95 min-h-[36px]"
             >
-              <RotateCcw className="w-3 h-3 text-[#E3261E]" />
+              <RotateCcw className="w-3.5 h-3.5 text-[#E3261E]" />
               <span>{currentImageIndex === 0 ? '01 / FRONT' : '02 / BACK'}</span>
             </button>
           )}
         </div>
 
         {/* Details Underneath Image */}
-        <div className="p-6 sm:p-7 flex flex-col justify-between gap-5 flex-grow bg-[#0E0E0D] group-hover:-translate-y-1 transition-transform duration-300 ease-out">
-          <div className="space-y-2.5">
+        <div className="p-4 sm:p-7 flex flex-col justify-between gap-4 sm:gap-5 flex-grow bg-[#0E0E0D] group-hover:-translate-y-1 transition-transform duration-300 ease-out">
+          <div className="space-y-2 sm:space-y-2.5">
             {/* Label with Orange Accent */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 </span>
               </div>
               {product.season && (
-                <span className="text-[10px] font-mono text-[#8E8C85] tracking-wider">{product.season}</span>
+                <span className="text-[9.5px] sm:text-[10px] font-mono text-[#8E8C85] tracking-wider">{product.season}</span>
               )}
             </div>
 
@@ -111,7 +111,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               to={`/collection/${product.id}`}
               className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded"
             >
-              <h3 className="font-sans font-extrabold text-xl sm:text-2xl lg:text-3xl text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight leading-tight">
+              <h3 className="font-sans font-extrabold text-lg sm:text-2xl lg:text-3xl text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight leading-tight">
                 {product.name}
               </h3>
             </Link>
@@ -124,10 +124,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             {/* Available Sizes Pills */}
             {product.sizes && product.sizes.length > 0 && (
-              <div className="flex items-center gap-1.5 pt-1">
-                <span className="text-[9px] font-mono text-[#8E8C85] uppercase tracking-widest mr-1">SIZES:</span>
+              <div className="flex items-center gap-1.5 pt-0.5 sm:pt-1">
+                <span className="text-[8.5px] sm:text-[9px] font-mono text-[#8E8C85] uppercase tracking-widest mr-1">SIZES:</span>
                 {product.sizes.map((s) => (
-                  <span key={s} className="text-[9.5px] font-mono px-1.5 py-0.5 rounded-sm bg-white/[0.03] text-white/80 border border-white/[0.06]">
+                  <span key={s} className="text-[9px] sm:text-[9.5px] font-mono px-1.5 py-0.5 rounded-sm bg-white/[0.03] text-white/80 border border-white/[0.06]">
                     {s}
                   </span>
                 ))}
@@ -136,17 +136,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           {/* Price & View Kit CTA */}
-          <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
+          <div className="pt-3 sm:pt-4 border-t border-white/[0.06] flex items-center justify-between gap-3 sm:gap-4">
             <div>
-              <span className="text-[10px] font-mono text-[#8E8C85] uppercase tracking-widest block">MATCH PRICE</span>
-              <span className="text-xl sm:text-2xl font-mono font-bold text-[#F3F0E8] tracking-tight">
+              <span className="text-[9px] sm:text-[10px] font-mono text-[#8E8C85] uppercase tracking-widest block">MATCH PRICE</span>
+              <span className="text-lg sm:text-2xl font-mono font-bold text-[#F3F0E8] tracking-tight">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
             </div>
 
             <Link
               to={`/collection/${product.id}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-white/[0.04] hover:bg-[#E3261E] border border-white/10 hover:border-[#E3261E] text-xs font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-200 shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] rounded-xs bg-white/[0.04] hover:bg-[#E3261E] active:bg-[#E3261E] border border-white/10 hover:border-[#E3261E] text-xs font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-200 shadow-sm"
             >
               <span>VIEW KIT</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -166,8 +166,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className
         )}
       >
-        {/* Product Photography */}
-        <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto min-h-[170px] bg-[#060605] overflow-hidden shrink-0 flex items-center justify-center p-2">
+        {/* Product Photography - Prominent & Uncropped on Mobile */}
+        <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto min-h-[200px] sm:min-h-[170px] bg-[#060605] overflow-hidden shrink-0 flex items-center justify-center p-3 sm:p-2">
           <Link
             to={`/collection/${product.id}`}
             className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
@@ -179,7 +179,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               loading="lazy"
               className={cn(
                 "w-full h-full group-hover:scale-[1.04] group-hover:brightness-[1.04] transition-all duration-500 ease-out",
-                isPngKit ? "object-contain p-2" : "object-cover object-center"
+                isPngKit ? "object-contain p-1 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" : "object-cover object-center"
               )}
             />
           </Link>
@@ -189,7 +189,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 flex-grow bg-[#0E0E0D] group-hover:-translate-y-1 transition-transform duration-300 ease-out">
           <div className="space-y-1.5">
             {/* Top Bar with Archive Tag & Badge */}
-            <div className="flex items-center justify-between text-[9.5px] font-mono">
+            <div className="flex items-center justify-between text-[9px] sm:text-[9.5px] font-mono">
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E3261E]" />
                 <span className="font-bold tracking-[0.18em] text-[#E3261E] uppercase">
@@ -204,7 +204,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               to={`/collection/${product.id}`}
               className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded"
             >
-              <h3 className="font-sans font-bold text-sm sm:text-base text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight line-clamp-2 leading-snug">
+              <h3 className="font-sans font-bold text-base text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight line-clamp-2 leading-snug">
                 {product.name}
               </h3>
             </Link>
@@ -219,15 +219,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Price & View Kit Link */}
           <div className="pt-2.5 border-t border-white/[0.06] flex items-center justify-between gap-2">
             <div>
-              <span className="text-[9px] font-mono text-[#8E8C85] block uppercase tracking-wider">PRICE</span>
-              <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
+              <span className="text-[8.5px] sm:text-[9px] font-mono text-[#8E8C85] block uppercase tracking-wider">PRICE</span>
+              <span className="text-base sm:text-lg font-mono font-bold text-[#F3F0E8] tracking-tight">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
             </div>
 
             <Link
               to={`/collection/${product.id}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-white/[0.03] hover:bg-[#E3261E] border border-white/[0.08] hover:border-[#E3261E] text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8] uppercase transition-all duration-200"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 min-h-[44px] rounded-xs bg-white/[0.03] hover:bg-[#E3261E] active:bg-[#E3261E] border border-white/[0.08] hover:border-[#E3261E] text-[11px] font-mono font-bold tracking-wider text-[#F3F0E8] uppercase transition-all duration-200"
             >
               <span>VIEW KIT</span>
               <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -253,7 +253,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Product Photography */}
-      <div className="relative aspect-[4/5] bg-[#060605] overflow-hidden flex items-center justify-center p-2">
+      <div className="relative aspect-[4/5] bg-[#060605] overflow-hidden flex items-center justify-center p-3 sm:p-2">
         <Link
           to={`/collection/${product.id}`}
           className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] flex items-center justify-center"
@@ -265,7 +265,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             loading="lazy"
             className={cn(
               "w-full h-full group-hover:scale-[1.04] group-hover:brightness-[1.04] transition-all duration-500 ease-out",
-              isPngKit ? "object-contain p-2" : "object-cover object-center"
+              isPngKit ? "object-contain p-1 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" : "object-cover object-center"
             )}
           />
         </Link>
@@ -274,16 +274,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={toggleView}
             aria-label="Toggle jersey view"
-            className="absolute bottom-3 right-3 z-10 p-1.5 rounded-sm bg-[#080807]/90 backdrop-blur-md text-[#8E8C85] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1 transition-all shadow-md"
+            className="absolute bottom-3 right-3 z-10 px-2.5 py-1.5 sm:py-1 rounded-sm bg-[#080807]/90 backdrop-blur-md text-[#8E8C85] hover:text-[#F3F0E8] border border-white/10 text-[10px] font-mono uppercase flex items-center gap-1 transition-all shadow-md cursor-pointer active:scale-95 min-h-[36px]"
           >
-            <RotateCcw className="w-3 h-3 text-[#E3261E]" />
-            <span className="hidden sm:inline">{currentImageIndex === 0 ? 'FRONT' : 'BACK'}</span>
+            <RotateCcw className="w-3.5 h-3.5 text-[#E3261E]" />
+            <span className="inline">{currentImageIndex === 0 ? 'FRONT' : 'BACK'}</span>
           </button>
         )}
       </div>
 
       {/* Details Underneath Image */}
-      <div className="p-5 flex flex-col flex-grow justify-between gap-4 bg-[#0E0E0D] group-hover:-translate-y-1 transition-transform duration-300 ease-out">
+      <div className="p-4 sm:p-5 flex flex-col flex-grow justify-between gap-3.5 sm:gap-4 bg-[#0E0E0D] group-hover:-translate-y-1 transition-transform duration-300 ease-out">
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
@@ -301,7 +301,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             to={`/collection/${product.id}`}
             className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E3261E] rounded"
           >
-            <h3 className="font-sans font-bold text-sm sm:text-base text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight line-clamp-1 leading-snug">
+            <h3 className="font-sans font-bold text-base text-[#F3F0E8] group-hover:text-white transition-colors uppercase tracking-tight line-clamp-1 leading-snug">
               {product.name}
             </h3>
           </Link>
@@ -314,17 +314,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Price & View Kit Link */}
-        <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
+        <div className="pt-2.5 sm:pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
           <div>
-            <span className="text-[9px] font-mono text-[#8E8C85] block uppercase tracking-wider">PRICE</span>
-            <span className="text-base font-mono font-bold text-[#F3F0E8] tracking-tight">
+            <span className="text-[8.5px] sm:text-[9px] font-mono text-[#8E8C85] block uppercase tracking-wider">PRICE</span>
+            <span className="text-base sm:text-lg font-mono font-bold text-[#F3F0E8] tracking-tight">
               ₹{product.price.toLocaleString('en-IN')}
             </span>
           </div>
 
           <Link
             to={`/collection/${product.id}`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-white/[0.03] hover:bg-[#E3261E] border border-white/[0.08] hover:border-[#E3261E] text-[11px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-200"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 min-h-[44px] rounded-xs bg-white/[0.03] hover:bg-[#E3261E] active:bg-[#E3261E] border border-white/[0.08] hover:border-[#E3261E] text-[11px] font-mono font-bold tracking-widest text-[#F3F0E8] uppercase transition-all duration-200"
           >
             <span>VIEW KIT</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />

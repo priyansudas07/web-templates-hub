@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
   const filteredCategories = categories.filter((c) => c.id !== 'all');
 
   return (
-    <div className="space-y-28 pb-16 overflow-x-hidden bg-[#0B0B0A]">
+    <div className="space-y-16 sm:space-y-24 lg:space-y-28 pb-16 overflow-x-hidden bg-[#0B0B0A]">
       
       {/* 1. EDITORIAL HERO SECTION */}
       <EditorialHero />
