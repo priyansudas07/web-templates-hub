@@ -39,7 +39,6 @@ export const Home: React.FC = () => {
         <SectionHeading
           tag="02 / CURRENT ISSUE"
           title="SEASON 24/25 ARRIVALS"
-          subtitle="Fresh allocations directly catalogued for active team rotations."
           action={{ label: "EXPLORE ALL DROPS", href: "/collection" }}
         />
         <ProductGrid products={newArrivals} />
@@ -50,7 +49,6 @@ export const Home: React.FC = () => {
         <SectionHeading
           tag="03 / THE REGISTRY"
           title="DISCIPLINES & CLASSIFICATIONS"
-          subtitle="Filter the archive by sporting discipline, club heritage & tournament format."
         />
 
         <div className="border-t border-b border-white/[0.08] divide-y divide-white/[0.06]">
