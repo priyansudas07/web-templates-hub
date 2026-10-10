@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #090a0f;
+    --surface-card: #0f131c;
+    --accent-crimson: #e11d48;
+    --accent-cyan: #06b6d4;
+    --text-primary: #e2e8f0;
+    --text-muted: #64748b;
+    --border-dark: #1e293b;
+  }
+
+  body {
+    background-color: #090a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Fira Code', monospace;
+  }
+}
