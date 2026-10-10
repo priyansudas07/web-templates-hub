@@ -1,5 +1,5 @@
 // Starter test suite for SHINOBI OS
-// Can be executed with Vitest or Jest test runner
+import { describe, it, expect } from 'vitest';
 
 export function calculateWindowBounds(viewportWidth: number, viewportHeight: number) {
   return {
