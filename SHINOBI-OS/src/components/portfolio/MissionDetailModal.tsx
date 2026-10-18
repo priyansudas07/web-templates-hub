@@ -4,6 +4,7 @@ import type { Project } from '@/types/schema';
 import { Modal } from '@/components/ui/Modal';
 import { Badge } from '@/components/ui/Badge';
 import { GitRepoIcon } from '@/components/ui/Icons';
+import { InkanStamp, CornerBrackets, ScrollIcon } from '@/components/ui/ShinobiIcons';
 
 export interface MissionDetailModalProps {
   project: Project | null;
@@ -18,17 +19,28 @@ export const MissionDetailModal: React.FC<MissionDetailModalProps> = ({
 }) => {
   if (!project) return null;
 
+  const rankStamp =
+    project.missionRank === 'S-Rank'
+      ? { text: '極秘', variant: 'crimson' as const }
+      : project.missionRank === 'A-Rank'
+      ? { text: '機密', variant: 'amber' as const }
+      : { text: '公認', variant: 'emerald' as const };
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
       title={project.title}
-      subtitle={`${project.codename} // ${project.category.toUpperCase()}`}
+      subtitle={`CLASSIFIED DOSSIER // ${project.codename} // ${project.category.toUpperCase()}`}
       maxWidth="max-w-2xl"
     >
-      <div className="space-y-6 text-sm">
+      <div className="relative space-y-6 text-sm">
+        <CornerBrackets position="tl" className="border-emerald-500/40" />
+        <CornerBrackets position="tr" className="border-emerald-500/40" />
+
         {/* Header Badges */}
         <div className="flex flex-wrap items-center gap-2">
+          <InkanStamp text={rankStamp.text} variant={rankStamp.variant} />
           <Badge variant="rank" rank={project.missionRank}>
             {project.missionRank} Mission
           </Badge>
@@ -36,8 +48,8 @@ export const MissionDetailModal: React.FC<MissionDetailModalProps> = ({
             Status: {project.status.toUpperCase()}
           </Badge>
           {project.featured && (
-            <span className="text-xs font-mono text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded">
-              ★ Flagship Dossier
+            <span className="text-xs font-mono text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded flex items-center gap-1">
+              <ScrollIcon className="w-3 h-3" /> Flagship Dossier
             </span>
           )}
         </div>

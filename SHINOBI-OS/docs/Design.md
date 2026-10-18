@@ -36,7 +36,14 @@ The mood is:
 - ❌ **No Gaming Bloat**: No simulated XP bars, health pools, or fake RPG stats that detract from genuine software engineering credibility.
 - ❌ **No Copyrighted Imagery**: Strictly zero ripped anime frames, studio logos, character renders, or copyrighted OST audio tracks.
 
----
+### 2.3 Naruto Shinobi Visual Motifs & Execution Standards
+To avoid looking like a generic SaaS dark mode dashboard, every primary view and component incorporates authentic shinobi design motifs:
+1. **Konoha Village Nocturnal Horizon (`ENV-001`)**: Distinctive mountain cliff silhouette, pagoda/eaves rooflines, and distant lantern embers behind a moonlit atmospheric mist gradient.
+2. **Hitai-Ate (Forehead Protector) Metal Plate Styling**: Top bar branding and tactical dock elements feature brushed slate metal plating with corner bolt rivets and engraved Konoha spiral crest.
+3. **Classified Mission Dossier Framing**: Projects styled as unsealed intelligence dossiers with engraved corner brackets (`┌ ┐ └ ┘`), double-rule header borders, and vermilion ink seal stamps (*Inkan* `極秘` / `任務`).
+4. **Shinobi Scroll Chronology**: Timelines and ability archives styled with parchment scroll axis, discipline kanji watermarks (`術`, `印`, `封`), and sealing knot nodes.
+5. **Drifting Leaf Foliage**: Sparse, non-intrusive wind-borne leaf particles floating across the background to give tangible life to the Hidden Leaf atmosphere without distracting from portfolio text.
+6. **Cryptographic Terminal Styling**: Terminal framed with Konoha spiral seal cipher watermark, tactical hex bolt hardware accents instead of generic macOS dots, and Konohagakure Angōbu classification banners.
 
 ## 3. Design Principles
 

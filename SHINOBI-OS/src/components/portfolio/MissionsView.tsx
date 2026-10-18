@@ -1,9 +1,21 @@
 import React, { useState, useMemo } from 'react';
-import { ExternalLink, Eye, Layers } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
 import type { MissionRank } from '@/types/schema';
-import { Badge } from '@/components/ui/Badge';
-import { GitRepoIcon } from '@/components/ui/Icons';
+import {
+  Badge,
+  Button,
+  Card,
+  SectionHeader,
+  EmptyState,
+  GitRepoIcon,
+} from '@/components/ui';
+import {
+  ScrollIcon,
+  InkanStamp,
+  CornerBrackets,
+  BoltHardware,
+} from '@/components/ui/ShinobiIcons';
 import { MissionDetailModal } from '@/components/portfolio/MissionDetailModal';
 
 export interface MissionsViewProps {
@@ -35,118 +47,150 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6">
-      {/* View Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1B2232] pb-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-emerald-400" />
-            <h1 className="text-lg sm:text-xl font-mono font-bold text-slate-100 tracking-wide">
-              MISSION DOSSIERS // DEPLOYED PROJECTS
-            </h1>
+      {/* View Header with SectionHeader Primitive */}
+      <SectionHeader
+        icon={<ScrollIcon className="w-4 h-4 text-emerald-400" />}
+        title="CLASSIFIED MISSION DOSSIERS // DEPLOYED PROJECTS"
+        subtitle="Verified production software architectures, full-stack systems, and active engineering missions."
+        action={
+          <div className="flex items-center gap-1 bg-[#0E121A] p-1 rounded-lg border border-[#1B2232] overflow-x-auto max-w-full">
+            {filterTabs.map((rank) => (
+              <button
+                key={rank}
+                type="button"
+                onClick={() => setActiveFilter(rank)}
+                className={`px-3 py-1.5 rounded-md text-xs font-mono transition-all min-h-[44px] focus-visible:outline-2 focus-visible:outline-emerald-500 ${
+                  activeFilter === rank
+                    ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-[#161D2D]'
+                }`}
+              >
+                {rank}
+              </button>
+            ))}
           </div>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Verified production systems, software architectures, and active engineering missions.
-          </p>
-        </div>
-
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-1 bg-[#0E121A] p-1 rounded-lg border border-[#1B2232] self-start sm:self-auto overflow-x-auto max-w-full">
-          {filterTabs.map((rank) => (
-            <button
-              key={rank}
-              type="button"
-              onClick={() => setActiveFilter(rank)}
-              className={`px-3 py-1.5 rounded-md text-xs font-mono transition-all min-h-[36px] focus-visible:outline-2 focus-visible:outline-emerald-500 ${
-                activeFilter === rank
-                  ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-[#161D2D]'
-              }`}
-            >
-              {rank}
-            </button>
-          ))}
-        </div>
-      </div>
+        }
+      />
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
-        <div className="p-8 text-center rounded-xl bg-[#0E121A] border border-[#1B2232] space-y-2">
-          <p className="text-slate-300 font-mono text-sm">No mission dossiers match rank "{activeFilter}".</p>
-          <p className="text-xs text-slate-500">Select another filter tier to view active records.</p>
-        </div>
+        <EmptyState
+          icon={<ScrollIcon className="w-8 h-8 text-slate-500" />}
+          title={`No mission dossiers match rank "${activeFilter}".`}
+          description="Select another filter tier above to view active classified project records."
+          action={
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setActiveFilter('ALL')}
+            >
+              Reset to All Missions
+            </Button>
+          }
+        />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {filteredProjects.map((project) => (
-            <article
-              key={project.id}
-              className="group flex flex-col justify-between p-5 rounded-xl bg-[#0B0E14] border border-[#1B2232] hover:border-[#283347] transition-all hover:shadow-xl hover:shadow-emerald-950/10 focus-within:border-emerald-500/60"
-            >
-              <div className="space-y-3">
-                {/* Card Header */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[11px] font-mono text-slate-400 tracking-wider">
-                    {project.codename}
-                  </span>
-                  <Badge variant="rank" rank={project.missionRank}>
-                    {project.missionRank}
-                  </Badge>
+          {filteredProjects.map((project) => {
+            const rankStamp =
+              project.missionRank === 'S-Rank'
+                ? { text: '極秘', variant: 'crimson' as const, borderTop: 'border-t-2 border-t-rose-500/50' }
+                : project.missionRank === 'A-Rank'
+                ? { text: '機密', variant: 'amber' as const, borderTop: 'border-t-2 border-t-amber-500/50' }
+                : { text: '公認', variant: 'emerald' as const, borderTop: 'border-t-2 border-t-emerald-500/50' };
+
+            return (
+              <Card
+                key={project.id}
+                as="article"
+                variant="interactive"
+                padding="md"
+                className={`group relative flex flex-col justify-between overflow-hidden bg-gradient-to-b from-[#121824] via-[#0F1420] to-[#0A0D15] border border-[#242E42] shadow-[0_4px_20px_rgba(0,0,0,0.5)] ${rankStamp.borderTop}`}
+              >
+                {/* Tactical Corner Brackets */}
+                <CornerBrackets position="tl" className="border-slate-500/40 group-hover:border-emerald-500/60" />
+                <CornerBrackets position="tr" className="border-slate-500/40 group-hover:border-emerald-500/60" />
+                <CornerBrackets position="bl" className="border-slate-500/40 group-hover:border-emerald-500/60" />
+                <CornerBrackets position="br" className="border-slate-500/40 group-hover:border-emerald-500/60" />
+
+                <div className="space-y-3">
+                  {/* Card Header */}
+                  <div className="flex items-center justify-between gap-2 border-b border-[#1A2234] pb-2">
+                    <div className="flex items-center gap-1.5">
+                      <BoltHardware className="w-1.5 h-1.5" />
+                      <span className="text-[11px] font-mono text-slate-400 font-semibold tracking-wider">
+                        DOSSIER // {project.codename}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <InkanStamp text={rankStamp.text} variant={rankStamp.variant} />
+                      <Badge variant="rank" rank={project.missionRank}>
+                        {project.missionRank}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-base sm:text-lg font-mono font-semibold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                    {project.title}
+                  </h2>
+
+                  {/* Mission Directive Label & Summary */}
+                  <div>
+                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block mb-1">
+                      // MISSION DIRECTIVE
+                    </span>
+                    <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed line-clamp-3">
+                      {project.summary}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack Chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {project.techStack.map((tech) => (
+                      <Badge key={tech} variant="tech">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Title */}
-                <h2 className="text-base sm:text-lg font-mono font-semibold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                  {project.title}
-                </h2>
+                {/* Card Footer Actions */}
+                <div className="pt-4 mt-4 border-t border-[#1A2234] flex items-center justify-between gap-2">
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    onClick={() => onSelectProject(project.id)}
+                    aria-label={`Inspect dossier for ${project.title}`}
+                    icon={<ScrollIcon className="w-3.5 h-3.5 text-emerald-400" />}
+                  >
+                    Inspect Dossier
+                  </Button>
 
-                {/* Summary */}
-                <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed line-clamp-3">
-                  {project.summary}
-                </p>
+                  <div className="flex items-center gap-2">
+                    {project.links.map((link) => {
+                      const isGithub = link.type === 'github';
+                      const Icon = isGithub ? GitRepoIcon : ExternalLink;
 
-                {/* Tech Stack Chips */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {project.techStack.map((tech) => (
-                    <Badge key={tech} variant="tech">
-                      {tech}
-                    </Badge>
-                  ))}
+                      return (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${link.label} for ${project.title}`}
+                          className="p-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#161D2D] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-emerald-500"
+                          title={link.label}
+                        >
+                          <Icon className="w-4 h-4" />
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-
-              {/* Card Footer Actions */}
-              <div className="pt-5 mt-4 border-t border-[#161D2D] flex items-center justify-between gap-2">
-                <button
-                  type="button"
-                  onClick={() => onSelectProject(project.id)}
-                  aria-label={`Inspect dossier for ${project.title}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300 hover:text-slate-100 bg-[#111622] hover:bg-[#161D2D] border border-[#1B2232] transition-colors min-h-[44px] focus-visible:outline-2 focus-visible:outline-emerald-500"
-                >
-                  <Eye className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Inspect Dossier</span>
-                </button>
-
-                <div className="flex items-center gap-2">
-                  {project.links.map((link) => {
-                    const isGithub = link.type === 'github';
-                    const Icon = isGithub ? GitRepoIcon : ExternalLink;
-
-                    return (
-                      <a
-                        key={link.url}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${link.label} for ${project.title}`}
-                        className="p-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#161D2D] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-emerald-500"
-                        title={link.label}
-                      >
-                        <Icon className="w-4 h-4" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </article>
-          ))}
+              </Card>
+            );
+          })}
         </div>
       )}
 

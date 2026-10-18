@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, CornerDownLeft } from 'lucide-react';
+import { CornerDownLeft } from 'lucide-react';
 import { profile } from '@/data/profile';
 import { projects } from '@/data/projects';
 import { skills } from '@/data/skills';
 import { experience, education } from '@/data/timeline';
 import { siteConfig } from '@/data/siteConfig';
 import type { RouteKey } from '@/types/navigation';
+import { IconButton } from '@/components/ui';
+import {
+  KonohaSeal,
+  InkanStamp,
+  BoltHardware,
+  CornerBrackets,
+} from '@/components/ui/ShinobiIcons';
 
 export interface TerminalViewProps {
   onNavigate: (route: RouteKey, subParam?: string) => void;
@@ -368,23 +375,38 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ onNavigate }) => {
     <div
       ref={terminalContainerRef}
       onClick={handleContainerClick}
-      className="w-full max-w-4xl mx-auto bg-[#0B0E14] border border-[#283347] rounded-xl shadow-2xl overflow-hidden flex flex-col min-h-[500px] max-h-[75vh]"
+      className="relative w-full max-w-4xl mx-auto bg-gradient-to-b from-[#121A2B] via-[#0C1322] to-[#080D18] border-2 border-[#2E231C] rounded-xl shadow-[0_24px_60px_rgba(0,0,0,0.92),0_0_0_1px_rgba(60,45,34,0.6),0_0_35px_rgba(16,185,129,0.07)] overflow-hidden flex flex-col min-h-[500px] max-h-[75vh] backdrop-blur-md"
     >
-      {/* Terminal Title Bar */}
-      <div className="px-4 py-2.5 bg-[#111622] border-b border-[#1B2232] flex items-center justify-between select-none">
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-          <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-          <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-          <span className="ml-2 font-mono text-xs text-slate-400 flex items-center gap-1.5">
-            <TerminalIcon className="w-3.5 h-3.5 text-emerald-400" />
-            shinobi-shell // {profile.callsign}
+      {/* Forged Steel & Emerald Corner Brackets */}
+      <CornerBrackets position="tl" className="border-emerald-500/60" />
+      <CornerBrackets position="tr" className="border-emerald-500/60" />
+      <CornerBrackets position="bl" className="border-emerald-500/60" />
+      <CornerBrackets position="br" className="border-emerald-500/60" />
+
+      {/* Shinobi Cryptographic Workstation Timber & Metal Header */}
+      <div className="px-4 py-2.5 bg-gradient-to-r from-[#221A15] via-[#141C2B] to-[#221A15] border-b border-[#2E231C] border-t border-t-amber-950/50 flex items-center justify-between select-none shadow-sm">
+        <div className="flex items-center gap-2.5">
+          {/* Forged Iron Rivets */}
+          <div className="flex items-center gap-1.5 mr-1">
+            <BoltHardware className="w-2 h-2" />
+            <BoltHardware className="w-2 h-2" />
+          </div>
+
+          <KonohaSeal className="w-4 h-4 text-emerald-400 drop-shadow-[0_1px_4px_rgba(16,185,129,0.5)]" />
+          <span className="font-mono text-xs text-amber-100/90 font-semibold tracking-wider flex items-center gap-2">
+            ANGŌBU // CRYPTOGRAPHIC TERMINAL
+            <span className="hidden sm:inline text-slate-400 text-[10px] font-normal">
+              [{profile.callsign}]
+            </span>
           </span>
         </div>
-        <div className="flex items-center gap-2 text-[11px] font-mono text-slate-500">
-          <span>PORT: 432Hz</span>
-          <span>|</span>
-          <span className="text-emerald-400">READY</span>
+
+        <div className="flex items-center gap-2.5 text-[11px] font-mono">
+          <InkanStamp text="極秘" variant="crimson" className="hidden sm:inline-flex" />
+          <span className="hidden md:inline text-slate-400">CLEARANCE:</span>
+          <span className="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 font-semibold text-[10px] tracking-wider uppercase shadow-[0_0_8px_rgba(16,185,129,0.2)]">
+            JŌNIN
+          </span>
         </div>
       </div>
 
@@ -392,26 +414,30 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ onNavigate }) => {
       <div
         role="log"
         aria-live="polite"
-        className="flex-1 p-4 sm:p-6 overflow-y-auto font-mono text-xs sm:text-sm space-y-4 cursor-text"
+        className="relative flex-1 p-3 sm:p-6 overflow-y-auto font-mono text-xs sm:text-sm space-y-4 cursor-text break-words overflow-x-hidden"
       >
+        {/* Subtle Background Konoha Spiral Seal Watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 text-emerald-400 opacity-[0.035] pointer-events-none select-none">
+          <KonohaSeal className="w-full h-full" strokeWidth={1} />
+        </div>
         {outputEntries.map((entry) => (
           <div key={entry.id} className="space-y-1.5">
-            <div className="flex items-center justify-between text-slate-500 text-[11px]">
-              <span className="text-emerald-400/90 font-semibold">
+            <div className="flex items-center justify-between text-slate-500 text-[11px] gap-2">
+              <span className="text-emerald-400/90 font-semibold truncate">
                 shinobi@konoha:~$ <span className="text-slate-200">{entry.command}</span>
               </span>
-              <span>{entry.timestamp}</span>
+              <span className="shrink-0">{entry.timestamp}</span>
             </div>
-            <div className="pl-2 border-l border-[#1E2638]">{entry.content}</div>
+            <div className="pl-2 border-l border-[#1E2638] break-words">{entry.content}</div>
           </div>
         ))}
         <div ref={bottomRef} />
       </div>
 
-      {/* Terminal Command Input Prompt */}
-      <div className="p-3 sm:p-4 bg-[#0E121A] border-t border-[#1B2232] flex items-center gap-2 font-mono text-xs sm:text-sm">
-        <label htmlFor="terminal-input" className="text-emerald-400 font-semibold shrink-0 select-none">
-          shinobi@konoha:~$
+      {/* Terminal Command Input Prompt (Timber & Iron Base Trim) */}
+      <div className="p-2.5 sm:p-4 bg-gradient-to-r from-[#1C1612] via-[#0D1422] to-[#1C1612] border-t border-[#2E231C] flex items-center gap-2.5 font-mono text-xs sm:text-sm shadow-inner">
+        <label htmlFor="terminal-input" className="text-emerald-400 font-semibold shrink-0 select-none flex items-center gap-1">
+          <span className="hidden sm:inline">shinobi@konoha:</span>$
         </label>
         <input
           id="terminal-input"
@@ -424,20 +450,19 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ onNavigate }) => {
           spellCheck="false"
           placeholder="type 'help' for available commands..."
           aria-label="Terminal command line input"
-          className="flex-1 bg-transparent text-slate-100 placeholder:text-slate-600 focus:outline-none"
+          className="flex-1 min-w-0 bg-transparent text-slate-100 placeholder:text-slate-600 focus:outline-none"
         />
-        <button
-          type="button"
+        <IconButton
+          aria-label="Execute command"
+          variant="ghost"
+          size="md"
+          icon={<CornerDownLeft className="w-4 h-4 text-emerald-400" />}
           onClick={() => {
             executeCommand(inputVal);
             setInputVal('');
             setTempDraft('');
           }}
-          aria-label="Execute command"
-          className="p-1 rounded text-slate-500 hover:text-emerald-400 transition-colors focus-visible:outline-2 focus-visible:outline-emerald-500"
-        >
-          <CornerDownLeft className="w-4 h-4" />
-        </button>
+        />
       </div>
     </div>
   );

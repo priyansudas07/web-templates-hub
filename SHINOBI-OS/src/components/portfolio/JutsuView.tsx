@@ -1,9 +1,15 @@
 import React from 'react';
-import { Zap, Code, Database, Cloud, Sparkles } from 'lucide-react';
+import { Code, Database, Cloud, Sparkles } from 'lucide-react';
 import { skillCategories } from '@/data/skills';
 import { getSkillsByDiscipline } from '@/data/index';
-import { Badge } from '@/components/ui/Badge';
+import { Badge, Card, SectionHeader } from '@/components/ui';
 import type { JutsuDiscipline } from '@/types/schema';
+import {
+  ChakraSpark,
+  CornerBrackets,
+  InkanStamp,
+  BoltHardware,
+} from '@/components/ui/ShinobiIcons';
 
 export interface JutsuViewProps {
   onNavigateToMission?: (projectId: string) => void;
@@ -16,37 +22,59 @@ const DISCIPLINE_ICONS: Record<JutsuDiscipline, React.ComponentType<{ className?
   genjutsu: Sparkles,
 };
 
+const DISCIPLINE_META: Record<
+  JutsuDiscipline,
+  { kanji: string; accentBorder: string; stampVariant: 'emerald' | 'amber' | 'crimson' }
+> = {
+  ninjutsu: { kanji: '忍', accentBorder: 'border-t-2 border-t-emerald-500/60', stampVariant: 'emerald' },
+  taijutsu: { kanji: '体', accentBorder: 'border-t-2 border-t-amber-500/60', stampVariant: 'amber' },
+  fuinjutsu: { kanji: '封', accentBorder: 'border-t-2 border-t-cyan-500/60', stampVariant: 'emerald' },
+  genjutsu: { kanji: '幻', accentBorder: 'border-t-2 border-t-rose-500/60', stampVariant: 'crimson' },
+};
+
 export const JutsuView: React.FC<JutsuViewProps> = ({ onNavigateToMission }) => {
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="border-b border-[#1B2232] pb-4">
-        <div className="flex items-center gap-2">
-          <Zap className="w-4 h-4 text-emerald-400" />
-          <h1 className="text-lg sm:text-xl font-mono font-bold text-slate-100 tracking-wide">
-            TECHNICAL JUTSU ARCHIVE // SKILLS QUADRANT
-          </h1>
-        </div>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
-          Categorized technical masteries, core programming languages, frameworks, and deployment disciplines.
-        </p>
-      </div>
+      {/* Header with SectionHeader Primitive */}
+      <SectionHeader
+        icon={<ChakraSpark className="w-4 h-4 text-emerald-400" />}
+        title="CLASSIFIED JUTSU ARCHIVE // TECHNICAL MASTERY SCROLLS"
+        subtitle="Categorized software arts, full-stack runtimes, cloud sealing formulas, and sensory engineering."
+      />
 
       {/* Quadrants Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skillCategories.map((category) => {
-          const Icon = DISCIPLINE_ICONS[category.id] || Zap;
+          const Icon = DISCIPLINE_ICONS[category.id] || ChakraSpark;
+          const meta = DISCIPLINE_META[category.id];
           const categorySkills = getSkillsByDiscipline(category.id);
 
           return (
-            <div
+            <Card
               key={category.id}
-              className="p-5 rounded-xl bg-[#0B0E14] border border-[#1B2232] space-y-4 hover:border-[#283347] transition-all"
+              variant="elevated"
+              padding="md"
+              className={`relative overflow-hidden space-y-4 bg-gradient-to-b from-[#121824] via-[#0F1420] to-[#0A0D15] border border-[#242E42] shadow-[0_6px_24px_rgba(0,0,0,0.5)] transition-all ${meta.accentBorder}`}
             >
+              {/* Tactical Corner Brackets */}
+              <CornerBrackets position="tl" className="border-slate-500/40" />
+              <CornerBrackets position="tr" className="border-slate-500/40" />
+              <CornerBrackets position="bl" className="border-slate-500/40" />
+              <CornerBrackets position="br" className="border-slate-500/40" />
+
+              {/* Kanji Discipline Seal Watermark */}
+              <span
+                className="absolute right-3 top-2 font-serif font-black text-6xl text-slate-700/10 select-none pointer-events-none"
+                aria-hidden="true"
+              >
+                {meta.kanji}
+              </span>
+
               {/* Category Header */}
-              <div className="flex items-start justify-between gap-3 border-b border-[#161D2D] pb-3">
+              <div className="flex items-start justify-between gap-3 border-b border-[#1A2234] pb-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
+                    <BoltHardware className="w-1.5 h-1.5" />
                     <Icon className="w-4 h-4 text-emerald-400" />
                     <h2 className="text-sm font-mono font-bold text-slate-100">
                       {category.title}
@@ -56,9 +84,12 @@ export const JutsuView: React.FC<JutsuViewProps> = ({ onNavigateToMission }) => 
                     {category.thematicLabel}
                   </span>
                 </div>
-                <span className="text-xs font-mono text-slate-500 bg-[#111622] px-2 py-0.5 rounded border border-[#1B2232]">
-                  {categorySkills.length} Jutsu
-                </span>
+                <div className="flex items-center gap-2">
+                  <InkanStamp text={meta.kanji} variant={meta.stampVariant} />
+                  <span className="text-xs font-mono text-slate-400 bg-[#0E121B] px-2 py-0.5 rounded border border-[#1B2232]">
+                    {categorySkills.length} Jutsu
+                  </span>
+                </div>
               </div>
 
               <p className="text-xs text-slate-400 font-sans leading-relaxed">
@@ -94,7 +125,7 @@ export const JutsuView: React.FC<JutsuViewProps> = ({ onNavigateToMission }) => 
                                 key={projId}
                                 type="button"
                                 onClick={() => onNavigateToMission(projId)}
-                                className="text-[10px] font-mono text-cyan-400 hover:underline"
+                                className="text-[10px] font-mono text-cyan-400 hover:underline min-h-[24px] inline-flex items-center"
                               >
                                 #{projId}
                               </button>
@@ -110,7 +141,7 @@ export const JutsuView: React.FC<JutsuViewProps> = ({ onNavigateToMission }) => 
                   ))}
                 </div>
               )}
-            </div>
+            </Card>
           );
         })}
       </div>

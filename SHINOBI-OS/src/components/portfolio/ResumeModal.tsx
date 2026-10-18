@@ -1,8 +1,9 @@
 import React from 'react';
-import { FileText, Download, AlertCircle, Mail, CheckCircle2 } from 'lucide-react';
+import { Download, AlertCircle, Mail, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '@/data/siteConfig';
 import { profile } from '@/data/profile';
-import { Modal } from '@/components/ui/Modal';
+import { Modal, Button } from '@/components/ui';
+import { InkanStamp, CornerBrackets, ScrollIcon } from '@/components/ui/ShinobiIcons';
 
 export interface ResumeModalProps {
   isOpen: boolean;
@@ -21,19 +22,25 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="CANDIDATE DOSSIER // ATS RESUME"
+      title="CANDIDATE DOSSIER // ATS RESUME SCROLL"
       subtitle={`SPECIFICATION: ${resumeConfig.fileName}`}
       maxWidth="max-w-xl"
     >
-      <div className="space-y-6 text-sm">
+      <div className="relative space-y-6 text-sm">
+        <CornerBrackets position="tl" className="border-emerald-500/40" />
+        <CornerBrackets position="tr" className="border-emerald-500/40" />
+
         {/* Availability Banner */}
         {resumeConfig.isAvailable ? (
           <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3">
             <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <h3 className="font-mono font-semibold text-emerald-300 text-xs sm:text-sm">
-                VERIFIED ATS RESUME READY FOR DOWNLOAD
-              </h3>
+              <div className="flex items-center gap-2">
+                <InkanStamp text="公認" variant="emerald" />
+                <h3 className="font-mono font-semibold text-emerald-300 text-xs sm:text-sm">
+                  VERIFIED ATS RESUME READY FOR DOWNLOAD
+                </h3>
+              </div>
               <p className="text-xs text-slate-300">
                 Single-page ATS-formatted engineering resume. Includes full contact coordinates, verified projects, and technical skills.
               </p>
@@ -94,29 +101,28 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
               <span>Download ATS Resume ({resumeConfig.fileSizeLabel})</span>
             </a>
           ) : (
-            <button
-              type="button"
+            <Button
+              variant="outline"
+              size="md"
               disabled
-              aria-disabled="true"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#161D2D] text-slate-500 font-mono text-xs border border-[#283347] cursor-not-allowed min-h-[44px]"
+              icon={<ScrollIcon className="w-4 h-4 text-slate-600" />}
             >
-              <FileText className="w-4 h-4 text-slate-600" />
-              <span>PDF Download Temporarily Offline</span>
-            </button>
+              PDF Download Temporarily Offline
+            </Button>
           )}
 
           {onOpenContact && (
-            <button
-              type="button"
+            <Button
+              variant="secondary"
+              size="md"
+              icon={<Mail className="w-4 h-4 text-cyan-400" />}
               onClick={() => {
                 onClose();
                 onOpenContact();
               }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#111622] hover:bg-[#161D2D] text-slate-200 font-mono text-xs border border-[#1B2232] transition-colors min-h-[44px] focus-visible:outline-2 focus-visible:outline-emerald-500"
             >
-              <Mail className="w-4 h-4 text-cyan-400" />
-              <span>Contact Operative Directly</span>
-            </button>
+              Contact Operative Directly
+            </Button>
           )}
         </div>
       </div>

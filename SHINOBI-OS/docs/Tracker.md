@@ -50,7 +50,7 @@ To maintain absolute integrity and eliminate unverified completion claims, task 
 | **Phase 1** | Project Foundation | Validate Vite 8, TS strictness, and directory scaffold | **VERIFIED** | Phase 0 | Clean build with modular `src/` layout | None |
 | **Phase 2** | Content & Data Layer | Implement static typed datasets & query helpers | **VERIFIED** | Phase 1 | Strongly typed datasets in `src/data/` | User bio/projects input |
 | **Phase 3** | Core Portfolio Views | Implement terminal, project grid, skills, records, resume | **VERIFIED** | Phase 2 | Functional non-3D portfolio with hash router | None |
-| **Phase 4** | Visual Design System | Apply semantic design tokens and component styling | **NOT STARTED** | Phase 3 | WCAG AA contrast, mobile bottom drawers | None |
+| **Phase 4** | Visual Design System & Identity | Apply semantic tokens, micro-components, & Naruto shinobi art direction | **VERIFIED** | Phase 3 | WCAG AA contrast, 375px mobile responsiveness, authentic Konohagakure visual identity verified via Playwright | None |
 | **Phase 5** | Cinematic Awakening | Implement bootloader sequence with instant skip | **NOT STARTED** | Phase 4 | Awakening plays & skips $\le 200\text{ms}$ on Escape | None |
 | **Phase 6** | 3D Scene & Fallback | Lazy-load R3F night village with 2D CSS mesh fallback | **NOT STARTED** | Phase 5 | 3D canvas mounts; context loss tested | None |
 | **Phase 7** | Audio & Easter Egg | Web Audio procedural synthesizer & ANBU Easter egg | **NOT STARTED** | Phase 6 | Audio muted by default; ANBU mode works | None |
@@ -76,9 +76,10 @@ To maintain absolute integrity and eliminate unverified completion claims, task 
 | `IMP-011` | Phase 3 | Build `MissionsView.tsx` & `MissionDetailModal.tsx` | Must | **VERIFIED** | IMP-010 | S/A/B-Rank tabs filter; modal traps focus | Accessible dialog with Esc, focus trap, backdrop click, link discrimination | Project archive & modal |
 | `IMP-012` | Phase 3 | Build `JutsuView.tsx`, `RecordsView.tsx` & `ResumeModal.tsx` | Must | **VERIFIED** | IMP-011 | Skills quadrants render; resume downloads | 4 Jutsu disciplines; timeline; verified resume asset check & fallback | Core career records |
 | `IMP-013` | Phase 3 | Build `ContactModal.tsx` with one-click email copy | Must | **VERIFIED** | IMP-012 | Clipboard copy shows checkmark feedback | Clipboard API with fallback, success/fail feedback, `aria-live` announcement | Contact dispatch |
-| `IMP-014` | Phase 4 | Implement semantic design tokens in `src/styles/index.css` | Must | **NOT STARTED** | IMP-013 | Tokens compile to CSS variables | Not yet verified | Void Onyx, Leaf Green, Crimson |
-| `IMP-015` | Phase 4 | Build reusable UI micro-components in `src/components/ui/` | Must | **NOT STARTED** | IMP-014 | `Button`, `Badge`, `Card`, `Modal` state styles | Not yet verified | Hover, active, focus rings |
-| `IMP-016` | Phase 4 | Validate mobile layouts ($375\text{px}$) with bottom drawers | Must | **NOT STARTED** | IMP-015 | No horizontal scroll; $\ge 44\text{px}$ touch targets | Not yet verified | Touch-friendly viewports |
+| `IMP-014` | Phase 4 | Implement semantic design tokens in `src/styles/index.css` | Must | **VERIFIED** | IMP-013 | Tokens compile to CSS variables | `src/styles/index.css` audited; full semantic tokens, `@theme` variables, zero-duration reduced-motion clamp, custom selection & scrollbars | Void Onyx, Leaf Green, Crimson |
+| `IMP-015` | Phase 4 | Build reusable UI micro-components in `src/components/ui/` | Must | **VERIFIED** | IMP-014 | `Button`, `Badge`, `Card`, `Modal` state styles | `Button`, `IconButton`, `Card`, `SectionHeader`, `EmptyState`, `Badge`, `Modal` in `src/components/ui/`; `tests/uiComponents.test.ts` (11/11 tests pass); adopted across all views & modals | Hover, active, focus rings, $\ge 44\text{px}$ targets |
+| `IMP-016` | Phase 4 | Validate mobile layouts ($375\text{px}$) with bottom drawers | Must | **VERIFIED** | IMP-015 | No horizontal scroll; $\ge 44\text{px}$ touch targets | Live Playwright audit at 375x812, 320x568, and 1280x800; `scrollWidth === innerWidth` (0 horizontal overflow); all touch targets $\ge 44\times 44\text{px}$ | Touch-friendly viewports |
+| `IMP-016B` | Phase 4 | Naruto Shinobi Visual Identity Overhaul & Environmental Art Direction | Must | **VERIFIED** | IMP-016 | Authentic Hidden Leaf night environment, timber & forged iron framing, scroll dock, bespoke shinobi motifs | Live Playwright verification across desktop & mobile (375px); 51/51 unit tests pass; `tsc -b && vite build` clean pass | Konoha Angōbu cryptographic terminal aesthetic |
 | `IMP-017` | Phase 5 | Build `AwakeningIntro.tsx` boot sequence | Must | **NOT STARTED** | IMP-016 | Cipher decodes; seal rotates smoothly | Not yet verified | Thematic boot sequence |
 | `IMP-018` | Phase 5 | Implement frame-0 `[SKIP]` button & `Escape` bypass | Must | **NOT STARTED** | IMP-017 | Intro skips in $\le 200\text{ms}$; state persisted | Not yet verified | Respects user time |
 | `IMP-019` | Phase 5 | Implement `prefers-reduced-motion` zero-duration clamp | Must | **NOT STARTED** | IMP-018 | Animations clamped; intro bypassed automatically | Not yet verified | WCAG motion compliance |
@@ -96,19 +97,19 @@ To maintain absolute integrity and eliminate unverified completion claims, task 
 
 ## 5. Current Sprint: Immediate Next Actions
 
-**Sprint 2 (Phase 3: Core Portfolio Views: `IMP-008` to `IMP-013`) is 100% VERIFIED.**
+**Sprint 3 (Phase 4: Visual Design System & Visual Identity Overhaul: `IMP-014` to `IMP-016B`) is 100% VERIFIED.**
 
-The immediate execution tasks for **Sprint 3 (Phase 4: Visual Design System & Polish)** are:
+The immediate execution tasks for **Sprint 4 (Phase 5: Cinematic Awakening)** are:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│             SPRINT 3: VISUAL DESIGN SYSTEM & MICRO-COMPONENTS          │
+│                   SPRINT 4: CINEMATIC AWAKENING BOOTLOADER             │
 ├───────┬───────────────────────────────────┬─────────────┬──────────────┤
 │ Seq   │ Task ID & Description             │ Target File │ Verification │
 ├───────┼───────────────────────────────────┼─────────────┼──────────────┤
-│ 1     │ IMP-014: Design token audit       │ styles/     │ CSS token run│
-│ 2     │ IMP-015: Button & Card components │ ui/Button   │ State styles │
-│ 3     │ IMP-016: Mobile 375px responsive  │ Viewports   │ Touch audit  │
+│ 1     │ IMP-017: AwakeningIntro sequence  │ components/ │ Bootloader   │
+│ 2     │ IMP-018: Instant [SKIP] & Escape  │ Awakening   │ Bypass test  │
+│ 3     │ IMP-019: prefers-reduced-motion   │ Awakening   │ a11y clamp   │
 └───────┴───────────────────────────────────┴─────────────┴──────────────┘
 ```
 
@@ -142,11 +143,13 @@ The immediate execution tasks for **Sprint 3 (Phase 4: Visual Design System & Po
 
 | Quality Check / Verification Activity | Target Criteria | Last Run Date | Current Result / Evidence | Associated Phase / Tasks |
 | :--- | :--- | :---: | :--- | :--- |
-| **TypeScript Strict Compilation** | `tsc -b` exits code 0 | 2026-10-10 | ✅ Clean compilation, 0 errors, strict mode, zero `any` | `IMP-003`, `IMP-005`, `IMP-008`–`IMP-013` |
-| **Production Vite Build** | `npm run build` exits code 0 | 2026-10-10 | ✅ Built in 391ms (`dist/assets/index-*.js`, 86.1 KB gzip) | `IMP-003`, `IMP-008`–`IMP-013`, `IMP-024` |
-| **Content Schema & Route Tests** | Unit tests in `tests/` | 2026-10-10 | ✅ 40/40 Vitest tests pass in 241ms across 5 suites | `IMP-007`, `IMP-008`, `IMP-009`, `IMP-010` |
-| **Responsive Layout Audit** | $375\text{px}$ to $1440\text{px}$ no overflow | 2026-10-10 | ✅ Tactical dock wrap, responsive modals, touch targets $\ge 44\text{px}$ | `IMP-009`, `IMP-011`, `IMP-016` |
-| **Keyboard & Modal Traps** | Focus trapped; `Esc` dismisses | 2026-10-10 | ✅ Traps Tab/Shift+Tab; Escape closes; restores focus to opener | `IMP-011`, `IMP-012`, `IMP-013` |
+| **TypeScript Strict Compilation** | `tsc -b` exits code 0 | 2026-10-10 | ✅ Clean compilation, 0 errors, strict mode, zero `any` | `IMP-003`, `IMP-005`, `IMP-008`–`IMP-016` |
+| **Production Vite Build** | `npm run build` exits code 0 | 2026-10-10 | ✅ Built in 447ms (`dist/assets/index-*.js`, 87.08 KB gzip) | `IMP-003`, `IMP-008`–`IMP-016`, `IMP-024` |
+| **Content Schema & Route Tests** | Unit tests in `tests/` | 2026-10-10 | ✅ 51/51 Vitest tests pass in 265ms across 6 suites | `IMP-007`–`IMP-010`, `IMP-015` |
+| **Responsive Layout Audit** | $320\text{px}$ to $1280\text{px}$ no overflow | 2026-10-10 | ✅ Playwright verified: `scrollWidth === innerWidth`, zero horizontal overflow | `IMP-009`, `IMP-011`, `IMP-016` |
+| **Touch Target Accessibility** | All actionable targets $\ge 44\times 44\text{px}$ | 2026-10-10 | ✅ Filter tabs, buttons, dock items, close buttons meet $\ge 44\text{px}$ min-height/width | `IMP-015`, `IMP-016` |
+| **Keyboard & Modal Traps** | Focus trapped; `Esc` dismisses | 2026-10-10 | ✅ Traps Tab/Shift+Tab; Escape closes; restores focus to opener | `IMP-011`, `IMP-012`, `IMP-013`, `IMP-015` |
+| **Reduced Motion Compliance** | `prefers-reduced-motion` zero duration | 2026-10-10 | ✅ Global media query clamps transitions & animations to 0.01ms | `IMP-014`, `IMP-019` |
 | **WebGL Fallback Resilience** | Context loss mounts 2D mesh | Not run | Pending Phase 6 3D scene integration | `IMP-021` |
 | **Lighthouse Performance Audit** | Performance $\ge 90$, A11Y $\ge 95$ | Not run | Pending Phase 8 production audit | `IMP-026` |
 | **Live Link Integrity Crawler** | Zero 404s on external links | Not run | Pending Phase 9 deployment | `IMP-028` |
@@ -171,6 +174,8 @@ The immediate execution tasks for **Sprint 3 (Phase 4: Visual Design System & Po
 | **2026-10-10** | Completed Full Documentation Audit & Traceability Matrix | `IMP-001` | All 10 docs audited; standardized asset paths & task IDs |
 | **2026-10-10** | Implemented & verified Foundation & Data Layer (`IMP-003` to `IMP-007`) | `IMP-003`, `IMP-004`, `IMP-005`, `IMP-006`, `IMP-007` | `npm test` 15/15 passed (186ms); `npm run build` passed (376ms); 0 TS/build errors |
 | **2026-10-10** | Implemented & verified Phase 3 Core Portfolio Views (`IMP-008` to `IMP-013`) | `IMP-008`–`IMP-013` | `npm test` 40/40 passed (241ms); `npm run build` passed (391ms); hash routing, HUD, terminal, missions, jutsu, records, resume, contact verified |
+| **2026-10-10** | Implemented & verified Phase 4 Design System & Micro-Components (`IMP-014` to `IMP-016`) | `IMP-014`–`IMP-016` | `npm test` 51/51 passed (265ms); `npm run build` passed (447ms); semantic tokens, UI primitives (`Button`, `Card`, `IconButton`, `SectionHeader`, `EmptyState`), Playwright 320/375/1280px audit with zero horizontal overflow and $\ge 44\text{px}$ touch targets |
+| **2026-10-11** | Completed Phase 4 Visual Identity Correction (Naruto Shinobi Identity) | `IMP-014`–`IMP-016` | `npm test` 51/51 passed (332ms); `npm run build` passed (539ms); ShinobiEnvironment (Konoha nocturnal cliff & roofline silhouette, warm lanterns, moonlit mist, drifting leaves), Hitai-Ate metal plate branding, Konoha spiral seals, classified dossier framing with Inkan vermilion stamps (`極秘`/`機密`/`公認`), Jutsu scroll archive with Kanji watermarks (`忍`/`体`/`封`/`幻`), hardware bolts, tactile dock scroll-case. Visually verified on desktop and 375px mobile via Playwright screenshots. |
 
 ---
 

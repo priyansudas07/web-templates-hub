@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Copy, Check, ExternalLink, Globe, Send } from 'lucide-react';
 import { profile } from '@/data/profile';
-import { Modal } from '@/components/ui/Modal';
-import { GitRepoIcon } from '@/components/ui/Icons';
+import { Modal, Button, GitRepoIcon } from '@/components/ui';
+import { InkanStamp, CornerBrackets, KunaiIcon } from '@/components/ui/ShinobiIcons';
 
 export interface ContactModalProps {
   isOpen: boolean;
@@ -53,11 +53,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="COMMUNICATION DISPATCH // CONTACT"
+      title="COMMUNICATION DISPATCH // SHINOBI MESSENGER"
       subtitle={`OPERATIVE: ${profile.callsign} // ${profile.location}`}
       maxWidth="max-w-lg"
     >
-      <div className="space-y-6 text-sm">
+      <div className="relative space-y-6 text-sm">
+        <CornerBrackets position="tl" className="border-emerald-500/40" />
+        <CornerBrackets position="tr" className="border-emerald-500/40" />
+
+        <div className="flex items-center justify-between border-b border-[#1A2234] pb-2">
+          <div className="flex items-center gap-2">
+            <KunaiIcon className="w-4 h-4 text-emerald-400" />
+            <span className="text-xs font-mono text-slate-300 font-semibold tracking-wider">
+              CARRIER PROTOCOL: ENCRYPTED
+            </span>
+          </div>
+          <InkanStamp text="通信" variant="emerald" />
+        </div>
         {/* Intro */}
         <p className="text-slate-300 font-sans text-xs sm:text-sm leading-relaxed">
           Open for technical discussions, software engineering opportunities, open-source collaboration, and architecture consultations.
@@ -70,43 +82,32 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               // Direct Transmission Channel (Email)
             </span>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-lg bg-[#111622] border border-[#1B2232]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-lg bg-[#111622] border border-[#1B2232]">
               <span className="font-mono text-xs sm:text-sm text-slate-100 select-all truncate">
                 {emailAddress}
               </span>
 
               <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
+                <Button
+                  variant={copyState === 'copied' ? 'primary' : copyState === 'failed' ? 'danger' : 'secondary'}
+                  size="md"
                   onClick={handleCopyEmail}
                   aria-label="Copy email address to clipboard"
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md font-mono text-xs transition-colors min-h-[36px] focus-visible:outline-2 focus-visible:outline-emerald-500 ${
-                    copyState === 'copied'
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                      : copyState === 'failed'
-                      ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-                      : 'bg-[#161D2D] hover:bg-[#1E2638] text-slate-300 border border-[#283347]'
-                  }`}
-                >
-                  {copyState === 'copied' ? (
-                    <>
+                  icon={
+                    copyState === 'copied' ? (
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Copied!</span>
-                    </>
-                  ) : copyState === 'failed' ? (
-                    <span>Copy Failed</span>
-                  ) : (
-                    <>
+                    ) : (
                       <Copy className="w-3.5 h-3.5" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
+                    )
+                  }
+                >
+                  {copyState === 'copied' ? 'Copied!' : copyState === 'failed' ? 'Failed' : 'Copy'}
+                </Button>
 
                 <a
                   href={`mailto:${emailAddress}`}
                   aria-label="Send direct email"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md font-mono text-xs bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold transition-colors min-h-[36px] focus-visible:outline-2 focus-visible:outline-emerald-500"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-mono text-xs bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold transition-colors min-h-[44px] focus-visible:outline-2 focus-visible:outline-emerald-500 shadow-sm shadow-emerald-500/10"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Send</span>
